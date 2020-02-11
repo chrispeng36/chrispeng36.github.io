@@ -8,15 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Java多线程笔记 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="java多线程什么是线程进程一个内存中运行的应用程序，每个进程有一个独立的内存空间，一个应用程序可以运行多个进程。 线程（thread)线程是进程中的一个执行单元，负责当前进程中的执行，一个进程中至少要有一个线程。是操作系统能够进行运算调度的最小单位。是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。线程是独立调度和分派的基本">
+  <meta name="description" content="java多线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java多线程笔记">
 <meta property="og:url" content="http://yoursite.com/2020/02/12/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="java多线程什么是线程进程一个内存中运行的应用程序，每个进程有一个独立的内存空间，一个应用程序可以运行多个进程。 线程（thread)线程是进程中的一个执行单元，负责当前进程中的执行，一个进程中至少要有一个线程。是操作系统能够进行运算调度的最小单位。是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。线程是独立调度和分派的基本">
+<meta property="og:description" content="java多线程">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-02-11T16:47:21.000Z">
-<meta property="article:modified_time" content="2020-02-11T12:34:49.409Z">
+<meta property="article:modified_time" content="2020-02-11T12:38:46.593Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="Java学习笔记">
 <meta name="twitter:card" content="summary">
@@ -173,7 +173,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="java多线程"><a href="#java多线程" class="headerlink" title="java多线程"></a>java多线程</h1><h2 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h2><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>一个内存中运行的应用程序，每个进程有一个独立的内存空间，一个应用程序可以运行多个进程。</p>
+        <h1 id="java多线程"><a href="#java多线程" class="headerlink" title="java多线程"></a>java多线程</h1> <a id="more"></a>
+<h2 id="什么是线程"><a href="#什么是线程" class="headerlink" title="什么是线程"></a>什么是线程</h2><h3 id="进程"><a href="#进程" class="headerlink" title="进程"></a>进程</h3><p>一个内存中运行的应用程序，每个进程有一个独立的内存空间，一个应用程序可以运行多个进程。</p>
 <h3 id="线程（thread"><a href="#线程（thread" class="headerlink" title="线程（thread)"></a>线程（thread)</h3><p>线程是进程中的一个执行单元，负责当前进程中的执行，一个进程中至少要有一个线程。是操作系统能够进行运算调度的最小单位。是进程中的实际运作单位。一条线程指的是进程中一个单一顺序的控制流，一个进程中可以并发多个线程，每条线程并行执行不同的任务。线程是独立调度和分派的基本单位。线程可以为操作系统内核调度的内核线程。</p>
 <h2 id="线程的调度"><a href="#线程的调度" class="headerlink" title="线程的调度"></a>线程的调度</h2><h3 id="分时调度"><a href="#分时调度" class="headerlink" title="分时调度"></a>分时调度</h3><p>所有线程轮流使用CPU控制权，平均分配每个线程占用CPU的时间。</p>
 <h3 id="抢占式调度"><a href="#抢占式调度" class="headerlink" title="抢占式调度"></a>抢占式调度</h3><p>优先让优先级高的线程使用CPU，如果线程的优先级相同，那么会随机选择一个，Java使用的就是抢占式调度。</p>
@@ -338,6 +339,19 @@
             </div>
         </div>
         
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java多线程"><span class="toc-number">1.</span> <span class="toc-text">java多线程</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#什么是线程"><span class="toc-number">1.1.</span> <span class="toc-text">什么是线程</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#进程"><span class="toc-number">1.1.1.</span> <span class="toc-text">进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线程（thread"><span class="toc-number">1.1.2.</span> <span class="toc-text">线程（thread)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程的调度"><span class="toc-number">1.2.</span> <span class="toc-text">线程的调度</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#分时调度"><span class="toc-number">1.2.1.</span> <span class="toc-text">分时调度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#抢占式调度"><span class="toc-number">1.2.2.</span> <span class="toc-text">抢占式调度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多线程的作用"><span class="toc-number">1.3.</span> <span class="toc-text">多线程的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java多线程创建"><span class="toc-number">1.4.</span> <span class="toc-text">Java多线程创建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建的方法"><span class="toc-number">1.4.1.</span> <span class="toc-text">创建的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#方法一：通过实现runnable接口"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">方法一：通过实现runnable接口</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法二-通过集成Thread类本身"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">方法二: 通过集成Thread类本身</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#方法三：Callable-和-Future-创建线程（不太使用）"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">方法三：Callable 和 Future 创建线程（不太使用）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#实现Runnable接口相比继承Thread的优势"><span class="toc-number">1.5.</span> <span class="toc-text">实现Runnable接口相比继承Thread的优势</span></a></li></ol></li></ol>
+                    </div>
+                </span>
+            </div>
+        </div>
         
     </div>
 </aside>
