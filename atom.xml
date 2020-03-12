@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-02-25T15:21:32.629Z</updated>
+  <updated>2020-03-12T13:26:13.570Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,27 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>JDBC的总结</title>
-    <link href="http://yoursite.com/2020/02/22/JDBC%E7%9A%84%E6%80%BB%E7%BB%93/"/>
-    <id>http://yoursite.com/2020/02/22/JDBC%E7%9A%84%E6%80%BB%E7%BB%93/</id>
-    <published>2020-02-22T10:40:45.000Z</published>
-    <updated>2020-02-25T15:21:32.629Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="JDBC"><a href="#JDBC" class="headerlink" title="JDBC"></a>JDBC</h1><a id="more"></a><h2 id="JDBC的简介"><a href="#JDBC的简介" class="headerlink" title="JDBC的简介"></a>JDBC的简介</h2><p>JDBC（Java DataBase Connectivity）是一种Java数据库连接，用Java语言操作数据库。JDBC的本质是官方（sun公司）定义的一套操作数据库的规则，即接口。各个数据库厂商1去实现这套接口，可以用这套接口编程，真正执行的是驱动jar包中的实现类。</p><h2 id="使用JDBC的好处"><a href="#使用JDBC的好处" class="headerlink" title="使用JDBC的好处"></a>使用JDBC的好处</h2><ul><li>开发访问数据库的程序，只需要会调用JDBC接口中的方法，不用关注类是如何实现的。</li><li>使用同一套 Java 代码，进行少量的修改就可以访问其他 JDBC 支持的数据库</li></ul><h2 id="导入jar包"><a href="#导入jar包" class="headerlink" title="导入jar包"></a>导入jar包</h2><p>先在project中创建一个directory文件命名为lib，将mysql-connector-java-5.1.37-bin.jar包复制到该文件夹下，然后右键点击选择添加为library。</p><p><img src="/images/1.png" alt="avatar"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;h1 id=&quot;JDBC&quot;&gt;&lt;a href=&quot;#JDBC&quot; class=&quot;headerlink&quot; title=&quot;JDBC&quot;&gt;&lt;/a&gt;JDBC&lt;/h1&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Java学习笔记" scheme="http://yoursite.com/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
-    
-  </entry>
   
   <entry>
     <title>JDBC的总结一</title>
