@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-16T15:48:18.758Z</updated>
+  <updated>2020-04-24T14:41:30.563Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,21 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>朴素贝叶斯理论</title>
+    <link href="http://yoursite.com/2020/04/25/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%90%86%E8%AE%BA/"/>
+    <id>http://yoursite.com/2020/04/25/%E6%9C%B4%E7%B4%A0%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%90%86%E8%AE%BA/</id>
+    <published>2020-04-24T22:41:30.000Z</published>
+    <updated>2020-04-24T14:41:30.563Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+    
+  </entry>
   
   <entry>
     <title>MyLettertoMyselfin10years</title>
