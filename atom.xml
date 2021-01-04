@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-03-12T13:26:13.570Z</updated>
+  <updated>2021-01-04T13:10:22.070Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java Objects类和常见API</title>
+    <link href="http://yoursite.com/2021/01/05/java-Objects%E7%B1%BB%E7%9A%84%E6%80%BB%E7%BB%93/"/>
+    <id>http://yoursite.com/2021/01/05/java-Objects%E7%B1%BB%E7%9A%84%E6%80%BB%E7%BB%93/</id>
+    <published>2021-01-04T20:59:36.000Z</published>
+    <updated>2021-01-04T13:10:22.070Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-Java-Objects-类"><a href="#1-Java-Objects-类" class="headerlink" title="1 Java Objects 类"></a>1 Java Objects 类</h1><p><code>java.lang.Object</code>类是Java语言中的根类，即所有类的父类。它中描述的所有方法子类都可以使用。在对象实例化的时候，最终找的父类就是Object。</p><p>如果没有一个指定的父类，那么就默认继承自object类<br>如：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> /*<span class="keyword">extends</span> <span class="title">Object</span>*/ </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h2 id="1-1-Objects类中的方法"><a href="#1-1-Objects类中的方法" class="headerlink" title="1.1 Objects类中的方法"></a>1.1 Objects类中的方法</h2><p>java的objects类中有11个方法，。主要使用的有两个</p><ul><li><code>public String toString()</code>：返回该对象的字符串表示。</li><li><code>public boolean equals(Object obj)</code>：指示其他某个对象是否与此对象“相等”。</li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;1-Java-Objects-类&quot;&gt;&lt;a href=&quot;#1-Java-Objects-类&quot; class=&quot;headerlink&quot; title=&quot;1 Java Objects 类&quot;&gt;&lt;/a&gt;1 Java Objects 类&lt;/h1&gt;&lt;p&gt;&lt;code&gt;java.lan
+      
+    
+    </summary>
+    
+    
+    
+      <category term="Java学习笔记" scheme="http://yoursite.com/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
   
   <entry>
     <title>JDBC的总结一</title>
