@@ -15,17 +15,17 @@
 <meta property="og:site_name" content="Chris的个人博客">
 <meta property="og:description" content="1 collection集合">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/.com//01_%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D.bmp">
-<meta property="og:image" content="http://yoursite.com/.com//image%5CCollection%E4%B8%8EMap.bmp">
-<meta property="og:image" content="http://yoursite.com/.com//image%5C%E5%93%88%E5%B8%8C%E8%A1%A8.png">
-<meta property="og:image" content="http://yoursite.com/.com//image%5C%E5%93%88%E5%B8%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
-<meta property="og:image" content="http://yoursite.com/.com//image%5C02_%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86(1).bmp">
+<meta property="og:image" content="http://yoursite.com/images/01_%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D.bmp">
+<meta property="og:image" content="http://yoursite.com/.com//Collection%E4%B8%8EMap.bmp">
+<meta property="og:image" content="http://yoursite.com/.com//%E5%93%88%E5%B8%8C%E8%A1%A8.png">
+<meta property="og:image" content="http://yoursite.com/.com//%E5%93%88%E5%B8%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="http://yoursite.com/.com//02_%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86(1).bmp">
 <meta property="article:published_time" content="2021-01-06T20:43:12.000Z">
-<meta property="article:modified_time" content="2021-01-07T04:53:45.637Z">
+<meta property="article:modified_time" content="2021-01-07T05:01:40.666Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="Java学习笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/.com//01_%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D.bmp">
+<meta name="twitter:image" content="http://yoursite.com/images/01_%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D.bmp">
   
     <link rel="alternative" href="/atom.xml" title="Chris的个人博客" type="application/atom+xml">
   
@@ -207,11 +207,14 @@
 <li><strong>Collection</strong>：单列集合类的根接口，用于存储一系列符合某种规则的元素，它有两个重要的子接口，分别是<code>java.util.List</code>和<code>java.util.Set</code>。其中，<code>List</code>的特点是元素有序、元素可重复。<code>Set</code>的特点是元素无序，而且不可重复。<code>List</code>接口的主要实现类有<code>java.util.ArrayList</code>和<code>java.util.LinkedList</code>，<code>Set</code>接口的主要实现类有<code>java.util.HashSet</code>和<code>java.util.TreeSet</code>。</li>
 </ul>
 <p>从上面的描述可以看出JDK中提供了丰富的集合类库，为了便于初学者进行系统地学习，接下来通过一张图来描述整个集合类的继承体系。</p>
-<p><img src="/.com//01_%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D.bmp" alt></p>
+<p><img src="/images/01_%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6%E4%BB%8B%E7%BB%8D.bmp" alt="avatar"></p>
 <p>其中，橙色框里填写的都是接口类型，而蓝色框里填写的都是具体的实现类。</p>
 <p>集合本身是一个工具，它存放在java.util包中。在<code>Collection</code>接口定义着单列集合框架中最最共性的内容。</p>
 <ul>
-<li><strong>Map</strong>:Map类相当于一把锁配一把钥匙，一个键配一个键值对，这种一一对应的关系，就叫做映射。Java提供了专门的集合类用来存放这种对象关系的对象，即<code>java.util.Map</code>接口。<code>Map</code>接口下的集合与<code>Collection</code>接口下的集合，它们存储数据的形式不同，如下图。<br><img src="/.com//image%5CCollection%E4%B8%8EMap.bmp" alt><br>常用的map的子类主要有HashMap集合、LinkedHashMap集合。</li>
+<li><strong>Map</strong>:Map类相当于一把锁配一把钥匙，一个键配一个键值对，这种一一对应的关系，就叫做映射。Java提供了专门的集合类用来存放这种对象关系的对象，即<code>java.util.Map</code>接口。<code>Map</code>接口下的集合与<code>Collection</code>接口下的集合，它们存储数据的形式不同，如下图。<br><img src="/.com//Collection%E4%B8%8EMap.bmp" alt="avatar"></li>
+</ul>
+<p>常用的map的子类主要有HashMap集合、LinkedHashMap集合。</p>
+<ul>
 <li><strong>HashMap&lt;K,V&gt;</strong>：存储数据采用的哈希表结构，元素的存取顺序不能保证一致。由于要保证键的唯一、不重复，需要重写键的hashCode()方法、equals()方法。</li>
 <li><strong>LinkedHashMap&lt;K,V&gt;</strong>：HashMap下有个子类LinkedHashMap，存储数据采用的哈希表结构+链表结构。通过链表结构可以保证元素的存取顺序一致；通过哈希表结构可以保证的键的唯一、不重复，需要重写键的hashCode()方法、equals()方法。</li>
 </ul>
@@ -239,9 +242,9 @@
 
 <h3 id="哈希表是如何形成的"><a href="#哈希表是如何形成的" class="headerlink" title="哈希表是如何形成的"></a>哈希表是如何形成的</h3><p>在<strong>JDK1.8</strong>之前，哈希表底层采用数组+链表实现，即使用链表处理冲突，同一hash值的链表都存储在一个链表里。但是当位于一个桶中的元素较多，即hash值相等的元素较多时，通过key值依次查找的效率较低。而JDK1.8中，哈希表存储采用数组+链表+红黑树实现，当链表长度超过阈值（8）时，将链表转换为红黑树，这样大大减少了查找时间。</p>
 <p>简单的来说，哈希表是由数组+链表+红黑树（JDK1.8增加了红黑树部分）实现的，如下图所示。</p>
-<p><img src="/.com//image%5C%E5%93%88%E5%B8%8C%E8%A1%A8.png" alt></p>
+<p><img src="/.com//%E5%93%88%E5%B8%8C%E8%A1%A8.png" alt="avatar"></p>
 <p>总而言之，<strong>JDK1.8</strong>引入红黑树大程度优化了HashMap的性能，那么对于我们来讲保证HashSet集合元素的唯一，其实就是根据对象的hashCode和equals方法来决定的。如果我们往集合中存放自定义的对象，那么保证其唯一，就必须复写hashCode和equals方法建立属于当前对象的比较方式。</p>
-<p><img src="/.com//image%5C%E5%93%88%E5%B8%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt></p>
+<p><img src="/.com//%E5%93%88%E5%B8%8C%E6%B5%81%E7%A8%8B%E5%9B%BE.png" alt="avatar"></p>
 <h1 id="2-Iterator迭代器"><a href="#2-Iterator迭代器" class="headerlink" title="2 Iterator迭代器"></a>2 Iterator迭代器</h1><h2 id="2-1-Iterator接口"><a href="#2-1-Iterator接口" class="headerlink" title="2.1 Iterator接口"></a>2.1 Iterator接口</h2><p>在程序开发中，经常需要遍历集合中的所有元素。针对这种需求，JDK专门提供了一个接口<code>java.util.Iterator</code>。<code>Iterator</code>接口也是Java集合中的一员，但它与<code>Collection</code>、<code>Map</code>接口有所不同，<code>Collection</code>接口与<code>Map</code>接口主要用于存储元素，而<code>Iterator</code>主要用于迭代访问（即遍历）<code>Collection</code>中的元素，因此<code>Iterator</code>对象也被称为迭代器。</p>
 <p>想要遍历Collection集合，那么就要获取该集合迭代器完成迭代操作，下面介绍一下获取迭代器的方法：</p>
 <ul>
@@ -263,7 +266,7 @@
 </blockquote>
 <h2 id="2-2-迭代器的实现原理"><a href="#2-2-迭代器的实现原理" class="headerlink" title="2.2 迭代器的实现原理"></a>2.2 迭代器的实现原理</h2><p>当遍历集合时，首先通过调用t集合的iterator()方法获得迭代器对象，然后使用hashNext()方法判断集合中是否存在下一个元素，如果存在，则调用next()方法将元素取出，否则说明已到达了集合末尾，停止遍历元素。</p>
 <p>Iterator迭代器对象在遍历集合时，内部采用指针的方式来跟踪集合中的元素，为了让初学者能更好地理解迭代器的工作原理，接下来通过一个图例来演示Iterator对象迭代元素的过程：</p>
-<p><img src="/.com//image%5C02_%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86(1).bmp" alt></p>
+<p><img src="/.com//02_%E8%BF%AD%E4%BB%A3%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86(1).bmp" alt="avatar"></p>
 <p>在调用Iterator的next方法之前，迭代器的索引位于第一个元素之前，不指向任何元素，当第一次调用迭代器的next方法后，迭代器的索引会向后移动一位，指向第一个元素并将该元素返回，当再次调用next方法时，迭代器的索引会指向第二个元素并将该元素返回，依此类推，直到hasNext方法返回false，表示到达了集合的末尾，终止对元素的遍历。</p>
 <h2 id="2-3-增强for"><a href="#2-3-增强for" class="headerlink" title="2.3 增强for"></a>2.3 增强for</h2><p>增强for循环(也称for each循环)是<strong>JDK1.5</strong>以后出来的一个高级for循环，专门用来遍历数组和集合的。它的内部原理其实是个Iterator迭代器，所以在遍历的过程中，不能对集合中的元素进行增删操作。</p>
 <p>格式：</p>
