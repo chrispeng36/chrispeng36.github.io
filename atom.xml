@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-01-11T15:09:06.246Z</updated>
+  <updated>2021-01-13T08:13:08.920Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>排序算法</title>
+    <link href="http://yoursite.com/2021/01/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/"/>
+    <id>http://yoursite.com/2021/01/13/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95/</id>
+    <published>2021-01-13T15:44:58.000Z</published>
+    <updated>2021-01-13T08:13:08.920Z</updated>
+    
+    <content type="html"><![CDATA[<a id="more"></a><h1 id="1-常见的十种排序算法的对比"><a href="#1-常见的十种排序算法的对比" class="headerlink" title="1 常见的十种排序算法的对比"></a>1 常见的十种排序算法的对比</h1><p>常用的十种排序算法的对照如下图所示：<br><img src="/images/%E6%8E%92%E5%BA%8F%E6%96%B9%E6%B3%95%E5%AF%B9%E6%AF%94.png" alt="avatar"></p><p>常用的排序如快速排序，归并排序，堆排序，冒泡排序等属于比较排序。在排序的最终结果中，元素之间的次序依赖他们之间的比较，每个数都必须和其他数比较，才能确定自己的位置。比较排序的优势是适用于各种规模数据的排序，可以说比较排序适用于一切需要排序的情况。</p><p>基数排序、基数排序、桶排序则属于非比较排序，非比较排序是通过确定每个元素之前，应该有多少个元素来排序，针对数组arr，计算arr之前有多少个元素，则唯一确定了arr[i]在排序后数组中的位置。非比较排序只要确定每个元素之前的已有元素个数即可，所以一次遍历就可排序完。非比较排序的时间复杂度低，但是由于非比较排序空间复杂度较高，所以对数据规模和数据分布有一定的要求。</p><h1 id="1-1-冒泡排序"><a href="#1-1-冒泡排序" class="headerlink" title="1.1 冒泡排序"></a>1.1 冒泡排序</h1><p>冒泡排序每一次都比较两个元素，如果顺序错误就交换，遍历数组重复到没有数据需要进行交换，此时数组排序完成。图示如下所示：<br><img src="/images/%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F.gif" alt="avatar"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;1-常见的十种排序算法的对比&quot;&gt;&lt;a href=&quot;#1-常见的十种排序算法的对比&quot; class=&quot;headerlink&quot; title=&quot;1 常见的十种排序算法的对比&quot;&gt;&lt;/a&gt;1 常见的十种排序算法的对比&lt;/h1&gt;&lt;p&gt;常用的十
+      
+    
+    </summary>
+    
+    
+    
+      <category term="数据结构与算法" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>树</title>
