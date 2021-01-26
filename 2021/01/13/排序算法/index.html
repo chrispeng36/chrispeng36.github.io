@@ -20,7 +20,7 @@
 <meta property="og:image" content="http://yoursite.com/images/%E9%80%89%E6%8B%A9%E6%8E%92%E5%BA%8F.gif">
 <meta property="og:image" content="http://yoursite.com/images/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.gif">
 <meta property="article:published_time" content="2021-01-13T15:44:58.000Z">
-<meta property="article:modified_time" content="2021-01-21T13:42:18.547Z">
+<meta property="article:modified_time" content="2021-01-26T04:16:22.508Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
@@ -203,6 +203,10 @@
 
 <h1 id="1-3-插入排序"><a href="#1-3-插入排序" class="headerlink" title="1.3 插入排序"></a>1.3 插入排序</h1><p>插入排序是通过构建有序序列，对于未排序的数据，在已排序的序列中从后向前扫描，找到相应的位置并插入。<br>插入排序的过程如下图所示：<br><img src="/images/%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F.gif" alt="avatar"></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> InsertSort;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created with IntelliJ IDEA.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Auther</span>: ChrisPeng</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2021/01/21/21:02</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>: 插入排序</span></span><br><span class="line"><span class="comment"> * 从第一个元素考试，该元素可以被认作已经排序</span></span><br><span class="line"><span class="comment"> * 取下一个元素，在已经排序的元素中从后向前扫描</span></span><br><span class="line"><span class="comment"> * 如果该元素大于新元素，则将新元素移到下一位置</span></span><br><span class="line"><span class="comment"> * 将新元素插入到该位置后</span></span><br><span class="line"><span class="comment"> * 重复以上步骤</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] a = &#123;<span class="number">44</span>,<span class="number">2</span>,<span class="number">4</span>,<span class="number">63</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">3</span>,<span class="number">90</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span>[] ints = insertSort(a);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> anInt : ints) &#123;</span><br><span class="line">            System.out.println(anInt);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] insertSort(<span class="keyword">int</span>[] arr)&#123;</span><br><span class="line">        <span class="keyword">int</span> current;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; arr.length - <span class="number">1</span>; i++) &#123;</span><br><span class="line">            current = arr[i + <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">int</span> preIndex = i;</span><br><span class="line">            <span class="keyword">while</span> (preIndex &gt;= <span class="number">0</span> &amp;&amp; current &lt; arr[preIndex])&#123;</span><br><span class="line">                arr[preIndex + <span class="number">1</span>] = arr[preIndex];</span><br><span class="line">                preIndex --;</span><br><span class="line">            &#125;</span><br><span class="line">            arr[preIndex + <span class="number">1</span>] = current;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>  arr;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="1-4-希尔排序"><a href="#1-4-希尔排序" class="headerlink" title="1.4 希尔排序"></a>1.4 希尔排序</h1><p>希尔排序也是一种插入排序，是简单插入排序经过改进之后的一种更高级的版本，也称为缩小增量排序。与插入排序不同的地方在于它会优先比较距离较远的元素。<br>希尔排序是把记录按下表的一定增量分组，对每组使用直接插入排序算法排序，随着增量逐渐减少，每组包含的关键词越来越多，当增量减至1时，整个文件恰被分成一组，算法便终止。</p>
+<h2 id="算法描述"><a href="#算法描述" class="headerlink" title="算法描述"></a>算法描述</h2><p>选择增量gap = length/2，缩小增量继续以gap = gap / 2的方式，这种增量选择我们可以用一个序列来表示，{n/2,(n/2)/2…1}，称为增量序列，希尔排序的增量序列的选择与证明是数学难题。</p>
+
       
 
       
@@ -306,6 +310,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2021/01/23/%E7%BA%BF%E7%B4%A2%E5%8C%96%E4%BA%8C%E5%8F%89%E6%A0%91/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          线索化二叉树
+        
+      </div>
+    </a>
+  
   
     <a href="/2021/01/12/%E6%A0%91/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">树</div>
@@ -335,7 +348,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-常见的十种排序算法的对比"><span class="toc-number">1.</span> <span class="toc-text">1 常见的十种排序算法的对比</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-1-冒泡排序"><span class="toc-number">2.</span> <span class="toc-text">1.1 冒泡排序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-2-选择排序"><span class="toc-number">3.</span> <span class="toc-text">1.2 选择排序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-3-插入排序"><span class="toc-number">4.</span> <span class="toc-text">1.3 插入排序</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-常见的十种排序算法的对比"><span class="toc-number">1.</span> <span class="toc-text">1 常见的十种排序算法的对比</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-1-冒泡排序"><span class="toc-number">2.</span> <span class="toc-text">1.1 冒泡排序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-2-选择排序"><span class="toc-number">3.</span> <span class="toc-text">1.2 选择排序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-3-插入排序"><span class="toc-number">4.</span> <span class="toc-text">1.3 插入排序</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#1-4-希尔排序"><span class="toc-number">5.</span> <span class="toc-text">1.4 希尔排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#算法描述"><span class="toc-number">5.1.</span> <span class="toc-text">算法描述</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -456,15 +469,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
               </li>
             
             <div class="clearfix"></div>
