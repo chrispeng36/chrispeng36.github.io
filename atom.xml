@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2021-01-23T03:06:19.049Z</updated>
+  <updated>2021-04-08T12:38:06.843Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>斐波那契数</title>
+    <link href="http://yoursite.com/2021/04/09/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0/"/>
+    <id>http://yoursite.com/2021/04/09/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0/</id>
+    <published>2021-04-08T20:22:07.000Z</published>
+    <updated>2021-04-08T12:38:06.843Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="1-斐波那契数"><a href="#1-斐波那契数" class="headerlink" title="1. 斐波那契数"></a>1. 斐波那契数</h1><a id="more"></a><p>斐波那契数的定义是F(n)<br>其中F(0)=0,F(1)=1,F(n)=F(n - 1) + F(n - 2)，其中n&gt;1</p><h2 id="1-1-方法一：递归"><a href="#1-1-方法一：递归" class="headerlink" title="1.1 方法一：递归"></a>1.1 方法一：递归</h2><p>无需过多解释</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> N)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//递归</span></span><br><span class="line">        <span class="keyword">if</span>(N == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span> (N == <span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> fib(N - <span class="number">1</span>) + fib(N - <span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure><h2 id="1-2-方法二：动态规划"><a href="#1-2-方法二：动态规划" class="headerlink" title="1.2 方法二：动态规划"></a>1.2 方法二：动态规划</h2><p>动态规划的方法是使用滚动数组思想把空间复杂度降为O(1)。<br>来自LeetCode题509(<a href="https://leetcode-cn.com/problems/fibonacci-number/solution/fei-bo-na-qi-shu-by-leetcode-solution-o4ze/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/fibonacci-number/solution/fei-bo-na-qi-shu-by-leetcode-solution-o4ze/</a>)<br><img src="/images/1.png" alt="avatar"></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (n &lt; <span class="number">2</span>) &#123;</span><br><span class="line">            <span class="keyword">return</span> n;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> p = <span class="number">0</span>, q = <span class="number">0</span>, r = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            p = q; </span><br><span class="line">            q = r; </span><br><span class="line">            r = p + q;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h1 id=&quot;1-斐波那契数&quot;&gt;&lt;a href=&quot;#1-斐波那契数&quot; class=&quot;headerlink&quot; title=&quot;1. 斐波那契数&quot;&gt;&lt;/a&gt;1. 斐波那契数&lt;/h1&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="数据结构与算法" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
   
   <entry>
     <title>线索化二叉树</title>
