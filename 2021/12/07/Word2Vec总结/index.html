@@ -17,7 +17,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/%E8%AF%8D%E5%90%91%E9%87%8F%E9%99%8D%E7%BB%B4.png">
 <meta property="article:published_time" content="2021-12-07T12:22:41.000Z">
-<meta property="article:modified_time" content="2021-12-07T08:35:39.243Z">
+<meta property="article:modified_time" content="2021-12-07T11:31:24.094Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="深度学习">
 <meta name="twitter:card" content="summary">
@@ -188,13 +188,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-Word2Vec算法简介"><a href="#1-Word2Vec算法简介" class="headerlink" title="1. Word2Vec算法简介"></a>1. Word2Vec算法简介</h1><a id="more"></a>
+        <h1 id="word2vec算法简介">1. Word2Vec算法简介</h1>
+<a id="more"></a>
 <p>为什么要进行word embedding？因为对于机器学习的输入来说，只接受数值型的输入，而对于NLP之中的语句，则是人类的特定的字符。所以必须要对其转换为数值类型，降维到一个数学空间中。最原始的方法就是one-hot embedding，但是这种算法复杂度太高，而且可扩展性不强。并且假设所有的词都是独立的，而现实中词与词之间不可能是独立的。</p>
 <p>在NLP中，把x看作是一个句子中的词语，y是词语的上下文，f(x) -&gt; y就是语言模型，用来判断(x,y)是不是符合自然语言的法则。Word2vec就是这个思想，最终并不是要把f训练的多么完美，而是只关心模型参数(神经网络的权重)，并将这些参数，作为输入x的魔种向量化表示，也就是词向量。</p>
-<p>按照下图的观念：</p>
-<script type="math/tex; mode=display">
-\vec{king} - \vec{man} + \vec{women} = \vec{queen}</script><p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/词向量降维.png" alt></p>
-<p>所以当我们考虑上下文的时候，比方说”我觉得C++很难”，那么从上下文来推测中间的词汇，就可以学习到中间的词汇可能是”C++”,而从中间词汇推上下文，可以学习到”很难”。这两个就分别是word2vec中的CBOW模型以及Skip-gram模型的思想。</p>
+<p>按照下图的观念，我们有： <span class="math display">\[
+\vec{king} - \vec{man} + \vec{women} = \vec{queen}
+\]</span> <img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/词向量降维.png"></p>
+<p>所以当我们考虑上下文的时候，比方说"我觉得C++很难"，那么从上下文来推测中间的词汇，就可以学习到中间的词汇可能是"C++",而从中间词汇推上下文，可以学习到"很难"。这两个就分别是word2vec中的CBOW模型以及Skip-gram模型的思想。</p>
 
       
 
@@ -328,7 +329,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Word2Vec算法简介"><span class="toc-number">1.</span> <span class="toc-text">1. Word2Vec算法简介</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#word2vec算法简介"><span class="toc-number">1.</span> <span class="toc-text">1. Word2Vec算法简介</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -478,11 +479,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,11 +495,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color2">周会论文讲解</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">周会论文讲解</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
