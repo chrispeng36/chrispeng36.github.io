@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>java Objects类和常见API | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1 Java Objects 类java.lang.Object类是Java语言中的根类，即所有类的父类。它中描述的所有方法子类都可以使用。在对象实例化的时候，最终找的父类就是Object。 如果没有一个指定的父类，那么就默认继承自object类如：123public class Demo &#x2F;*extends Object*&#x2F; &amp;#123;  	&amp;#125;">
+  <meta name="description" content="1 Java Objects 类 java.lang.Object类是Java语言中的根类，即所有类的父类。它中描述的所有方法子类都可以使用。在对象实例化的时候，最终找的父类就是Object。 如果没有一个指定的父类，那么就默认继承自object类 如： 123public class Demo &#x2F;*extends Object*&#x2F; &amp;#123;  	&amp;#125;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java Objects类和常见API">
 <meta property="og:url" content="http://yoursite.com/2021/01/05/java-Objects%E7%B1%BB%E7%9A%84%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="1 Java Objects 类java.lang.Object类是Java语言中的根类，即所有类的父类。它中描述的所有方法子类都可以使用。在对象实例化的时候，最终找的父类就是Object。 如果没有一个指定的父类，那么就默认继承自object类如：123public class Demo &#x2F;*extends Object*&#x2F; &amp;#123;  	&amp;#125;">
+<meta property="og:description" content="1 Java Objects 类 java.lang.Object类是Java语言中的根类，即所有类的父类。它中描述的所有方法子类都可以使用。在对象实例化的时候，最终找的父类就是Object。 如果没有一个指定的父类，那么就默认继承自object类 如： 123public class Demo &#x2F;*extends Object*&#x2F; &amp;#123;  	&amp;#125;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-01-04T20:59:36.000Z">
 <meta property="article:modified_time" content="2021-01-06T09:36:18.000Z">
@@ -186,24 +186,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-Java-Objects-类"><a href="#1-Java-Objects-类" class="headerlink" title="1 Java Objects 类"></a>1 Java Objects 类</h1><p><code>java.lang.Object</code>类是Java语言中的根类，即所有类的父类。它中描述的所有方法子类都可以使用。在对象实例化的时候，最终找的父类就是Object。</p>
-<p>如果没有一个指定的父类，那么就默认继承自object类<br>如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> /*<span class="keyword">extends</span> <span class="title">Object</span>*/ </span>&#123;</span><br><span class="line">  	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><a id="more"></a></p>
-<h2 id="1-1-Objects类中的方法"><a href="#1-1-Objects类中的方法" class="headerlink" title="1.1 Objects类中的方法"></a>1.1 Objects类中的方法</h2><p>java的objects类中有11个方法，。主要使用的有两个</p>
+        <h1 id="java-objects-类">1 Java Objects 类</h1>
+<p><code>java.lang.Object</code>类是Java语言中的根类，即所有类的父类。它中描述的所有方法子类都可以使用。在对象实例化的时候，最终找的父类就是Object。</p>
+<p>如果没有一个指定的父类，那么就默认继承自object类 如： <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> /*<span class="keyword">extends</span> <span class="title">Object</span>*/ </span>&#123;</span><br><span class="line">  	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> <a id="more"></a></p>
+<h2 id="objects类中的方法">1.1 Objects类中的方法</h2>
+<p>java的objects类中有11个方法，。主要使用的有两个 * <code>public String toString()</code>：返回该对象的字符串表示。 * <code>public boolean equals(Object obj)</code>：指示其他某个对象是否与此对象“相等”。</p>
+<h3 id="tostring方法">1.1.1 toString方法</h3>
 <ul>
-<li><code>public String toString()</code>：返回该对象的字符串表示。</li>
-<li><code>public boolean equals(Object obj)</code>：指示其他某个对象是否与此对象“相等”。</li>
-</ul>
-<h3 id="1-1-1-toString方法"><a href="#1-1-1-toString方法" class="headerlink" title="1.1.1 toString方法"></a>1.1.1 toString方法</h3><ul>
 <li><code>public String toString()</code>：返回该对象的字符串表示。</li>
 </ul>
 <p>toString方法返回该对象的字符串表示，其实该字符串内容就是对象的类型+@+内存地址值。</p>
 <p>由于toString方法返回的结果是内存地址，而在开发中，经常需要按照对象的属性得到相应的字符串表现形式，因此也需要重写它。</p>
-<p>也可以对toString方法进行重写，如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Person&#123;"</span> + <span class="string">"name='"</span> + name + <span class="string">'\''</span> + <span class="string">", age="</span> + age + <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 省略构造器与Getter Setter</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>在我们直接使用输出语句输出对象名的时候,其实通过该对象调用了其toString()方法。</p>
-<h3 id="1-1-2-equals方法"><a href="#1-1-2-equals方法" class="headerlink" title="1.1.2 equals方法"></a>1.1.2 equals方法</h3><ul>
+<p>也可以对toString方法进行重写，如： <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;  </span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"Person&#123;"</span> + <span class="string">"name='"</span> + name + <span class="string">'\''</span> + <span class="string">", age="</span> + age + <span class="string">'&#125;'</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 省略构造器与Getter Setter</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure> 在我们直接使用输出语句输出对象名的时候,其实通过该对象调用了其toString()方法。</p>
+<h3 id="equals方法">1.1.2 equals方法</h3>
+<ul>
 <li><code>public boolean equals(Object obj)</code>：指示其他某个对象是否与此对象“相等”。</li>
 </ul>
-<p>调用成员方法equals并指定参数为另一个对象，则可以判断这两个对象是否是相同的。这里的“相同”有默认和自定义两种方式。如果没有覆盖重写equals方法，那么Object类中默认进行<code>==</code>运算符的对象地址比较，只要不是同一个对象，结果必然为false。如果希望进行对象的内容比较，即所有或指定的部分成员变量相同就判定两个对象相同，则可以覆盖重写equals方法。例如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Objects;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;	</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">	</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果对象地址一样，则认为相同</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == o)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="comment">// 如果参数为空，或者类型信息不一样，则认为不同</span></span><br><span class="line">        <span class="keyword">if</span> (o == <span class="keyword">null</span> || getClass() != o.getClass())</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="comment">// 转换为当前类型</span></span><br><span class="line">        Person person = (Person) o;</span><br><span class="line">        <span class="comment">// 要求基本类型相等，并且将引用类型交给java.util.Objects类的equals静态方法取用结果</span></span><br><span class="line">        <span class="keyword">return</span> age == person.age &amp;&amp; Objects.equals(name, person.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h1 id="2-时间日期类"><a href="#2-时间日期类" class="headerlink" title="2 时间日期类"></a>2 时间日期类</h1><h2 id="2-1-Date类"><a href="#2-1-Date类" class="headerlink" title="2.1 Date类"></a>2.1 Date类</h2><p><code>java.util.Date</code>类 表示特定的瞬间，精确到毫秒。</p>
+<p>调用成员方法equals并指定参数为另一个对象，则可以判断这两个对象是否是相同的。这里的“相同”有默认和自定义两种方式。如果没有覆盖重写equals方法，那么Object类中默认进行<code>==</code>运算符的对象地址比较，只要不是同一个对象，结果必然为false。如果希望进行对象的内容比较，即所有或指定的部分成员变量相同就判定两个对象相同，则可以覆盖重写equals方法。例如： <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Objects;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Person</span> </span>&#123;	</span><br><span class="line">	<span class="keyword">private</span> String name;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">	</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 如果对象地址一样，则认为相同</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == o)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="comment">// 如果参数为空，或者类型信息不一样，则认为不同</span></span><br><span class="line">        <span class="keyword">if</span> (o == <span class="keyword">null</span> || getClass() != o.getClass())</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="comment">// 转换为当前类型</span></span><br><span class="line">        Person person = (Person) o;</span><br><span class="line">        <span class="comment">// 要求基本类型相等，并且将引用类型交给java.util.Objects类的equals静态方法取用结果</span></span><br><span class="line">        <span class="keyword">return</span> age == person.age &amp;&amp; Objects.equals(name, person.name);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="时间日期类">2 时间日期类</h1>
+<h2 id="date类">2.1 Date类</h2>
+<p><code>java.util.Date</code>类 表示特定的瞬间，精确到毫秒。</p>
 <p>继续查阅Date类的描述，发现Date拥有多个构造函数，只是部分已经过时，但是其中有未过时的构造函数可以把毫秒值转成日期对象。</p>
 <ul>
 <li><code>public Date()</code>：分配Date对象并初始化此对象，以表示分配它的时间（精确到毫秒）。</li>
@@ -214,63 +216,66 @@
 </blockquote>
 <p>简单来说：使用无参构造，可以自动设置当前系统时间的毫秒时刻；指定long类型的构造参数，可以自定义毫秒时刻。例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo01Date</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 创建日期对象，把当前的时间</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> Date()); <span class="comment">// Tue Jan 16 14:37:35 CST 2018</span></span><br><span class="line">        <span class="comment">// 创建日期对象，把当前的毫秒值转成日期对象</span></span><br><span class="line">        System.out.println(<span class="keyword">new</span> Date(<span class="number">0L</span>)); <span class="comment">// Thu Jan 01 08:00:00 CST 1970</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="2-2-DateFormat类"><a href="#2-2-DateFormat类" class="headerlink" title="2.2 DateFormat类"></a>2.2 DateFormat类</h2><p><code>java.text.DateFormat</code> 是日期/时间格式化子类的抽象类，我们通过这个类可以帮我们完成日期和文本之间的转换,也就是可以在Date对象与String对象之间进行来回转换。</p>
+<h2 id="dateformat类">2.2 DateFormat类</h2>
+<p><code>java.text.DateFormat</code> 是日期/时间格式化子类的抽象类，我们通过这个类可以帮我们完成日期和文本之间的转换,也就是可以在Date对象与String对象之间进行来回转换。</p>
 <ul>
 <li><strong>格式化</strong>：按照指定的格式，从Date对象转换为String对象。</li>
 <li><strong>解析</strong>：按照指定的格式，从String对象转换为Date对象。</li>
 </ul>
-<h3 id="构造方法"><a href="#构造方法" class="headerlink" title="构造方法"></a>构造方法</h3><p>由于DateFormat为抽象类，不能直接使用，所以需要常用的子类<code>java.text.SimpleDateFormat</code>。这个类需要一个模式（格式）来指定格式化或解析的标准。构造方法为：</p>
+<h3 id="构造方法">构造方法</h3>
+<p>由于DateFormat为抽象类，不能直接使用，所以需要常用的子类<code>java.text.SimpleDateFormat</code>。这个类需要一个模式（格式）来指定格式化或解析的标准。构造方法为：</p>
 <ul>
 <li><code>public SimpleDateFormat(String pattern)</code>：用给定的模式和默认语言环境的日期格式符号构造SimpleDateFormat。</li>
 </ul>
 <p>参数pattern是一个字符串，代表日期时间的自定义格式。</p>
-<h3 id="格式规则"><a href="#格式规则" class="headerlink" title="格式规则"></a>格式规则</h3><p>常用的格式规则为：</p>
-<div class="table-container">
+<h3 id="格式规则">格式规则</h3>
+<p>常用的格式规则为：</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>标识字母（区分大小写）</th>
 <th>含义</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>y</td>
 <td>年</td>
 </tr>
-<tr>
+<tr class="even">
 <td>M</td>
 <td>月</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>d</td>
 <td>日</td>
 </tr>
-<tr>
+<tr class="even">
 <td>H</td>
 <td>时</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>m</td>
 <td>分</td>
 </tr>
-<tr>
+<tr class="even">
 <td>s</td>
 <td>秒</td>
 </tr>
 </tbody>
 </table>
-</div>
 <p>DateFormat类的常用方法有：</p>
 <ul>
 <li><code>public String format(Date date)</code>：将Date对象格式化为字符串。</li>
-<li><code>public Date parse(String source)</code>：将字符串解析为Date对象。<br>使用format方法的代码为：</li>
+<li><code>public Date parse(String source)</code>：将字符串解析为Date对象。 使用format方法的代码为：</li>
 </ul>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.DateFormat;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 把Date对象转换成String</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo03DateFormatMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Date date = <span class="keyword">new</span> Date();</span><br><span class="line">        <span class="comment">// 创建日期格式化对象,在获取格式化对象时可以指定风格</span></span><br><span class="line">        DateFormat df = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy年MM月dd日"</span>);</span><br><span class="line">        String str = df.format(date);</span><br><span class="line">        System.out.println(str); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="parse方法"><a href="#parse方法" class="headerlink" title="parse方法"></a>parse方法</h4><p>使用parse方法的代码为：</p>
+<h4 id="parse方法">parse方法</h4>
+<p>使用parse方法的代码为：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.text.DateFormat;</span><br><span class="line"><span class="keyword">import</span> java.text.ParseException;</span><br><span class="line"><span class="keyword">import</span> java.text.SimpleDateFormat;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> 把String转换成Date对象</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo04DateFormatMethod</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> ParseException </span>&#123;</span><br><span class="line">        DateFormat df = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy年MM月dd日"</span>);</span><br><span class="line">        String str = <span class="string">"2018年12月11日"</span>;</span><br><span class="line">        Date date = df.parse(str);</span><br><span class="line">        System.out.println(date); <span class="comment">// Tue Dec 11 00:00:00 CST 2018</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>计算一个人出生了多少天<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">function</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	System.out.println(<span class="string">"请输入出生日期 格式 YYYY-MM-dd"</span>);</span><br><span class="line">	<span class="comment">// 获取出生日期,键盘输入</span></span><br><span class="line">	String birthdayString = <span class="keyword">new</span> Scanner(System.in).next();</span><br><span class="line">	<span class="comment">// 将字符串日期,转成Date对象</span></span><br><span class="line">	<span class="comment">// 创建SimpleDateFormat对象,写日期模式</span></span><br><span class="line">	SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">	<span class="comment">// 调用方法parse,字符串转成日期对象</span></span><br><span class="line">	Date birthdayDate = sdf.parse(birthdayString);	</span><br><span class="line">	<span class="comment">// 获取今天的日期对象</span></span><br><span class="line">	Date todayDate = <span class="keyword">new</span> Date();	</span><br><span class="line">	<span class="comment">// 将两个日期转成毫秒值,Date类的方法getTime</span></span><br><span class="line">	<span class="keyword">long</span> birthdaySecond = birthdayDate.getTime();</span><br><span class="line">	<span class="keyword">long</span> todaySecond = todayDate.getTime();</span><br><span class="line">	<span class="keyword">long</span> secone = todaySecond-birthdaySecond;	</span><br><span class="line">	<span class="keyword">if</span> (secone &lt; <span class="number">0</span>)&#123;</span><br><span class="line">		System.out.println(<span class="string">"还没出生呢"</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		System.out.println(secone/<span class="number">1000</span>/<span class="number">60</span>/<span class="number">60</span>/<span class="number">24</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="2-4-calendar类"><a href="#2-4-calendar类" class="headerlink" title="2.4 calendar类"></a>2.4 calendar类</h2><p><code>java.util.Calendar</code>是日历类，在Date后出现，替换掉了许多Date的方法。该类将所有可能用到的时间信息封装为静态成员变量，方便获取。日历类就是方便获取各个时间属性的。<br>Calendar为抽象类，由于语言敏感性，Calendar类在创建对象时并非直接创建，而是通过静态方法创建，返回子类对象，如下：</p>
+<p>计算一个人出生了多少天 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">function</span><span class="params">()</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	System.out.println(<span class="string">"请输入出生日期 格式 YYYY-MM-dd"</span>);</span><br><span class="line">	<span class="comment">// 获取出生日期,键盘输入</span></span><br><span class="line">	String birthdayString = <span class="keyword">new</span> Scanner(System.in).next();</span><br><span class="line">	<span class="comment">// 将字符串日期,转成Date对象</span></span><br><span class="line">	<span class="comment">// 创建SimpleDateFormat对象,写日期模式</span></span><br><span class="line">	SimpleDateFormat sdf = <span class="keyword">new</span> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);</span><br><span class="line">	<span class="comment">// 调用方法parse,字符串转成日期对象</span></span><br><span class="line">	Date birthdayDate = sdf.parse(birthdayString);	</span><br><span class="line">	<span class="comment">// 获取今天的日期对象</span></span><br><span class="line">	Date todayDate = <span class="keyword">new</span> Date();	</span><br><span class="line">	<span class="comment">// 将两个日期转成毫秒值,Date类的方法getTime</span></span><br><span class="line">	<span class="keyword">long</span> birthdaySecond = birthdayDate.getTime();</span><br><span class="line">	<span class="keyword">long</span> todaySecond = todayDate.getTime();</span><br><span class="line">	<span class="keyword">long</span> secone = todaySecond-birthdaySecond;	</span><br><span class="line">	<span class="keyword">if</span> (secone &lt; <span class="number">0</span>)&#123;</span><br><span class="line">		System.out.println(<span class="string">"还没出生呢"</span>);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		System.out.println(secone/<span class="number">1000</span>/<span class="number">60</span>/<span class="number">60</span>/<span class="number">24</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="calendar类">2.4 calendar类</h2>
+<p><code>java.util.Calendar</code>是日历类，在Date后出现，替换掉了许多Date的方法。该类将所有可能用到的时间信息封装为静态成员变量，方便获取。日历类就是方便获取各个时间属性的。 Calendar为抽象类，由于语言敏感性，Calendar类在创建对象时并非直接创建，而是通过静态方法创建，返回子类对象，如下：</p>
 <p>Calendar静态方法</p>
 <ul>
 <li><code>public static Calendar getInstance()</code>：使用默认时区和语言环境获得一个日历</li>
@@ -285,65 +290,65 @@
 <li><code>public Date getTime()</code>：返回一个表示此Calendar时间值（从历元到现在的毫秒偏移量）的Date对象。</li>
 </ul>
 <p>Calendar类中提供很多成员常量，代表给定的日历字段：</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>字段值</th>
 <th>含义</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>YEAR</td>
 <td>年</td>
 </tr>
-<tr>
+<tr class="even">
 <td>MONTH</td>
 <td>月（从0开始，可以+1使用）</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>DAY_OF_MONTH</td>
 <td>月中的天（几号）</td>
 </tr>
-<tr>
+<tr class="even">
 <td>HOUR</td>
 <td>时（12小时制）</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>HOUR_OF_DAY</td>
 <td>时（24小时制）</td>
 </tr>
-<tr>
+<tr class="even">
 <td>MINUTE</td>
 <td>分</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>SECOND</td>
 <td>秒</td>
 </tr>
-<tr>
+<tr class="even">
 <td>DAY_OF_WEEK</td>
 <td>周中的天（周几，周日为1，可以-1使用）</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h1 id="3-system类"><a href="#3-system类" class="headerlink" title="3 system类"></a>3 system类</h1><p><code>java.lang.System</code>类中提供了大量的静态方法，可以获取与系统相关的信息或系统级操作，在System类的API文档中，常用的方法有：</p>
+<h1 id="system类">3 system类</h1>
+<p><code>java.lang.System</code>类中提供了大量的静态方法，可以获取与系统相关的信息或系统级操作，在System类的API文档中，常用的方法有：</p>
 <ul>
 <li><code>public static long currentTimeMillis()</code>：返回以毫秒为单位的当前时间。</li>
 <li><code>public static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)</code>：将数组中指定的数据拷贝到另一个数组中。</li>
 </ul>
-<h2 id="3-1-currentTimeMillis方法"><a href="#3-1-currentTimeMillis方法" class="headerlink" title="3.1 currentTimeMillis方法"></a>3.1 currentTimeMillis方法</h2><p>实际上，currentTimeMillis方法就是 获取当前系统时间与1970年01月01日00:00点之间的毫秒差值</p>
+<h2 id="currenttimemillis方法">3.1 currentTimeMillis方法</h2>
+<p>实际上，currentTimeMillis方法就是 获取当前系统时间与1970年01月01日00:00点之间的毫秒差值</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SystemDemo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">       	<span class="comment">//获取当前时间毫秒值</span></span><br><span class="line">        System.out.println(System.currentTimeMillis()); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="3-2-arraycopy方法"><a href="#3-2-arraycopy方法" class="headerlink" title="3.2 arraycopy方法"></a>3.2 arraycopy方法</h2><ul>
+<h2 id="arraycopy方法">3.2 arraycopy方法</h2>
+<ul>
 <li><code>public static void arraycopy(Object src, int srcPos, Object dest, int destPos, int length)</code>：将数组中指定的数据拷贝到另一个数组中。</li>
 </ul>
 <p>数组的拷贝动作是系统级的，性能很高。System.arraycopy方法具有5个参数，含义分别为：</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>参数序号</th>
 <th>参数名称</th>
 <th>参数类型</th>
@@ -351,31 +356,31 @@
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>1</td>
 <td>src</td>
 <td>Object</td>
 <td>源数组</td>
 </tr>
-<tr>
+<tr class="even">
 <td>2</td>
 <td>srcPos</td>
 <td>int</td>
 <td>源数组索引起始位置</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>3</td>
 <td>dest</td>
 <td>Object</td>
 <td>目标数组</td>
 </tr>
-<tr>
+<tr class="even">
 <td>4</td>
 <td>destPos</td>
 <td>int</td>
 <td>目标数组索引起始位置</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>5</td>
 <td>length</td>
 <td>int</td>
@@ -383,10 +388,10 @@
 </tr>
 </tbody>
 </table>
-</div>
 <p>将src数组中前3个元素，复制到dest数组的前3个位置上复制元素前：src数组元素[1,2,3,4,5]，dest数组元素[6,7,8,9,10]复制元素后：src数组元素[1,2,3,4,5]，dest数组元素[1,2,3,9,10]</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo11SystemArrayCopy</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] src = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span>[] dest = <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>&#125;;</span><br><span class="line">        System.arraycopy( src, <span class="number">0</span>, dest, <span class="number">0</span>, <span class="number">3</span>);</span><br><span class="line">        <span class="comment">/*代码运行后：两个数组中的元素发生了变化</span></span><br><span class="line"><span class="comment">         src数组元素[1,2,3,4,5]</span></span><br><span class="line"><span class="comment">         dest数组元素[1,2,3,9,10]</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="4-stringBuilder类"><a href="#4-stringBuilder类" class="headerlink" title="4 stringBuilder类"></a>4 stringBuilder类</h1><p>在Java中，除了可以用String类来存储字符串，还可以使用StringBuilder类或者StringBuffer类来存储字符串。</p>
+<h1 id="stringbuilder类">4 stringBuilder类</h1>
+<p>在Java中，除了可以用String类来存储字符串，还可以使用StringBuilder类或者StringBuffer类来存储字符串。</p>
 <p>string类运行时会额外创建一个对象，保存字符串，当频繁操作字符串时会产生额外的许多临时变量。使用StringBuilder和StringBuffer时就能够避免这个问题。StringBuilder和StringBuffer基本相似，不同之处在于StringBuffer是线程安全的，而StringBuilder则没有实现线程安全功能，所以性能略高。因此，一般情况下优先考虑StringBuilder类创建一个内容可变的字符串对象。</p>
 <p>查阅<code>java.lang.StringBuilder</code>的API，StringBuilder又称为可变字符序列，它是一个类似于 String 的字符串缓冲区，通过某些方法调用可以改变该序列的长度和内容。</p>
 <p>原来StringBuilder是个字符串的缓冲区，即它是一个容器，容器中可以装很多字符串。并且能够对其中的字符串进行各种操作。</p>
@@ -406,68 +411,69 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo02StringBuilder</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		<span class="comment">//创建对象</span></span><br><span class="line">		StringBuilder builder = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">		<span class="comment">//public StringBuilder append(任意类型)</span></span><br><span class="line">		StringBuilder builder2 = builder.append(<span class="string">"hello"</span>);</span><br><span class="line">		<span class="comment">//对比一下</span></span><br><span class="line">		System.out.println(<span class="string">"builder:"</span>+builder);</span><br><span class="line">		System.out.println(<span class="string">"builder2:"</span>+builder2);</span><br><span class="line">		System.out.println(builder == builder2); <span class="comment">//true</span></span><br><span class="line">	    <span class="comment">// 可以添加 任何类型</span></span><br><span class="line">		builder.append(<span class="string">"hello"</span>);</span><br><span class="line">		builder.append(<span class="string">"world"</span>);</span><br><span class="line">		builder.append(<span class="keyword">true</span>);</span><br><span class="line">		builder.append(<span class="number">100</span>);</span><br><span class="line">		<span class="comment">// 在开发中，会遇到调用一个方法后，返回一个对象的情况。然后使用返回的对象继续调用方法。</span></span><br><span class="line">        <span class="comment">// 这种时候，我们就可以把代码现在一起，如append方法一样，代码如下</span></span><br><span class="line">		<span class="comment">//链式编程</span></span><br><span class="line">		builder.append(<span class="string">"hello"</span>).append(<span class="string">"world"</span>).append(<span class="keyword">true</span>).append(<span class="number">100</span>);</span><br><span class="line">		System.out.println(<span class="string">"builder:"</span>+builder);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>通过toString方法，StringBuilder对象将会转换为不可变的String对象。如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo16StringBuilder</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 链式创建</span></span><br><span class="line">        StringBuilder sb = <span class="keyword">new</span> StringBuilder(<span class="string">"Hello"</span>).append(<span class="string">"World"</span>).append(<span class="string">"Java"</span>);</span><br><span class="line">        <span class="comment">// 调用方法</span></span><br><span class="line">        String str = sb.toString();</span><br><span class="line">        System.out.println(str); <span class="comment">// HelloWorldJava</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="5-包装类"><a href="#5-包装类" class="headerlink" title="5 包装类"></a>5 包装类</h1><p>Java提供了两个类型系统，基本类型与引用类型，使用基本类型在于效率，然而很多情况，会创建对象使用，因为对象可以做更多的功能，如果想要我们的基本类型像对象一样操作，就可以使用基本类型对应的包装类，如下：</p>
-<div class="table-container">
+<h1 id="包装类">5 包装类</h1>
+<p>Java提供了两个类型系统，基本类型与引用类型，使用基本类型在于效率，然而很多情况，会创建对象使用，因为对象可以做更多的功能，如果想要我们的基本类型像对象一样操作，就可以使用基本类型对应的包装类，如下：</p>
 <table>
 <thead>
-<tr>
+<tr class="header">
 <th>基本类型</th>
 <th>对应的包装类（位于java.lang包中）</th>
 </tr>
 </thead>
 <tbody>
-<tr>
+<tr class="odd">
 <td>byte</td>
 <td>Byte</td>
 </tr>
-<tr>
+<tr class="even">
 <td>short</td>
 <td>Short</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>int</td>
 <td><strong>Integer</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>long</td>
 <td>Long</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>float</td>
 <td>Float</td>
 </tr>
-<tr>
+<tr class="even">
 <td>double</td>
 <td>Double</td>
 </tr>
-<tr>
+<tr class="odd">
 <td>char</td>
 <td><strong>Character</strong></td>
 </tr>
-<tr>
+<tr class="even">
 <td>boolean</td>
 <td>Boolean</td>
 </tr>
 </tbody>
 </table>
-</div>
-<h2 id="5-1-装箱与拆箱"><a href="#5-1-装箱与拆箱" class="headerlink" title="5.1 装箱与拆箱"></a>5.1 装箱与拆箱</h2><p>基本类型与对应的包装类对象之间，来回转换的过程称为”装箱“与”拆箱“：</p>
+<h2 id="装箱与拆箱">5.1 装箱与拆箱</h2>
+<p>基本类型与对应的包装类对象之间，来回转换的过程称为”装箱“与”拆箱“：</p>
 <ul>
-<li><p><strong>装箱</strong>：从基本类型转换为对应的包装类对象。</p>
-</li>
-<li><p><strong>拆箱</strong>：从包装类对象转换为对应的基本类型。</p>
-</li>
+<li><p><strong>装箱</strong>：从基本类型转换为对应的包装类对象。</p></li>
+<li><p><strong>拆箱</strong>：从包装类对象转换为对应的基本类型。</p></li>
 </ul>
 <p>用Integer与 int为例：（看懂代码即可）</p>
-<p>基本数值——&gt;包装对象</p>
+<p>基本数值----&gt;包装对象</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Integer i = <span class="keyword">new</span> Integer(<span class="number">4</span>);<span class="comment">//使用构造函数函数</span></span><br><span class="line">Integer iii = Integer.valueOf(<span class="number">4</span>);<span class="comment">//使用包装类中的valueOf方法</span></span><br></pre></td></tr></table></figure>
-<p>包装对象——&gt;基本数值</p>
+<p>包装对象----&gt;基本数值</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num = i.intValue();</span><br></pre></td></tr></table></figure>
-<h2 id="5-3自动装箱与自动拆箱"><a href="#5-3自动装箱与自动拆箱" class="headerlink" title="5.3自动装箱与自动拆箱"></a>5.3自动装箱与自动拆箱</h2><p>由于我们经常要做基本类型与包装类之间的转换，从Java 5（JDK 1.5）开始，基本类型与包装类的装箱、拆箱动作可以自动完成。例如：</p>
+<h2 id="自动装箱与自动拆箱">5.3自动装箱与自动拆箱</h2>
+<p>由于我们经常要做基本类型与包装类之间的转换，从Java 5（JDK 1.5）开始，基本类型与包装类的装箱、拆箱动作可以自动完成。例如：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Integer i = <span class="number">4</span>;<span class="comment">//自动装箱。相当于Integer i = Integer.valueOf(4);</span></span><br><span class="line">i = i + <span class="number">5</span>;<span class="comment">//等号右边：将i对象转成基本数值(自动拆箱) i.intValue() + 5;</span></span><br><span class="line"><span class="comment">//加法运算完成后，再次装箱，把基本数值转成对象。</span></span><br></pre></td></tr></table></figure>
-<h2 id="5-3-基本类型与字符串之间的转换"><a href="#5-3-基本类型与字符串之间的转换" class="headerlink" title="5.3 基本类型与字符串之间的转换"></a>5.3 基本类型与字符串之间的转换</h2><h3 id="基本类型转换为String"><a href="#基本类型转换为String" class="headerlink" title="基本类型转换为String"></a>基本类型转换为String</h3><p>   基本类型转换String总共有三种方式，查看课后资料可以得知，这里只讲最简单的一种方式： </p>
+<h2 id="基本类型与字符串之间的转换">5.3 基本类型与字符串之间的转换</h2>
+<h3 id="基本类型转换为string">基本类型转换为String</h3>
+<p>基本类型转换String总共有三种方式，查看课后资料可以得知，这里只讲最简单的一种方式：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">基本类型直接与””相连接即可；如：34+&quot;&quot;</span><br></pre></td></tr></table></figure>
-<p>String转换成对应的基本类型 </p>
+<p>String转换成对应的基本类型</p>
 <p>除了Character类之外，其他所有包装类都具有parseXxx静态方法可以将字符串参数转换为对应的基本类型：</p>
 <ul>
 <li><code>public static byte parseByte(String s)</code>：将字符串参数转换为对应的byte基本类型。</li>
@@ -625,7 +631,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Java-Objects-类"><span class="toc-number">1.</span> <span class="toc-text">1 Java Objects 类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-Objects类中的方法"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Objects类中的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-toString方法"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1 toString方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-equals方法"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 equals方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-时间日期类"><span class="toc-number">2.</span> <span class="toc-text">2 时间日期类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-Date类"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Date类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-DateFormat类"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 DateFormat类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造方法"><span class="toc-number">2.2.1.</span> <span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#格式规则"><span class="toc-number">2.2.2.</span> <span class="toc-text">格式规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#parse方法"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">parse方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-calendar类"><span class="toc-number">2.3.</span> <span class="toc-text">2.4 calendar类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-system类"><span class="toc-number">3.</span> <span class="toc-text">3 system类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-currentTimeMillis方法"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 currentTimeMillis方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-arraycopy方法"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 arraycopy方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-stringBuilder类"><span class="toc-number">4.</span> <span class="toc-text">4 stringBuilder类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-包装类"><span class="toc-number">5.</span> <span class="toc-text">5 包装类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-装箱与拆箱"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 装箱与拆箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3自动装箱与自动拆箱"><span class="toc-number">5.2.</span> <span class="toc-text">5.3自动装箱与自动拆箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-基本类型与字符串之间的转换"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 基本类型与字符串之间的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本类型转换为String"><span class="toc-number">5.3.1.</span> <span class="toc-text">基本类型转换为String</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#java-objects-类"><span class="toc-number">1.</span> <span class="toc-text">1 Java Objects 类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#objects类中的方法"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 Objects类中的方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#tostring方法"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1 toString方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#equals方法"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 equals方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#时间日期类"><span class="toc-number">2.</span> <span class="toc-text">2 时间日期类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#date类"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 Date类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#dateformat类"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 DateFormat类</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#构造方法"><span class="toc-number">2.2.1.</span> <span class="toc-text">构造方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#格式规则"><span class="toc-number">2.2.2.</span> <span class="toc-text">格式规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#parse方法"><span class="toc-number">2.2.2.1.</span> <span class="toc-text">parse方法</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#calendar类"><span class="toc-number">2.3.</span> <span class="toc-text">2.4 calendar类</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#system类"><span class="toc-number">3.</span> <span class="toc-text">3 system类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#currenttimemillis方法"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 currentTimeMillis方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#arraycopy方法"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 arraycopy方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#stringbuilder类"><span class="toc-number">4.</span> <span class="toc-text">4 stringBuilder类</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#包装类"><span class="toc-number">5.</span> <span class="toc-text">5 包装类</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#装箱与拆箱"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 装箱与拆箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自动装箱与自动拆箱"><span class="toc-number">5.2.</span> <span class="toc-text">5.3自动装箱与自动拆箱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基本类型与字符串之间的转换"><span class="toc-number">5.3.</span> <span class="toc-text">5.3 基本类型与字符串之间的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基本类型转换为string"><span class="toc-number">5.3.1.</span> <span class="toc-text">基本类型转换为String</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>

@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>RNN and LSTM | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="RNN与LSTMRNN模型">
+  <meta name="description" content="RNN与LSTM RNN模型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="RNN and LSTM">
 <meta property="og:url" content="http://yoursite.com/2021/10/18/RNN-and-LSTM/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="RNN与LSTMRNN模型">
+<meta property="og:description" content="RNN与LSTM RNN模型">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/images/RNN%E6%A8%A1%E5%9E%8B.png">
 <meta property="og:image" content="http://yoursite.com/images/%E7%BB%8F%E5%85%B8%E7%9A%84RNN.png">
@@ -209,31 +209,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="RNN与LSTM"><a href="#RNN与LSTM" class="headerlink" title="RNN与LSTM"></a>RNN与LSTM</h1><h2 id="RNN模型"><a href="#RNN模型" class="headerlink" title="RNN模型"></a>RNN模型</h2><a id="more"></a>
-<p>RNN模型的结构图如下所示：<br><img src="/images/RNN模型.png" alt="avatar"><br>RNN其实是一个单元的重复使用，经常用在与时间序列相关的场景中。这是一种sequential-tosequential的模型。<br>由网络图可知，每个单元的状态表示为S_t = f(U<em>X_t + W</em>S_(t-1))，f代表的是激活函数。最后输出的是概率预测，使用的是softmax函数。<br><img src="/images/经典的RNN.png" alt="avatar"></p>
-<p>其中U和W都是权重关系，前者称为状态-状态权重，后者称为状态-输入权重.<br>标准的RNN网络有以下的特点：</p>
-<ol>
-<li>权值共享：图中的W全部是相同的，U和V也都一样</li>
-<li>每一个输入值都只与它本身的那条路线建立权连接，不会和别的神经元连接。</li>
-</ol>
-<p>RNN的模型表示：<br><img src="/images/RNN完整图.png" alt="avatar"><br>x表示输入，h表示隐层单元，o表示输出，L为损失函数，y为训练集标签。右上角的t表示t时刻的状态。隐层单元在t时刻不仅仅由此时刻的输入决定，还受t时刻之前的时刻的影响。U、W、V是权值，权值共享。<br>对于t时刻：<br><img src="/images/隐层时刻t.png" alt="avatar"><br>其中fai()是激活函数，一般在RNN里面会选择tanh函数，b为偏置。<br>t时刻的输出为：<br><img src="/images/t时刻输出.png" alt="avatar"><br>最终的预测模型为：<br><img src="/images/RNN预测.png" alt="avatar"><br>其中σ为激活函数，通常用于分类，为softmmax</p>
-<h3 id="RNN的训练"><a href="#RNN的训练" class="headerlink" title="RNN的训练"></a>RNN的训练</h3><p>BPTT(back-propagation through time)算法是常用训练RNN的方法，核心思想和BP算法相似。需要寻优的参数有三个，分别是U、V、W。W和V的更新都要追溯到历史数据，参数V相对简单只需要关注目前状态，先更新V：<br><img src="/images/V参数更新.png" alt="avatar"><br>RNN的损失也是会随着时间累加的，所以不能只求t时刻的偏导。<br><img src="/images/V参数更新所有.png" alt="avatar"><br>W和U的更新要涉及到历史数据，其偏导求解相对复杂，假设只有三个时刻，那么在第三个时刻L对W的偏导数为：<br><img src="/images/L对W的偏导.png" alt="avatar"><br>相应的，L在第三个时刻对U的偏导为：<br><img src="/images/L对U的偏导.png" alt="avatar"><br>在某个时刻对W或是U的偏导，需要追溯这个时刻之前的所有时刻的信息，那么这个求导的工作将会非常的复杂。但是有规律可循，可以写出L在t时刻对W和U偏导数的通式：<br><img src="/images/RNN求导简化.png" alt="avatar"><br>整体的偏导公式就是将其按时刻再一一加起来。<br>激活函数是嵌套在求导里面的，如果把激活函数放进去，拿出中间累乘的部分：<br><img src="/images/梯度消失和梯度爆炸.png" alt="avatar"><br>累乘会导致激活函数导数的累乘，进而会导致梯度消失和梯度爆炸的现象发生。</p>
-<p>但是RNN具有以下的局限性：</p>
-<ul>
-<li>当时间间隔不断增大的时候，RNN会丧失学习到连接如此远的信息的能力。理论上RNN可以处理长期依赖的关系，人们可以仔细挑选参数来解决这类问题中的最初形式，但是在实践中，RNN肯定不能成功的学习到这些知识。RNN会受到短时记忆的影响。如果一条序列足够长，那它们将很难从将信息从较早的时间步传送到后面的时间步。<br>因此如果正在1尝试处理一段文本进行预测，RNN可能从一开始就会遗漏重要的信息，在反向传播期间，RNN可能会面临梯度消失的问题。因为梯度用于更新神经网络的权重值，梯度会随着时间的推移不断下降减少，当梯度变得非常小的时候，就不会再学习。在递归的神经网络中，获得小梯度更新的层会停止学习，通常是较早的层。由于这些层不学习，RNN可以忘记它在较长的序列中看到的内容，因此具有短时记忆。而梯度爆炸则是因为计算的难度越来越复杂导致。</li>
-</ul>
-<h2 id="LSTM模型"><a href="#LSTM模型" class="headerlink" title="LSTM模型"></a>LSTM模型</h2><p>LSTM(Long short-term memory)长短期记忆网络是RNN的一种变体，通过巧妙的门控制将加法运算带入到网络中，缓解了RNN的问题。LSTM模型图如下所示：<br><img src="/images/LSTM模型图.png" alt="avatar"><br>图形的具体含义如下：<br><img src="/images/具体含义.png" alt="avatar"></p>
-<ul>
-<li>黄色的矩形是学习得到的神经网络层</li>
-<li>粉色的圆形表示一些基本操作，如加法乘法</li>
-<li>黑色的单箭头表示向量的传输</li>
-<li>两个箭头合成一个表示向量的连接</li>
-<li>一个箭头分开表示向量的复制</li>
-</ul>
-<h3 id="LSTM的核心思想"><a href="#LSTM的核心思想" class="headerlink" title="LSTM的核心思想"></a>LSTM的核心思想</h3><p>LSTM的关键就是细胞状态1，水平线在图上方贯穿运行。细胞状态类似于传送带，直接在整个链上运行，只有一些少量的线性交互。信息在上面流传保持不变会很容易。<br><img src="/images/LSTM流传.png" alt="avatar"><br>LSTM有通过精心设计的称作“门”的结构来去除或者增加信息到细胞状态的能力。门是一种让信息有选择的通过的方法，它们包含一个sigmoid神经曾和一个pointwise乘法操作。<br><img src="/images/门函数.png" alt="avatar"><br>sigmoid输出0-1之间的数值，描述每个部分有多少量可以通过，0代表不允许通过，1代表允许1任何通过，LSTM有三个门，来保护和控制细胞状态。</p>
-<h4 id="什么信息会被丢弃？"><a href="#什么信息会被丢弃？" class="headerlink" title="什么信息会被丢弃？"></a>什么信息会被丢弃？</h4><p>这个地方要用到第一个门：遗忘门。该门会读取前一个隐藏层的h_t-1和当前输入x_t，输出一个在0-1之间的数值给每个细胞状态C_t-1中的数字。1表示“完全保留”，0表示“完全舍弃”。<br><img src="/images/LSTM丢弃层.png" alt="avatar"><br>首先，怎么做到遗忘？<br>“遗忘”可以理解为“之前的内容记住多少”，其精髓在于只能输出(0,1)小数的sigmoid函数和粉色圆圈的乘法，LSTM网络通过学习决定让网络记住以前百分之多少的内容。<br>其次，为啥要遗忘还要接受新的xt？<br>因为决定记住什么遗忘什么，其中新的输入肯定要产生影响。</p>
-<h4 id="什么新的消息会被存放在细胞状态中？"><a href="#什么新的消息会被存放在细胞状态中？" class="headerlink" title="什么新的消息会被存放在细胞状态中？"></a>什么新的消息会被存放在细胞状态中？</h4><p>这个就叫做“输入门”，包含两个部分：（1）sigmoid层称“输入门层”决定什么值将被更新。（2）tanh层创建一个新的候选值向量，Ct，会被加入到状态中。<br><img src="/images/输入门.png" alt="avatar"><br>现在将要更新新旧细胞状态，Ct-1更新为Ct。把旧状态与ft相乘，丢弃掉我们确定需要丢弃的信息。接着加上it*Ct，这就是新的候选值，根据我们决定更新每个每个状态的程度进行变化。sigmoid函数选择更新内容，tanh函数创建更新候选。<br><img src="/images/输入门.png" alt="avatar"><br>最终，需要确定输出什么值，这个输出将会基于细胞状态，但是也是一个过滤后的版本。首先，运行一个sigmoid层来确定细胞状态的哪个部分会被输出出去。接着，把细胞状态通过tanh进行处理(得到一个-1到1之间的值)<br><img src="/images/输出门.png" alt="avatar"><br>这三个门虽然功能上不同，但在执行任务上的操作时相同的，都是使用sigmoid函数作为选择工具，tanh作为变换工具，这两个函数结合起来实现三个门的功能。</p>
-<h4 id="LSTM的变体"><a href="#LSTM的变体" class="headerlink" title="LSTM的变体"></a>LSTM的变体</h4><p><img src="/images/LSTM变体1.png" alt="avatar"><br>增加了peephole<br>另一种变体时通过使用coupled忘记和输入门。不同于之前是分开确定什么忘记和需要添加什么新的信息，这里是一同做出决定。仅仅会当将要输入在当前位置时忘记。我们仅仅输入新的值到那些我们已经忘记旧的信息的那些状态。<br><img src="/images/LSTM变体2.png" alt="avatar"><br>另一个改动较大的变体是 Gated Recurrent Unit (GRU)，这是由 Cho, et al. (2014) 提出。它将忘记门和输入门合成了一个单一的 更新门。同样还混合了细胞状态和隐藏状态，和其他一些改动。最终的模型比标准的 LSTM 模型要简单，也是非常流行的变体。</p>
+        <h1 id="rnn与lstm">RNN与LSTM</h1>
+<h2 id="rnn模型">RNN模型</h2>
+<a id="more"></a>
+<p>RNN模型的结构图如下所示： <img src="/images/RNN模型.png" alt="avatar"> RNN其实是一个单元的重复使用，经常用在与时间序列相关的场景中。这是一种sequential-tosequential的模型。 由网络图可知，每个单元的状态表示为S_t = f(U<em>X_t + W</em>S_(t-1))，f代表的是激活函数。最后输出的是概率预测，使用的是softmax函数。 <img src="/images/经典的RNN.png" alt="avatar"></p>
+<p>其中U和W都是权重关系，前者称为状态-状态权重，后者称为状态-输入权重. 标准的RNN网络有以下的特点： 1. 权值共享：图中的W全部是相同的，U和V也都一样 2. 每一个输入值都只与它本身的那条路线建立权连接，不会和别的神经元连接。</p>
+<p>RNN的模型表示： <img src="/images/RNN完整图.png" alt="avatar"> x表示输入，h表示隐层单元，o表示输出，L为损失函数，y为训练集标签。右上角的t表示t时刻的状态。隐层单元在t时刻不仅仅由此时刻的输入决定，还受t时刻之前的时刻的影响。U、W、V是权值，权值共享。 对于t时刻： <img src="/images/隐层时刻t.png" alt="avatar"> 其中fai()是激活函数，一般在RNN里面会选择tanh函数，b为偏置。 t时刻的输出为： <img src="/images/t时刻输出.png" alt="avatar"> 最终的预测模型为： <img src="/images/RNN预测.png" alt="avatar"> 其中σ为激活函数，通常用于分类，为softmmax</p>
+<h3 id="rnn的训练">RNN的训练</h3>
+<p>BPTT(back-propagation through time)算法是常用训练RNN的方法，核心思想和BP算法相似。需要寻优的参数有三个，分别是U、V、W。W和V的更新都要追溯到历史数据，参数V相对简单只需要关注目前状态，先更新V： <img src="/images/V参数更新.png" alt="avatar"> RNN的损失也是会随着时间累加的，所以不能只求t时刻的偏导。 <img src="/images/V参数更新所有.png" alt="avatar"> W和U的更新要涉及到历史数据，其偏导求解相对复杂，假设只有三个时刻，那么在第三个时刻L对W的偏导数为： <img src="/images/L对W的偏导.png" alt="avatar"> 相应的，L在第三个时刻对U的偏导为： <img src="/images/L对U的偏导.png" alt="avatar"> 在某个时刻对W或是U的偏导，需要追溯这个时刻之前的所有时刻的信息，那么这个求导的工作将会非常的复杂。但是有规律可循，可以写出L在t时刻对W和U偏导数的通式： <img src="/images/RNN求导简化.png" alt="avatar"> 整体的偏导公式就是将其按时刻再一一加起来。 激活函数是嵌套在求导里面的，如果把激活函数放进去，拿出中间累乘的部分： <img src="/images/梯度消失和梯度爆炸.png" alt="avatar"> 累乘会导致激活函数导数的累乘，进而会导致梯度消失和梯度爆炸的现象发生。</p>
+<p>但是RNN具有以下的局限性： * 当时间间隔不断增大的时候，RNN会丧失学习到连接如此远的信息的能力。理论上RNN可以处理长期依赖的关系，人们可以仔细挑选参数来解决这类问题中的最初形式，但是在实践中，RNN肯定不能成功的学习到这些知识。RNN会受到短时记忆的影响。如果一条序列足够长，那它们将很难从将信息从较早的时间步传送到后面的时间步。 因此如果正在1尝试处理一段文本进行预测，RNN可能从一开始就会遗漏重要的信息，在反向传播期间，RNN可能会面临梯度消失的问题。因为梯度用于更新神经网络的权重值，梯度会随着时间的推移不断下降减少，当梯度变得非常小的时候，就不会再学习。在递归的神经网络中，获得小梯度更新的层会停止学习，通常是较早的层。由于这些层不学习，RNN可以忘记它在较长的序列中看到的内容，因此具有短时记忆。而梯度爆炸则是因为计算的难度越来越复杂导致。</p>
+<h2 id="lstm模型">LSTM模型</h2>
+<p>LSTM(Long short-term memory)长短期记忆网络是RNN的一种变体，通过巧妙的门控制将加法运算带入到网络中，缓解了RNN的问题。LSTM模型图如下所示： <img src="/images/LSTM模型图.png" alt="avatar"> 图形的具体含义如下： <img src="/images/具体含义.png" alt="avatar"> * 黄色的矩形是学习得到的神经网络层 * 粉色的圆形表示一些基本操作，如加法乘法 * 黑色的单箭头表示向量的传输 * 两个箭头合成一个表示向量的连接 * 一个箭头分开表示向量的复制</p>
+<h3 id="lstm的核心思想">LSTM的核心思想</h3>
+<p>LSTM的关键就是细胞状态1，水平线在图上方贯穿运行。细胞状态类似于传送带，直接在整个链上运行，只有一些少量的线性交互。信息在上面流传保持不变会很容易。 <img src="/images/LSTM流传.png" alt="avatar"> LSTM有通过精心设计的称作“门”的结构来去除或者增加信息到细胞状态的能力。门是一种让信息有选择的通过的方法，它们包含一个sigmoid神经曾和一个pointwise乘法操作。 <img src="/images/门函数.png" alt="avatar"> sigmoid输出0-1之间的数值，描述每个部分有多少量可以通过，0代表不允许通过，1代表允许1任何通过，LSTM有三个门，来保护和控制细胞状态。 #### 什么信息会被丢弃？ 这个地方要用到第一个门：遗忘门。该门会读取前一个隐藏层的h_t-1和当前输入x_t，输出一个在0-1之间的数值给每个细胞状态C_t-1中的数字。1表示“完全保留”，0表示“完全舍弃”。 <img src="/images/LSTM丢弃层.png" alt="avatar"> 首先，怎么做到遗忘？ “遗忘”可以理解为“之前的内容记住多少”，其精髓在于只能输出(0,1)小数的sigmoid函数和粉色圆圈的乘法，LSTM网络通过学习决定让网络记住以前百分之多少的内容。 其次，为啥要遗忘还要接受新的xt？ 因为决定记住什么遗忘什么，其中新的输入肯定要产生影响。</p>
+<h4 id="什么新的消息会被存放在细胞状态中">什么新的消息会被存放在细胞状态中？</h4>
+<p>这个就叫做“输入门”，包含两个部分：（1）sigmoid层称“输入门层”决定什么值将被更新。（2）tanh层创建一个新的候选值向量，Ct，会被加入到状态中。 <img src="/images/输入门.png" alt="avatar"> 现在将要更新新旧细胞状态，Ct-1更新为Ct。把旧状态与ft相乘，丢弃掉我们确定需要丢弃的信息。接着加上it*Ct，这就是新的候选值，根据我们决定更新每个每个状态的程度进行变化。sigmoid函数选择更新内容，tanh函数创建更新候选。 <img src="/images/输入门.png" alt="avatar"> 最终，需要确定输出什么值，这个输出将会基于细胞状态，但是也是一个过滤后的版本。首先，运行一个sigmoid层来确定细胞状态的哪个部分会被输出出去。接着，把细胞状态通过tanh进行处理(得到一个-1到1之间的值) <img src="/images/输出门.png" alt="avatar"> 这三个门虽然功能上不同，但在执行任务上的操作时相同的，都是使用sigmoid函数作为选择工具，tanh作为变换工具，这两个函数结合起来实现三个门的功能。</p>
+<h4 id="lstm的变体">LSTM的变体</h4>
+<p><img src="/images/LSTM变体1.png" alt="avatar"> 增加了peephole 另一种变体时通过使用coupled忘记和输入门。不同于之前是分开确定什么忘记和需要添加什么新的信息，这里是一同做出决定。仅仅会当将要输入在当前位置时忘记。我们仅仅输入新的值到那些我们已经忘记旧的信息的那些状态。 <img src="/images/LSTM变体2.png" alt="avatar"> 另一个改动较大的变体是 Gated Recurrent Unit (GRU)，这是由 Cho, et al. (2014) 提出。它将忘记门和输入门合成了一个单一的 更新门。同样还混合了细胞状态和隐藏状态，和其他一些改动。最终的模型比标准的 LSTM 模型要简单，也是非常流行的变体。</p>
 
       
 
@@ -376,7 +368,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#RNN与LSTM"><span class="toc-number">1.</span> <span class="toc-text">RNN与LSTM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#RNN模型"><span class="toc-number">1.1.</span> <span class="toc-text">RNN模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#RNN的训练"><span class="toc-number">1.1.1.</span> <span class="toc-text">RNN的训练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LSTM模型"><span class="toc-number">1.2.</span> <span class="toc-text">LSTM模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LSTM的核心思想"><span class="toc-number">1.2.1.</span> <span class="toc-text">LSTM的核心思想</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么信息会被丢弃？"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">什么信息会被丢弃？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#什么新的消息会被存放在细胞状态中？"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">什么新的消息会被存放在细胞状态中？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#LSTM的变体"><span class="toc-number">1.2.1.3.</span> <span class="toc-text">LSTM的变体</span></a></li></ol></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#rnn与lstm"><span class="toc-number">1.</span> <span class="toc-text">RNN与LSTM</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#rnn模型"><span class="toc-number">1.1.</span> <span class="toc-text">RNN模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#rnn的训练"><span class="toc-number">1.1.1.</span> <span class="toc-text">RNN的训练</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#lstm模型"><span class="toc-number">1.2.</span> <span class="toc-text">LSTM模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#lstm的核心思想"><span class="toc-number">1.2.1.</span> <span class="toc-text">LSTM的核心思想</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么新的消息会被存放在细胞状态中"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">什么新的消息会被存放在细胞状态中？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#lstm的变体"><span class="toc-number">1.2.1.2.</span> <span class="toc-text">LSTM的变体</span></a></li></ol></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
