@@ -211,8 +211,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="图的基本概念">1. 图的基本概念</h1>
-<a id="more"></a>
+        <h1 id="1-图的基本概念"><a href="#1-图的基本概念" class="headerlink" title="1. 图的基本概念"></a>1. 图的基本概念</h1><a id="more"></a>
 <ul>
 <li>连通图：对于一个无向图，如果任意的结点i能够通过一些结点边到达结点j，称之为连通图</li>
 <li>非连通图：对于一个无向图，如果任意的结点i不能够通过一些结点边到达结点j，称之为非连通图</li>
@@ -221,42 +220,42 @@
 <li>弱连通图：若至少有一对结点不满足单向连通，但去掉边的方向后从无向图的观点看是连通图，则D称为弱连通图。</li>
 <li>图直径：图中两两结点的最短路径的最大值。</li>
 </ul>
-<h1 id="graph-embedding">2. Graph Embedding</h1>
-<h2 id="deepwalk算法">2.1 deepwalk算法</h2>
-<p>deepwalk的方法是参考了word2vec的思路的，将一个图作为输入，并产生一个潜在的表示(将图中的每个节点表示为一个向量)作为输出。 对于图结构来说，算法设计要满足以下几个要求： 1.适应性：社交网络是不断变化的，当网络发生变化不能对整个网络重新进行计算 2.社区意识：节点的潜在表示对应着维度空间中的距离，应该表示网络中对应的成员的相似度，以保证网络的同质性 3.低维：当被标记的成员很少时，低维的模型一般表现得更好，并且收敛性和推理速度更快 4.连续性：需要通过图的潜在表示对连续空间中的部分社区成员进行建模。除了提供对社区成员资格的细微视图之外，连续表示还可以使社区之间的决策界限平滑，从而实现更强大的分类</p>
-<p>算法的流程： 1.展示用户行为序列 2.基于这些用户行为序列构建了物品相关图，图中的边是由用户行为产生的 3.采用随机游走的方式随机游走的方式随机选择起始点，产生局部物品序列 4.将这些物品序列当做初始句子进行word2vec建模，生成最终的物品embedding向量</p>
+<h1 id="2-Graph-Embedding"><a href="#2-Graph-Embedding" class="headerlink" title="2. Graph Embedding"></a>2. Graph Embedding</h1><h2 id="2-1-deepwalk算法"><a href="#2-1-deepwalk算法" class="headerlink" title="2.1 deepwalk算法"></a>2.1 deepwalk算法</h2><p>deepwalk的方法是参考了word2vec的思路的，将一个图作为输入，并产生一个潜在的表示(将图中的每个节点表示为一个向量)作为输出。<br>对于图结构来说，算法设计要满足以下几个要求：<br>1.适应性：社交网络是不断变化的，当网络发生变化不能对整个网络重新进行计算<br>2.社区意识：节点的潜在表示对应着维度空间中的距离，应该表示网络中对应的成员的相似度，以保证网络的同质性<br>3.低维：当被标记的成员很少时，低维的模型一般表现得更好，并且收敛性和推理速度更快<br>4.连续性：需要通过图的潜在表示对连续空间中的部分社区成员进行建模。除了提供对社区成员资格的细微视图之外，连续表示还可以使社区之间的决策界限平滑，从而实现更强大的分类</p>
+<p>算法的流程：<br>1.展示用户行为序列<br>2.基于这些用户行为序列构建了物品相关图，图中的边是由用户行为产生的<br>3.采用随机游走的方式随机游走的方式随机选择起始点，产生局部物品序列<br>4.将这些物品序列当做初始句子进行word2vec建模，生成最终的物品embedding向量</p>
 <p>random walk是从截断的随机游走序列中得到的网络局部信息，并以此来学习节点的向量表示。借助语言模型word2vec中的skip-gram模型来学习节点的向量表示。将网络中的结点作为语言模型中的单词，而结点的序列(随机游走得到)模拟为语言中的句子，作为skip-gram的输入。</p>
-<p>优点： 1.并行性：同时进行多个随机游走 2.适应性：当图变化时，不需要全局重新计算，可以迭代的更新学习模型，适合online learning</p>
+<p>优点：<br>1.并行性：同时进行多个随机游走<br>2.适应性：当图变化时，不需要全局重新计算，可以迭代的更新学习模型，适合online learning</p>
 <ul>
-<li>deepwalk算法架构 <img src="/images/DeepWalk.png" alt="avatar"></li>
+<li>deepwalk算法架构<br><img src="/images/DeepWalk.png" alt="avatar"></li>
 </ul>
-<p>SkipGram是一个语言模型，用于最大化句子中出现在窗口w内的单词之间的共现概率。使用独立性假设，最后条件概率为： <img src="/images/SkipGram条件概率.png" alt="avatar"></p>
-<p>对序列中的每个顶点，计算条件概率，即该结点出现的情况下序列中其他节点出现的概率的log值，借助随机梯度下降算法更新该结点的向量表示： <img src="/images/SkipGram更新.png" alt="avatar"></p>
-<h2 id="line算法">2.2 line算法</h2>
-<h3 id="line的原理介绍">Line的原理介绍</h3>
-<p>这里与deepwalk不一样的方法是作者考虑了两个方面：一阶相似性和二阶相似性。 (1) 一阶相似性 一阶相似性就是指图中两个结点有边相连接，边的权重衡量的就是两个结点的相似程度，假设我们定义两个结点的联合概率是: <img src="/images/一阶相似性.png" alt="avatar"> 而又知道其对应的经验概率是： <img src="/images/一阶相似性的经验概率.png" alt="avatar"> 利用KL散度的公式并且忽略掉一些常数之后，可以定义一阶相似性的损失函数为： <img src="/images/一阶相似性的损失函数.png" alt="avatar"></p>
-<ol start="2" type="1">
-<li>二阶相似性 假如两个结点他们的邻居很相似，我们则称这两个结点二阶相似。定义两个接地那的条件概率是：“ <img src="/images/二阶相似性.png" alt="avatar"> 要对比两个结点的二阶相似性，其实对比的就是两个结点的条件概率分布的相似性。只要能够保证所有结点的条件概率和经验条件概率一致，那么这个embedding就可以很好地保存这两个结点的二阶相似性。 <img src="/images/对比二阶相似性.png" alt="avatar"> 得到二阶的损失函数为： <img src="/images/二阶相似性的损失函数.png" alt="avatar"> 在现实中，一般采用负彩样的方法进行训练，即： <img src="/images/负采样.png" alt="avatar"></li>
+<p>SkipGram是一个语言模型，用于最大化句子中出现在窗口w内的单词之间的共现概率。使用独立性假设，最后条件概率为：<br><img src="/images/SkipGram条件概率.png" alt="avatar"></p>
+<p>对序列中的每个顶点，计算条件概率，即该结点出现的情况下序列中其他节点出现的概率的log值，借助随机梯度下降算法更新该结点的向量表示：<br><img src="/images/SkipGram更新.png" alt="avatar"></p>
+<h2 id="2-2-line算法"><a href="#2-2-line算法" class="headerlink" title="2.2 line算法"></a>2.2 line算法</h2><h3 id="Line的原理介绍"><a href="#Line的原理介绍" class="headerlink" title="Line的原理介绍"></a>Line的原理介绍</h3><p>这里与deepwalk不一样的方法是作者考虑了两个方面：一阶相似性和二阶相似性。<br>(1) 一阶相似性<br>一阶相似性就是指图中两个结点有边相连接，边的权重衡量的就是两个结点的相似程度，假设我们定义两个结点的联合概率是:<br><img src="/images/一阶相似性.png" alt="avatar"><br>而又知道其对应的经验概率是：<br><img src="/images/一阶相似性的经验概率.png" alt="avatar"><br>利用KL散度的公式并且忽略掉一些常数之后，可以定义一阶相似性的损失函数为：<br><img src="/images/一阶相似性的损失函数.png" alt="avatar"></p>
+<p>(2) 二阶相似性<br>假如两个结点他们的邻居很相似，我们则称这两个结点二阶相似。定义两个接地那的条件概率是：“<br><img src="/images/二阶相似性.png" alt="avatar"><br>要对比两个结点的二阶相似性，其实对比的就是两个结点的条件概率分布的相似性。只要能够保证所有结点的条件概率和经验条件概率一致，那么这个embedding就可以很好地保存这两个结点的二阶相似性。<br><img src="/images/对比二阶相似性.png" alt="avatar"><br>得到二阶的损失函数为：<br><img src="/images/二阶相似性的损失函数.png" alt="avatar"><br>在现实中，一般采用负彩样的方法进行训练，即：<br><img src="/images/负采样.png" alt="avatar"></p>
+<p>(3)结合一阶相似性和二阶相似性<br>将一阶相似性训练得到的embedding和二阶相似性训练得到的embedding拼接起来，就是最终的embedding形式。</p>
+<h3 id="模型优化"><a href="#模型优化" class="headerlink" title="模型优化"></a>模型优化</h3><p>(1) 我们会可以看到不管是一阶还是二阶的时候，损失函数每条边都有个weight，为了加速模型收敛，训练的时候可以对边采取抽样的方式生成训练样本，每条边被抽中的概率为边的权重。<br>(2) 对于邻居很少的结点，我们可以将结点邻居的邻居作为该结点的邻居，对应的权重为：<br><img src="/images/邻居很少的结点.png" alt="avatar"><br>然后将结点的权重进行排序，取出topN。</p>
+<h2 id="2-3-node2vec算法"><a href="#2-3-node2vec算法" class="headerlink" title="2.3 node2vec算法"></a>2.3 node2vec算法</h2><p>要设计的网络表示学习算法的目标必须满足以下两点：<br>1.同一个社区内的结点表示类似<br>2.拥有类似结构特征的结点表示相似</p>
+<h3 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h3><p>该方法的损失函数是：<br><img src="/images/node2vec的损失函数.png" alt="avatar"><br>为了让结果更容易计算，引入了skip-gram中的两个假设：</p>
+<ol>
+<li>条件独立，即采样每个邻居是相互独立的，所以如果要计算采样所有邻居的概率只需要将采样每个邻居的概率相乘就好了，公式化表达就是：<br><img src="/images/采样所有邻居的概率.png" alt="avatar"></li>
+<li>特征空间的对称性。假设一条边连接了a和b，那么映射到特征空间时，a对b的影响和b对a的影响是一样的。用一个模型来表示一个(结点，邻居)对：<br><img src="/images/结点邻居对.png" alt="avatar"><br>将上面的三个公式结合起来得到最终的优化结果：<br><img src="/images/node2vec优化结果.png" alt="avatar"><br>注意：<br>1.Zu直接计算特别费时，本文使用的是负采样的方式<br>2.Ns(u)未必是u的直接邻居，只是用s方法采样得到的邻居，跟具体的采样方法有关</li>
 </ol>
-<p>(3)结合一阶相似性和二阶相似性 将一阶相似性训练得到的embedding和二阶相似性训练得到的embedding拼接起来，就是最终的embedding形式。 ### 模型优化 (1) 我们会可以看到不管是一阶还是二阶的时候，损失函数每条边都有个weight，为了加速模型收敛，训练的时候可以对边采取抽样的方式生成训练样本，每条边被抽中的概率为边的权重。 (2) 对于邻居很少的结点，我们可以将结点邻居的邻居作为该结点的邻居，对应的权重为： <img src="/images/邻居很少的结点.png" alt="avatar"> 然后将结点的权重进行排序，取出topN。</p>
-<h2 id="node2vec算法">2.3 node2vec算法</h2>
-<p>要设计的网络表示学习算法的目标必须满足以下两点： 1.同一个社区内的结点表示类似 2.拥有类似结构特征的结点表示相似</p>
-<h3 id="算法流程">算法流程</h3>
-<p>该方法的损失函数是： <img src="/images/node2vec的损失函数.png" alt="avatar"> 为了让结果更容易计算，引入了skip-gram中的两个假设： 1. 条件独立，即采样每个邻居是相互独立的，所以如果要计算采样所有邻居的概率只需要将采样每个邻居的概率相乘就好了，公式化表达就是： <img src="/images/采样所有邻居的概率.png" alt="avatar"> 2. 特征空间的对称性。假设一条边连接了a和b，那么映射到特征空间时，a对b的影响和b对a的影响是一样的。用一个模型来表示一个(结点，邻居)对： <img src="/images/结点邻居对.png" alt="avatar"> 将上面的三个公式结合起来得到最终的优化结果： <img src="/images/node2vec优化结果.png" alt="avatar"> 注意： 1.Zu直接计算特别费时，本文使用的是负采样的方式 2.Ns(u)未必是u的直接邻居，只是用s方法采样得到的邻居，跟具体的采样方法有关</p>
-<p>复杂网络处理的任务其实离不开两种特性，一种是同质性也就是社区，另一种是结构相似性。结构相似的两个点未必相连，可以是相距很远的两个结点。深度优先游走(DFS)和广度优先游走(BFS)是两种随机游走的方式。BFS倾向于在结点的初始结点的周围游走，可以反映出一个结点的邻居的微观特性；而DFS一般会跑的离初始结点越来越远，可以反映出一个结点邻居的宏观特性。 node2vec的随机游走产生的方式是： <img src="/images/node2vec随机游走.png" alt="avatar"> 对于一个随机游走，如果已经采样了(t,v)，也就是说现在停留在结点v上，那么下一个要采样的结点是哪个？作者定义了一个概率分布，也就是一个结点到它不同邻居结点的转移概率： <img src="/images/node2vec随机游走转移概率.png" alt="avatar"></p>
+<p>复杂网络处理的任务其实离不开两种特性，一种是同质性也就是社区，另一种是结构相似性。结构相似的两个点未必相连，可以是相距很远的两个结点。深度优先游走(DFS)和广度优先游走(BFS)是两种随机游走的方式。BFS倾向于在结点的初始结点的周围游走，可以反映出一个结点的邻居的微观特性；而DFS一般会跑的离初始结点越来越远，可以反映出一个结点邻居的宏观特性。<br>node2vec的随机游走产生的方式是：<br><img src="/images/node2vec随机游走.png" alt="avatar"><br>对于一个随机游走，如果已经采样了(t,v)，也就是说现在停留在结点v上，那么下一个要采样的结点是哪个？作者定义了一个概率分布，也就是一个结点到它不同邻居结点的转移概率：<br><img src="/images/node2vec随机游走转移概率.png" alt="avatar"></p>
 <ul>
 <li>如果t和x相等，那么采样x的概率系数是1/p</li>
 <li>如果t和x相连，那么采样x的概率系数是1</li>
 <li>如果t和x不相连，那么采样x的概率系数是1/q</li>
 </ul>
-<p>参数p、q的意义分别如下： 返回概率p： * 如果p &gt; max(q,1)，那么采样会尽量不往回走，对应上图的情况，就是下一个节点不太可能是上一个访问的结点t * 如果p &lt; min(q,1)，那么采样会更倾向于返回上一个结点，这样会一直在起始点周围某些结点来回转来转去。 出入参数： * 如果q &gt; 1，那么游走会倾向于在起始点周围的结点之间跑，可以反映一个结点的BFS特征。 * 如果q &lt; 1，那么游走会倾向于往远处跑，反映出DFS特性。 当 p = 1 , q = 1 时，游走方式就等同于DeepWalk中的随机游走。 q是用来控制模型是DFS还是BFS</p>
-<h3 id="node2vec算法流程">node2vec算法流程</h3>
-<figure>
-<img src="/images/node2vec算法.png" alt="avatar"><figcaption aria-hidden="true">avatar</figcaption>
-</figure>
-<ol type="1">
+<p>参数p、q的意义分别如下：<br>返回概率p：</p>
+<ul>
+<li>如果p &gt; max(q,1)，那么采样会尽量不往回走，对应上图的情况，就是下一个节点不太可能是上一个访问的结点t</li>
+<li>如果p &lt; min(q,1)，那么采样会更倾向于返回上一个结点，这样会一直在起始点周围某些结点来回转来转去。<br>出入参数：</li>
+<li>如果q &gt; 1，那么游走会倾向于在起始点周围的结点之间跑，可以反映一个结点的BFS特征。</li>
+<li>如果q &lt; 1，那么游走会倾向于往远处跑，反映出DFS特性。<br>当 p = 1 , q = 1 时，游走方式就等同于DeepWalk中的随机游走。<br>q是用来控制模型是DFS还是BFS</li>
+</ul>
+<h3 id="node2vec算法流程"><a href="#node2vec算法流程" class="headerlink" title="node2vec算法流程"></a>node2vec算法流程</h3><p><img src="/images/node2vec算法.png" alt="avatar"></p>
+<ol>
 <li>根据p、q和之前的公式计算一个结点到它邻居的转移概率</li>
-<li>将这个转移概率加到图G中形成G'</li>
+<li>将这个转移概率加到图G中形成G’</li>
 <li>walks用来存储随机游走，先初始化为空</li>
 <li>外循环r次表示每个节点作为初始结点要生成r个随机游走</li>
 <li>然后对图中每个节点</li>
@@ -265,7 +264,7 @@
 <li>然后使用SGD方法对walks进行训练</li>
 </ol>
 <p>第6步中一条walk的生成方式如下：</p>
-<ol type="1">
+<ol>
 <li>将初始节点u添加进去</li>
 <li>walk的长度与为l，因此还要再循环添加l-1个结点</li>
 </ol>
@@ -411,7 +410,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#图的基本概念"><span class="toc-number">1.</span> <span class="toc-text">1. 图的基本概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#graph-embedding"><span class="toc-number">2.</span> <span class="toc-text">2. Graph Embedding</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#deepwalk算法"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 deepwalk算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#line算法"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 line算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#line的原理介绍"><span class="toc-number">2.2.1.</span> <span class="toc-text">Line的原理介绍</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#node2vec算法"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 node2vec算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法流程"><span class="toc-number">2.3.1.</span> <span class="toc-text">算法流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#node2vec算法流程"><span class="toc-number">2.3.2.</span> <span class="toc-text">node2vec算法流程</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-图的基本概念"><span class="toc-number">1.</span> <span class="toc-text">1. 图的基本概念</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Graph-Embedding"><span class="toc-number">2.</span> <span class="toc-text">2. Graph Embedding</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-deepwalk算法"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 deepwalk算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-line算法"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 line算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Line的原理介绍"><span class="toc-number">2.2.1.</span> <span class="toc-text">Line的原理介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模型优化"><span class="toc-number">2.2.2.</span> <span class="toc-text">模型优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-node2vec算法"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 node2vec算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法流程"><span class="toc-number">2.3.1.</span> <span class="toc-text">算法流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#node2vec算法流程"><span class="toc-number">2.3.2.</span> <span class="toc-text">node2vec算法流程</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -577,11 +576,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">

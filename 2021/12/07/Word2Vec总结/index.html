@@ -200,144 +200,139 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="word2vec算法简介">1. Word2Vec算法简介</h1>
-<a id="more"></a>
+        <h1 id="1-Word2Vec算法简介"><a href="#1-Word2Vec算法简介" class="headerlink" title="1. Word2Vec算法简介"></a>1. Word2Vec算法简介</h1><a id="more"></a>
 <p>为什么要进行word embedding？因为对于机器学习的输入来说，只接受数值型的输入，而对于NLP之中的语句，则是人类的特定的字符。所以必须要对其转换为数值类型，降维到一个数学空间中。最原始的方法就是one-hot embedding，但是这种算法复杂度太高，而且可扩展性不强。并且假设所有的词都是独立的，而现实中词与词之间不可能是独立的。</p>
 <p>在NLP中，把x看作是一个句子中的词语，y是词语的上下文，f(x) -&gt; y就是语言模型，用来判断(x,y)是不是符合自然语言的法则。Word2vec就是这个思想，最终并不是要把f训练的多么完美，而是只关心模型参数(神经网络的权重)，并将这些参数，作为输入x的魔种向量化表示，也就是词向量。</p>
-<p>按照下图的观念，我们有： <span class="math display">\[
-\vec{king} - \vec{man} + \vec{women} = \vec{queen}
-\]</span> <img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/词向量降维.png"></p>
-<p>所以当我们考虑上下文的时候，比方说"我觉得C++很难"，那么从上下文来推测中间的词汇，就可以学习到中间的词汇可能是"C++",而从中间词汇推上下文，可以学习到"很难"。这两个就分别是word2vec中的CBOW模型以及Skip-gram模型的思想。</p>
+<p>按照下图的观念，我们有：</p>
+<script type="math/tex; mode=display">
+\vec{king} - \vec{man} + \vec{women} = \vec{queen}</script><p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/词向量降维.png" alt></p>
+<p>所以当我们考虑上下文的时候，比方说”我觉得C++很难”，那么从上下文来推测中间的词汇，就可以学习到中间的词汇可能是”C++”,而从中间词汇推上下文，可以学习到”很难”。这两个就分别是word2vec中的CBOW模型以及Skip-gram模型的思想。</p>
 <p>word2vec就是简化版的神经网络，输入是One-hot Vector，隐藏层没有激活函数，也就是线性的单元。输出的维度和输入的维度是一样的，用的是softmax进行分类输出。通过训练可以得到参数。</p>
-<p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/word2vec网络图.png"></p>
+<p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/word2vec网络图.png" alt></p>
 <p>Word2vec通过CBOW(Continuous Bag-of-Words)和Skip-Gram两种模型来定义输入或者输出。CBOW模型的训练输入是某一个特征词的上下文相关的词对应的词向量，而输出就是这特定的一个词的词向量。　Skip-Gram模型和CBOW的思路是反着来的，即输入是特定的一个词的词向量，而输出是特定词对应的上下文词向量。CBOW对小型数据库比较合适，而Skip-Gram在大型语料中表现更好。</p>
-<h1 id="cbow模型">2. CBOW模型</h1>
-<p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/CBOW模型.png"></p>
+<h1 id="2-CBOW模型"><a href="#2-CBOW模型" class="headerlink" title="2. CBOW模型"></a>2. CBOW模型</h1><p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/CBOW模型.png" alt></p>
 <ul>
 <li>输入层：上下文单词的独热向量，图中的向量空间维度为V，上下文单词个数为C</li>
-<li>隐藏层：所有的独热向量分别乘以共享的权重矩阵<span class="math inline">\(W_{v\times N}\)</span>，那么初始的<span class="math inline">\(x_{1\times v}\)</span>就转换成了<span class="math inline">\(H_{1\times N}\)</span>的向量，一共有C个，将C个hidden layer的向量取平均得到一个1 * N大小的向量，作为hidden layer的值</li>
-<li>输出层：输出层的权重矩阵为<span class="math inline">\(W&#39;_{N\times V}\)</span>，将得到的hidden layer向量与W'相乘，并通过linear layer的softmax，得到一个1 * V的向量，也就是代表各个词的频率了。选取频率最高的作为预测出来的中间词</li>
+<li>隐藏层：所有的独热向量分别乘以共享的权重矩阵$W_{v\times N}$，那么初始的$x_{1\times v}$就转换成了$H_{1\times N}$的向量，一共有C个，将C个hidden layer的向量取平均得到一个1 * N大小的向量，作为hidden layer的值</li>
+<li>输出层：输出层的权重矩阵为$W’_{N\times V}$，将得到的hidden layer向量与W’相乘，并通过linear layer的softmax，得到一个1 * V的向量，也就是代表各个词的频率了。选取频率最高的作为预测出来的中间词</li>
 <li>与ground truth中的one hot比较，找出lost function的最小值，一般都是用的cross-entropy</li>
 <li>训练完毕之后，输入层每个单词与W相乘得到的结果就是想要的word embedding</li>
 </ul>
-<h1 id="skip-gram模型">3. Skip-Gram模型</h1>
-<p>Skip-Gram模型相当于CBOW模型的相反，是根据给定的input vector来预测上下文。训练skip-gram模型来实现以下为任务：给出一个句子中间的某个单词，观察输入单词旁边的单词并随机选择一个，而训练的神经网络将告诉我们词汇表中每个单词被选作临近单词的概率。所谓的临近单词与算法中设置的窗口大小(window size)有关，一般window size = 5，意思是预测上下文共10个词。</p>
-<p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/Skip-Gram模型.png"></p>
+<h1 id="3-Skip-Gram模型"><a href="#3-Skip-Gram模型" class="headerlink" title="3. Skip-Gram模型"></a>3. Skip-Gram模型</h1><p>Skip-Gram模型相当于CBOW模型的相反，是根据给定的input vector来预测上下文。训练skip-gram模型来实现以下为任务：给出一个句子中间的某个单词，观察输入单词旁边的单词并随机选择一个，而训练的神经网络将告诉我们词汇表中每个单词被选作临近单词的概率。所谓的临近单词与算法中设置的窗口大小(window size)有关，一般window size = 5，意思是预测上下文共10个词。</p>
+<p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/Skip-Gram模型.png" alt></p>
 <ul>
-<li>输入层：输入中心词汇<span class="math inline">\(x_k\)</span>，其周围有C个上下文词汇。输入是中心词的one-hot vector，维度是1 * V</li>
-<li>隐藏层：通过预先初始化的权重<span class="math inline">\(W_{V\times N}\)</span>，来得到隐藏层的向量<span class="math inline">\(H_{1\times N}\)</span></li>
+<li>输入层：输入中心词汇$x_k$，其周围有C个上下文词汇。输入是中心词的one-hot vector，维度是1 * V</li>
+<li>隐藏层：通过预先初始化的权重$W_{V\times N}$，来得到隐藏层的向量$H_{1\times N}$</li>
 <li>输出层：从hidden layer到output layer做了C次的前向传递，每次的传递都与相同的W’权重矩阵相乘，产生V维的向量y。C由window size决定，故输出总和的大小为C*V</li>
-<li>将这C次所产生的值<span class="math inline">\(y_1\)</span>到<span class="math inline">\(y_c\)</span>通过softmax进行分类，计算的是y的每一个维度的概率值。因此我们可以将y的每一个维度值视为所有相异的词汇与中心词汇的点积，点积越大，概率值就越大</li>
+<li>将这C次所产生的值$y_1$到$y_c$通过softmax进行分类，计算的是y的每一个维度的概率值。因此我们可以将y的每一个维度值视为所有相异的词汇与中心词汇的点积，点积越大，概率值就越大</li>
 </ul>
-<h1 id="优化">4. 优化</h1>
-<p>skip-gram模型中包含着一个非常大的W向量，如果一个带有300个特征，含有10000个词汇，那么在隐藏层和输出层将会产生300w的向量维度，所以必须进行优化。</p>
-<h2 id="hierarchical-softmax">4.1 Hierarchical Softmax</h2>
-<p>Hierarchical Softmax是计算softmax的一种高效的方式。其思想是在求概率分布时，不对所有的词的概率求和来做归一化，这样就避免了对所有单词表示更新 。使用两种方式来减少计算量：</p>
+<h1 id="4-优化"><a href="#4-优化" class="headerlink" title="4. 优化"></a>4. 优化</h1><p>skip-gram模型中包含着一个非常大的W向量，如果一个带有300个特征，含有10000个词汇，那么在隐藏层和输出层将会产生300w的向量维度，所以必须进行优化。</p>
+<h2 id="4-1-Hierarchical-Softmax"><a href="#4-1-Hierarchical-Softmax" class="headerlink" title="4.1 Hierarchical Softmax"></a>4.1 Hierarchical Softmax</h2><p>Hierarchical Softmax是计算softmax的一种高效的方式。其思想是在求概率分布时，不对所有的词的概率求和来做归一化，这样就避免了对所有单词表示更新 。使用两种方式来减少计算量：</p>
 <ul>
 <li>输入层到隐藏层的映射，没有采取神经网络的线性变换加激活函数的方法，而是采用简单的对所有词向量求和取平均的方式。</li>
 <li>从隐藏层到输出的softmax层这里的计算量采用霍夫曼树来代替从隐藏层到输出softmax层的映射。</li>
 </ul>
 <p>softmax回归是对语料库中的每个词语(类)都计算一遍输出概率并进行归一化，在大语料库中无疑是非常复杂的。Hierarchical Softmax就相当于一个哈夫曼树结构，如下所示：</p>
-<p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/Hierarchical%20Softmax.jpg"></p>
-<p>每个叶子节点代表语料库中的一个词，于是每个词语都可以被01唯一的编码，并且其编码序列对应一个事件序列，于是我们可以计算条件概率<span class="math inline">\(p(w|Context(w))\)</span></p>
+<p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/Hierarchical Softmax.jpg" alt></p>
+<p>每个叶子节点代表语料库中的一个词，于是每个词语都可以被01唯一的编码，并且其编码序列对应一个事件序列，于是我们可以计算条件概率$p(w|Context(w))$</p>
 <p>符号定义：</p>
+<div class="table-container">
 <table>
-<colgroup>
-<col style="width: 43%">
-<col style="width: 56%">
-</colgroup>
 <thead>
-<tr class="header">
-<th style="text-align: center;">参数</th>
-<th style="text-align: center;">含义</th>
+<tr>
+<th style="text-align:center">参数</th>
+<th style="text-align:center">含义</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(p^w\)</span></td>
-<td style="text-align: center;">从根节点出发到w对应叶子节点的路径</td>
+<tr>
+<td style="text-align:center">$p^w$</td>
+<td style="text-align:center">从根节点出发到w对应叶子节点的路径</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(l^w\)</span></td>
-<td style="text-align: center;">路径中包含节点的个数</td>
+<tr>
+<td style="text-align:center">$l^w$</td>
+<td style="text-align:center">路径中包含节点的个数</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(p_1^w,p_2^w,...,p_{l^w}^w\)</span></td>
-<td style="text-align: center;">路径<span class="math inline">\(p^w\)</span>中的各个节点</td>
+<tr>
+<td style="text-align:center">$p_1^w,p_2^w,…,p_{l^w}^w$</td>
+<td style="text-align:center">路径$p^w$中的各个节点</td>
 </tr>
-<tr class="even">
-<td style="text-align: center;"><span class="math inline">\(d_2^w,d_3^w,...,d_{l^w}^w∈\left\{0,1\right\}\)</span></td>
-<td style="text-align: center;">词w的编码，<span class="math inline">\(d_j^w\)</span>表示路径<span class="math inline">\(p^w\)</span>第j个节点对应的编码（根节点无编码）</td>
+<tr>
+<td style="text-align:center">$d_2^w,d_3^w,…,d_{l^w}^w∈\left\{0,1\right\}$</td>
+<td style="text-align:center">词w的编码，$d_j^w$表示路径$p^w$第j个节点对应的编码（根节点无编码）</td>
 </tr>
-<tr class="odd">
-<td style="text-align: center;"><span class="math inline">\(θ_1^w,θ_2^w,...,θ_{l^w - 1}^w\)</span></td>
-<td style="text-align: center;">路径<span class="math inline">\(p^w\)</span>中非叶节点对应的参数向量</td>
+<tr>
+<td style="text-align:center">$θ_1^w,θ_2^w,…,θ_{l^w - 1}^w$</td>
+<td style="text-align:center">路径$p^w$中非叶节点对应的参数向量</td>
 </tr>
 </tbody>
 </table>
-<p>于是可以给出w的条件概率： <span class="math display">\[
-p(w|Context(w)) = \prod_{j=2}^{l^w}p(d_j^w|x_w,θ_{j-1}^w)
-\]</span> 从根节点到叶子节点经过了<span class="math inline">\(l^w - 1\)</span>个节点，编码从下标2开始(根节点无编码)，对应的参数向量从下标1开始(根节点为1).</p>
-<p>其中每一项为逻辑回归： <span class="math display">\[
-p\left(d_{j}^{w} \mid \mathbf{x}_{w}, \theta_{j-1}^{w}\right)=\left\{\begin{array}{ll}\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right), &amp; d_{j}^{w}=0 \\ 1-\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right), &amp; d_{j}^{w}=1\end{array}\right.
-\]</span> 考虑到d只有0和1两种取值，可以用指数形式方便将其写到一起： <span class="math display">\[
-p\left(d_{j}^{w} \mid \mathbf{x}_{w}, \theta_{j-1}^{w}\right)=\left[\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right]^{1-d_{j}^{w}} \cdot\left[1-\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right]^{d^w}
-\]</span> 选取目标函数为对数似然： <span class="math display">\[
-\mathcal{L}=\sum_{w \in \mathcal{C}} \log p(w \mid$ Context $(w))
-\]</span> 将<span class="math inline">\(p(w|Context(w))\)</span>带入上式，有： <span class="math display">\[
+</div>
+<p>于是可以给出w的条件概率：</p>
+<script type="math/tex; mode=display">
+p(w|Context(w)) = \prod_{j=2}^{l^w}p(d_j^w|x_w,θ_{j-1}^w)</script><p>从根节点到叶子节点经过了$l^w - 1$个节点，编码从下标2开始(根节点无编码)，对应的参数向量从下标1开始(根节点为1).</p>
+<p>其中每一项为逻辑回归：</p>
+<script type="math/tex; mode=display">
+p\left(d_{j}^{w} \mid \mathbf{x}_{w}, \theta_{j-1}^{w}\right)=\left\{\begin{array}{ll}\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right), & d_{j}^{w}=0 \\ 1-\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right), & d_{j}^{w}=1\end{array}\right.</script><p>考虑到d只有0和1两种取值，可以用指数形式方便将其写到一起：</p>
+<script type="math/tex; mode=display">
+p\left(d_{j}^{w} \mid \mathbf{x}_{w}, \theta_{j-1}^{w}\right)=\left[\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right]^{1-d_{j}^{w}} \cdot\left[1-\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right]^{d^w}</script><p>选取目标函数为对数似然：</p>
+<script type="math/tex; mode=display">
+\mathcal{L}=\sum_{w \in \mathcal{C}} \log p(w \mid$ Context $(w))</script><p>将$p(w|Context(w))$带入上式，有：</p>
+<script type="math/tex; mode=display">
 \mathcal{L}=\sum_{w \in \mathcal{C}} \log \prod_{j=2}^{l^{w}}\left\{\left[\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right]^{1-d_{j}^{w}} \cdot\left[1-\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right]^{d_{j}^{w}}\right\}=\\
-\sum_{w \in \mathcal{C}} \sum_{j=2}^{l^{w}}\left\{\left(1-d_{j}^{w}\right) \cdot \log \left[\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right]+d_{j}^{w} \cdot \log \left[1-\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right]\right\}
-\]</span> 如何最大化对数似然函数呢？分别最大化每一项即可。先求函数对每个变量的偏导数，对每一个样本，带入偏导数表达式得到函数在该维度增长梯度，然后让对应参数加上这个梯度。 <span class="math display">\[
-\theta_{j-1}^{w}:=\theta_{j-1}^{w}+\eta\left[1-d_{j}^{w}-\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right] \mathbf{x}_{w}
-\]</span> 由于<span class="math inline">\(θ_{j-1}^w\)</span>和<span class="math inline">\(X_w\)</span>是对称的，所以可以直接得到<span class="math inline">\(X_w\)</span>的更新方程为： <span class="math display">\[
-\frac{\partial \mathcal{L}(w, j)}{\partial \mathbf{x}_{w}}=\left[1-d_{j}^{w}-\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right] \theta_{j-1}^{w}
-\]</span> 不过<span class="math inline">\(X_w\)</span>是上下文的词向量的和，不是上下文单个词的词向量。word2vec使用的是直接将<span class="math inline">\(X_w\)</span>的更新量整个应用到每个单词的词向量上去。 <span class="math display">\[
-\mathbf{v}(\widetilde{w}):=\mathbf{v}(\widetilde{w})+\eta \sum_{j=2}^{l w} \frac{\partial \mathcal{L}(w, j)}{\partial \mathbf{x}_{w}}, \quad \widetilde{w} \in \operatorname{Context}(w)
-\]</span> 其中，<span class="math inline">\(\mathbf{v}(\widetilde{w})\)</span>表示上下文中某一单词的词向量。</p>
-<h2 id="negative-sampling">4.2 Negative Sampling</h2>
-<p>Hierarchical Softmax用霍夫曼树来代替传统的神经网络，可以提升模型训练的效率。但是如果我们的训练样本的中心词w是一个很生僻的词，那么就得在霍夫曼树中要向下走很久。Negative Sampling就是为了解决这个问题，每次就修改其中的一小部分weight，而不是全部。将随机选择一小部分的negative words来更新对应的权重参数。如果词汇表大小为1w，输入("中","国”)到神经网络时，"中"经过one-hot embedding之后，在输出层期望对应"国"单词的那个神经元节点输出为1，其余9999个都是输出为0。这里的negative word就是这9999个单词。相应的论文中，作者指出对应于小规模的数据集，建议选择5-20个negative words来更新对应的权重参数。</p>
-<p>假设有一个训练样本，中心词是w，周围有2c个词是<span class="math inline">\(context(w)\)</span>。由于这个中心词w和context(x)的确相关存在，因此是一个真正的正例。通过Negative Sampling，我么们得到neg个和w不同的中心词<span class="math inline">\(w_i,i=1,2,...,neg\)</span>，这样的话<span class="math inline">\(context(w)\)</span>和<span class="math inline">\(w_i\)</span>就组成了neg个并不真实存在的负例。利用这个正例和neg个负例，进行二元逻辑回归，得到负采样对应每个词<span class="math inline">\(w_i\)</span>对应的模型参数<span class="math inline">\(θ_i\)</span>和每个词的词向量。</p>
+\sum_{w \in \mathcal{C}} \sum_{j=2}^{l^{w}}\left\{\left(1-d_{j}^{w}\right) \cdot \log \left[\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right]+d_{j}^{w} \cdot \log \left[1-\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right]\right\}</script><p>如何最大化对数似然函数呢？分别最大化每一项即可。先求函数对每个变量的偏导数，对每一个样本，带入偏导数表达式得到函数在该维度增长梯度，然后让对应参数加上这个梯度。</p>
+<script type="math/tex; mode=display">
+\theta_{j-1}^{w}:=\theta_{j-1}^{w}+\eta\left[1-d_{j}^{w}-\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right] \mathbf{x}_{w}</script><p>由于$θ_{j-1}^w$和$X_w$是对称的，所以可以直接得到$X_w$的更新方程为：</p>
+<script type="math/tex; mode=display">
+\frac{\partial \mathcal{L}(w, j)}{\partial \mathbf{x}_{w}}=\left[1-d_{j}^{w}-\sigma\left(\mathbf{x}_{w}^{\top} \theta_{j-1}^{w}\right)\right] \theta_{j-1}^{w}</script><p>不过$X_w$是上下文的词向量的和，不是上下文单个词的词向量。word2vec使用的是直接将$X_w$的更新量整个应用到每个单词的词向量上去。</p>
+<script type="math/tex; mode=display">
+\mathbf{v}(\widetilde{w}):=\mathbf{v}(\widetilde{w})+\eta \sum_{j=2}^{l w} \frac{\partial \mathcal{L}(w, j)}{\partial \mathbf{x}_{w}}, \quad \widetilde{w} \in \operatorname{Context}(w)</script><p>其中，$\mathbf{v}(\widetilde{w})$表示上下文中某一单词的词向量。</p>
+<h2 id="4-2-Negative-Sampling"><a href="#4-2-Negative-Sampling" class="headerlink" title="4.2 Negative Sampling"></a>4.2 Negative Sampling</h2><p>Hierarchical Softmax用霍夫曼树来代替传统的神经网络，可以提升模型训练的效率。但是如果我们的训练样本的中心词w是一个很生僻的词，那么就得在霍夫曼树中要向下走很久。Negative Sampling就是为了解决这个问题，每次就修改其中的一小部分weight，而不是全部。将随机选择一小部分的negative words来更新对应的权重参数。如果词汇表大小为1w，输入(“中”,”国”)到神经网络时，”中”经过one-hot embedding之后，在输出层期望对应”国”单词的那个神经元节点输出为1，其余9999个都是输出为0。这里的negative word就是这9999个单词。相应的论文中，作者指出对应于小规模的数据集，建议选择5-20个negative words来更新对应的权重参数。</p>
+<p>假设有一个训练样本，中心词是w，周围有2c个词是$context(w)$。由于这个中心词w和context(x)的确相关存在，因此是一个真正的正例。通过Negative Sampling，我么们得到neg个和w不同的中心词$w_i,i=1,2,…,neg$，这样的话$context(w)$和$w_i$就组成了neg个并不真实存在的负例。利用这个正例和neg个负例，进行二元逻辑回归，得到负采样对应每个词$w_i$对应的模型参数$θ_i$和每个词的词向量。</p>
 <p>由于negative sampling没有使用霍夫曼树，每次通过采样neg不同的中心词作负例训练模型，因此整个过程要比Hierarchical Softmax简单。那么是如何进行negative sampling的呢？</p>
-<p>在logistics regression中，<span class="math inline">\(P(context(w_0),w_i)=σ(x_{w_0}^Tθ^{w_i}),y_i=1,i=0\)</span></p>
-<p>负例期望满足：<span class="math inline">\(P(context(w_0),w_i)=1-σ(x_{w_0}^Tθ^{w_i}),y_i=0,i=1,2,...,neg\)</span></p>
-<p>此时模型的似然函数为：<span class="math inline">\(\prod_{i=0}^{n e g} \sigma\left(x_{\omega 0}^{T} \theta^{w_{i}}\right)^{y_{i}}\left(1-\sigma\left(x_{u 0}^{T} \theta^{w_{i}}\right)\right)^{1-y_{i}}\)</span></p>
-<p>取对数似然：<span class="math inline">\(L=\sum_{i=0}^{n e g} y_{i} \log \left(\sigma\left(x_{u 0}^{T} \theta^{w_{i}}\right)\right)+\left(1-y_{i}\right) \log \left(1-\sigma\left(x_{u 0}^{T} \theta^{w_{i}}\right)\right)\)</span></p>
-<p>负采样的方法是根据概率来的，更常出现的单词，更容易被选为negative samples。如果词汇表的大小为V，将长度为1的线段分为V份，每个词对应一个线段，每个词对应的线段长度是不相同的。高频对应的线段长，低频词对应的线段短。每个词的线段长度由下面的式子确定： <span class="math display">\[
-\operatorname{len}(w)=\frac{\operatorname{count}(w)^{3 / 4}}{\sum_{u \in v o c a b} \operatorname{count}(u)^{3 / 4}}
-\]</span> 这个3/4次方怎么出来的现在也没搞清楚(很玄学)。</p>
+<p>在logistics regression中，$P(context(w_0),w_i)=σ(x_{w_0}^Tθ^{w_i}),y_i=1,i=0$</p>
+<p>负例期望满足：$P(context(w_0),w_i)=1-σ(x_{w_0}^Tθ^{w_i}),y_i=0,i=1,2,…,neg$</p>
+<p>此时模型的似然函数为：$\prod_{i=0}^{n e g} \sigma\left(x_{\omega 0}^{T} \theta^{w_{i}}\right)^{y_{i}}\left(1-\sigma\left(x_{u 0}^{T} \theta^{w_{i}}\right)\right)^{1-y_{i}}$</p>
+<p>取对数似然：$L=\sum_{i=0}^{n e g} y_{i} \log \left(\sigma\left(x_{u 0}^{T} \theta^{w_{i}}\right)\right)+\left(1-y_{i}\right) \log \left(1-\sigma\left(x_{u 0}^{T} \theta^{w_{i}}\right)\right)$</p>
+<p>负采样的方法是根据概率来的，更常出现的单词，更容易被选为negative samples。如果词汇表的大小为V，将长度为1的线段分为V份，每个词对应一个线段，每个词对应的线段长度是不相同的。高频对应的线段长，低频词对应的线段短。每个词的线段长度由下面的式子确定：</p>
+<script type="math/tex; mode=display">
+\operatorname{len}(w)=\frac{\operatorname{count}(w)^{3 / 4}}{\sum_{u \in v o c a b} \operatorname{count}(u)^{3 / 4}}</script><p>这个3/4次方怎么出来的现在也没搞清楚(很玄学)。</p>
 <p>在采样前，将这段长度为1的线段划分成M等份，这里M&gt;&gt;V，这样可以保证每个词对应的线段都会被划分成对应的小块。而M份中的每一份都会落在某一个词对应的线段上。在采样的时候，我们只需要从M个位置采样出neg位置就行，此时采样到的每个位置对应到的线段所属的词就是负采样到的词。</p>
-<p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/负采样.png"></p>
-<h3 id="基于negative-sampling的skip-gram模型">4.2.1 基于Negative Sampling的Skip-Gram模型</h3>
-<p>输入：基于Skip-Gram的语料训练样本，词向量的维度大小M count，Skip-Gram的上下文大小为2c，步长为ŋ，负采样的个数neg。</p>
-<p>输出：词汇表每个词对应的模型参数θ，所有的词向量<span class="math inline">\(x_w\)</span></p>
-<ol type="1">
-<li><p>随机初始化所有的模型参数θ，所有的词向量w</p></li>
-<li><p>对于每个训练样本<span class="math inline">\((context(w_0),w_0)\)</span>，负采样出neg个负例中心词<span class="math inline">\(w_i,i=1,2,...,neg\)</span></p></li>
-<li><p>进行梯度上升迭代过程，对于训练集中的每个样本<span class="math inline">\((context(w_0),w_0,w_1,...,w_{neg})\)</span>作以下处理：</p>
-<ol type="1">
+<p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/负采样.png" alt></p>
+<h3 id="4-2-1-基于Negative-Sampling的Skip-Gram模型"><a href="#4-2-1-基于Negative-Sampling的Skip-Gram模型" class="headerlink" title="4.2.1 基于Negative Sampling的Skip-Gram模型"></a>4.2.1 基于Negative Sampling的Skip-Gram模型</h3><p>输入：基于Skip-Gram的语料训练样本，词向量的维度大小M count，Skip-Gram的上下文大小为2c，步长为ŋ，负采样的个数neg。</p>
+<p>输出：词汇表每个词对应的模型参数θ，所有的词向量$x_w$</p>
+<ol>
+<li><p>随机初始化所有的模型参数θ，所有的词向量w</p>
+</li>
+<li><p>对于每个训练样本$(context(w_0),w_0)$，负采样出neg个负例中心词$w_i,i=1,2,…,neg$</p>
+</li>
+<li><p>进行梯度上升迭代过程，对于训练集中的每个样本$(context(w_0),w_0,w_1,…,w_{neg})$作以下处理：</p>
+<ol>
 <li><p>for i = 1 to 2c:</p>
-<ol type="1">
-<li><p>e = 0</p></li>
-<li><p>for j = 0 to neg,计算： <span class="math display">\[
+<ol>
+<li><p>e = 0</p>
+</li>
+<li><p>for j = 0 to neg,计算：</p>
+<script type="math/tex; mode=display">
 f=\sigma\left(x_{w_{0} t}^{T} \theta^{w_{j}}\right)\\
 g=\left(y_{j}-f\right) \eta\\
 e=e+g \theta^{w_{j}}\\
-\theta^{w_{j}}=\theta^{w_{j}}+g x_{w_{0 i}}
-\]</span></p></li>
-</ol></li>
-<li><p>词向量更新：</p></li>
+\theta^{w_{j}}=\theta^{w_{j}}+g x_{w_{0 i}}</script></li>
 </ol>
-<p><span class="math display">\[
-   x_{w0i}=x{w0i}+e
-   \]</span></p></li>
-<li><p>如果梯度收敛，则结束梯度迭代，算法结束，否则回到步骤a继续迭代。</p></li>
+</li>
+<li><p>词向量更新：</p>
+</li>
 </ol>
-<h1 id="代码实现">5. 代码实现</h1>
-<p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/word2vec流程.png"></p>
+<script type="math/tex; mode=display">
+   x_{w0i}=x{w0i}+e</script></li>
+<li><p>如果梯度收敛，则结束梯度迭代，算法结束，否则回到步骤a继续迭代。</p>
+</li>
+</ol>
+<h1 id="5-代码实现"><a href="#5-代码实现" class="headerlink" title="5. 代码实现"></a>5. 代码实现</h1><p><img src="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/word2vec流程.png" alt></p>
 <p>输入到Embedding层的数据是[batch_size,seq_len]，输出的是[batch_size,seq_len,embedding_dim]。</p>
 <p>将单词转换为词向量：</p>
 <ul>
-<li>提取文章中的所有单词，把所有单词按照频次降序排序(取前49999个，其余所有单词都是归属为others，记作'<UNK>'，一共有50000个单词)</UNK></li>
+<li>提取文章中的所有单词，把所有单词按照频次降序排序(取前49999个，其余所有单词都是归属为others，记作’<UNK>‘，一共有50000个单词)</UNK></li>
 <li>对50000个单词使用one-hot embedding</li>
 <li>通过训练生成一个50000*300的矩阵，每一行表示一个词的word vector。</li>
 </ul>
@@ -484,7 +479,7 @@ e=e+g \theta^{w_{j}}\\
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#word2vec算法简介"><span class="toc-number">1.</span> <span class="toc-text">1. Word2Vec算法简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#cbow模型"><span class="toc-number">2.</span> <span class="toc-text">2. CBOW模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#skip-gram模型"><span class="toc-number">3.</span> <span class="toc-text">3. Skip-Gram模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#优化"><span class="toc-number">4.</span> <span class="toc-text">4. 优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#hierarchical-softmax"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 Hierarchical Softmax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#negative-sampling"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 Negative Sampling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#基于negative-sampling的skip-gram模型"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1 基于Negative Sampling的Skip-Gram模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#代码实现"><span class="toc-number">5.</span> <span class="toc-text">5. 代码实现</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Word2Vec算法简介"><span class="toc-number">1.</span> <span class="toc-text">1. Word2Vec算法简介</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-CBOW模型"><span class="toc-number">2.</span> <span class="toc-text">2. CBOW模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-Skip-Gram模型"><span class="toc-number">3.</span> <span class="toc-text">3. Skip-Gram模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-优化"><span class="toc-number">4.</span> <span class="toc-text">4. 优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-Hierarchical-Softmax"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 Hierarchical Softmax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-Negative-Sampling"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 Negative Sampling</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-基于Negative-Sampling的Skip-Gram模型"><span class="toc-number">4.2.1.</span> <span class="toc-text">4.2.1 基于Negative Sampling的Skip-Gram模型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-代码实现"><span class="toc-number">5.</span> <span class="toc-text">5. 代码实现</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -650,11 +645,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">
