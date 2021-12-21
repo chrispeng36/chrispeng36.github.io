@@ -497,15 +497,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,15 +509,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">pytorch学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -671,24 +671,32 @@ MathJax.Hub.Queue(function() {
 </div>
   </div>
 </body>
+
+<!-- 《添加折叠按钮脚本 -->
 <script>
-  var hide = false;
-  function myFunction(x) {
-      x.classList.toggle("change");
-      if(hide == false){
-          $(".left-col").css('display', 'none');
-          $(".mid-col").css("left", 6);
-          $(".tools-col").css('display', 'none');
-          $(".tools-col.hide").css('display', 'none');
-          hide = true;
-      }else{
-          $(".left-col").css('display', '');
-          $(".mid-col").css("left", 300);
-          $(".tools-col").css('display', '');
-          $(".tools-col.hide").css('display', '');
-          hide = false;
-      }
-  }
+    var hide = false;
+    function myFunction(x) {
+        x.classList.toggle("change");
+        if(hide == false){
+            $(".left-col").css('display', 'none');
+            $(".mid-col").css("left", 6);
+            $(".tools-col").css('display', 'none');
+            $(".tools-col.hide").css('display', 'none');
+            hide = true;
+
+            $(".mymenucontainer").css('left', '0');
+
+        }else{
+            $(".left-col").css('display', '');
+            $(".mid-col").css("left", 300);
+            $(".tools-col").css('display', '');
+            $(".tools-col.hide").css('display', '');
+            hide = false;
+
+            $(".mymenucontainer").css('left', '260px');
+        }
+    }
 </script>
+<!-- 添加折叠按钮脚本》 -->
 
 </html>
