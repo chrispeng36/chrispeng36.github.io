@@ -192,49 +192,29 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="图的基本介绍">图的基本介绍</h1>
-<a id="more"></a>
+        <h1 id="图的基本介绍"><a href="#图的基本介绍" class="headerlink" title="图的基本介绍"></a>图的基本介绍</h1><a id="more"></a>
 <p>图是一种数据结构，其中结点可以具有零个或者多个相邻元素。两个结点之间的连接称为边，结点也可以称为顶点。线性表局限于直接前驱和一个直接后继的关系，树叶只能有一个直接前驱也就是父节点，当我们需要表示多对多的关系时，就需要图这一数据结构。</p>
 <ul>
-<li><p>图的表示方式：二维数组表示(邻接矩阵)；链表表示(邻接表)。</p></li>
-<li><ol type="1">
+<li><p>图的表示方式：二维数组表示(邻接矩阵)；链表表示(邻接表)。</p>
+</li>
+<li><ol>
 <li>邻接矩阵需要为每个顶点都分配n个边的空间，其实有很多边都是不存在，会造成空间的一定损失。</li>
-</ol></li>
-<li><ol start="2" type="1">
+</ol>
+</li>
+<li><ol>
 <li>邻接表的实现只关心存在的边，不关心不存在的边，因此没有空间浪费，邻接表由数组+链表组成。</li>
-</ol></li>
-</ul>
-<h1 id="图的遍历">图的遍历</h1>
-<p>图的遍历就是对结点的访问，一个图有很多结点，需要特定的策略来遍历结点，一般有两种方法：(1)深度优先遍历 (2)广度优先遍历</p>
-<h2 id="深度优先遍历思想">(1) 深度优先遍历思想：</h2>
-<ol type="1">
-<li>深度优先遍历，从初始访问结点开始，初始访问结点可能有多个邻接节点，深度优先遍历的策略就是首先访问第一个邻接节点，然后再以这个被访问的邻接节点作为初始结点，访问它的第一个邻接节点，可以这样理解：每次都在访问完当前节点后首先访问当前节点的第一个邻接节点。</li>
-<li>我们可以看到，这样的访问策略是有限往纵向挖掘深入，而不是对一个结点的所有邻接节点进行横向访问。</li>
-<li>显然，深度优先搜索是一个递归过程。</li>
 </ol>
+</li>
+</ul>
+<h1 id="图的遍历"><a href="#图的遍历" class="headerlink" title="图的遍历"></a>图的遍历</h1><p>图的遍历就是对结点的访问，一个图有很多结点，需要特定的策略来遍历结点，一般有两种方法：(1)深度优先遍历 (2)广度优先遍历</p>
+<h2 id="1-深度优先遍历思想："><a href="#1-深度优先遍历思想：" class="headerlink" title="(1) 深度优先遍历思想："></a>(1) 深度优先遍历思想：</h2><p>1) 深度优先遍历，从初始访问结点开始，初始访问结点可能有多个邻接节点，深度优先遍历的策略就是首先访问第一个邻接节点，然后再以这个被访问的邻接节点作为初始结点，访问它的第一个邻接节点，可以这样理解：每次都在访问完当前节点后首先访问当前节点的第一个邻接节点。<br>2) 我们可以看到，这样的访问策略是有限往纵向挖掘深入，而不是对一个结点的所有邻接节点进行横向访问。<br>3) 显然，深度优先搜索是一个递归过程。</p>
 <ul>
-<li>深度优先遍历算法步骤</li>
+<li>深度优先遍历算法步骤<br>1) 访问初始结点v，并标记结点v为已访问。<br>2) 查找结点v的第一个邻接节点w。<br>3) 若w存在，则继续执行4，若w不存在，则回到第一步，将从v的下一个节点继续。<br>4) 若w未被访问，对w进行深度优先遍历递归(即把w当做另一个v，然后进行步骤123)。<br>5) 查找结点v的w邻接节点的下一个邻接节点，转到步骤3.</li>
 </ul>
-<ol type="1">
-<li>访问初始结点v，并标记结点v为已访问。</li>
-<li>查找结点v的第一个邻接节点w。</li>
-<li>若w存在，则继续执行4，若w不存在，则回到第一步，将从v的下一个节点继续。</li>
-<li>若w未被访问，对w进行深度优先遍历递归(即把w当做另一个v，然后进行步骤123)。</li>
-<li>查找结点v的w邻接节点的下一个邻接节点，转到步骤3.</li>
-</ol>
-<h2 id="广度优先遍历">(2) 广度优先遍历</h2>
-<p>图的广度优先搜索类似于一个分层搜索过程，广度优先遍历需要使用一个队列以保持访问过的结点的顺序，以便按这个顺序来访问这些结点的邻接节点。</p>
+<h2 id="2-广度优先遍历"><a href="#2-广度优先遍历" class="headerlink" title="(2) 广度优先遍历"></a>(2) 广度优先遍历</h2><p>图的广度优先搜索类似于一个分层搜索过程，广度优先遍历需要使用一个队列以保持访问过的结点的顺序，以便按这个顺序来访问这些结点的邻接节点。</p>
 <ul>
-<li>广度优先遍历算法步骤</li>
+<li>广度优先遍历算法步骤<br>1) 访问初始结点v并标记结点v为已访问<br>2) 结点v入队列<br>3) 当队列非空时，继续执行，否则算法结束<br>4) 出队列，取得队头结点u<br>5) 查找结点u的第一个邻接节点w<br>6) 若结点u的邻接节点w不存在，则转到步骤3，否则循环执行以下三个步骤：<br>6.1 若结点w尚未被访问，则访问结点w并标记为已访问<br>6.2 结点w入队列<br>6.3 查找结点u的继w邻接节点的下一个邻接节点w，转到步骤6</li>
 </ul>
-<ol type="1">
-<li>访问初始结点v并标记结点v为已访问</li>
-<li>结点v入队列</li>
-<li>当队列非空时，继续执行，否则算法结束</li>
-<li>出队列，取得队头结点u</li>
-<li>查找结点u的第一个邻接节点w</li>
-<li>若结点u的邻接节点w不存在，则转到步骤3，否则循环执行以下三个步骤： 6.1 若结点w尚未被访问，则访问结点w并标记为已访问 6.2 结点w入队列 6.3 查找结点u的继w邻接节点的下一个邻接节点w，转到步骤6</li>
-</ol>
 
       
 
@@ -377,7 +357,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#图的基本介绍"><span class="toc-number">1.</span> <span class="toc-text">图的基本介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图的遍历"><span class="toc-number">2.</span> <span class="toc-text">图的遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#深度优先遍历思想"><span class="toc-number">2.1.</span> <span class="toc-text">(1) 深度优先遍历思想：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#广度优先遍历"><span class="toc-number">2.2.</span> <span class="toc-text">(2) 广度优先遍历</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#图的基本介绍"><span class="toc-number">1.</span> <span class="toc-text">图的基本介绍</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图的遍历"><span class="toc-number">2.</span> <span class="toc-text">图的遍历</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-深度优先遍历思想："><span class="toc-number">2.1.</span> <span class="toc-text">(1) 深度优先遍历思想：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-广度优先遍历"><span class="toc-number">2.2.</span> <span class="toc-text">(2) 广度优先遍历</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -523,15 +503,15 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,11 +523,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -555,11 +535,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
               </li>
             
             <div class="clearfix"></div>
