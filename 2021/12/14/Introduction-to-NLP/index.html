@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Introduction_to_NLP | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="mathjax: true 1. Bag-of-words模型">
+  <meta name="description" content="mathjax: true 1. Bag-of-words模型">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Introduction_to_NLP">
 <meta property="og:url" content="http://yoursite.com/2021/12/14/Introduction-to-NLP/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="mathjax: true 1. Bag-of-words模型">
+<meta property="og:description" content="mathjax: true 1. Bag-of-words模型">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-14T12:49:49.000Z">
 <meta property="article:modified_time" content="2021-12-19T17:14:22.810Z">
@@ -42,10 +42,9 @@
 <body>
   <div id="container" q-class="show:isCtnShow">
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
-    <div class="left-col" q-class="show:isShow" style="background: url('D:/blog/themes/yilia/layout/assets1.png') no-repeat center bottom;background-size: cover;" >
+    <div class="left-col" q-class="show:isShow">
       
-<!-- <div class="overlay" style="background: #4d4d4d"></div> -->
-<div class="overlay"></div>
+<div class="overlay" style="background: #4d4d4d"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
@@ -68,9 +67,6 @@
 				<li><a href="/archives/index.html">归档</a></li>
 	        
 			</ul>
-		</nav>
-		<nav>
-			总文章数 39
 		</nav>
 		<nav class="header-smart-menu">
     		
@@ -193,7 +189,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>mathjax: true</p>
-<h1 id="1-Bag-of-words模型"><a href="#1-Bag-of-words模型" class="headerlink" title="1. Bag-of-words模型"></a>1. Bag-of-words模型</h1><a id="more"></a>
+<h1 id="bag-of-words模型">1. Bag-of-words模型</h1>
+<a id="more"></a>
 <p>Bag-of-words模型假设对于一个文档，忽略它的单词顺序和语法、句法等要素，将其仅仅看作是若干个词汇的集合，文档中出现的每个单词都是独立的，不依赖其他单词是否出现。</p>
 <p>假设文档为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sents &#x3D; [&quot;I love you&quot;,&quot;do you love yourself&quot;]</span><br></pre></td></tr></table></figure>
@@ -203,11 +200,12 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sent1: [<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>]</span><br><span class="line">sent2: [<span class="number">0</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>,<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
 <p>代码实现如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BagOfWord</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,do_lower_case=False)</span>:</span></span><br><span class="line">        self.vocab = &#123;&#125;</span><br><span class="line">        self.do_lower_case = do_lower_case</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self,sent_list)</span>:</span></span><br><span class="line">        <span class="keyword">for</span> sent <span class="keyword">in</span> sent_list:</span><br><span class="line">            <span class="keyword">if</span> self.do_lower_case:</span><br><span class="line">                sent = sent.lower()</span><br><span class="line">            words = sent.strip().split(<span class="string">" "</span>)</span><br><span class="line">            <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">                <span class="keyword">if</span> word <span class="keyword">not</span> <span class="keyword">in</span> self.vocab:<span class="comment">#不在词汇表中就加入</span></span><br><span class="line">                    self.vocab[word] = len(self.vocab)<span class="comment">#词-&gt;加入的序号</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">transform</span><span class="params">(self,sent_list)</span>:</span></span><br><span class="line">        vocab_size = len(self.vocab)</span><br><span class="line">        <span class="comment">#创建序列长度*字典长度的全零nparray</span></span><br><span class="line">        <span class="string">'''</span></span><br><span class="line"><span class="string">        测试中传入的是一个列表长度为2的列表，</span></span><br><span class="line"><span class="string">        字符种类数为5的</span></span><br><span class="line"><span class="string">        所以构成的nparray是2*5的</span></span><br><span class="line"><span class="string">        '''</span></span><br><span class="line">        bag_of_word_feature = np.zeros((len(sent_list),vocab_size))</span><br><span class="line">        <span class="keyword">for</span> idx,sent <span class="keyword">in</span> enumerate(sent_list):</span><br><span class="line">            <span class="keyword">if</span> self.do_lower_case:</span><br><span class="line">                sent = sent.lower()</span><br><span class="line">            words = sent.strip().split(<span class="string">" "</span>)<span class="comment">#切分为词</span></span><br><span class="line">            <span class="keyword">for</span> word <span class="keyword">in</span> words:</span><br><span class="line">                <span class="string">'''idx控制list的行号，表示是第几行，也就是第几句话</span></span><br><span class="line"><span class="string">                self.vocab[word]控制的是某句话中的某个词，统计这句话中的这个词的个数</span></span><br><span class="line"><span class="string">                </span></span><br><span class="line"><span class="string">                因为并不是所有的话中都会出现所有的词，所有有的地方会是0</span></span><br><span class="line"><span class="string">                '''</span></span><br><span class="line">                bag_of_word_feature[idx][self.vocab[word]] += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> bag_of_word_feature</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit_transform</span><span class="params">(self,sent_list)</span>:</span></span><br><span class="line">        self.fit(sent_list)</span><br><span class="line">        <span class="keyword">return</span> self.transform(sent_list)</span><br></pre></td></tr></table></figure>
-<h1 id="2-N-Gram语言模型"><a href="#2-N-Gram语言模型" class="headerlink" title="2. N-Gram语言模型"></a>2. N-Gram语言模型</h1><p>n-gram是一种统计语言模型，用来根据前(n-1)个item来预测第n个item。一般来讲，可以从大规模文本活音频语料来生成n-gram模型，习惯上，1-gram叫unigram，2-gram称为bigram，3-gram是trigram。还有four-gram、five-gram等，不过大于n&gt;5的应用很少见。</p>
-<p>给定一串字母，下一个最大可能出现的字母是什么？从训练语料数据中，可以通过极大似然的方法，得到N个概率分布，如：a的概率是0.4，b的概率是0.01，……所有的概率之和是1.</p>
-<p>根据条件概率和乘法公式：$P(B|A)= \frac{P(AB)}{P(A)}$,可以得到$P(A_1 A_2…A_n)=P(A_1)P(A_2|A_1)P(A_3|A_1 A_2)…P(A_n|A_1 A_2…A_{n-1})$</p>
-<p>假设T是由词序列$A_1,A_2,…,A_n$组成的，那么$P(T) = P(A_1 A_2…A_n)=P(A_1)P(A_2|A_1)P(A_3|A_1 A_2)…P(A_n|A_1 A_2…A_{n-1})$</p>
-<p>计算量非常大，需要引入马尔科夫链，即：当一个item出现概率，只与前面m个item有关，当m=1就是uni-gram，m=2就是bi-gram。所以当使用bi-gram模型时，$P(T)=P(A_1)P(A_2|A_1)P(A_3|A_2)…P(A_n|a_{n-1})$,而$P(A_n|A_{n-1})$条件概率可以通过极大似然估计求得，等于$\frac {Count(A_{n-1},A_n)}{Count(A_{n-1})}$。</p>
+<h1 id="n-gram语言模型">2. N-Gram语言模型</h1>
+<p>n-gram是一种统计语言模型，用来根据前(n-1)个item来预测第n个item。一般来讲，可以从大规模文本活音频语料来生成n-gram模型，习惯上，1-gram叫unigram，2-gram称为bigram，3-gram是trigram。还有four-gram、five-gram等，不过大于n&gt;5的应用很少见。</p>
+<p>给定一串字母，下一个最大可能出现的字母是什么？从训练语料数据中，可以通过极大似然的方法，得到N个概率分布，如：a的概率是0.4，b的概率是0.01，......所有的概率之和是1.</p>
+<p>根据条件概率和乘法公式：<span class="math inline">\(P(B|A)= \frac{P(AB)}{P(A)}\)</span>,可以得到<span class="math inline">\(P(A_1 A_2...A_n)=P(A_1)P(A_2|A_1)P(A_3|A_1 A_2)...P(A_n|A_1 A_2...A_{n-1})\)</span></p>
+<p>假设T是由词序列<span class="math inline">\(A_1,A_2,...,A_n\)</span>组成的，那么<span class="math inline">\(P(T) = P(A_1 A_2...A_n)=P(A_1)P(A_2|A_1)P(A_3|A_1 A_2)...P(A_n|A_1 A_2...A_{n-1})\)</span></p>
+<p>计算量非常大，需要引入马尔科夫链，即：当一个item出现概率，只与前面m个item有关，当m=1就是uni-gram，m=2就是bi-gram。所以当使用bi-gram模型时，<span class="math inline">\(P(T)=P(A_1)P(A_2|A_1)P(A_3|A_2)...P(A_n|a_{n-1})\)</span>,而<span class="math inline">\(P(A_n|A_{n-1})\)</span>条件概率可以通过极大似然估计求得，等于<span class="math inline">\(\frac {Count(A_{n-1},A_n)}{Count(A_{n-1})}\)</span>。</p>
 <p>假设文档为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sents &#x3D; [&quot;I love you&quot;,&quot;do you love yourself&quot;]</span><br></pre></td></tr></table></figure>
 <p>可以构造一个词典（使用1-gram特征和2-gram特征）</p>
@@ -349,7 +347,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-Bag-of-words模型"><span class="toc-number">1.</span> <span class="toc-text">1. Bag-of-words模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-N-Gram语言模型"><span class="toc-number">2.</span> <span class="toc-text">2. N-Gram语言模型</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#bag-of-words模型"><span class="toc-number">1.</span> <span class="toc-text">1. Bag-of-words模型</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#n-gram语言模型"><span class="toc-number">2.</span> <span class="toc-text">2. N-Gram语言模型</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -499,15 +497,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -515,11 +509,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
