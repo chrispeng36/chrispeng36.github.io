@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>OptimizationMethodsConclusion | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 线搜索 线搜索的数学模型是：\(\min \limits_{α\ge 0}\{f(x_k+αd_k)\}\) 其中\(d_k\)为当前的搜索方向，一般为目标函数下降的方向。线搜索要做的就是在当前给定的搜索方向\(d_k\)上选取一个合适的迭代步长。 1.1 精确线搜索 优化问题的模型：\(\min \limits_{x∈R^n}\{f(x)\}\)，其中f至少是一节连续可微的。 符">
+  <meta name="description" content="1. 线搜索线搜索的数学模型是：$\min \limits_{α\ge 0}\{f(x_k+αd_k)\}$ 其中$d_k$为当前的搜索方向，一般为目标函数下降的方向。线搜索要做的就是在当前给定的搜索方向$d_k$上选取一个合适的迭代步长。 1.1 精确线搜索优化问题的模型：$\min \limits_{x∈R^n}\{f(x)\}$，其中f至少是一节连续可微的。 符号说明：$g(x)&#x3D;▽f(x)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OptimizationMethodsConclusion">
 <meta property="og:url" content="http://yoursite.com/2021/12/27/OptimizationMethodsConclusion/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="1. 线搜索 线搜索的数学模型是：\(\min \limits_{α\ge 0}\{f(x_k+αd_k)\}\) 其中\(d_k\)为当前的搜索方向，一般为目标函数下降的方向。线搜索要做的就是在当前给定的搜索方向\(d_k\)上选取一个合适的迭代步长。 1.1 精确线搜索 优化问题的模型：\(\min \limits_{x∈R^n}\{f(x)\}\)，其中f至少是一节连续可微的。 符">
+<meta property="og:description" content="1. 线搜索线搜索的数学模型是：$\min \limits_{α\ge 0}\{f(x_k+αd_k)\}$ 其中$d_k$为当前的搜索方向，一般为目标函数下降的方向。线搜索要做的就是在当前给定的搜索方向$d_k$上选取一个合适的迭代步长。 1.1 精确线搜索优化问题的模型：$\min \limits_{x∈R^n}\{f(x)\}$，其中f至少是一节连续可微的。 符号说明：$g(x)&#x3D;▽f(x)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-12-27T12:29:42.000Z">
 <meta property="article:modified_time" content="2021-12-27T05:20:20.057Z">
@@ -188,50 +188,48 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="线搜索">1. 线搜索</h1>
-<p>线搜索的数学模型是：<span class="math inline">\(\min \limits_{α\ge 0}\{f(x_k+αd_k)\}\)</span></p>
-<p>其中<span class="math inline">\(d_k\)</span>为当前的搜索方向，一般为目标函数下降的方向。线搜索要做的就是在当前给定的搜索方向<span class="math inline">\(d_k\)</span>上选取一个合适的迭代步长。</p>
-<h2 id="精确线搜索">1.1 精确线搜索</h2>
-<p>优化问题的模型：<span class="math inline">\(\min \limits_{x∈R^n}\{f(x)\}\)</span>，其中f至少是一节连续可微的。</p>
-<p>符号说明：<span class="math inline">\(g(x)=▽f(x)\)</span>，<span class="math inline">\(g_k=▽f(x_k)\)</span></p>
-<p>最优步长：设<span class="math inline">\(d_k\)</span>为目标函数在<span class="math inline">\(x_k\)</span>处的下降方向，称：<span class="math inline">\(α_k=arg\ \min\limits_{α \ge 0}\{f(x_k+αd_k)\}\)</span>为精确步长，又称为最优步长。</p>
-<p>最优步长的正交性：<span class="math inline">\(d_k^T▽f(x_k+α_kd_k)=0\)</span></p>
+        <h1 id="1-线搜索"><a href="#1-线搜索" class="headerlink" title="1. 线搜索"></a>1. 线搜索</h1><p>线搜索的数学模型是：$\min \limits_{α\ge 0}\{f(x_k+αd_k)\}$</p>
+<p>其中$d_k$为当前的搜索方向，一般为目标函数下降的方向。线搜索要做的就是在当前给定的搜索方向$d_k$上选取一个合适的迭代步长。</p>
+<h2 id="1-1-精确线搜索"><a href="#1-1-精确线搜索" class="headerlink" title="1.1 精确线搜索"></a>1.1 精确线搜索</h2><p>优化问题的模型：$\min \limits_{x∈R^n}\{f(x)\}$，其中f至少是一节连续可微的。</p>
+<p>符号说明：$g(x)=▽f(x)$，$g_k=▽f(x_k)$</p>
+<p>最优步长：设$d_k$为目标函数在$x_k$处的下降方向，称：$α_k=arg\ \min\limits_{α \ge 0}\{f(x_k+αd_k)\}$为精确步长，又称为最优步长。</p>
+<p>最优步长的正交性：$d_k^T▽f(x_k+α_kd_k)=0$</p>
 <p>精确线搜索方法的基本框架如下所示：</p>
 <ul>
-<li>取初始点<span class="math inline">\(x_0\)</span>及精确参数<span class="math inline">\(ε \ge 0\)</span>，令<span class="math inline">\(k=0\)</span>。</li>
-<li>若<span class="math inline">\(||g_k|| \le ε\)</span>，算法终止，否则进入下一步。</li>
-<li>计算<span class="math inline">\(x_k\)</span>点处的下降方向<span class="math inline">\(d_k\)</span>，使<span class="math inline">\(d_k^Tg_k &lt; 0\)</span>。</li>
-<li>计算最优步长<span class="math inline">\(α_k=arg\ \min\limits_{α \ge 0}\{f(x_k+αd_k)|α \ge 0\}\)</span>。</li>
-<li>令<span class="math inline">\(x_{k+1}=x_k+α_kd_k,k=k+1\)</span>，转步骤2。</li>
+<li>取初始点$x_0$及精确参数$ε \ge 0$，令$k=0$。</li>
+<li>若$||g_k|| \le ε$，算法终止，否则进入下一步。</li>
+<li>计算$x_k$点处的下降方向$d_k$，使$d_k^Tg_k &lt; 0$。</li>
+<li>计算最优步长$α_k=arg\ \min\limits_{α \ge 0}\{f(x_k+αd_k)|α \ge 0\}$。</li>
+<li>令$x_{k+1}=x_k+α_kd_k,k=k+1$，转步骤2。</li>
 </ul>
-<h2 id="非精确线搜索">1.2 非精确线搜索</h2>
-<ol type="1">
+<h2 id="1-2-非精确线搜索"><a href="#1-2-非精确线搜索" class="headerlink" title="1.2 非精确线搜索"></a>1.2 非精确线搜索</h2><ol>
 <li><p>Armijo步长</p>
-<p>设<span class="math inline">\(β&gt;0,γ∈(0,1)\)</span>，取步长<span class="math inline">\(α_k=βγ^{m_k}\)</span>，其中<span class="math inline">\(m_k\)</span>是满足下式的最小非负整数：</p>
-<p><span class="math inline">\(f\left(x_{k}+\beta \gamma^{m} d_{k}\right) \leq f\left(x_{k}\right)+\sigma \beta \gamma^{m} \nabla f\left(x_{k}\right)^{T} d_{k}\)</span></p>
-<p>当<span class="math inline">\(α_k&lt;β\)</span>时，有：</p>
-<p><span class="math inline">\(f\left(x_{k}+\beta \gamma^{m_{k}} d_{k}\right) \leq f\left(x_{k}\right)+\sigma \beta \gamma^{m_{k}} g_{k}^{T} d_{k}\)</span> <span class="math inline">\(f\left(x_{k}+\beta \gamma^{m_{k}-1} d_{k}\right)&gt;f\left(x_{k}\right)+\sigma \beta \gamma^{m_{k}-1} g_{k}^{T} d_{k}\)</span></p></li>
+<p>设$β&gt;0,γ∈(0,1)$，取步长$α_k=βγ^{m_k}$，其中$m_k$是满足下式的最小非负整数：</p>
+<p>$f\left(x_{k}+\beta \gamma^{m} d_{k}\right) \leq f\left(x_{k}\right)+\sigma \beta \gamma^{m} \nabla f\left(x_{k}\right)^{T} d_{k}$</p>
+<p>当$α_k&lt;β$时，有：</p>
+<p>$f\left(x_{k}+\beta \gamma^{m_{k}} d_{k}\right) \leq f\left(x_{k}\right)+\sigma \beta \gamma^{m_{k}} g_{k}^{T} d_{k}$<br>$f\left(x_{k}+\beta \gamma^{m_{k}-1} d_{k}\right)&gt;f\left(x_{k}\right)+\sigma \beta \gamma^{m_{k}-1} g_{k}^{T} d_{k}$</p>
+</li>
 <li><p>Goldstein步长</p>
-<p>设<span class="math inline">\(α∈(0,\frac{1}{2})\)</span>，取步长<span class="math inline">\(α_k\)</span>满足如下表达式：</p>
-<p><span class="math inline">\(f\left(x_{k}+\alpha d_{k}\right) \leq f\left(x_{k}\right)+\sigma \alpha \nabla f\left(x_{k}\right)^{T} d_{k}\)</span>, <span class="math inline">\(f\left(x_{k}+\alpha d_{k}\right)&gt;f\left(x_{k}\right)+(1-\sigma) \alpha \nabla f\left(x_{k}\right)^{T} d_{k}\)</span></p></li>
+<p>设$α∈(0,\frac{1}{2})$，取步长$α_k$满足如下表达式：</p>
+<p>$f\left(x_{k}+\alpha d_{k}\right) \leq f\left(x_{k}\right)+\sigma \alpha \nabla f\left(x_{k}\right)^{T} d_{k}$,<br>$f\left(x_{k}+\alpha d_{k}\right)&gt;f\left(x_{k}\right)+(1-\sigma) \alpha \nabla f\left(x_{k}\right)^{T} d_{k}$</p>
+</li>
 <li><p>Wolfe步长</p>
-<p>设<span class="math inline">\(0&lt;σ_1&lt;σ_2&lt;1\)</span>，取步长<span class="math inline">\(α_k\)</span>满足下式：</p>
-<p><span class="math inline">\(f\left(x_{k}+\alpha d_{k}\right) \leq f\left(x_{k}\right)+\sigma_{1} \alpha g_{k}^{T} d_{k}\)</span> <span class="math inline">\(\nabla f\left(x_{k}+\alpha d_{k}\right)^{T} d_{k} \geq \sigma_{2} g_{k}^{T} d_{k} .\)</span></p></li>
+<p>设$0&lt;σ_1&lt;σ_2&lt;1$，取步长$α_k$满足下式：</p>
+<p>$f\left(x_{k}+\alpha d_{k}\right) \leq f\left(x_{k}\right)+\sigma_{1} \alpha g_{k}^{T} d_{k}$<br>$\nabla f\left(x_{k}+\alpha d_{k}\right)^{T} d_{k} \geq \sigma_{2} g_{k}^{T} d_{k} .$</p>
+</li>
 <li><p>比较</p>
-<ol type="1">
-<li><p>Goldstein步长最早，但已很少用；其第二式将最优步长排除</p></li>
-<li><p>Armijo步长最为常见，但不适用于共轭梯度法和拟牛顿方法</p></li>
-<li><p>Wolfe步长特别适用于共轭梯度法与拟牛顿法</p></li>
-<li><p>Armijo &amp; Goldstein步长可以通过进退试探法求，而Wolfe步长可借助多项式插值法求得</p></li>
-</ol></li>
+<p>(1) Goldstein步长最早，但已很少用；其第二式将最优步长排除</p>
+<p>(2) Armijo步长最为常见，但不适用于共轭梯度法和拟牛顿方法</p>
+<p>(3) Wolfe步长特别适用于共轭梯度法与拟牛顿法</p>
+<p>(4) Armijo &amp; Goldstein步长可以通过进退试探法求，而Wolfe步长可借助多项式插值法求得</p>
+</li>
 <li><p>非精确线搜索的下降算法基本框架</p>
-<ol type="1">
-<li><p>取初始点<span class="math inline">\(x_0\)</span>及精确参数<span class="math inline">\(ε \ge 0\)</span>，令k=0</p></li>
-<li><p>若<span class="math inline">\(||g_k|| \le ε\)</span>，算法终止，否则进入下一步</p></li>
-<li><p>计算<span class="math inline">\(x_k\)</span>点处的下降方向<span class="math inline">\(d_k\)</span>，使<span class="math inline">\(d_k^Tg_k &lt; 0\)</span></p></li>
-<li><p>按照Armijo步长的规则或者Wolfe步长规则选取步长</p></li>
-<li><p>令<span class="math inline">\(x_{k+1}=x_k+α_kd_k,k=k+1\)</span>，转步骤2</p></li>
-</ol></li>
+<p>(1) 取初始点$x_0$及精确参数$ε \ge 0$，令k=0</p>
+<p>(2) 若$||g_k|| \le ε$，算法终止，否则进入下一步</p>
+<p>(3) 计算$x_k$点处的下降方向$d_k$，使$d_k^Tg_k &lt; 0$</p>
+<p>(4) 按照Armijo步长的规则或者Wolfe步长规则选取步长</p>
+<p>(5) 令$x_{k+1}=x_k+α_kd_k,k=k+1$，转步骤2</p>
+</li>
 </ol>
 
       
@@ -375,7 +373,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#线搜索"><span class="toc-number">1.</span> <span class="toc-text">1. 线搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#精确线搜索"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 精确线搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#非精确线搜索"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 非精确线搜索</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-线搜索"><span class="toc-number">1.</span> <span class="toc-text">1. 线搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-精确线搜索"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 精确线搜索</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-非精确线搜索"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 非精确线搜索</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -529,7 +527,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,11 +539,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
