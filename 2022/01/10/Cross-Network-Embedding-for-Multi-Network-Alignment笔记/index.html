@@ -8,16 +8,21 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Cross-Network Embedding for Multi-Network Alignment笔记 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.创新点 首先这篇文章只通过网络的结构化信息来对齐网络，与以往专注于成对学习和保持拓扑一致假设的方法不同，提出的CrossMNA考虑了至少包含两种类型的多网络场景 具有不同网络结构的网络。 提出来三种节点嵌入向量，inter-vector（network alignment，这反映了不同网络中锚节点的共同特征，并在已知的锚节点之间共享），intra-vector（downstream tasks">
+  <meta name="description" content="1.创新点">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Cross-Network Embedding for Multi-Network Alignment笔记">
 <meta property="og:url" content="http://yoursite.com/2022/01/10/Cross-Network-Embedding-for-Multi-Network-Alignment%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="1.创新点 首先这篇文章只通过网络的结构化信息来对齐网络，与以往专注于成对学习和保持拓扑一致假设的方法不同，提出的CrossMNA考虑了至少包含两种类型的多网络场景 具有不同网络结构的网络。 提出来三种节点嵌入向量，inter-vector（network alignment，这反映了不同网络中锚节点的共同特征，并在已知的锚节点之间共享），intra-vector（downstream tasks">
+<meta property="og:description" content="1.创新点">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2022/01/10/images/Cross-Network%20Embedding%20for%20Multi-Network%20Alignment%E7%AC%94%E8%AE%B0/%E6%A8%A1%E5%9E%8B%E6%B5%81%E7%A8%8B%E5%9B%BE.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/10/images/Cross-Network%20Embedding%20for%20Multi-Network%20Alignment%E7%AC%94%E8%AE%B0/%E6%9D%A1%E4%BB%B6%E6%A6%82%E7%8E%87.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/10/images/Cross-Network%20Embedding%20for%20Multi-Network%20Alignment%E7%AC%94%E8%AE%B0/%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/10/images/Cross-Network%20Embedding%20for%20Multi-Network%20Alignment%E7%AC%94%E8%AE%B0/%E8%B4%9F%E9%87%87%E6%A0%B7%E7%9B%AE%E6%A0%87%E6%96%B9%E7%A8%8B.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/10/images/Cross-Network%20Embedding%20for%20Multi-Network%20Alignment%E7%AC%94%E8%AE%B0/%E8%B4%9F%E9%87%87%E6%A0%B7%E5%85%AC%E5%BC%8F%E6%8E%A8%E5%AF%BC.jpg">
+<meta property="og:image" content="http://yoursite.com/2022/01/10/images/Cross-Network%20Embedding%20for%20Multi-Network%20Alignment%E7%AC%94%E8%AE%B0/%E6%9C%80%E7%BB%88%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0.png">
 <meta property="article:published_time" content="2022-01-10T11:03:08.000Z">
-<meta property="article:modified_time" content="2022-01-10T05:29:59.690Z">
+<meta property="article:modified_time" content="2022-01-10T11:49:46.123Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
@@ -190,65 +195,128 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-创新点"><a href="#1-创新点" class="headerlink" title="1.创新点"></a>1.创新点</h1><ul>
+        <h1 id="创新点">1.创新点</h1>
+<a id="more"></a>
+<ul>
 <li>首先这篇文章只通过网络的结构化信息来对齐网络，与以往专注于成对学习和保持拓扑一致假设的方法不同，提出的CrossMNA考虑了至少包含两种类型的多网络场景 具有不同网络结构的网络。</li>
 <li>提出来三种节点嵌入向量，inter-vector（network alignment，这反映了不同网络中锚节点的共同特征，并在已知的锚节点之间共享），intra-vector（downstream tasks，它保留了所选网络中一个节点的特定结构特征，并通过network vector和intra-vector的组合生成。），network vector（挖掘网络的语义信息）</li>
 </ul>
-<h1 id="2-Intro问题的提出"><a href="#2-Intro问题的提出" class="headerlink" title="2. Intro问题的提出"></a>2. Intro问题的提出</h1><ul>
+<h1 id="intro问题的提出">2. Intro问题的提出</h1>
+<ul>
 <li>首先，大多数现有的工作仅仅考虑两个网络场景或者在多个网络中成对的进行表示学习。但是在真实世界中，一个网络通常是与多个网络关联的。因此，成对的学习方法很可能会忽略一些在多个社交网络中的有价值的信息。</li>
 <li>其次，许多先前的研究认为网络拓扑一致的，也就是在不同社交网络中同一个用户的节点结构应该是一致的，但是由于不同网络之间的不同语义信息，节点的网络结构很可能是非常不一致的。</li>
 <li>先前的工作大多严重依赖特征属性，但是特征信息通常是不完整的或者是不可信的，没有价值的，所以基于属性的方法在实际情况下是不可用的。</li>
 </ul>
-<ol>
+<ol type="1">
 <li><p>语义多样性</p>
-<p>网络语义的多样性导致了每个网络中同一节点的交互行为的不同，从而影响了节点匹配的准确性。此外，网络越多，问题就越复杂。因此，如何减轻不同的网络语义对节点匹配的影响是一个很大的挑战。</p>
-</li>
+<p>网络语义的多样性导致了每个网络中同一节点的交互行为的不同，从而影响了节点匹配的准确性。此外，网络越多，问题就越复杂。因此，如何减轻不同的网络语义对节点匹配的影响是一个很大的挑战。</p></li>
 <li><p>数据不平衡</p>
 <p>（1）每个网络的大小可能会有很大的差异，包括每个网络中的节点或边的数量</p>
-<p>（2）每对网络之间的锚定链路的数量可能是不相等的。</p>
-</li>
-<li><p>模型容量</p>
-</li>
+<p>（2）每对网络之间的锚定链路的数量可能是不相等的。</p></li>
+<li><p>模型容量</p></li>
 </ol>
-<h1 id="3-模型CROSSMNA"><a href="#3-模型CROSSMNA" class="headerlink" title="3. 模型CROSSMNA"></a>3. 模型CROSSMNA</h1><p>在本文中所有的网络都被认为是无向边的，且边是没有权重的。</p>
+<h1 id="模型crossmna">3. 模型CROSSMNA</h1>
+<p>在本文中所有的网络都被认为是无向边的，且边是没有权重的。</p>
 <p>参数定义：</p>
-<div class="table-container">
 <table>
 <thead>
-<tr>
-<th style="text-align:center">参数</th>
-<th style="text-align:center">定义</th>
+<tr class="header">
+<th style="text-align: center;">参数</th>
+<th style="text-align: center;">定义</th>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td style="text-align:center">$G=((G^1,G^2,…,G^N),(A^{(1,2)},A^{(1,3)},…,A^{(N-1,N)}))$</td>
-<td style="text-align:center">表示一系列对齐的网络</td>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(G=((G^1,G^2,...,G^N),(A^{(1,2)},A^{(1,3)},...,A^{(N-1,N)}))\)</span></td>
+<td style="text-align: center;">表示一系列对齐的网络</td>
 </tr>
-<tr>
-<td style="text-align:center">$G^i$</td>
-<td style="text-align:center">表示在集合中的第i个网络</td>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(G^i\)</span></td>
+<td style="text-align: center;">表示在集合中的第i个网络</td>
 </tr>
-<tr>
-<td style="text-align:center">$N$</td>
-<td style="text-align:center">相关网络的数目</td>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(N\)</span></td>
+<td style="text-align: center;">相关网络的数目</td>
 </tr>
-<tr>
-<td style="text-align:center">$A^{(i,j)},i,j∈{1,2,…,N}$</td>
-<td style="text-align:center">在网络$G^i$和$G^j$之间的anchor links</td>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(A^{(i,j)},i,j∈{1,2,...,N}\)</span></td>
+<td style="text-align: center;">在网络<span class="math inline">\(G^i\)</span>和<span class="math inline">\(G^j\)</span>之间的anchor links</td>
 </tr>
-<tr>
-<td style="text-align:center">$G^i={V^i,E^i}$</td>
-<td style="text-align:center">$V^i$表示节点集，$E^i$表示用户集</td>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(G^i={V^i,E^i}\)</span></td>
+<td style="text-align: center;"><span class="math inline">\(V^i\)</span>表示节点集，<span class="math inline">\(E^i\)</span>表示用户集</td>
 </tr>
-<tr>
-<td style="text-align:center">$(v_k^i,v_k^j)∈A^{(i,j)}$</td>
-<td style="text-align:center">anchor links</td>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\((v_k^i,v_k^j)∈A^{(i,j)}\)</span></td>
+<td style="text-align: center;">anchor links</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\vec {u}\)</span></td>
+<td style="text-align: center;">inter-vector</td>
+</tr>
+<tr class="even">
+<td style="text-align: center;"><span class="math inline">\(\vec v\)</span></td>
+<td style="text-align: center;">intra-vector</td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;"><span class="math inline">\(\vec r\)</span></td>
+<td style="text-align: center;">network vector</td>
 </tr>
 </tbody>
 </table>
-</div>
-<p><img src="../images/Cross-Network Embedding for Multi-Network Alignment笔记/模型流程图.png" alt></p>
+<p><img src="../images/Cross-Network%20Embedding%20for%20Multi-Network%20Alignment笔记/模型流程图.png"></p>
+<p>所选网络中的锚节点由于其网络语义意义，既可以表现出与其节点相似的结构特征，也可以表现出独特的连接关系。具有相同语义信息的网络之间的anchor nodes具有结构一致性。</p>
+<p>inter-vector <span class="math inline">\(\vec u\)</span> 保留anchor nodes的共同特征，这个向量是很难学习的，因为在未知的anchor nodes之间没有直接的联系，所以只能通过间接方法计算。</p>
+<p>intra-vector <span class="math inline">\(\vec v\)</span> 直接可以通过网络嵌入的方式来提取节点的结构特征。由于语义，这类向量既包含了对应物之间的向量，也包含了它的所选网络中的特定局部连接，因此，除非我们能够剥离网络语义的影响，否则它不能应用于节点匹配。</p>
+<p>network vector <span class="math inline">\(\vec r\)</span> 提取的是<span class="math inline">\(G^k\)</span>的特有特征，反映了不同网络之间的全局的不同。</p>
+<p><span class="math inline">\(v_i^k=u_i+r^k\)</span>,因此，我们可以通过训练基于组合的内部向量来间接细化锚节点的间向量。</p>
+<p>考虑上面的图中的情况，<span class="math inline">\(v_1\)</span>是anchor nodes，它能够反映网络之间的共有特性，这就是inter-vector所应该反应的。</p>
+<p>所以有下面的公式： <span class="math display">\[
+\vec {v_1^1}= \vec {u_1}+ \vec {r^1} \\
+\vec {v_1^2} = \vec {u_1} + \vec {r^2}
+\]</span> 一方面，通过联合训练intra-vectors，共享的<span class="math inline">\(\vec {u_1}\)</span>可以存储两个网络之间的互补信息；另一方面，<span class="math inline">\(\vec {r^1},\vec {r^2}\)</span>可以反映出两个网络由于<span class="math inline">\(\vec {u_1}\)</span>中公共信息传递而导致的两个网络之间的全局差异。</p>
+<p>考虑<span class="math inline">\(G^3\)</span>网络中的<span class="math inline">\(v_4\)</span>，它的intra-vector可以被写为：<span class="math inline">\(\vec {v_4^3}=\vec {u_4}+\vec {r^3}\)</span>。通过学习<span class="math inline">\(G^3\)</span>的结构信息，<span class="math inline">\(v_4^3\)</span>能够包含一些与<span class="math inline">\(v_1^1\)</span>或者<span class="math inline">\(v_1^2\)</span>相似的特征，例如<span class="math inline">\(v_4\)</span>也与<span class="math inline">\(v_2\)</span>还有<span class="math inline">\(v_3\)</span>相互关联。<span class="math inline">\(\vec {r^3}\)</span>能够保留<span class="math inline">\(G^3\)</span>的特有的语义特征，因此通过剥离<span class="math inline">\(\vec {r^3}\)</span>的影响，<span class="math inline">\(\vec {u_4}=\vec {v_4^3}- \vec {r^3}\)</span>，那么这时候<span class="math inline">\(\vec {u_4}\)</span>和<span class="math inline">\(\vec {u_1}\)</span>的相似性应该很高，我们就能推测出<span class="math inline">\(v_4\)</span>和<span class="math inline">\(v_1\)</span>是同一个用户。</p>
+<p>inter-vector和intra-vector是不一样的，在不同的向量空间中。因此，作者提出一个转移矩阵W来对齐他们： <span class="math display">\[
+\vec {v_i^k}=W \vec {u_i}+\vec {r^k},\vec {u_i}∈U^{d_1},\vec {v_i^k}∈R^{d_2}
+\]</span> 学习的参数就包括：<span class="math inline">\(W,\vec {u_i},\vec {r^k}\)</span></p>
+<p>考虑的相关的网络越多，节点的匹配的准确率越高。所以，CROSSMNA需要联合训练所有的相关的网络，总的目标方程为： <span class="math display">\[
+J=\sum_{k}J^k
+\]</span> 其中<span class="math inline">\(J^k\)</span>表示的是每个网络的目标函数，旨在保留在网络<span class="math inline">\(G^k\)</span>中的每个节点的结构信息。对于在网络<span class="math inline">\(G^k\)</span>中连接的边<span class="math inline">\((v_i^k,v_j^k)\)</span>，我们定义条件概率<span class="math inline">\(v_i^k\)</span>导出<span class="math inline">\(v_j^k\)</span>的条件概率为：</p>
+<p><img src="../images/Cross-Network%20Embedding%20for%20Multi-Network%20Alignment笔记/条件概率.png"></p>
+<p>所以最终的目标函数被定义为：（也就是有边相连接的都得求个和，<span class="math inline">\(\vec {u_k}\)</span>是对于所有的网络都不变的，<span class="math inline">\(\vec {r^k}\)</span>是对于每个网络都不一样的）通过联合优化，已知的锚节点将尽可能发挥作用，通过共享的向量u传递结构信息，使该向量包含共同的 锚定节点之间的一致性。通过条件概率公式，每个锚节点的intra-vector可以在不同的网络中保留不同的结构特征，这使得网络向量<span class="math inline">\(\vec {r^k}\)</span>可以提取出其自身全局结构的特定特征。</p>
+<p><img src="../images/Cross-Network%20Embedding%20for%20Multi-Network%20Alignment笔记/目标函数.png"></p>
+<p>对于每个未知的anchor nodes <span class="math inline">\(\vec {v_i^k}\)</span>，尽管我们不能直接的与其对应的节点进行关联，它的基于组合的intra-vector可以保留一些与其他网络中相似的特征。经过剥离<span class="math inline">\(\vec {r^k}\)</span>之后，其inter-vector <span class="math inline">\(\vec {u_i}\)</span>将会与其对应的节点表示成一样的。这样就可以做节点匹配。</p>
+<p>为了加速训练的过程，采用负采样的形式来估计目标方程为：</p>
+<p><img src="../images/Cross-Network%20Embedding%20for%20Multi-Network%20Alignment笔记/负采样目标方程.png"></p>
+<p>这个公式是用的word2vec中的负采样的思想来实现的，推导如下：</p>
+<p><img src="../images/Cross-Network%20Embedding%20for%20Multi-Network%20Alignment笔记/负采样公式推导.jpg"></p>
+<p>其中<span class="math inline">\(P(v)αd_v^{3/4}\)</span>，<span class="math inline">\(d_v\)</span>是节点v的度。所以最终的目标函数表示为：</p>
+<p><img src="../images/Cross-Network%20Embedding%20for%20Multi-Network%20Alignment笔记/最终目标函数.png"></p>
+<p>以往的方法在成对学习方案下，很容易出现数据不平衡的问题，但是作者提出来的CrossMNA能够弥补这个问题，因为联合训练所有网络，并通过共享的节点间向量在已知锚节点之间传输互补信息，这可以缓解数据不平衡问题的影响。</p>
+<p>经过训练，为每个节点得到两种类型的嵌入向量：intra-vector反映所选网络中一个节点的结构信息，适用于网络内分析任务，而inter-vector来解释不同网络中锚节点的共性，可以有效地应用于多网络对齐任务。</p>
+<p>找到节点对齐的一种简单方法是计算节点间向量之间的所有相似性对，这是非常耗时的。然而，在实践中，我们通常只需要找到每个节点的软对齐通过返回其他网络中最有可能的top-α节点。因此，在[10]之后，我们使用k-d树数据结构，在匹配过程中加速相似度搜索[4]。我们 这里使用余弦相似度来定义向量空间中两个节点的距离。用余弦相似度来计算两个节点的距离。</p>
+<p>在训练过程中，inter-vector负责在anchor nodes之间传递结构信息。因此</p>
+<h2 id="kd树">kd树</h2>
+<p>根据KNN每次要预测一个点时，都需要计算数据集中每个点到这个点的距离，然后选出距离最近的k个点进行投票，当数据集很大时，这个计算成本很高。为了避免每次都重新计算一遍距离，算法会把距离信息保存在一棵树中。这样在计算之前从树里查询距离信息，尽量避免重新计算，其基本原理是，如果A和B距离很远，B和C距离很远，那么A和C距离也很远。有了这个信息，可以在合适的时候跳过距离远的点。这样优化后算法的复杂度可能降低为<span class="math inline">\(O(DNlog(N))\)</span>。</p>
+<p>kd树是二叉树的一种，是对k维空间的一种分割，不断地用垂直于坐标轴的超平面将k维空间切分，形成k维超距形区域，kd树的每一个节点对应于一个k维超矩形区域。</p>
+<p>kd树的构造方式：</p>
+<ul>
+<li>选取<span class="math inline">\(x^{(i)}\)</span>为坐标轴，以训练集中的所有数据x坐标的中位数作为切分点，将超矩形区域切割成为两个子区域。将该切分点作为根节点，由根节点生出深度为1的左右节点，左节点对应x坐标小于切分点，右节点对应x坐标大于切分点。</li>
+<li>对深度为j的节点，选择<span class="math inline">\(x^{(l)}\)</span>为切分坐标轴，<span class="math inline">\(l=j(mod \ k)+1\)</span>，以该节点区域中训练数据<span class="math inline">\(x^{(l)}\)</span>坐标的中位数作为切分点，将区域分为两个子区域，且生成深度为j+1的左右子节点。左节点对应<span class="math inline">\(x^{(l)}\)</span>坐标小于切分点，右节点对应<span class="math inline">\(x^{(l)}\)</span>坐标大于切分点。</li>
+<li>重复2，直到两个子区域没有数据为止。</li>
+</ul>
+<p>kd树实现k近邻搜索：（寻找p点的最近的k个点）</p>
+<ul>
+<li><p>根据p的坐标和kd树的节点向下进行搜索（如果树的节点是以<span class="math inline">\(x^{(l)}\)</span>来切分的，那么如果p的<span class="math inline">\(x^{(l)}\)</span>）坐标小于c，则走左子节点，否则走右子节点。</p></li>
+<li><p>到达叶子节点时，将其标记为已访问。如果S中不足k个点，则将该节点加入到S中；如果S不为空且当前节点与p点的距离小于S中最长的距离，则用当前节点替换S中离p最远的点</p></li>
+<li><p>如果当前节点不是根节点，则执行(a)，否则算法结束</p>
+<ol type="a">
+<li><p>回退到当前节点的父节点，此时的节点为当前节点。将当前节点标记为已访问，执行(b),(c)；如果当前节点已经被访问过，再次执行(a)</p></li>
+<li><p>如果此时S中不足k个点，则将当前节点加入到S中；如果S中已有k个点，且当前节点与p点的距离小于S中最长距离，则用当前节点替换S中距离最远的点。</p></li>
+<li><p>计算p点和当前节点切分线的距离。如果该距离大于等于S中距离p最远的距离并且S中已有k个点，执行3；如果该距离小于S中距离最远的距离或S中没有k个点，从当前节点的另一子节点开始执行1；如果当前节点没有另一子节点，执行3。</p></li>
+</ol></li>
+</ul>
+<h1 id="实验部分">实验部分</h1>
 
       
 
@@ -382,7 +450,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-创新点"><span class="toc-number">1.</span> <span class="toc-text">1.创新点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-Intro问题的提出"><span class="toc-number">2.</span> <span class="toc-text">2. Intro问题的提出</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-模型CROSSMNA"><span class="toc-number">3.</span> <span class="toc-text">3. 模型CROSSMNA</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#创新点"><span class="toc-number">1.</span> <span class="toc-text">1.创新点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#intro问题的提出"><span class="toc-number">2.</span> <span class="toc-text">2. Intro问题的提出</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#模型crossmna"><span class="toc-number">3.</span> <span class="toc-text">3. 模型CROSSMNA</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#kd树"><span class="toc-number">3.1.</span> <span class="toc-text">kd树</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#实验部分"><span class="toc-number">4.</span> <span class="toc-text">实验部分</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -536,19 +604,19 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -701,5 +769,20 @@ MathJax.Hub.Queue(function() {
 
 </div>
   </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
