@@ -161,31 +161,35 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="article-Cross-Network-Embedding-for-Multi-Network-Alignment笔记" class="article article-type-article  article-index" itemscope itemprop="blogPost">
+    <article id="article-DeepLink" class="article article-type-article  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/10/Cross-Network-Embedding-for-Multi-Network-Alignment%E7%AC%94%E8%AE%B0/">Cross-Network Embedding for Multi-Network Alignment笔记</a>
+      <a class="article-title" href="/2022/05/27/DeepLink/">DeepLink</a>
     </h1>
   
 
         
-        <a href="/2022/01/10/Cross-Network-Embedding-for-Multi-Network-Alignment%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+        <a href="/2022/05/27/DeepLink/" class="archive-article-date">
 	
-  	<time datetime="2022-01-10T11:03:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-10</time>
+  	<time datetime="2022-05-27T10:16:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="创新点">1.创新点</h1>
-        
-          <a class="article-more-a" href="/2022/01/10/Cross-Network-Embedding-for-Multi-Network-Alignment%E7%AC%94%E8%AE%B0/#more">more >></a>
-        
+        <h1 id="deeplink">DeepLink</h1>
+<p>deeplink主要做了以下的事情：</p>
+<p>（1）它对网络进行采样，在保持网络结构的同时生成训练“语料库”。</p>
+<p>（2）网络中的每个节点通过网络嵌入被表示为低维空间中的一个向量；</p>
+<p>（3）然后将锚节点输入深度神经网络，训练非线性变换，使用户跨网络对齐；</p>
+<p>（4）DeepLink采用双学习过程来提高身份链接性能，提高监督训练算法。</p>
+<p>首先在给定的一对网络a和一对网络B之间预先训练两个初步的映射函数，也就是<span class="math inline">\(\Phi(A \to B)\)</span>以及<span class="math inline">\(\Phi^{-1}(B \to A)\)</span>在没有标签（对齐）的锚节点上使用自动映射。然后，用户身份链接可以形式化为一个双重学习游戏：在网络A中的一个铆钉节点的嵌入表示<span class="math inline">\(\vec a\)</span>可以使用<span class="math inline">\(\Phi(A \to B)\)</span>得到一个在B中的对应向量<span class="math inline">\(\vec b&#39;\)</span>。随后向量<span class="math inline">\(\vec b&#39;\)</span>与其真实的向量<span class="math inline">\(\vec b\)</span>相比较，和A被通知<span class="math inline">\(\Phi(A \to B)\)</span>是否是一个高质量的映射，通过使用<span class="math inline">\(\Phi^{-1}(B \to A)\)</span>将<span class="math inline">\(\vec b&#39;\)</span>映射回去得到<span class="math inline">\(\vec a&#39;\)</span>。网络A测量<span class="math inline">\(\vec a\)</span>和<span class="math inline">\(\vec a&#39;\)</span>之间的相似度然后反馈给B。游戏也可以从B中的一个节点开始，并在B空间中嵌入向量。本质上，随着锚定节点的增加，这两个映射函数得到了越来越多的改进。</p>
+
       
 
       
@@ -208,7 +212,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/01/10/Cross-Network-Embedding-for-Multi-Network-Alignment%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/05/27/DeepLink/">展开全文 >></a>
         </p>
       
 
@@ -238,28 +242,41 @@
 
 
   
-    <article id="article-CS224N笔记" class="article article-type-article  article-index" itemscope itemprop="blogPost">
+    <article id="article-Graph-Embedding" class="article article-type-article  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/09/CS224N%E7%AC%94%E8%AE%B0/">CS224N笔记</a>
+      <a class="article-title" href="/2022/05/25/Graph-Embedding/">Graph Embedding</a>
     </h1>
   
 
         
-        <a href="/2022/01/09/CS224N%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+        <a href="/2022/05/25/Graph-Embedding/" class="archive-article-date">
 	
-  	<time datetime="2022-01-09T13:25:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-01-09</time>
+  	<time datetime="2022-05-24T16:02:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="networkx库介绍">1. networkx库介绍</h1>
+<p>&lt;! -- more --&gt;</p>
+<h2 id="图数据结构">1.1 图数据结构</h2>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> networkx <span class="keyword">as</span> nx</span><br><span class="line">G = nx.Graph()</span><br></pre></td></tr></table></figure>
+<p>这里定义的图G是一组节点（顶点）和已经识别的节点对（边）的集合。节点可以是任意的可哈希的对象，例如文本字符串、图像等。图的初始化的源码解析如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"""Initialize a graph with edges, name, or graph attributes.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Parameters</span></span><br><span class="line"><span class="string">        ----------</span></span><br><span class="line"><span class="string">        incoming_graph_data : input graph (optional, default: None)</span></span><br><span class="line"><span class="string">            Data to initialize graph. If None (default) an empty</span></span><br><span class="line"><span class="string">            graph is created.  The data can be an edge list, or any</span></span><br><span class="line"><span class="string">            NetworkX graph object.  If the corresponding optional Python</span></span><br><span class="line"><span class="string">            packages are installed the data can also be a NumPy matrix</span></span><br><span class="line"><span class="string">            or 2d ndarray, a SciPy sparse matrix, or a PyGraphviz graph.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        attr : keyword arguments, optional (default= no attributes)</span></span><br><span class="line"><span class="string">            Attributes to add to graph as key=value pairs.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        See Also</span></span><br><span class="line"><span class="string">        --------</span></span><br><span class="line"><span class="string">        convert</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Examples</span></span><br><span class="line"><span class="string">        --------</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; G = nx.Graph()  # or DiGraph, MultiGraph, MultiDiGraph, etc</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; G = nx.Graph(name='my graph')</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; e = [(1, 2), (2, 3), (3, 4)]  # list of edges</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; G = nx.Graph(e)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        Arbitrary graph attribute pairs (key=value) may be assigned</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; G = nx.Graph(e, day="Friday")</span></span><br><span class="line"><span class="string">        &gt;&gt;&gt; G.graph</span></span><br><span class="line"><span class="string">        &#123;'day': 'Friday'&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        """</span></span><br></pre></td></tr></table></figure>
+<h2 id="从文件中导入图数据">1.2 从文件中导入图数据</h2>
+<p>一般使用最多的函数是read_edgelist,作用是从一个边的集合中来获取一幅图</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_edgelist</span><span class="params">(path, comments=<span class="string">"#"</span>, delimiter=None, create_using=None,</span></span></span><br><span class="line"><span class="function"><span class="params">                  nodetype=None, data=True, edgetype=None, encoding=<span class="string">'utf-8'</span>)</span>:</span></span><br><span class="line">    <span class="string">"""Read a graph from a list of edges.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Parameters</span></span><br><span class="line"><span class="string">    ----------</span></span><br><span class="line"><span class="string">    path : file or string</span></span><br><span class="line"><span class="string">       File or filename to read. If a file is provided, it must be</span></span><br><span class="line"><span class="string">       opened in 'rb' mode.</span></span><br><span class="line"><span class="string">       Filenames ending in .gz or .bz2 will be uncompressed.</span></span><br><span class="line"><span class="string">    comments : string, optional</span></span><br><span class="line"><span class="string">       The character used to indicate the start of a comment.</span></span><br><span class="line"><span class="string">    delimiter : string, optional</span></span><br><span class="line"><span class="string">       The string used to separate values.  The default is whitespace.</span></span><br><span class="line"><span class="string">    create_using : NetworkX graph constructor, optional (default=nx.Graph)</span></span><br><span class="line"><span class="string">       Graph type to create. If graph instance, then cleared before populated.</span></span><br><span class="line"><span class="string">    nodetype : int, float, str, Python type, optional</span></span><br><span class="line"><span class="string">       Convert node data from strings to specified type</span></span><br><span class="line"><span class="string">    data : bool or list of (label,type) tuples</span></span><br><span class="line"><span class="string">       Tuples specifying dictionary key names and types for edge data</span></span><br><span class="line"><span class="string">    edgetype : int, float, str, Python type, optional OBSOLETE</span></span><br><span class="line"><span class="string">       Convert edge data from strings to specified type and use as 'weight'</span></span><br><span class="line"><span class="string">    encoding: string, optional</span></span><br><span class="line"><span class="string">       Specify which encoding to use when reading file.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns</span></span><br><span class="line"><span class="string">    -------</span></span><br><span class="line"><span class="string">    G : graph</span></span><br><span class="line"><span class="string">       A networkx Graph or other type specified with create_using</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Examples</span></span><br><span class="line"><span class="string">    --------</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; nx.write_edgelist(nx.path_graph(4), "test.edgelist")</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; G=nx.read_edgelist("test.edgelist")</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; fh=open("test.edgelist", 'rb')</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; G=nx.read_edgelist(fh)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; fh.close()</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; G=nx.read_edgelist("test.edgelist", nodetype=int)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; G=nx.read_edgelist("test.edgelist",create_using=nx.DiGraph)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Edgelist with data in a list:</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; textline = '1 2 3'</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; fh = open('test.edgelist','w')</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; d = fh.write(textline)</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; fh.close()</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; G = nx.read_edgelist('test.edgelist', nodetype=int, data=(('weight',float),))</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; list(G)</span></span><br><span class="line"><span class="string">    [1, 2]</span></span><br><span class="line"><span class="string">    &gt;&gt;&gt; list(G.edges(data=True))</span></span><br><span class="line"><span class="string">    [(1, 2, &#123;'weight': 3.0&#125;)]</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    See parse_edgelist() for more examples of formatting.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    See Also</span></span><br><span class="line"><span class="string">    --------</span></span><br><span class="line"><span class="string">    parse_edgelist</span></span><br><span class="line"><span class="string">    write_edgelist</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Notes</span></span><br><span class="line"><span class="string">    -----</span></span><br><span class="line"><span class="string">    Since nodes must be hashable, the function nodetype must return hashable</span></span><br><span class="line"><span class="string">    types (e.g. int, float, str, frozenset - or tuples of those, etc.)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line"><span class="string">'''以下是调用'''</span></span><br><span class="line">self.G = nx.read_edgelist(filename,create_using=nx.DiGraph,nodetype=int)</span><br></pre></td></tr></table></figure>
+<h1 id="网络嵌入方法实现">2. 网络嵌入方法实现</h1>
+<h2 id="deepwalk">2.1 deepwalk</h2>
+<p>随机游走突出一个字随机，以下是该模型的主要算法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_sequence</span><span class="params">(self, start_node)</span> -&gt; List[int]:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    -&gt;用于类型提醒，返回的是列表</span></span><br><span class="line"><span class="string">    对单个节点进行随机游走算法</span></span><br><span class="line"><span class="string">    :param start_node:</span></span><br><span class="line"><span class="string">    :return: 一条随机游走序列</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    walk = [start_node]<span class="comment">#放的是节点的id</span></span><br><span class="line">    <span class="string">'''在邻居中取walk_length的节点，少了的话就取所有'''</span></span><br><span class="line">    <span class="keyword">while</span> len(walk) &lt; self.walk_length:</span><br><span class="line">        current_node = walk[<span class="number">-1</span>]</span><br><span class="line">        neighbors = list(self.g.neighbors(current_node))</span><br><span class="line">        <span class="keyword">if</span> len(neighbors) &gt; <span class="number">0</span>:</span><br><span class="line">            walk.append(random.choice(neighbors))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">return</span> walk</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">random_walk</span><span class="params">(self)</span> -&gt; List[List[int]]:</span></span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    随机游走算法，采集图中点的序列，超参数walk_length,window_size,大规模图可以并行优化</span></span><br><span class="line"><span class="string">    :return: 二维list，随机游走生成的序列</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    walks = []<span class="comment">#存放的是整个随机游走序列</span></span><br><span class="line">    <span class="keyword">for</span> walk_iter <span class="keyword">in</span> range(self.num_walks):</span><br><span class="line">        print(<span class="string">"当前游走次数：&#123;&#125;"</span>.format(walk_iter + <span class="number">1</span>))</span><br><span class="line">        node_list = list(self.g.nodes())</span><br><span class="line">        random.shuffle(node_list)<span class="comment">#随机打乱节点</span></span><br><span class="line">        <span class="keyword">for</span> node <span class="keyword">in</span> node_list:</span><br><span class="line">            walks.append(self.get_sequence(node))</span><br><span class="line">    <span class="keyword">return</span> walks</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span><span class="params">(self)</span>:</span></span><br><span class="line">    t = time.time()</span><br><span class="line">    print(<span class="string">"开始随机游走"</span>)</span><br><span class="line">    sentence = self.random_walk()</span><br><span class="line">    corpus = []</span><br><span class="line">    <span class="comment">#将sentence转换为str类型</span></span><br><span class="line">    <span class="keyword">for</span> idx, each <span class="keyword">in</span> enumerate(sentence):</span><br><span class="line">        corpus.append(list(map(str, sentence[idx])))</span><br><span class="line">    print(<span class="string">"随机游走结束，开始训练！"</span>)</span><br><span class="line">    word2vec = Word2Vec(</span><br><span class="line">        sentences=corpus,</span><br><span class="line">        vector_size=self.dim,</span><br><span class="line">        window=self.window_size,</span><br><span class="line">        min_count=<span class="number">0</span>,</span><br><span class="line">        workers=<span class="number">0</span>,</span><br><span class="line">        sg=<span class="number">1</span></span><br><span class="line">    )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> node <span class="keyword">in</span> self.g.nodes():</span><br><span class="line">        self.vectors[node] = word2vec.wv[str(node)]</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"模型训练完成！算法总共消耗时间：&#123;&#125;秒"</span>.format(round(time.time() - t, <span class="number">3</span>)))</span><br></pre></td></tr></table></figure>
+<h2 id="node2vec">2.2 node2vec</h2>
 
       
 
@@ -273,7 +290,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">研究工作</a>
         		</li>
       		
 		</ul>
@@ -283,7 +300,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/01/09/CS224N%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/05/25/Graph-Embedding/">展开全文 >></a>
         </p>
       
 
@@ -313,31 +330,37 @@
 
 
   
-    <article id="article-Optimization-Homework" class="article article-type-article  article-index" itemscope itemprop="blogPost">
+    <article id="article-java基础补充" class="article article-type-article  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/01/01/Optimization-Homework/">Optimization Homework</a>
+      <a class="article-title" href="/2022/05/22/java%E5%9F%BA%E7%A1%80%E8%A1%A5%E5%85%85/">java基础补充</a>
     </h1>
   
 
         
-        <a href="/2022/01/01/Optimization-Homework/" class="archive-article-date">
+        <a href="/2022/05/22/java%E5%9F%BA%E7%A1%80%E8%A1%A5%E5%85%85/" class="archive-article-date">
 	
-  	<time datetime="2021-12-31T16:17:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-31</time>
+  	<time datetime="2022-05-22T13:11:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-22</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="数学优化算法实现">1. 数学优化算法实现</h1>
-        
-          <a class="article-more-a" href="/2022/01/01/Optimization-Homework/#more">more >></a>
-        
+        <h1 id="static关键字">1. static关键字</h1>
+<p>通常来说，当创建类的时候，就是在描述那个类的对象的外观和行为，除非用new来创建那个类的对象，否则，实际上并未获得任何对象。执行new来创建对象的时候，类型存储空间才被分配，其方法才供外界调用。</p>
+<p>上述方法无法解决两种情况：1. 只想为某特定域分配单一存储空间，而不去考虑究竟要创建多少对象，甚至根本就不创建任何对象； 2. 希望某个方法不与包含它的类的任何对象关联在一起，也就是说，即使没有创建对象，也能够调用这个方法。</p>
+<p>解决这两个问题的方法就是使用static关键字，当声明一个对象是static时，就意味着这个域或方法不会与包含它的那个类的任何对象实例关联在一起。即使从未创建某个类的任何对象，也可以调用其static方法或访问其static域。</p>
+<p>例如：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">StaticTest</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> i = <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//创建两个类对象</span></span><br><span class="line">StaticTest st1 = <span class="keyword">new</span> StaticTest();</span><br><span class="line">StaticTest st2 = <span class="keyword">new</span> StaticTest();</span><br></pre></td></tr></table></figure>
+<p>那么在java里面st1.i和st2.i指向同一个存储空间，这两个对象共享一个i。引用static变量既可以通过新建一个对象去引用，，也可以通过类名直接去引用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StaticTest.i ++;</span><br></pre></td></tr></table></figure>
+<p>使用类名来引用static变量是首选，这不仅是因为它强调了变量的static结构，而且在某些情况下它还为编译器进行优化提供了更好的机会。同理来说，static方法也可以这样来调用。</p>
+
       
 
       
@@ -350,7 +373,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">机器学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">java基础知识</a>
         		</li>
       		
 		</ul>
@@ -360,7 +383,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2022/01/01/Optimization-Homework/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/05/22/java%E5%9F%BA%E7%A1%80%E8%A1%A5%E5%85%85/">展开全文 >></a>
         </p>
       
 
@@ -390,32 +413,92 @@
 
 
   
-    <article id="post-Introduction-to-NLP" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="article-算法笔记" class="article article-type-article  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/14/Introduction-to-NLP/">Introduction_to_NLP</a>
+      <a class="article-title" href="/2022/05/16/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">算法笔记</a>
     </h1>
   
 
         
-        <a href="/2021/12/14/Introduction-to-NLP/" class="archive-article-date">
+        <a href="/2022/05/16/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/" class="archive-article-date">
 	
-  	<time datetime="2021-12-14T12:49:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-14</time>
+  	<time datetime="2022-05-16T14:01:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-16</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>mathjax: true</p>
-<h1 id="bag-of-words模型">1. Bag-of-words模型</h1>
-        
-          <a class="article-more-a" href="/2021/12/14/Introduction-to-NLP/#more">more >></a>
-        
+        <h1 id="排序">2. 排序</h1>
+<h2 id="选择排序">2.1 选择排序</h2>
+<p>选择排序的思想是：首先找到数组中最小的那个元素，其次，将它和数组中的第一个元素交换位置，然后再在剩下的元素中找到最小的元素，将它与第二个元素进行交换，如此往复，直到整个数组都是有序的。</p>
+<h2 id="冒泡排序">2.2 冒泡排序</h2>
+<p>冒泡排序的思想是：比较列表的相邻的数，如果前面的比后面的要大，那么就交换这两个，一趟排序完成之后，则无序区减少一个数，有序区增加一个数。</p>
+<h2 id="插入排序">2.3 插入排序</h2>
+<p>插入排序是一种最简单的排序方法，它的基本思想就是将一个记录插入到已经排好序的有序列表中，从而一个新的、记录增加1的有序表。</p>
+<h2 id="希尔排序">2.4 希尔排序</h2>
+<p>希尔排序思想来自插入排序，只不过不像插入排序那样只改变相邻的元素，而是交换不相邻的元素。希尔排序的思想是使数组中任意间隔为h的元素都是有序的。这样的数组编织在一起组成的一个数组，如果h很大，我们就能够将元素移动到很远的地方，为实现更小的h有序创建方便。</p>
+<p>简单来讲，分组排序就是首先以一定的间隔（通常是数组的一半长度），对组内的元素进行排序，然后不断减半这个间隔h，直到1.</p>
+<h2 id="快速排序">2.5 快速排序</h2>
+<p>快速排序是对冒泡排序的一种改进，通过多次比较和交换来实现排序，流程如下：</p>
+<p>（1）首先设定一个分界值，通过该分界值将数组分为左右两部分。</p>
+<p>（2）将大于或等于分界值的数据集中到数组右边，小于分界值的数值集中到数组的左边。此时，左边部分各个元素都小于分界值，右边元素都大于等于分界值。</p>
+<p>（3）然后，左边和右边的数据可以独立排序，对于左侧的数据，又可以取一个分界值，将该部分数据分为左右两部分，同样在左边放较小的值，右边放置较大的值。右侧的数据可以做类似的处理。</p>
+<p>（4）重复上述步骤，可以看出这是个递归的定义。通过递归将左侧部分排好序之后，再递归排好右侧部分的顺序，当左右两个部分的数据排序完成之后，整个数组排序完成。</p>
+<h2 id="堆排序">2.6 堆排序</h2>
+<p>首先堆是一个完全近似二叉树的结构，并且同时满足堆积的性质，即子结点的键值或者索引总是小于或者大于它的父节点。</p>
+<p>算法流程：</p>
+<ul>
+<li>将无序序列构建成一个堆，根据升序降序需求选择大顶堆或者小顶堆，大顶堆是节点大于叶子结点的数据，大顶堆用于升序排序</li>
+<li>将堆顶元素与末尾元素交换，将最大元素沉到数组末尾</li>
+<li>重新调整结构，使其满足堆的定义，然后继续交换堆顶元素与当前末尾元素，反复执行调整+交换步骤，直到整个序列有序。</li>
+</ul>
+<h2 id="归并排序">2.7 归并排序</h2>
+<p>归并算法的思想是：采用分治的思想，将已经有序的两个子序列合并得到完全有序的序列，即先使每个子序列有序，再使子序列段间有序。（1）把长度为n的输入序列分为两个长度为n/2的子序列；（2）对这两个子序列分别采用归并排序；（3）将两个排好序的子序列合并成一个最终的排序序列</p>
+<h2 id="桶排序">2.8 桶排序</h2>
+<p>其实基数排序和计数排序都是基于桶排序的思想发展来的。工作原理是将数组分到有限数量的桶子里面，每个桶再分别进行排序（使用别的算法或者递归继续桶排序）。若待排序的记录的关键字在一个明显有限的范围内时，可以设计有限个有序桶，每个桶只能装预置对应的值，顺序输出各桶的值，将得到有序的序列。简单来说，在我们可以确定需要排列的数组范围时，可以生成该数值范围内有限个桶去对应数组中的数，然后我们将扫描的数值放入匹配的桶里的行为，可以看做是分类，在分类完成后，我们需要依次按照桶的顺序输出桶内存放的数值，这样就完成了桶排序。</p>
+<h2 id="基数排序">2.9 基数排序</h2>
+<p>桶排序的一种，非比较排序，多关键字排序。基本操作是：先找出数据中心最大的位数，然后从低位开始排序，收集已排序的数据，直到最高位排序完成。</p>
+<p>算法的流程为：（1）先计算出数据的最大位数；（2）先从低位开始排序，再从高位开始排序，收集已经排序的数据；（3）不断从低位到高位，对数据进行排序，直到最高位已经排好，排序完成。</p>
+<h2 id="计数排序">2.10 计数排序</h2>
+<p>假设输入的线性表L的长度为n，L=L1,L2,..,Ln；线性表的元素属于有限偏序集S，|S|=k且k=O(n)，S={S1,S2,..Sk}；则计数排序可以描述如下：</p>
+<p>1、扫描整个集合S，对每一个Si∈S，找到在线性表L中小于等于Si的元素的个数T(Si)；</p>
+<p>2、扫描整个线性表L，对L中的每一个元素Li，将Li放在输出线性表的第T(Li)个位置上，并将T(Li)减1。</p>
+<h2 id="优先队列">2.11 优先队列</h2>
+<p>优先队列是一种抽象数据类型，它表示了一组值和对这些值的操作。优先队列的最重要的方法就是删除最大元素以及插入元素。</p>
+<p>如果我们使用指针来表示堆有序的二叉树，那么每个元素都需要三个指针来找到其上下节点，父节点和两个子结点各需一个。完全二叉树只用数组而不需要指针就可以表示。二叉堆是一组能够能够用有序的完全二叉树排序的元素，并在数组中安照层级存储（不使用数组的第一个位置）。一颗大小为N的完全二叉树的高度为<span class="math inline">\(\lfloor lg N \rfloor\)</span>。</p>
+<p>对于一个含有N个元素的基于堆的优先队列，插入元素操作只需要不超过<span class="math inline">\((lgN+1)\)</span>次比较，删除最大元素的操作只需要不超过<span class="math inline">\(2lgN\)</span>次操作。</p>
+<h1 id="散列表">1. 散列表</h1>
+<p>散列表查找包含两个步骤：（1）用散列函数将被查找的键转化为数组的一个索引；（2）处理一个冲突碰撞的过程。</p>
+<p>（1）对于每一种键都需要一个与之对应的散列函数。</p>
+<ul>
+<li><p>1.正整数：除留余数法。选择大小为素数M的数组，对于任意正整数k，计算k除以M的余数，可以将键有效的散布在0到M-1的范围内。如果M不是素数，我们可能无法利用键中包含的所有信息，导致无法均匀的散列散列值。</p></li>
+<li><p>2.浮点数：如果键是0到1之间的实数，我们可以将它乘以M并四舍五入得到一个0到M-1之间的索引值。这种方法的缺陷是：键的高位起的作用更大，最低位对散列的结果没有影响。修正这个问题的方法是将键表示为二进制数然后再使用除留余数法。</p></li>
+<li><p>3.字符串：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> hash = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">    hash = (R * hash + s.charAt(i)) % M;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>charAt方法能够返回一个非负16位整数，如果R比任何字符的值都大，这种计算相当于将字符串当做一个N位的R进制值，将它除以M并求余。</p></li>
+<li><p>4.组合键：如果键的类型含有多个整型变量，可以和String类型一样将他们混合起来。如date类型(day,month,year)，可以表示散列值为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> hash = (((day * R + month) % M) * R + year) % M;</span><br></pre></td></tr></table></figure>
+<p>（2）散列算法的第二步就是碰撞处理</p>
+<ul>
+<li><p>拉链法：将大小为M的数组中的每个元素指向一条链表，链表中的每个节点都存储了散列值为该元素的索引的键值对。查找分为两步：首先根据散列值找到对应的链表，然后沿着链表的熟悉怒查找相应的键。</p></li>
+<li><p>线性探测法：使用大小为M的数组保存N个键值对，其中M &gt; N。需要依靠数组中的空位解决碰撞冲突问题，基于这种方法的方法统称为开放地址散列表。其中最简单的叫做线性探测法，当发生碰撞时，也就是一个键的散列值已经被另一个不同的键占用，直接检测散列表的下一个位置。这样可能产生三种结果：</p>
+<p>（1）命中，该位置的键和被查找的键相同</p>
+<p>（2）未命中，键为空（该位置没有键）</p>
+<p>（3）继续查找，该位置的键和查找的键不同</p>
+<p>用散列函数找到键在数组中的索引，检查其中的键和被查找的键是否相同，，如果不同则继续查找，将索引增大，到达数组结尾时折回数组的开头，直到找到该键或者遇到一个空元素。</p></li>
+</ul>
+<h2 id="稀疏向量">稀疏向量</h2>
+<p>对数据进行处理的时候，一般需要对类别型特征进行编码，比方说独热编码就是一种稀疏向量。对于一个向量<span class="math inline">\(v=(v_1,v_2,...,v_n)\)</span>如果v仅在少量的维度上取值不为0，称之为稀疏向量。由于稀疏向量的非零值比较少，可以通过仅存储非零值的方式来节省空间。每个非零值都可以用一个<span class="math inline">\((index,value)\)</span>对来表示。</p>
+<p>对于一个n维整数向量v，如果其仅在a个维度上取值不为0，则可以惟一的表示为：</p>
+<p><span class="math inline">\([(index1,value1),(index_2,value_2),...,(index_a,value_a)]\)</span></p></li>
+</ul>
+
       
 
       
@@ -428,7 +511,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -438,7 +521,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/14/Introduction-to-NLP/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/05/16/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">展开全文 >></a>
         </p>
       
 
@@ -468,108 +551,42 @@
 
 
   
-    <article id="post-pytorch总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="article-PERFECT笔记" class="article article-type-article  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/11/pytorch%E6%80%BB%E7%BB%93/">pytorch总结</a>
+      <a class="article-title" href="/2022/05/06/PERFECT%E7%AC%94%E8%AE%B0/">PERFECT笔记</a>
     </h1>
   
 
         
-        <a href="/2021/12/11/pytorch%E6%80%BB%E7%BB%93/" class="archive-article-date">
+        <a href="/2022/05/06/PERFECT%E7%AC%94%E8%AE%B0/" class="archive-article-date">
 	
-  	<time datetime="2021-12-10T16:43:24.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-10</time>
+  	<time datetime="2022-05-06T10:12:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="torch.utils.data">1. torch.utils.data</h1>
-        
-          <a class="article-more-a" href="/2021/12/11/pytorch%E6%80%BB%E7%BB%93/#more">more >></a>
-        
-      
+        <p>现有的网络对齐的方法主要关注个人用户层面上的对齐，需要具有大量的个人共享的信息。在缺少相关的共享信息的时候，社区的对齐可能会给用户对齐以关键的补充信息。反过来，用户对齐也揭示了更多关于社区对齐的线索。我们引入了联合社交网络对齐问题，目的是跨社交网络同时对齐用户和社区。</p>
+<ul>
+<li>如何同时学习用户和社区的表示方式？</li>
+<li>如何使用户对齐和社区对齐相互受益？</li>
+</ul>
+<p><img src="../images/PERFECT/联合网络对齐.png"></p>
+<p>使用双曲空间和欧式空间来嵌入网络得到：</p>
+<p><img src="../images/PERFECT/嵌入空间对比.png"></p>
+<p>对比欧式空间，双曲空间倾向于呈现输入网络中节点之间的潜在层次结构。我们观察到，该层次特征在社交网络[9]中是常见的，更重要的是，它对用户对齐[2]和有利于社区发现至关重要。</p>
+<p>问题定义：给定一对社交网络<span class="math inline">\(G^s,G^t\)</span>以及anchor set A，要找到所有的anchor users：<span class="math inline">\(\left\{(v_i^s,v_k^t)\right\}\)</span>以及所有的anchor communities：<span class="math inline">\(\left\{(C_p^s,C_q^t)\right\}\)</span>。</p>
+<h2 id="为什么使用双曲空间嵌入">为什么使用双曲空间嵌入</h2>
+<p>与欧几里得空间相比，双曲空间中的嵌入编码了用户之间的潜在层次结构，即中心性较高的用户倾向于居住在更靠近原点的位置。层次特征已被证明对用户对齐[2]和有利于社区发现至关重要。以定量地测量层次特征，引入了$Gromov   -hyperbolicity $，一个几何群论的度量。</p>
+<p>相应的δ−双曲性显示了数据集的潜在层次结构：</p>
+<p><img src="../images/PERFECT/数据集.png"></p>
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/11/pytorch%E6%80%BB%E7%BB%93/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-论文笔记《ATTENT-Active-Attribute-Network-Alignment》" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/09/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%8AATTENT-Active-Attribute-Network-Alignment%E3%80%8B/">论文笔记《ATTENT:Active Attribute Network Alignment》</a>
-    </h1>
-  
-
-        
-        <a href="/2021/12/09/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%8AATTENT-Active-Attribute-Network-Alignment%E3%80%8B/" class="archive-article-date">
-	
-  	<time datetime="2021-12-09T09:59:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="摘要">1. 摘要</h1>
-        
-          <a class="article-more-a" href="/2021/12/09/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%8AATTENT-Active-Attribute-Network-Alignment%E3%80%8B/#more">more >></a>
-        
       
 
       
@@ -592,7 +609,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/09/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0%E3%80%8AATTENT-Active-Attribute-Network-Alignment%E3%80%8B/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/05/06/PERFECT%E7%AC%94%E8%AE%B0/">展开全文 >></a>
         </p>
       
 
@@ -622,31 +639,89 @@
 
 
   
-    <article id="article-Word2Vec总结" class="article article-type-article  article-index" itemscope itemprop="blogPost">
+    <article id="article-刷题指南" class="article article-type-article  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/">Word2Vec总结</a>
+      <a class="article-title" href="/2022/05/03/%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/">刷题指南</a>
     </h1>
   
 
         
-        <a href="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/" class="archive-article-date">
+        <a href="/2022/05/03/%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/" class="archive-article-date">
 	
-  	<time datetime="2021-12-07T12:22:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-07</time>
+  	<time datetime="2022-05-02T17:53:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="word2vec算法简介">1. Word2Vec算法简介</h1>
-        
-          <a class="article-more-a" href="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/#more">more >></a>
-        
+        <h1 id="poj刷题顺序">1. POJ刷题顺序</h1>
+<h1 id="初期">初期:</h1>
+<h2 id="一.基本算法">一.基本算法:</h2>
+<p>枚举. (POJ 1753,POJ 2965) 贪心(POJ 1328,POJ 2109,POJ 2586) 递归和分治法. 递推. 构造法.(POJ 3295) 模拟法.(POJ 1068,POJ 2632,POJ 1573,POJ 2993,POJ 2996)</p>
+<h2 id="二.图算法">二.图算法:</h2>
+<p>图的深度优先遍历和广度优先遍历. 最短路径算法(dijkstra,bellman-ford,floyd,heap+dijkstra) (POJ 1860,POJ 3259,POJ 1062,POJ 2253,POJ 1125,POJ 2240) 最小生成树算法(prim,kruskal) (POJ 1789,POJ 2485,POJ 1258,POJ 3026) 拓扑排序 (POJ 1094) 二分图的最大匹配 (匈牙利算法) (POJ 3041,POJ 3020) 最大流的增广路算法(KM算法). (POJ 1459,POJ 3436)</p>
+<h2 id="三.数据结构.">三.数据结构.</h2>
+<p>串 (POJ 1035,POJ 3080,POJ 1936) 排序(快排、归并排(与逆序数有关)、堆排) (POJ 2388,POJ 2299) 简单并查集的应用. 哈希表和二分查找等高效查找法(数的Hash,串的Hash) (POJ 3349,POJ 3274,POJ 2151,POJ 1840,POJ 2002,POJ 2503) 哈夫曼树(POJ 3253) 堆 trie树(静态建树、动态建树) (POJ 2513)</p>
+<h2 id="四.简单搜索">四.简单搜索</h2>
+<p>深度优先搜索 (POJ 2488,POJ 3083,POJ 3009,POJ 1321,POJ 2251) 广度优先搜索(POJ 3278,POJ 1426,POJ 3126,POJ 3087.POJ 3414) 简单搜索技巧和剪枝(POJ 2531,POJ 1416,POJ 2676,POJ 1129)</p>
+<h2 id="五.动态规划">五.动态规划</h2>
+<p>背包问题. (POJ 1837,POJ 1276) 型如下表的简单DP(可参考lrj的书 page149): E[j]=opt{D+w(i,j)} (POJ 3267,POJ 1836,POJ 1260,POJ 2533) E[i,j]=opt{D[i-1,j]+xi,D[i,j-1]+yj,D[i-1][j-1]+zij} (最长公共子序列) (POJ 3176,POJ 1080,POJ 1159) C[i,j]=w[i,j]+opt{C[i,k-1]+C[k,j]}.(最优二分检索树问题)</p>
+<h2 id="六.数学">六.数学</h2>
+<p>组合数学:</p>
+<p>加法原理和乘法原理. 排列组合. 递推关系. (POJ 3252,POJ 1850,POJ 1019,POJ 1942) 数论.</p>
+<p>素数与整除问题 进制位. 同余模运算. (POJ 2635, POJ 3292,POJ 1845,POJ 2115) 计算方法.</p>
+<p>二分法求解单调函数相关知识.(POJ 3273,POJ 3258,POJ 1905,POJ 3122)</p>
+<h2 id="七.计算几何学.">七.计算几何学.</h2>
+<p>几何公式. 叉积和点积的运用(如线段相交的判定,点到线段的距离等). (POJ 2031,POJ 1039) 多边型的简单算法(求面积)和相关判定(点在多边型内,多边型是否相交) (POJ 1408,POJ 1584) 凸包. (POJ 2187,POJ 1113)</p>
+<h1 id="中级">中级:</h1>
+<h2 id="一.基本算法-1">一.基本算法:</h2>
+<p>C++的标准模版库的应用. (POJ 3096,POJ 3007) 较为复杂的模拟题的训练(POJ 3393,POJ 1472,POJ 3371,POJ 1027,POJ 2706)</p>
+<h2 id="二.图算法-1">二.图算法:</h2>
+<p>差分约束系统的建立和求解. (POJ 1201,POJ 2983) 最小费用最大流(POJ 2516,POJ 2195) 双连通分量(POJ 2942) 强连通分支及其缩点.(POJ 2186) 图的割边和割点(POJ 3352) 最小割模型、网络流规约(POJ 3308)</p>
+<h2 id="三.数据结构.-1">三.数据结构.</h2>
+<p>线段树. (POJ 2528,POJ 2828,POJ 2777,POJ 2886,POJ 2750) 静态二叉检索树. (POJ 2482,POJ 2352) 树状树组(POJ 1195,POJ 3321) RMQ. (POJ 3264,POJ 3368) 并查集的高级应用. (POJ 1703,POJ 2492) KMP算法. (POJ 1961,POJ 2406)</p>
+<h2 id="四.搜索">四.搜索</h2>
+<p>最优化剪枝和可行性剪枝 搜索的技巧和优化 (POJ 3411,POJ 1724) 记忆化搜索(POJ 3373,POJ 1691)</p>
+<h2 id="五.动态规划-1">五.动态规划</h2>
+<p>较为复杂的动态规划(如动态规划解特别的施行商问题等) (POJ 1191,POJ 1054,POJ 3280,POJ 2029,POJ 2948,POJ 1925,POJ 3034) 记录状态的动态规划. (POJ 3254,POJ 2411,POJ 1185) 树型动态规划(POJ 2057,POJ 1947,POJ 2486,POJ 3140)</p>
+<h2 id="六.数学-1">六.数学</h2>
+<p>组合数学:</p>
+<p>容斥原理. 抽屉原理. 置换群与Polya定理(POJ 1286,POJ 2409,POJ 3270,POJ 1026). 递推关系和母函数. 数学.</p>
+<p>高斯消元法(POJ 2947,POJ 1487,POJ 2065,POJ 1166,POJ 1222) 概率问题. (POJ 3071,POJ 3440) GCD、扩展的欧几里德(中国剩余定理) (POJ 3101) 计算方法.</p>
+<p>0/1分数规划. (POJ 2976) 三分法求解单峰(单谷)的极值. 矩阵法(POJ 3150,POJ 3422,POJ 3070) 迭代逼近(POJ 3301) 随机化算法(POJ 3318,POJ 2454)</p>
+<p>杂题. (POJ 1870,POJ 3296,POJ 3286,POJ 1095)</p>
+<h2 id="七.计算几何学.-1">七.计算几何学.</h2>
+<p>坐标离散化. 扫描线算法(例如求矩形的面积和周长并,常和线段树或堆一起使用). (POJ 1765,POJ 1177,POJ 1151,POJ 3277,POJ 2280,POJ 3004) 多边形的内核(半平面交)(POJ 3130,POJ 3335) 几何工具的综合应用.(POJ 1819,POJ 1066,POJ 2043,POJ 3227,POJ 2165,POJ 3429)</p>
+<h1 id="高级">高级:</h1>
+<h2 id="一.基本算法要求">一.基本算法要求:</h2>
+<p>代码快速写成,精简但不失风格 (POJ 2525,POJ 1684,POJ 1421,POJ 1048,POJ 2050,POJ 3306) 保证正确性和高效性. POJ 3434</p>
+<h2 id="二.图算法-2">二.图算法:</h2>
+<p>度限制最小生成树和第K最短路. (POJ 1639) 最短路,最小生成树,二分图,最大流问题的相关理论(主要是模型建立和求解) (POJ 3155, POJ 2112,POJ 1966,POJ 3281,POJ 1087,POJ 2289,POJ 3216,POJ 2446 ) 最优比率生成树. (POJ 2728) 最小树形图(POJ 3164) 次小生成树. 无向图、有向图的最小环</p>
+<h2 id="三.数据结构.-2">三.数据结构.</h2>
+<p>trie图的建立和应用. (POJ 2778) LCA和RMQ问题(LCA(最近公共祖先问题) 有离线算法(并查集+dfs) 和 在线算法 (RMQ+dfs)).(POJ 1330) 双端队列和它的应用(维护一个单调的队列,常常在动态规划中起到优化状态转移 的目的). (POJ 2823) 左偏树(可合并堆). 后缀树(非常有用的数据结构,也是赛区考题的热点). (POJ 3415,POJ 3294)</p>
+<h2 id="四.搜索-1">四.搜索</h2>
+<p>较麻烦的搜索题目训练(POJ 1069,POJ 3322,POJ 1475,POJ 1924,POJ 2049,POJ 3426) 广搜的状态优化:利用M进制数存储状态、转化为串用hash表判重、按位压缩存储 状态、双向广搜、A<em>算法. (POJ 1768,POJ 1184,POJ 1872,POJ 1324,POJ 2046,POJ 1482) 深搜的优化:尽量用位运算、一定要加剪枝、函数参数尽可能少、层数不易过大 、可以考虑双向搜索或者是轮换搜索、IDA</em>算法. (POJ 3131,POJ 2870,POJ 2286)</p>
+<h2 id="五.动态规划-2">五.动态规划</h2>
+<p>需要用数据结构优化的动态规划. (POJ 2754,POJ 3378,POJ 3017) 四边形不等式理论. 较难的状态DP(POJ 3133)</p>
+<h2 id="六.数学-2">六.数学</h2>
+<p>组合数学.</p>
+<p>MoBius反演(POJ 2888,POJ 2154) 偏序关系理论. 博奕论.</p>
+<p>极大极小过程(POJ 3317,POJ 1085) Nim问题.</p>
+<h2 id="七.计算几何学.-2">七.计算几何学.</h2>
+<p>半平面求交(POJ 3384,POJ 2540) 可视图的建立(POJ 2966) 点集最小圆覆盖. 对踵点(POJ 2079)</p>
+<h2 id="八.综合题.">八.综合题.</h2>
+<p>(POJ 3109,POJ 1478,POJ 1462,POJ 2729,POJ 2048,POJ 3336,POJ 3315,POJ 2148,POJ 1263</p>
+<h1 id="hdu刷题指南">2. HDU刷题指南</h1>
+<p>第一阶段：开始入门吧！（15天，53题） 一．输入输出练习（2天，10题） 1000、1089—1096、1001 二．简单操作：（2—4天，12题） 2000—2011、2039 三．英文题试水（3—4天，8题） 1720、1062、2104、1064、2734、1170、1197、2629 四．回归水题（4-6天，24题） 2012—2030、2032、2040、2042、2054、2055 （第一阶段大体结束之后，会由几位学长讲一些数据结构的知识，请同学们务必跟上进度！）</p>
+<p>第二阶段：我要学算法！（12天，31题） 一．字符串我要会处理（2天，6题） 2072、2081、2093、2091、1004、2057 二．简单数学题（4天，12题） 2031、2033、2070、2071、2075、2089、2090、2092、2096—2099 三．要玩就玩汉诺塔（2天,5题） 1995、1996、2064、2077、2175 四．As easy as math（4天，8题） 1108、2138、1713、1722、2136、2504、1717、1125</p>
+<p>第三阶段：acm无底洞啊！（10天，18题） 一．初见dp（2—4天，4题） 2062、1087、1203、1003 二．迷宫之烟雾缭绕（2—4天，3题） 1728、1010、1072 三．数学题做不下去了。（3-5天，8题） 1052、1568、1443、1222、1249、1005、2674、1018 四．龙门客栈，暗藏玄机（2—3天，3题） 1022、1237、1082</p>
+
       
 
       
@@ -654,22 +729,11 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/07/Word2Vec%E6%80%BB%E7%BB%93/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/05/03/%E5%88%B7%E9%A2%98%E6%8C%87%E5%8D%97/">展开全文 >></a>
         </p>
       
 
@@ -699,31 +763,93 @@
 
 
   
-    <article id="article-MySQL知识点-md" class="article article-type-article  article-index" itemscope itemprop="blogPost">
+    <article id="article-Unsupervised-Graph-Alignment-Alignment-with-Wasserstein-Distance-Disciminator笔记" class="article article-type-article  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/12/04/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9-md/">MySQL知识点.md</a>
+      <a class="article-title" href="/2022/04/26/Unsupervised-Graph-Alignment-Alignment-with-Wasserstein-Distance-Disciminator%E7%AC%94%E8%AE%B0/">Unsupervised Graph Alignment Alignment with Wasserstein Distance Disciminator笔记</a>
     </h1>
   
 
         
-        <a href="/2021/12/04/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9-md/" class="archive-article-date">
+        <a href="/2022/04/26/Unsupervised-Graph-Alignment-Alignment-with-Wasserstein-Distance-Disciminator%E7%AC%94%E8%AE%B0/" class="archive-article-date">
 	
-  	<time datetime="2021-12-04T14:13:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-12-04</time>
+  	<time datetime="2022-04-26T15:36:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="数据库基本概念">1.数据库基本概念</h1>
-        
-          <a class="article-more-a" href="/2021/12/04/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9-md/#more">more >></a>
-        
+        <p>这篇论文也是最近研究的生成对抗网络解决网络对齐的方法。</p>
+<p>大多数现有的无监督方法都假设相应的节点应该具有相似的局部结构，但这往往不成立。同时，丰富的节点属性往往是可用的，并已被证明可以有效地减轻上述局部拓扑不一致的问题。我们首先开发了一个轻量级的GCN体系结构来捕获局部和全局图模式及其与节点属性的固有相关性。然后证明了在嵌入空间中，得到的最优对齐结果等价于最小化不同图中节点嵌入之间的Wasserstein距离。为此，我们提出了一种新的Wasserstein距离鉴别器来识别候选节点对应对，以更新节点嵌入。</p>
+<p>现在的方法大多数都是基于有监督学习的网络对齐，而现在的大多数的无监督学习任务都是基于结点应该有相似的邻域特性，在实际中太为严格。例如：在不同的图表中，节点的程度可能会迅速变化，用户在Facebook上可能有很多朋友，但在推特上的活跃程度可能会少得多。</p>
+<p>同时，在许多现实世界的图中，节点通常与丰富的侧边信息相关联(也就是节点属性)。这些属性信息与图的结构高度相关，可以用来解决上述局部结构不一致的问题。</p>
+<p>一个简单的解决方案是首先学习节点嵌入，然后找到与学习到的嵌入表示的节点对应关系。这种方法有如下问题：（1）如果我们直接应用GCN来获得节点嵌入，那么不同图的节点嵌入可能不在同一个特征空间中，这不适合于对齐任务。同时，GCN还可能存在过平滑问题，所以就不能有效的捕获全局的图的特征，不适用于对齐任务。（2）将对齐问题简化为基于节点嵌入的相似性矩阵的二部图匹配问题。现在的大多数的算法的复杂度是<span class="math inline">\(O(n^3)\)</span>，很高。（3）节点表示学习和图对齐不是两个独立的任务，而是应该相互补充。更好的节点嵌入可以帮助实现更好的对齐结果，而更好的对齐也可以为嵌入学习提供监督信号。因此，必须在统一的框架。</p>
+<p>这个论文主要回答的问题如下：如何学习适合于对齐任务的有效嵌入内容？如何联合建模嵌入学习和图形对齐？</p>
+<p><span class="math inline">\(G=(v,\varepsilon,X)\)</span>，其中<span class="math inline">\(v=\left\{v_1,v_2,...,v_n\right\}\)</span>，<span class="math inline">\(\xi\)</span>表示边集合，<span class="math inline">\(X∈R^{n \times d}\)</span>表示节点属性矩阵。A表示邻接矩阵。其中这两个网络的节点数量以及特征数量为<span class="math inline">\((n_s,d_s)\)</span>和<span class="math inline">\((n_t,d_t)\)</span></p>
+<ul>
+<li>定义1：（unsupervised graph alignment）给定两个输入的图<span class="math inline">\(G_s=(v_s,\xi_s,X_s)\)</span>以及<span class="math inline">\(G_t=(u_t,\xi_t,X_t)\)</span>，无监督的网络对齐是为了找到节点对<span class="math inline">\(M=\left\{(v_i,u_j)|v_i∈v_S \and u_j ∈ u_t\right\}\)</span>。此外，每个节点最多应该在一个合法的对齐中出现一次。形式上，对于一个合法的M，存在一个部分映射<span class="math inline">\(\pi: v_s \to u_t\)</span>并且一个部分映射<span class="math inline">\(\pi&#39; :u_t \to v_s\)</span>，因此对于任意的<span class="math inline">\((v_i,u_j)∈M\)</span>，我们有<span class="math inline">\(\pi(v_i)=u_j \and \pi&#39;(u_j)=v_i\)</span>。</li>
+</ul>
+<p>我们通常假设<span class="math inline">\(H^{(0)}=X\)</span>，一个两层的GCN架构为：<span class="math inline">\(Z=\widehat A \sigma(\widehat AXW^{(1)})W^{(2)}\)</span>,其中Z是所有的节点的embedding矩阵。给定节点嵌入表示，无监督图对齐问题可以转换为图论中的经典任务，即二部图匹配。</p>
+<ul>
+<li><p>定义2：（network embedding based graph alignment）给定一个节点<span class="math inline">\(v_i\)</span>以及<span class="math inline">\(v_j\)</span>在两个网络中，节点的嵌入为<span class="math inline">\(z_{v_i},z_{u_j}\)</span>，网络对齐的任务是找到：</p>
+<p><img src="../images/wasserstein距离对齐论文/网络对齐任务.png"></p></li>
+</ul>
+<p>如果我们令<span class="math inline">\(c_{i,j}=||z_{v_i}-z_{u_j}||\)</span>,上述的问题等价于节点集为<span class="math inline">\(v_s \or u_t\)</span>以及cost集合<span class="math inline">\(\left\{c_{i,j}|v_i∈v_s,u_j∈u_t\right\}\)</span>的最小化二部图匹配问题。如果是仅使用普通的GCN可能造成的问题有：（1）两个网络的嵌入可能是在不同的空间并且图的全局特征可能不能被很好地刻画；（2）传统的二部图匹配的算法的计算量太大了；（3）节点嵌入可能不适用于对齐任务。</p>
+<p><img src="../images/wasserstein距离对齐论文/模型框架.png"></p>
+<p>传统的GCN只能获取局部的图结构信息，因为第k层的GCN只使用了k阶邻域的信息，随着k的增大，所有节点的embedding将会趋近于一个相似的值。与此同时，全局拓扑模式对于保证准确的对齐也至关重要，特别是当局部结构一致性假设[43]不成立时。最近的研究表明GCN层之间的非线性不是至关重要的，可以简单地去除而不损害学习性能。因此提出了一个轻量级的GCN结构：LGCN，我们移除非线性函数和连接每一层的嵌入：</p>
+<p><img src="../images/wasserstein距离对齐论文/LGCN公式.png"></p>
+<p>由于LGCN避免了层堆叠，因此我们可以将𝐾指定为大量的𝐾来捕获全局拓扑模式。</p>
+<p>由于上述公式除了权重项都能预先计算，稍后将介绍的对抗性训练阶段的计算成本。LGCN的平面结构使模型更容易训练，收敛速度也更快。此外，少量的模型参数将使后期的对抗性训练过程更加稳定。</p>
+<p>考虑到不同的图的属性（包括图的拓扑结构和节点属性）可能会有很大的不同，我们引入了一个额外的变换矩阵T来适应不同图之间的内在差异。<span class="math inline">\(Z_S=Tf_e(A_s,X_s) \ and \ Z_t=f_e(A_t,X_t)\)</span></p>
+<h1 id="wasserstein-distance-discriminator"><strong>Wasserstein Distance Discriminator</strong></h1>
+<p>Wasserstein Distance它是一种广泛用于度量两种概率分布之间差异的度量方法。</p>
+<ul>
+<li>定义3：（Wasserstein Distance）</li>
+</ul>
+<p><img src="../images/wasserstein距离对齐论文/wasserstein距离定义.png"></p>
+<p>𝛾表示一个最优的“质量”运输，它指定了对于每个𝑥，有多少“质量”应该被转移到𝑦，这样P𝑠将变成<span class="math inline">\(P_t\)</span></p>
+<p>从简单的情况出发，令<span class="math inline">\(m=|v_s|=|u_t|\)</span>，我们假设一个完美的从<span class="math inline">\(v_s \to u_t\)</span>的对齐是存在的。它被定义为将V𝑠中的每个节点根据定义2中的最优对应集M与U𝑡中的另一个节点进行匹配的对齐。然后将问题简化为识别给定Z𝑠和Z𝑡的最优集M。我们要最小化在M中的每个节点对<span class="math inline">\((v_i,u_j)\)</span>距离。</p>
+<ul>
+<li>proposition 4：假设<span class="math inline">\(m=|v_s|=|u_t|\)</span>。设P𝑠和P𝑡分别为均匀分布在V𝑠和U𝑡的嵌入上的概率分布。随后我们有等式8：</li>
+</ul>
+<p><img src="../images/wasserstein距离对齐论文/wasserstein距离.png"></p>
+<p>证明：我们首先展示了一个对齐M，它唯一地决定了一个从P𝑠到P𝑡的运输𝛾，因为它可以在等式8中以联合分布的形式表示:</p>
+<p><img src="../images/wasserstein距离对齐论文/分布.png"></p>
+<p>由于<span class="math inline">\(W_1(p_s,p_t)\)</span>表示的最小的转移距离，上面的转移距离至少是<span class="math inline">\(W_1(p_s,p_t)\)</span>，也就是等式8要取小于等于号。要证明等式成立，要做的就是夹逼法证明另一个方向的成立。也就是当<span class="math inline">\(W_1(p_s,p_t)\)</span>达到其最优的时候，所有的在最优的转移<span class="math inline">\(\gamma^*\)</span>中的<span class="math inline">\(p(x=v_i,y=u_j)\)</span>要么是1/m要么是0使得它能够一直生成一个对齐M。<span class="math inline">\(\gamma^*\)</span>决定了一个M。</p>
+<p>为了证明，我们将这个问题转化为一个最小成本的网络流问题<span class="math inline">\((G&#39;,U,C)\)</span>，其中<span class="math inline">\(G&#39;=(V&#39;,\varepsilon&#39;)\)</span>，流量函数<span class="math inline">\(U: \varepsilon&#39; \to R\)</span>以及损失函数<span class="math inline">\(C: \varepsilon&#39; \to R\)</span>。流量网络的构造由以下公式定义：</p>
+<p><img src="../images/wasserstein距离对齐论文/定义.png"></p>
+<p>流量为𝑚的流量在G‘中以U的能力运行，如果我们用将V𝑠和U𝑡之间的每对节点的流量乘以1/𝑚，那么流量就唯一地决定了P𝑠和P之间的传输。由于每个容量𝑈（𝑣，𝑢）和总流量𝑚在这个最小成本流问题中是整数，通过约束的完全单模块化(也称为完整性定理[7,29] 最小代价流问题)，它有一个最优解，在每条边上都有整数流。显然，图中流量等于1的边集等价于M，这意味着总是存在一个M，使𝑊1(P𝑠，P𝑡)最小化。</p>
+<p>然后，我们将命题4推广到一个图中的某些节点在另一个图中可能没有相应的节点的一般情况。</p>
+<ul>
+<li>proposition 5：令<span class="math inline">\(m=|M|\)</span>表示的是<span class="math inline">\(v_s,u_t\)</span>之间对应节点的个数，并且<span class="math inline">\(m ≤ min(|v_s|,|u_t|)\)</span>。对于任意的大小为m的子节点集合<span class="math inline">\(v_s&#39;,u_t&#39;\)</span>，令P‘𝑠和P’𝑡分别是均匀分布在V‘𝑠和U’𝑡嵌入上的相应概率分布。我们随后有：</li>
+</ul>
+<p><img src="../images/wasserstein距离对齐论文/定义1.png"></p>
+<p>证明：与proposition 4类似的，我们将这个问题转化为一个最小的网络流问题：</p>
+<p><img src="../images/wasserstein距离对齐论文/proposition5.png"></p>
+<p>根据约束矩阵[29,32]的完全单模块性，它在每条边上都有一个整数流量的最优解。在这个最优流中，V𝑠中的𝑚个节点和U𝑡中的𝑚个节点将被流连接。设V‘𝑠和U’𝑡是由V𝑠和U𝑡方面的流所选择的节点集,那么V‘𝑠和U’𝑡之间的wasserstein距离（由最优运输计划定义）等价于</p>
+<p><img src="../images/wasserstein距离对齐论文/等价的距离.png"></p>
+<p>另一方面，如果我们假设存在一对子集V‘’𝑆和U‘’𝑡具有更小的wasserstein距离，那么一个更好的解决方案，只包括节点之间的流动 V‘’𝑆和U‘’𝑡，其成本小于最优方案，存在于最小成本网络流问题中。这样的假设显然产生了一个矛盾。</p>
+<p>因此，对于任意的<span class="math inline">\(v_s&#39;&#39;\)</span>以及<span class="math inline">\(u_t&#39;&#39;\)</span>满足<span class="math inline">\(|v_s&#39;&#39;|=m,|u_t&#39;&#39;|=m\)</span>，我们有<span class="math inline">\(W_1(P_s&#39;&#39;,P_t&#39;&#39;)≥W_1(P&#39;_s,P&#39;_t)\)</span>，命题5得证。</p>
+<p>命题5表明，使wasserstein损失最小的节点对是最优的节点对应关系。因此，wasserstein距离反映了匹配的n之间的接近性 结果表明，匹配的最优嵌入表示将使wasserstein距离最小。</p>
+<p><img src="../images/wasserstein距离对齐论文/kantorovich%20rubinstein%20duality.png"></p>
+<p>其中<span class="math inline">\(||f_w||\)</span>是<span class="math inline">\(f_w\)</span>的lipschitz形式，这个等式表示了分离P‘𝑠和P’的最优1-Lipschitz函数𝑓𝑤总是存在的，并且最大的分割是<span class="math inline">\(W_1(P&#39;_s,P&#39;_t)\)</span>.我们使用一个神经网络结构来表示𝑓𝑤，在本文中，它被称为wasserstein距离鉴别器。因此，我们计算了两个不同图中每个节点的𝑓𝑤(z𝑣𝑖)和𝑓𝑤(z𝑢𝑗)。然后，V𝑠中最小化𝑓𝑤(z𝑣𝑖)的节点和U𝑡中最大化𝑓𝑤(z𝑢𝑗)的节点将会 是选定的节点对。选择过程的复杂性将从多项式时间降低到线性时间。</p>
+<p>𝑓𝑤被优化以最大化E𝑥∼P‘𝑠[𝑓𝑤（𝑥）]−E𝑦∼P’𝑡[𝑓𝑤（𝑦）]的预期差异。因此，𝑓𝑤使<span class="math inline">\(-L_{we}\)</span>最小化，从而导致以下损失：</p>
+<p><img src="../images/wasserstein距离对齐论文/LWW损失.png"></p>
+<p>最后，整个优化方案可以表述为一个双人博弈。嵌入学习阶段旨在优化嵌入，以最小化V‘𝑠和U’之间的瓦瑟斯坦距离 ，而对鉴别器进行优化，得到一个更好的wasserstein距离下界。简而言之，这两个阶段在对齐任务的最佳嵌入方面相互补充。</p>
+<p>上述方法的一个问题是，对抗性的损失可能会崩溃为一个平凡的情况，即所有的嵌入向量都成为相同的值。在这种情况下，wasserstein的距离就变成了 0，但这肯定不是我们想要的距离。</p>
+<p>为了解决这个问题，我们使用重构损失来确保嵌入仍然有足够的信息来重新创建输入属性。我们将𝑓𝑟𝑠和𝑓𝑟𝑡定义为两个重构神经网络，每个神经网络都将其图的嵌入作为输入，并返回图的属性作为输出。然后我们将以下损失最小化函数：</p>
+<p><img src="../images/wasserstein距离对齐论文/lossrecon.png"></p>
+<p>最后，我们使用等式（17）来更新嵌入网络中的权值矩阵，其中𝛽是一个平衡两个损失函数的超参数：</p>
+<p><img src="../images/wasserstein距离对齐论文/嵌入的损失函数.png"></p>
+<p>综上所述，在训练过程的每次迭代中，我们的框架首先使用嵌入网络LGCN生成节点嵌入。在此之后，我们的框架将更新了维护者的参数 通过最小化等式中的𝐿ww来实现的ein鉴别器 (15).然后，我们的框架使用瓦瑟斯坦鉴别器，根据算法2生成伪节点对应对。最后，在它的最后 通过最小化等式来更新嵌入网络的参数 (17).我们在算法1中总结了我们的框架的详细训练过程。</p>
+<p><img src="../images/wasserstein距离对齐论文/WALIGN算法.png"></p>
+<p><img src="../images/wasserstein距离对齐论文/候选对算法.png"></p>
+
       
 
       
@@ -736,7 +862,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">论文笔记</a>
         		</li>
       		
 		</ul>
@@ -746,7 +872,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/12/04/MySQL%E7%9F%A5%E8%AF%86%E7%82%B9-md/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/04/26/Unsupervised-Graph-Alignment-Alignment-with-Wasserstein-Distance-Disciminator%E7%AC%94%E8%AE%B0/">展开全文 >></a>
         </p>
       
 
@@ -776,32 +902,72 @@
 
 
   
-    <article id="article-RNN-and-LSTM" class="article article-type-article  article-index" itemscope itemprop="blogPost">
+    <article id="article-UAGA笔记" class="article article-type-article  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/18/RNN-and-LSTM/">RNN and LSTM</a>
+      <a class="article-title" href="/2022/04/25/UAGA%E7%AC%94%E8%AE%B0/">UAGA笔记</a>
     </h1>
   
 
         
-        <a href="/2021/10/18/RNN-and-LSTM/" class="archive-article-date">
+        <a href="/2022/04/25/UAGA%E7%AC%94%E8%AE%B0/" class="archive-article-date">
 	
-  	<time datetime="2021-10-17T19:50:50.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-17</time>
+  	<time datetime="2022-04-25T10:43:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="rnn与lstm">RNN与LSTM</h1>
-<h2 id="rnn模型">RNN模型</h2>
-        
-          <a class="article-more-a" href="/2021/10/18/RNN-and-LSTM/#more">more >></a>
-        
+        <p>这篇文章提出了一个UAGA（Unsupervised Adversarial Graph Alignment）架构以完全无监督的方式学习不同图的两个嵌入空间之间的交叉图对齐。该框架学习每个图的嵌入空间，然后尝试通过对抗性训练对齐这两个空间，然后进行细化过程。我们进一步将我们的UAGA方法扩展到增量UAGA(iUAGA)，该方法基于伪锚定链接迭代地显示未观察到的用户链接。这可以用来进一步提高嵌入质量和对齐精度。</p>
+<p>文章只使用两个图的结构信息，首先，利用无监督图嵌入方法分别学习源图和目标图的单个特征表示。接下来，它利用对抗性的训练来学习a 从源嵌入空间到目标嵌入空间的线性映射，然后进行细化过程，从得到的共享嵌入空间中得到伪节点对应 并使用来自[17]的封闭形式的解决程序解决方案对映射进行微调。最后，我们将UAGA方法扩展到增量UAGA(iUAGA)，以提高嵌入质量和对齐 性能迭代。</p>
+<p><em>hub问题，即在高维嵌入空间中，一定数量的节点成为许多其他节点的枢纽和最近邻，如果不解决，将使 通过最近的搜索进行的对齐更加困难和不准确。</em></p>
+<ul>
+<li>定义一：(Graph Alignment Problem)给定两个社交网络<span class="math inline">\(G_s=(V_s,E_s)\)</span>以及<span class="math inline">\(G_t=(V_t,E_t)\)</span>，没有先验的anchor links，目的就是要找到隐藏的对齐的节点。</li>
+</ul>
+<p>在本文中，使用deepwalk来学习源网络和目标网络的graph embedding，定义为<span class="math inline">\(Z_s,Z_t∈R^{|V| \times d}\)</span>。</p>
+<p><img src="../images/UAGA/UAGA模型图.png"></p>
+<p>按照流程图，首先用无监督学习的方法学习图的特征表示，然后我们利用领域对抗性训练来学习W的初始代理。接下来，我们利用学习到的W来选择伪锚点链接来进行映射细化。最后，我们利用细化的映射W将所有源节点映射到目标潜在特征空间。我们通过改变空间的度量来提高比图对齐的性能，这将导致在数据密集的区域中分布更多的这些节点。</p>
+<p>在本文中，我们提出学习一个映射，不需要任何形式的跨域监督之间，这样两个不同的嵌入空间可以很好地对齐。</p>
+<p>令<span class="math inline">\(Z_s= \left\{ z_s^1,...,z_s^n\right\}\)</span>以及<span class="math inline">\(Z_t= \left\{ z_t^1,...,z_t^m\right\}\)</span>为源网络和目标网络的嵌入空间。如果我们知道跨网络的节点对齐（比方说<span class="math inline">\(z_s^i,z_t^i\)</span>是对齐的），我们能够学习到一个线性映射<span class="math inline">\(W∈R^{d \times d}\)</span>：</p>
+<p><img src="../images/UAGA/W矩阵.png"></p>
+<p>d是嵌入向量的维度，X和Y是两个对齐的矩阵，<span class="math inline">\(X,Y∈R^{d \times k}\)</span>，是由源网络和目标网络中找到的k个结点形成的。在测试阶段，任意源网络的embedding <span class="math inline">\(z_s^i\)</span>的转换可以被定义为：<span class="math inline">\(arg \max_{z_t^j∈Z_t}cos(Wz_s^i,z_t^j)\)</span>，注意，如果我们有地面-真节点对应，方程（2）可以直接用作监督学习的损失部分。</p>
+<p>所提出的UAGA框架包括两个步骤：学习W的初始代理的领域对抗性训练，然后是利用最佳匹配节点来创建的细化过程 应用方程（2）的伪锚点链接。</p>
+<h1 id="a.-domain-adversarial-training">A. domain-adversarial training</h1>
+<p>在这一步中，我们的目标是要使得映射后的<span class="math inline">\(Z_s,Z_t\)</span>难以区分。（用的是GAN的方法）首先我们定义一个判别器，它旨在区分从<span class="math inline">\(WZ_s={W_{z^1_s}、W^{z^2_s}、..，W_{z^n_s}}\)</span>和<span class="math inline">\(Z_t\)</span>中随机采样的元素。映射W可以看作是生成器，通过使嵌入特征WZs和Zt变得无法区分，来防止鉴别器做出准确的预测。因此，域对抗训练过程是一个双人博弈，其中第一个玩家是训练区分源域和目标域，第二个玩家是同时被训练来混淆鉴别器的生成器。</p>
+<p>给定映射W，鉴别器由<span class="math inline">\(\theta_D\)</span>通过最小化以下目标函数进行优化：</p>
+<p><img src="../images/UAGA/鉴别器优化方程.png"></p>
+<p>前一项表示的含义是：嵌入<span class="math inline">\(z_s^i\)</span>来自源嵌入空间，给定鉴别器，映射W的目的是通过最小化以下目标函数来欺骗鉴别器精确预测嵌入的原始域的能力：</p>
+<p><img src="../images/UAGA/W的优化方程.png"></p>
+<p>为了训练我们的模型，我们遵循标准的生成对抗网(GANs)[30]训练程序，它交替地和迭代地优化鉴别器θD和映射W，使其分别最小化LD和LW。</p>
+<h1 id="b.-the-hubness-problem-and-refinement-procedure">B. the hubness problem and refinement procedure</h1>
+<p>域对抗训练步骤学习一个匹配全局源和目标嵌入空间的映射函数W，而不考虑数据分布背后的复杂的多模结构。换句话说，在我们的无监督场景中，两组节点之间的细粒度的点到点约束（即没有两条边共享一个共同的端点）没有被明确地强制执行。</p>
+<p>为了解决上述挑战，我们提出了一个细化过程，使细粒度的点对点与生成的伪锚定链路的图对齐。细化的优点 我们可以从两个方面得出结论。首先，通过引入额外的监督(伪锚链，我们在领域对抗训练步骤中规避了潜在的模式崩溃问题(这在传统gan中是一个臭名昭著的问题) )，以适用于点对点的对齐。第二，在选择伪锚链接时，我们在确定了相互关系中所谓的hub问题（即点倾向于高维空间中许多点的最近邻）[31] 通过引入一个交叉图相似度缩放(CGSS)方案。</p>
+<p>我们使用在之前的领域对抗性训练步骤中学习到的W作为初始代理，随后构建许多伪造的anchor links，为了获得高质量的伪造的anchor links，我们只保留在<span class="math inline">\(Z_s和Z_t\)</span>中相互是最邻近的邻居的结点。然而，最近邻通常是不对称的：<span class="math inline">\(z_t\)</span>是<span class="math inline">\(z_s\)</span>的k最邻不代表<span class="math inline">\(z_s\)</span>是<span class="math inline">\(z_t\)</span>的k近邻。在嵌入特征空间中，这将导致一种不利于基于最近邻规则对齐节点嵌入的现象：嵌入空间中的一些节点，我们称之为枢纽，ar e更有可能是许多其他节点的最近邻居，但其他节点（称为反集线器）并不是任何节点的最近邻居。</p>
+<p>我们使用CGSS来缓解所谓的hubness问题，我们考虑一个二部邻域图，其中给定锚链的每个节点都连接到另一个图中的K个最近邻。在二部图中，与映射的源节点嵌入关联<span class="math inline">\(Wz_s\)</span>的邻域被表示为<span class="math inline">\(N_T(Wz_s)\)</span>。<span class="math inline">\(N_T(Wz_s)\)</span>所有的K个元素是来自源网络的结点。源嵌入z与目标邻域的平均相似度表示为：（每个节点都连接到目标网络的k个最近邻，就是说在原网络中i和j是k近邻的话，那么在目标网络中他们也是k近邻的话那么就被保留为伪造的anchor links）</p>
+<p><img src="../images/UAGA/邻域平均相似度.png"></p>
+<p>cos表示cos相似度，同理可以定义目标embedding到其源网络邻居的平均相似度。我们使用有效的最近邻算法[32]来计算所有的源节点和目标节点的嵌入。形式上，我们利用这些相似性来定义一个跨域相似性度量CGSS（.，.）在映射的源嵌入和目标嵌入之间，</p>
+<p><img src="../images/UAGA/跨域相似度度量.png"></p>
+<p>CGSS方案的动机是直观的：它增加了与孤立节点嵌入相关的相似性，而减少了位于密集区域的嵌入的相似性。换句话说，我 T鼓励选择位于低密度区域的节点作为伪锚定链接。形式上，映射W通过方法进一步细化：我们应用方程（2） 或链接来细化W。（度越大的结点对于对齐的影响干扰越大）</p>
+<h1 id="c.-orthography-constraints">C. orthography constraints</h1>
+<p>在我们的工作中，我们额外提出了一个简单的更新步骤，使映射矩阵W在训练进行时保持接近一个正交矩阵。正交约束的优势如下：（1）分别保留源特征嵌入和目标特征嵌入的个体特征和质量；（2）随着训练的进行，稳定了学习过程；（3）保持点积以及它们的L2距离。具体来说，我们的模型将通过使用以下更新策略进行迭代和交替更新</p>
+<p><img src="../images/UAGA/W的更新公式.png"></p>
+<p>利用正交约束，方程（2）可以归结为普罗克鲁斯问题，就是一个矩阵的逼近问题，它的解就是<span class="math inline">\(YX^T\)</span>的奇异值分解值：</p>
+<p><img src="../images/UAGA/W奇异值分解.png"></p>
+<p>为了进一步有效地利用伪锚定链接来学习更准确的映射，我们进一步提出了一个增量的UAGA(iUAGA)程序，它逐步选择一组伪锚定链接，然后利用它们通过使用方程（2）来细化映射W。如果满足以下两个条件，我们选择一个伪锚定链路。首先，我们要求跨域相似度（即方程（5））应该超过阈值参数，我们设为 在实验中分别是0.7或0.75。第二个要求是根据CGSS，嵌入特征对是相互最近的邻居。我们假设，除非它们是相互的最近邻，否则成对的关系是不可靠的。这两个要求减少了伪锚定链路的数量，但提高了其精度和最终的对齐性能。伪造的铆钉节点表示为<span class="math inline">\(\left\{\widehat T=(v_s,v_t)|v_s∈V_s,v_t∈V_t\right\}\)</span>。</p>
+<p>另一个问题就是一些存在的边可能因为没有显式的建立或者没有爬取到而并不能观察到，为了解决这个问题，在此基础上，我们的方法提出了通过伪标记许多可靠的锚定链路来逐步弥补交叉图监督的不足，这有助于显示了未被观察到的边缘（图内伪用户链接）。理由是，如果两个节点在一个图中不连接，但它们的对应节点（根据伪锚点链接）在另一个图中链接，那么在中间加一条边是可行的 在现在的图中，</p>
+<p><img src="../images/UAGA/添加边的示例.png"></p>
+<p>通过利用伪标记的用户链接，我们可以进一步提高图的嵌入质量和最终的对齐性能。它背后的原因是扩展的图可以提供 更丰富的结构信息，可用于图形的嵌入和映射。</p>
+<p>形式上给定两个图<span class="math inline">\(G_s,G_t\)</span>，具有伪造的锚定节点<span class="math inline">\(\widehat T\)</span>，<span class="math inline">\(G_s\)</span>的扩展图<span class="math inline">\(\widehat G_s\)</span>可以被表示为：</p>
+<p><img src="../images/UAGA/源网络的扩展图.png"></p>
+<p>算法流程如下：</p>
+<p><img src="../images/UAGA/算法流程.png"></p>
+<p>整个算法的流程就是：首先得到两个图的各自的node embedding，然后进行GAN的参数更新，得到一个对齐矩阵W。然后获取一个伪造的anchor links集合（如果互为k临近的话那么就是符合要求的），随后细化映射W。随后按照公式7扩展源网络和目标网络，最后重置Gs,Gt和T。最后使用公式5来对齐网络。</p>
+
       
 
       
@@ -814,7 +980,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">论文笔记</a>
         		</li>
       		
 		</ul>
@@ -824,7 +990,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/18/RNN-and-LSTM/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/04/25/UAGA%E7%AC%94%E8%AE%B0/">展开全文 >></a>
         </p>
       
 
@@ -854,31 +1020,59 @@
 
 
   
-    <article id="article-Transformer" class="article article-type-article  article-index" itemscope itemprop="blogPost">
+    <article id="article-CONE-Align笔记" class="article article-type-article  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2021/10/11/Transformer/">Transformer</a>
+      <a class="article-title" href="/2022/04/21/CONE-Align%E7%AC%94%E8%AE%B0/">CONE-Align笔记</a>
     </h1>
   
 
         
-        <a href="/2021/10/11/Transformer/" class="archive-article-date">
+        <a href="/2022/04/21/CONE-Align%E7%AC%94%E8%AE%B0/" class="archive-article-date">
 	
-  	<time datetime="2021-10-10T16:54:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-10-10</time>
+  	<time datetime="2022-04-21T10:15:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-04-21</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="transformer">Transformer</h1>
-        
-          <a class="article-more-a" href="/2021/10/11/Transformer/#more">more >></a>
-        
+        <p>现有的无监督网络对齐方法可以找到分解节点邻域的次优对齐，即不保持匹配的邻域一致性。为了改进这一点，提出了CONE- Align，用节点嵌入建模网络内接近，并在对齐嵌入子空间后使用它们来匹配跨网络的节点。</p>
+<p>许多的无监督网络对齐方法(FINAL,NETALIGN,REGAL)不能够实现匹配的邻域一致性：在一个图中接近的节点通常与在另一个图中接近的节点不匹配。REGAL使用结点嵌入捕获每个节点在网络中的结构身份，但是相邻的节点可能没有类似的结构角色，这导致了非常不一样的embeddings可能在另一个图中匹配得很远，违反了匹配的邻域一致性。CONE-Align： <strong>CON</strong>sistent <strong>E</strong>mbedding-based Network <strong>Align</strong>ment.我们使用著名的接近保持节点嵌入方法来学习每个图中邻近节点的相似节点嵌入。然而，由于节点在图之间并不接近，所以这些节点满足了 主节点是可转换的，不同图中的节点将被嵌入到不同的子空间中。因此，我们对图的嵌入子空间进行对齐，然后利用嵌入相似度来匹配节点。由于每个图中的相邻节点将有相似的嵌入，因此它们将被匹配 电解到另一个图的相似部分。因此，我们有最好的cone对齐：匹配邻域一致性和交叉图可比性。</p>
+<p>大多数嵌入目标都是在单个图中建模接近性，如deepwalk，node2vec；结构嵌入方法捕获一个节点的结构角色，而不依赖于其与特定节点的接近程度，这种独立性使得嵌入在各个图之间具有可比性，例如struct2vec，xNetMF。</p>
+<p>对于每一幅图，假设结点的个数为n（没有的话就补上），对于每个图<span class="math inline">\(G_i\)</span>，创建一个<span class="math inline">\(Y_i∈R^{n \times d}\)</span>表示结点的embedding matrix。网络对齐是找到一个方程<span class="math inline">\(\pi: V_1 \to V_2\)</span>或者一个矩阵<span class="math inline">\(P\)</span>其中<span class="math inline">\(p_{i,j}\)</span>表示的是在1网络中的结点i和2网络中的结点j的相似度。方程<span class="math inline">\(\pi\)</span>可以从P中找到，例如贪心策略：<span class="math inline">\(\pi(i) = arg \ max \ x_jp_{i,j}\)</span></p>
+<p><span class="math inline">\(N_{G_1(i)}\)</span>表示在网络1中的节点i的邻居，定义i的"mapped neighborhood"在<span class="math inline">\(G_2\)</span>中为：经过<span class="math inline">\(\pi\)</span>映射的那个在<span class="math inline">\(G_2\)</span>中对应结点的邻居。<span class="math inline">\(\widetilde N_{G_2}^{\pi}(i)=\left\{j∈V_2:\exist k ∈ N_{G_1}(i) \ s.t. \pi(k)=j\right\}\)</span>，我们定义匹配邻域一致性MNC（Jaccard系数）</p>
+<p><img src="../images/CONE/匹配邻域一致性.png"></p>
+<p>问题定义：给定两个图：<span class="math inline">\(G_1和G_2\)</span>，没有先验知识，要恢复其对齐<span class="math inline">\(\pi\)</span>与此同时实现更高的MNC。</p>
+<p><img src="../images/CONE/问题定义.png"></p>
+<p>整体框架如下图所示：首先使用结点嵌入模拟图内的结点相似度，然后我们对齐嵌入空间以获得图之间的可比性。然后匹配两个网络中的结点用最相似的节点嵌入。</p>
+<p><img src="../images/CONE/整体框架.png"></p>
+<h2 id="step1node-embedding">1. step1：node embedding</h2>
+<p>对于每个输入的图独自的获得其结点的嵌入<span class="math inline">\(Y_1,Y_2 ∈ R^{n \times d}\)</span>，我们只需要嵌入来保持图内节点的邻近性，每个图中的相邻节点都有相似的嵌入，在使用嵌入相似性时将被近距离映射。这有力地保留了MNC：即使节点由于缺少边[7]而不是邻居，许多节点嵌入算法也可以保持它们共享的任何高阶接近性。</p>
+<h2 id="step2-embedding-space-alignment">2. step2： embedding space alignment</h2>
+<p>由于嵌入目标的不变性，两个图的节点嵌入Y1和Y2可以相对于相互平移、旋转或重新缩放。在步骤2中对齐了两个嵌入子空间，我们解决了两个问题：</p>
+<ol type="1">
+<li><p>procrustes：如果结点的对应关系已知，我们可以从正交矩阵<span class="math inline">\(O^d\)</span>中找到一个线性的变换Q。Q对齐结点嵌入矩阵的列，例如嵌入空间。可以被定义为解决下述的问题：</p>
+<p><img src="../images/CONE/procrustes问题.png"></p>
+<p>它的解为<span class="math inline">\(Q^*=UV^T\)</span>，其中<span class="math inline">\(U \Sigma V^T\)</span>是<span class="math inline">\(Y_1^TY_2\)</span>的SVD分解。</p></li>
+<li><p>wasserstein：如果嵌入空间变化已知，可以从排列矩阵<span class="math inline">\(P^n\)</span>的集合中求解最优的节点对应关系P。P对齐节点嵌入矩阵的行，也就是结点。可以使用 Sinkhorn algorithm来最小化wasserstein distance：</p>
+<p><img src="../images/CONE/wasserstein.png"></p></li>
+<li><p>wasserstein procrustes：由于我们既不知道对应关系，也不知道转换，所以我们将这些问题结合起来：</p>
+<p><img src="../images/CONE/解决方案.png"></p>
+<p>我们等价的解决了<span class="math inline">\(max_{p∈p^n},max_{Q∈O^d}\)</span>的迹<span class="math inline">\(trace(Q^TY_1^TPY_2)\)</span>，通过一种随机优化方案，交替wasserstein以及procrustes问题。对于第T次迭代，我们使用目前的embedding转换矩阵Q对小批次的每次b个embeddings也就是<span class="math inline">\(Y_{1_t},Y_{2_t}\)</span>来找到一个匹配<span class="math inline">\(P_t\)</span>，使用sinkhorn算法λ正则化系数。我们随后使用wasserstein procrustes距离的梯度来更新Q。算法1如下：</p>
+<p><img src="../images/CONE/alignment-embedding.png"></p></li>
+<li><p>convex initialization：为了初始化上述非凸过程，我们转向了一个经典的凸图匹配公式：</p>
+<p><img src="../images/CONE/凸初始化.png"></p>
+<p>其中<span class="math inline">\(B^n\)</span>是<span class="math inline">\(p^n\)</span>的凸包，我们可以通过Frank-Wolfe algorithm找到全局最小的<span class="math inline">\(P^*\)</span>，经过<span class="math inline">\(n_0\)</span>次迭代，以及sinkhorn算法以<span class="math inline">\(λ_0\)</span>为正则化参数。使用<span class="math inline">\(Y_1和P^*Y_2\)</span>，以及一个初始的Q可以由正交的procrustes公式2生成。</p></li>
+<li><p>complexity consideration：</p></li>
+</ol>
+<h2 id="step-3matching-nodes-with-embeddings">step 3：matching nodes with embeddings</h2>
+<p>在将嵌入与最终的变换Q对齐后，在步骤3中，我们根据欧氏距离将𝐺1中的每个节点与𝐺2中的最近邻进行匹配。我们可以使用缩放修正来减轻“hub度”，即许多节点有相同的最近邻[11]，但我们发现没有必要。在[14]之后，我们使用一个𝑘-d树来进行快速最近邻搜索 h在<span class="math inline">\(Y_1Q\)</span>和<span class="math inline">\(Y_2\)</span>之间。</p>
+
       
 
       
@@ -891,7 +1085,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">深度学习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">论文笔记</a>
         		</li>
       		
 		</ul>
@@ -901,7 +1095,89 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2021/10/11/Transformer/">展开全文 >></a>
+          <a class="article-more-a" href="/2022/04/21/CONE-Align%E7%AC%94%E8%AE%B0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="article-G-ALIGN代码解析" class="article article-type-article  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/31/G-ALIGN%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90/">G-ALIGN代码解析</a>
+    </h1>
+  
+
+        
+        <a href="/2022/03/31/G-ALIGN%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90/" class="archive-article-date">
+	
+  	<time datetime="2022-03-30T21:16:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-30</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="embedding部分">1. embedding部分</h1>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init_weight</span><span class="params">(modules, activation)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Weight initialization</span></span><br><span class="line"><span class="string">    :param modules: Iterable of modules</span></span><br><span class="line"><span class="string">    :param activation: Activation function.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> modules:</span><br><span class="line">        <span class="keyword">if</span> isinstance(m, nn.Linear):<span class="comment">#判断m是否为nn.Linear类型，线性层</span></span><br><span class="line">            <span class="keyword">if</span> activation <span class="keyword">is</span> <span class="literal">None</span>:<span class="comment">#没有激活函数的话就初始化不加增益</span></span><br><span class="line">                m.weight.data = init.xavier_uniform_(m.weight.data)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                m.weight.data = init.xavier_uniform_(m.weight.data,gain=nn.init.calculate_gain(activation.lower()))</span><br><span class="line">            <span class="keyword">if</span> m.bias <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                m.bias.data = init.constant_(m.bias.data, <span class="number">0.0</span>)</span><br></pre></td></tr></table></figure>
+<p>这里涉及到的是一个权重的初始化的步骤，在神经网络中的初始化步骤很重要。初始化应该既保证输入输出的差异性，又能让model稳定而快速的收敛。描述差异性的方法就是数学中的方差。对于每个神经元的输入z，<span class="math inline">\(z=\sum_{i=1}^nw_ix_i\)</span>，其中n是上一层中的神经元的个数。</p>
+<p>那么两个随机变量的方差的公式为：<span class="math inline">\(Var(w_ix_i)=E[w_i]^2Var(x_i)+E[x_i]^2Var(w_i)+Var(w_i)Var(x_i)\)</span>，可以知道如果<span class="math inline">\(E[x_i]=E[w_i]=0\)</span>，能通过批量归一化满足这一条件，那么就有：</p>
+<p><span class="math inline">\(Var(z)=\sum_{i=1}^nVar(x_i)Var(w_i)\)</span>，如果随机变量独立同分布的话，<span class="math inline">\(Var(z)=nVar(w)Var(x)\)</span>。一般来讲，类别空间相较于样本空间更加稠密，所以反向传播的误差到样本空间将显得微不足道。我们要让样本空间与类别空间的分布差异不要太大，也就是方差尽可能相等。</p>
+<p>Xavier初始化方法就是：</p>
+<p><img src="../images/G-ALIGN源码分析/Xavier初始化.png"></p>
+<p>gain参数就是可选择的缩放的参数，总之以上就是初始化为了让神经网络更加健壮的手段。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">源码解析</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2022/03/31/G-ALIGN%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90/">展开全文 >></a>
         </p>
       
 
@@ -933,7 +1209,7 @@
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
     </nav>
   
 
@@ -1062,11 +1338,27 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1074,7 +1366,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1083,6 +1383,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1099,6 +1403,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">周会论文讲解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>

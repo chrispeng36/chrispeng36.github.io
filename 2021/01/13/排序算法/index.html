@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://yoursite.com/images/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F.gif">
 <meta property="og:image" content="http://yoursite.com/images/%E5%A0%86%E6%8E%92%E5%BA%8F.gif">
 <meta property="article:published_time" content="2021-01-13T15:44:58.000Z">
-<meta property="article:modified_time" content="2021-01-31T09:38:42.000Z">
+<meta property="article:modified_time" content="2022-03-27T03:45:38.598Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
@@ -231,7 +231,7 @@
 <p>流程图如下所示： <img src="/images/快速排序.gif" alt="avatar"></p>
 <p>快速排序的代码实现如下： <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> QuickSort1;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Created with IntelliJ IDEA.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Auther</span>: ChrisPeng</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Date</span>: 2021/01/31/13:30</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@Description</span>:</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] a = &#123;<span class="number">5</span>,<span class="number">343</span>,<span class="number">56</span>,<span class="number">32</span>,<span class="number">6</span>,<span class="number">633</span>,<span class="number">39343</span>,<span class="number">89</span>&#125;;</span><br><span class="line">        quickSort(a,<span class="number">0</span>,<span class="number">7</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i : a) &#123;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">quickSort</span><span class="params">(<span class="keyword">int</span>[] arr,<span class="keyword">int</span> left,<span class="keyword">int</span> right)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (left &gt; right)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//定义保存基准数</span></span><br><span class="line">        <span class="keyword">int</span> base = arr[left];</span><br><span class="line">        <span class="comment">//定义变量i指向最左边</span></span><br><span class="line">        <span class="keyword">int</span> i = left;</span><br><span class="line">        <span class="comment">//定义j指向最右边</span></span><br><span class="line">        <span class="keyword">int</span> j = right;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//当i和j不相遇的时候，在循环中进行检索</span></span><br><span class="line">        <span class="keyword">while</span> (i != j)&#123;</span><br><span class="line">            <span class="comment">//j从右向左检索比基准数小的，如果检索到比基准数小的就停下</span></span><br><span class="line">            <span class="comment">//如果检索比基准数大或者相等的的就继续检索</span></span><br><span class="line">            <span class="keyword">while</span> (arr[j] &gt;= base &amp;&amp; i &lt; j)&#123;</span><br><span class="line">                j --;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//i从左往右检索</span></span><br><span class="line">            <span class="keyword">while</span> (arr[i] &lt;= base &amp;&amp; i &lt; j)&#123;</span><br><span class="line">                i ++;<span class="comment">//i从左往右移动</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//走到这i找到了，j找到了，交换i和j的元素</span></span><br><span class="line">            <span class="keyword">int</span> temp = arr[i];</span><br><span class="line">            arr[i] = arr[j];</span><br><span class="line">            arr[j] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//while条件不成立，说明相遇了</span></span><br><span class="line">        <span class="comment">//相遇了就将基准数和相遇位置的元素</span></span><br><span class="line">        <span class="comment">//先把相遇位置的元素赋值给基准数位置的元素</span></span><br><span class="line">        arr[left] = arr[i];</span><br><span class="line">        <span class="comment">//把基准数赋值给相遇的位置的元素</span></span><br><span class="line">        arr[i] = base;</span><br><span class="line">        <span class="comment">//此时基准数左边的比它小，右边的比它大</span></span><br><span class="line">        <span class="comment">//排基准数的左边</span></span><br><span class="line">        quickSort(arr,left,i - <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//排基准数的右边</span></span><br><span class="line">        quickSort(arr,j + <span class="number">1</span>,right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <h1 id="堆排序">1.7 堆排序</h1>
-<p>堆排序是指堆这种数据结构所设计的一种排序算法，堆是一个近似完全二叉树的结构，并且同时满足堆积的性质，即子结点的键值或索引总是小于或者大于它的父节点。</p>
+<p>堆排序是指堆这种数据结构所设计的一种排序算法，堆是一个近似完全二叉树的结构，并且同时满足堆积的性质，即子结点的键值或索引总是小于或者大于它的父节点。一般升序采用大顶堆，降序采用小顶堆。</p>
 <h2 id="算法流程">算法流程</h2>
 <ul>
 <li>将无序序列构建成一个堆，根据升序降序需求选择大顶堆或者小顶堆，大顶堆是结点大于叶子结点的数据，大顶堆用于升序排序，小顶堆用于降序排序。</li>
@@ -528,11 +528,27 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -540,7 +556,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -549,6 +573,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,6 +593,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">周会论文讲解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>

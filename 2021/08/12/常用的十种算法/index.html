@@ -15,11 +15,17 @@
 <meta property="og:site_name" content="Chris的个人博客">
 <meta property="og:description" content="常用的十种算法">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://yoursite.com/2021/08/12/images/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/hungry%E7%AE%97%E6%B3%95/hungry%E7%AE%97%E6%B3%95%E4%BE%8B%E9%A2%98.png">
+<meta property="og:image" content="http://yoursite.com/2021/08/12/images/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/hungry%E7%AE%97%E6%B3%95/%E9%A2%98%E8%A7%A3.png">
+<meta property="og:image" content="http://yoursite.com/2021/08/12/images/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/hungry%E7%AE%97%E6%B3%95/%E6%8C%87%E6%B4%BE%E9%97%AE%E9%A2%98.png">
+<meta property="og:image" content="http://yoursite.com/2021/08/12/images/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/hungry%E7%AE%97%E6%B3%95/%E6%AD%A5%E9%AA%A4%E4%B8%80.png">
+<meta property="og:image" content="http://yoursite.com/2021/08/12/images/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/hungry%E7%AE%97%E6%B3%95/%E6%AD%A5%E9%AA%A4%E4%BA%8C.png">
 <meta property="article:published_time" content="2021-08-12T09:48:46.000Z">
-<meta property="article:modified_time" content="2021-12-06T03:08:16.027Z">
+<meta property="article:modified_time" content="2022-05-15T14:29:36.548Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="数据结构与算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2021/08/12/images/%E5%B8%B8%E7%94%A8%E7%AE%97%E6%B3%95/hungry%E7%AE%97%E6%B3%95/hungry%E7%AE%97%E6%B3%95%E4%BE%8B%E9%A2%98.png">
   
     <link rel="alternative" href="/atom.xml" title="Chris的个人博客" type="application/atom+xml">
   
@@ -209,6 +215,16 @@
 <li><p>简要介绍 1.动态规划算法的核心是：将大问题划分为小问题进行解决，进而一步步获取最优解的处理算法 2.动态规划算法与分治算法类似，其基本思想也是将待求解问题分解为若干个子问题，先求解子问题，然后从这些子问题的解得到原问题的解。 3.与分治算法不同的是，适用于用动态规划求解的问题，经分解得到子问题往往不是相互独立的，即下一个子阶段的求解是建立在上一个子阶段的解的基础上，进行进一步的求解。 4.动态规划可以通过填表的方式来逐步求解最优解。</p></li>
 <li><p>动态规划解决背包问题 算法主要思想：每次遍历到的第i个物品，根据w[i]和v[i]来确定是否需要将该物品放入背包中。即对于给定的n个物品，设v[i]、w[i]分别为第i个物品的价值和重量，C为背包的容量。再令v[i][j]表示在前i个物品中能够装入容量为j的背包中的最大价值。则我们有下面的结果： (1)v[i][0] = v[0][j] = 0//表示填入表第一行和第一列是0 (2)当w[i] &gt; j时：v[i][j] = v[i - 1][j]//当准备加入新增的商品的容量大于当前背包的容量时，就直接使用上一个单元格的装入策略 (3)当j&gt;=w[i]时：v[i][j] = max{v[i - 1][j],v[i - 1][j - w[i]] + v[i]}</p></li>
 </ul>
+<h2 id="hungry算法">4. hungry算法</h2>
+<p>一共有n项任务，对应n个人承担，应该指派哪个人完成哪项任务使得完成效率最高。</p>
+<p><img src="../images/常用算法/hungry算法/hungry算法例题.png"></p>
+<p><img src="../images/常用算法/hungry算法/题解.png"></p>
+<p>指派问题的一般的模型：（特殊的0-1规划问题）</p>
+<p><img src="../images/常用算法/hungry算法/指派问题.png"></p>
+<p>hungry算法的条件：（1）目标函数求最小值；（2）人数和任务数相等；（3）效率非负。</p>
+<p>算法的本质：变换系数矩阵，找到n个不同行不同列的0元素，以求解指派问题的最优解。</p>
+<p><img src="../images/常用算法/hungry算法/步骤一.png"></p>
+<p><img src="../images/常用算法/hungry算法/步骤二.png"></p>
 
       
 
@@ -351,7 +367,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用的十种算法"><span class="toc-number">1.</span> <span class="toc-text">常用的十种算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二分查找算法"><span class="toc-number">2.</span> <span class="toc-text">1.二分查找算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分治算法"><span class="toc-number">2.1.</span> <span class="toc-text">2.分治算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态规划算法"><span class="toc-number">2.2.</span> <span class="toc-text">3.动态规划算法</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#常用的十种算法"><span class="toc-number">1.</span> <span class="toc-text">常用的十种算法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#二分查找算法"><span class="toc-number">2.</span> <span class="toc-text">1.二分查找算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#分治算法"><span class="toc-number">2.1.</span> <span class="toc-text">2.分治算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态规划算法"><span class="toc-number">2.2.</span> <span class="toc-text">3.动态规划算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hungry算法"><span class="toc-number">2.3.</span> <span class="toc-text">4. hungry算法</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -497,11 +513,27 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -509,7 +541,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java并发</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -518,6 +558,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -534,6 +578,10 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">周会论文讲解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
             
             <div class="clearfix"></div>
