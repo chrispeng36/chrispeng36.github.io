@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2022-05-30T06:56:27.575Z</updated>
+  <updated>2022-05-30T07:01:06.078Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://yoursite.com/2022/05/27/DeepLink/"/>
     <id>http://yoursite.com/2022/05/27/DeepLink/</id>
     <published>2022-05-27T10:16:59.000Z</published>
-    <updated>2022-05-30T06:56:27.575Z</updated>
+    <updated>2022-05-30T07:01:06.078Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="deeplink">DeepLink</h1><p><a id="more"></a></p><p>deeplink主要做了以下的事情：</p><p>（1）它对网络进行采样，在保持网络结构的同时生成训练“语料库”。</p><p>（2）网络中的每个节点通过网络嵌入被表示为低维空间中的一个向量；</p><p>（3）然后将锚节点输入深度神经网络，训练非线性变换，使用户跨网络对齐；</p><p>（4）DeepLink采用双学习过程来提高身份链接性能，提高监督训练算法。</p><p>首先在给定的一对网络a和一对网络B之间预先训练两个初步的映射函数，也就是<span class="math inline">\(\Phi(A \to B)\)</span>以及<span class="math inline">\(\Phi^{-1}(B \to A)\)</span>在没有标签（对齐）的锚节点上使用自动映射。然后，用户身份链接可以形式化为一个双重学习游戏：在网络A中的一个铆钉节点的嵌入表示<span class="math inline">\(\vec a\)</span>可以使用<span class="math inline">\(\Phi(A \to B)\)</span>得到一个在B中的对应向量<span class="math inline">\(\vec b&#39;\)</span>。随后向量<span class="math inline">\(\vec b&#39;\)</span>与其真实的向量<span class="math inline">\(\vec b\)</span>相比较，和A被通知<span class="math inline">\(\Phi(A \to B)\)</span>是否是一个高质量的映射，通过使用<span class="math inline">\(\Phi^{-1}(B \to A)\)</span>将<span class="math inline">\(\vec b&#39;\)</span>映射回去得到<span class="math inline">\(\vec a&#39;\)</span>。网络A测量<span class="math inline">\(\vec a\)</span>和<span class="math inline">\(\vec a&#39;\)</span>之间的相似度然后反馈给B。游戏也可以从B中的一个节点开始，并在B空间中嵌入向量。本质上，随着锚定节点的增加，这两个映射函数得到了越来越多的改进。</p><p><img src="../images/deeplink/deepwalk框架图.png"></p><p>经过随机游走采样得到语句<span class="math inline">\(S_{u_i}^r\)</span>之后，r表示第r轮次，deeplink使用skip-gram模型来更新embedding。</p>]]></content>
+    <content type="html"><![CDATA[<h1 id="deeplink">DeepLink</h1><p><a id="more"></a></p><p>deeplink主要做了以下的事情：</p><p>（1）它对网络进行采样，在保持网络结构的同时生成训练“语料库”。</p><p>（2）网络中的每个节点通过网络嵌入被表示为低维空间中的一个向量；</p><p>（3）然后将锚节点输入深度神经网络，训练非线性变换，使用户跨网络对齐；</p><p>（4）DeepLink采用双学习过程来提高身份链接性能，提高监督训练算法。</p><p>首先在给定的一对网络a和一对网络B之间预先训练两个初步的映射函数，也就是<span class="math inline">\(\Phi(A \to B)\)</span>以及<span class="math inline">\(\Phi^{-1}(B \to A)\)</span>在没有标签（对齐）的锚节点上使用自动映射。然后，用户身份链接可以形式化为一个双重学习游戏：在网络A中的一个铆钉节点的嵌入表示<span class="math inline">\(\vec a\)</span>可以使用<span class="math inline">\(\Phi(A \to B)\)</span>得到一个在B中的对应向量<span class="math inline">\(\vec b&#39;\)</span>。随后向量<span class="math inline">\(\vec b&#39;\)</span>与其真实的向量<span class="math inline">\(\vec b\)</span>相比较，和A被通知<span class="math inline">\(\Phi(A \to B)\)</span>是否是一个高质量的映射，通过使用<span class="math inline">\(\Phi^{-1}(B \to A)\)</span>将<span class="math inline">\(\vec b&#39;\)</span>映射回去得到<span class="math inline">\(\vec a&#39;\)</span>。网络A测量<span class="math inline">\(\vec a\)</span>和<span class="math inline">\(\vec a&#39;\)</span>之间的相似度然后反馈给B。游戏也可以从B中的一个节点开始，并在B空间中嵌入向量。本质上，随着锚定节点的增加，这两个映射函数得到了越来越多的改进。</p><p><img src="/2022/05/27/DeepLink/deepwalk框架图.png"></p><p>经过随机游走采样得到语句<span class="math inline">\(S_{u_i}^r\)</span>之后，r表示第r轮次，deeplink使用skip-gram模型来更新embedding。</p><p><img src="/2022/05/27/DeepLink/skipgram优化方程.png"></p>]]></content>
     
     <summary type="html">
     

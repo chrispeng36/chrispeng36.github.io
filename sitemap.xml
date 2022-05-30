@@ -588,20 +588,6 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
-    <lastmod>2022-05-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/tags/Java%E5%B9%B6%E5%8F%91/</loc>
-    <lastmod>2022-05-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>http://yoursite.com/tags/Java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -616,7 +602,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/Java/</loc>
+    <loc>http://yoursite.com/tags/Java%E5%B9%B6%E5%8F%91/</loc>
+    <lastmod>2022-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/tags/Java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -630,7 +623,7 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <loc>http://yoursite.com/tags/Java/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -644,6 +637,13 @@
   </url>
   
   <url>
+    <loc>http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/</loc>
+    <lastmod>2022-05-30</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/tags/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
@@ -651,14 +651,14 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</loc>
+    <loc>http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</loc>
+    <loc>http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</loc>
     <lastmod>2022-05-30</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
