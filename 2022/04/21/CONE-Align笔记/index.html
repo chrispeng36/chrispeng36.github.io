@@ -8,12 +8,10 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>CONE-Align笔记 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="现有的无监督网络对齐方法可以找到分解节点邻域的次优对齐，即不保持匹配的邻域一致性。为了改进这一点，提出了CONE- Align，用节点嵌入建模网络内接近，并在对齐嵌入子空间后使用它们来匹配跨网络的节点。 许多的无监督网络对齐方法(FINAL,NETALIGN,REGAL)不能够实现匹配的邻域一致性：在一个图中接近的节点通常与在另一个图中接近的节点不匹配。REGAL使用结点嵌入捕获每个节点在网络中">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="CONE-Align笔记">
 <meta property="og:url" content="http://yoursite.com/2022/04/21/CONE-Align%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="现有的无监督网络对齐方法可以找到分解节点邻域的次优对齐，即不保持匹配的邻域一致性。为了改进这一点，提出了CONE- Align，用节点嵌入建模网络内接近，并在对齐嵌入子空间后使用它们来匹配跨网络的节点。 许多的无监督网络对齐方法(FINAL,NETALIGN,REGAL)不能够实现匹配的邻域一致性：在一个图中接近的节点通常与在另一个图中接近的节点不匹配。REGAL使用结点嵌入捕获每个节点在网络中">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2022/04/21/images/CONE/%E5%8C%B9%E9%85%8D%E9%82%BB%E5%9F%9F%E4%B8%80%E8%87%B4%E6%80%A7.png">
 <meta property="og:image" content="http://yoursite.com/2022/04/21/images/CONE/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89.png">
@@ -24,7 +22,7 @@
 <meta property="og:image" content="http://yoursite.com/2022/04/21/images/CONE/alignment-embedding.png">
 <meta property="og:image" content="http://yoursite.com/2022/04/21/images/CONE/%E5%87%B8%E5%88%9D%E5%A7%8B%E5%8C%96.png">
 <meta property="article:published_time" content="2022-04-21T10:15:54.000Z">
-<meta property="article:modified_time" content="2022-04-21T09:12:47.216Z">
+<meta property="article:modified_time" content="2022-05-30T02:07:35.822Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
@@ -197,7 +195,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>现有的无监督网络对齐方法可以找到分解节点邻域的次优对齐，即不保持匹配的邻域一致性。为了改进这一点，提出了CONE- Align，用节点嵌入建模网络内接近，并在对齐嵌入子空间后使用它们来匹配跨网络的节点。</p>
+        <p><a id="more"></a></p>
+<p>现有的无监督网络对齐方法可以找到分解节点邻域的次优对齐，即不保持匹配的邻域一致性。为了改进这一点，提出了CONE- Align，用节点嵌入建模网络内接近，并在对齐嵌入子空间后使用它们来匹配跨网络的节点。</p>
 <p>许多的无监督网络对齐方法(FINAL,NETALIGN,REGAL)不能够实现匹配的邻域一致性：在一个图中接近的节点通常与在另一个图中接近的节点不匹配。REGAL使用结点嵌入捕获每个节点在网络中的结构身份，但是相邻的节点可能没有类似的结构角色，这导致了非常不一样的embeddings可能在另一个图中匹配得很远，违反了匹配的邻域一致性。CONE-Align： <strong>CON</strong>sistent <strong>E</strong>mbedding-based Network <strong>Align</strong>ment.我们使用著名的接近保持节点嵌入方法来学习每个图中邻近节点的相似节点嵌入。然而，由于节点在图之间并不接近，所以这些节点满足了 主节点是可转换的，不同图中的节点将被嵌入到不同的子空间中。因此，我们对图的嵌入子空间进行对齐，然后利用嵌入相似度来匹配节点。由于每个图中的相邻节点将有相似的嵌入，因此它们将被匹配 电解到另一个图的相似部分。因此，我们有最好的cone对齐：匹配邻域一致性和交叉图可比性。</p>
 <p>大多数嵌入目标都是在单个图中建模接近性，如deepwalk，node2vec；结构嵌入方法捕获一个节点的结构角色，而不依赖于其与特定节点的接近程度，这种独立性使得嵌入在各个图之间具有可比性，例如struct2vec，xNetMF。</p>
 <p>对于每一幅图，假设结点的个数为n（没有的话就补上），对于每个图<span class="math inline">\(G_i\)</span>，创建一个<span class="math inline">\(Y_i∈R^{n \times d}\)</span>表示结点的embedding matrix。网络对齐是找到一个方程<span class="math inline">\(\pi: V_1 \to V_2\)</span>或者一个矩阵<span class="math inline">\(P\)</span>其中<span class="math inline">\(p_{i,j}\)</span>表示的是在1网络中的结点i和2网络中的结点j的相似度。方程<span class="math inline">\(\pi\)</span>可以从P中找到，例如贪心策略：<span class="math inline">\(\pi(i) = arg \ max \ x_jp_{i,j}\)</span></p>
@@ -532,15 +531,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -565,10 +564,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">java基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">pytorch学习</a>
               </li>
              
               <li class="article-tag-list-item">

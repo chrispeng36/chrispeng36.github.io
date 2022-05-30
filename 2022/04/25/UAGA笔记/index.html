@@ -8,12 +8,10 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>UAGA笔记 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这篇文章提出了一个UAGA（Unsupervised Adversarial Graph Alignment）架构以完全无监督的方式学习不同图的两个嵌入空间之间的交叉图对齐。该框架学习每个图的嵌入空间，然后尝试通过对抗性训练对齐这两个空间，然后进行细化过程。我们进一步将我们的UAGA方法扩展到增量UAGA(iUAGA)，该方法基于伪锚定链接迭代地显示未观察到的用户链接。这可以用来进一步提高嵌入质量">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="UAGA笔记">
 <meta property="og:url" content="http://yoursite.com/2022/04/25/UAGA%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="这篇文章提出了一个UAGA（Unsupervised Adversarial Graph Alignment）架构以完全无监督的方式学习不同图的两个嵌入空间之间的交叉图对齐。该框架学习每个图的嵌入空间，然后尝试通过对抗性训练对齐这两个空间，然后进行细化过程。我们进一步将我们的UAGA方法扩展到增量UAGA(iUAGA)，该方法基于伪锚定链接迭代地显示未观察到的用户链接。这可以用来进一步提高嵌入质量">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2022/04/25/images/UAGA/UAGA%E6%A8%A1%E5%9E%8B%E5%9B%BE.png">
 <meta property="og:image" content="http://yoursite.com/2022/04/25/images/UAGA/W%E7%9F%A9%E9%98%B5.png">
@@ -27,7 +25,7 @@
 <meta property="og:image" content="http://yoursite.com/2022/04/25/images/UAGA/%E6%BA%90%E7%BD%91%E7%BB%9C%E7%9A%84%E6%89%A9%E5%B1%95%E5%9B%BE.png">
 <meta property="og:image" content="http://yoursite.com/2022/04/25/images/UAGA/%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.png">
 <meta property="article:published_time" content="2022-04-25T10:43:23.000Z">
-<meta property="article:modified_time" content="2022-04-25T13:04:31.119Z">
+<meta property="article:modified_time" content="2022-05-30T02:07:27.820Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
@@ -200,7 +198,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>这篇文章提出了一个UAGA（Unsupervised Adversarial Graph Alignment）架构以完全无监督的方式学习不同图的两个嵌入空间之间的交叉图对齐。该框架学习每个图的嵌入空间，然后尝试通过对抗性训练对齐这两个空间，然后进行细化过程。我们进一步将我们的UAGA方法扩展到增量UAGA(iUAGA)，该方法基于伪锚定链接迭代地显示未观察到的用户链接。这可以用来进一步提高嵌入质量和对齐精度。</p>
+        <p><a id="more"></a></p>
+<p>这篇文章提出了一个UAGA（Unsupervised Adversarial Graph Alignment）架构以完全无监督的方式学习不同图的两个嵌入空间之间的交叉图对齐。该框架学习每个图的嵌入空间，然后尝试通过对抗性训练对齐这两个空间，然后进行细化过程。我们进一步将我们的UAGA方法扩展到增量UAGA(iUAGA)，该方法基于伪锚定链接迭代地显示未观察到的用户链接。这可以用来进一步提高嵌入质量和对齐精度。</p>
 <p>文章只使用两个图的结构信息，首先，利用无监督图嵌入方法分别学习源图和目标图的单个特征表示。接下来，它利用对抗性的训练来学习a 从源嵌入空间到目标嵌入空间的线性映射，然后进行细化过程，从得到的共享嵌入空间中得到伪节点对应 并使用来自[17]的封闭形式的解决程序解决方案对映射进行微调。最后，我们将UAGA方法扩展到增量UAGA(iUAGA)，以提高嵌入质量和对齐 性能迭代。</p>
 <p><em>hub问题，即在高维嵌入空间中，一定数量的节点成为许多其他节点的枢纽和最近邻，如果不解决，将使 通过最近的搜索进行的对齐更加困难和不准确。</em></p>
 <ul>
@@ -548,15 +547,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -581,10 +580,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">java基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">pytorch学习</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>ATTENT笔记 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="introduction 内在网络属性信息对对齐结果的直接影响在很大程度上仍然是未知的。针对该挑战，提出了一个主动网络对齐方法(ATTENT)确定要查询的最佳节点.该方法的关键思想是利用定义在对齐解决方案上的有效和高效的影响函数来评估可供查询的候选节点的有效性。提出的方法具有以下优点：（1）有效性：能够准确地量化候选节点对对齐结果的影响；（2）高效性：线性扩展与15 17×加速比直接实现没有任何">
+  <meta name="description" content="introduction">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ATTENT笔记">
 <meta property="og:url" content="http://yoursite.com/2022/02/25/ATTENT%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="introduction 内在网络属性信息对对齐结果的直接影响在很大程度上仍然是未知的。针对该挑战，提出了一个主动网络对齐方法(ATTENT)确定要查询的最佳节点.该方法的关键思想是利用定义在对齐解决方案上的有效和高效的影响函数来评估可供查询的候选节点的有效性。提出的方法具有以下优点：（1）有效性：能够准确地量化候选节点对对齐结果的影响；（2）高效性：线性扩展与15 17×加速比直接实现没有任何">
+<meta property="og:description" content="introduction">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2022/02/25/images/ATTENT/%E7%BD%91%E7%BB%9C%E5%AF%B9%E9%BD%90%E5%AE%9E%E4%BE%8B.png">
 <meta property="og:image" content="http://yoursite.com/2022/02/25/images/ATTENT/%E6%96%87%E7%AB%A0%E5%8F%82%E6%95%B0.png">
@@ -24,7 +24,7 @@
 <meta property="og:image" content="http://yoursite.com/2022/02/25/images/ATTENT/%E5%81%8F%E5%AF%BC%E6%95%B0.png">
 <meta property="og:image" content="http://yoursite.com/2022/02/25/images/ATTENT/%E5%BC%95%E7%90%862%E5%85%AC%E5%BC%8F.png">
 <meta property="article:published_time" content="2022-02-24T16:01:44.000Z">
-<meta property="article:modified_time" content="2022-03-01T03:20:07.152Z">
+<meta property="article:modified_time" content="2022-05-30T02:09:28.854Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
@@ -198,6 +198,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="introduction">introduction</h1>
+<p><a id="more"></a></p>
 <p>内在网络属性信息对对齐结果的直接影响在很大程度上仍然是未知的。针对该挑战，提出了一个主动网络对齐方法(ATTENT)确定要查询的最佳节点.该方法的关键思想是利用定义在对齐解决方案上的有效和高效的影响函数来评估可供查询的候选节点的有效性。提出的方法具有以下优点：（1）有效性：能够准确地量化候选节点对对齐结果的影响；（2）高效性：线性扩展与15 17×加速比直接实现没有任何质量损失；（3）普适性：不断提高各种网络对齐算法的对齐性能。</p>
 <p><img src="../images/ATTENT/网络对齐实例.png"></p>
 <p>一开始的时候网络对齐是困难的，因为节点2可能与节点e或者节点b对齐。通过查询节点1和4并且获得他妈的正确的对齐节点a和d，所有的其他节点都会被正确的对齐由于拓扑一致性。但是，如果我们随机的查询节点2和节点5，剩余的1346节点的正确对齐仍无法获得。例如我们无法知道1是和a还是c对齐。</p>
@@ -589,15 +590,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -622,10 +623,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">java基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">pytorch学习</a>
               </li>
              
               <li class="article-tag-list-item">

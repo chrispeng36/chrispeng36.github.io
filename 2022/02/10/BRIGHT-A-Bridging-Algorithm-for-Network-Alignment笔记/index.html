@@ -8,12 +8,12 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>BRIGHT: A Bridging Algorithm for Network Alignment笔记 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="abstract 现有的网络对齐的方法可以分为两类：(1) 基于一致性优化的方法，通常明确地假设对齐在跨网络的邻域拓扑和属性方面是一致的；(2) 基于网络嵌入的方法，学习低维节点嵌入向量来推断对齐。本文中，通过分析两种方法中具有代表性的方法，我们证明了：（1）基于一致性优化的方法本质上是来自锚定链接的特定随机游走传播，可能限制太大；（2）基于嵌入的方法不再明确地假设对齐一致性，而是不可避免地存在">
+  <meta name="description" content="abstract">
 <meta property="og:type" content="article">
 <meta property="og:title" content="BRIGHT: A Bridging Algorithm for Network Alignment笔记">
 <meta property="og:url" content="http://yoursite.com/2022/02/10/BRIGHT-A-Bridging-Algorithm-for-Network-Alignment%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="abstract 现有的网络对齐的方法可以分为两类：(1) 基于一致性优化的方法，通常明确地假设对齐在跨网络的邻域拓扑和属性方面是一致的；(2) 基于网络嵌入的方法，学习低维节点嵌入向量来推断对齐。本文中，通过分析两种方法中具有代表性的方法，我们证明了：（1）基于一致性优化的方法本质上是来自锚定链接的特定随机游走传播，可能限制太大；（2）基于嵌入的方法不再明确地假设对齐一致性，而是不可避免地存在">
+<meta property="og:description" content="abstract">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2022/02/10/images/BRIGHT/%E4%B8%80%E8%87%B4%E6%80%A7%E7%BA%A6%E6%9D%9F%E8%BF%9D%E5%8F%8D.png">
 <meta property="og:image" content="http://yoursite.com/2022/02/10/images/BRIGHT/%E7%BD%91%E7%BB%9C%E5%B5%8C%E5%85%A5%E6%96%B9%E6%B3%95%E7%9A%84%E9%97%AE%E9%A2%98.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://yoursite.com/2022/02/10/images/BRIGHT/G1%E7%9A%84%E7%AC%AC%E4%B8%80%E5%B1%82%E5%92%8C%E7%AC%AC%E4%BA%8C%E5%B1%82.png">
 <meta property="og:image" content="http://yoursite.com/2022/02/10/images/BRIGHT/BRIGHT%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png">
 <meta property="article:published_time" content="2022-02-10T14:26:46.000Z">
-<meta property="article:modified_time" content="2022-02-21T12:01:02.791Z">
+<meta property="article:modified_time" content="2022-05-30T02:09:57.985Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
@@ -209,6 +209,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="abstract">abstract</h1>
+<p><a id="more"></a></p>
 <p>现有的网络对齐的方法可以分为两类：(1) 基于一致性优化的方法，通常明确地假设对齐在跨网络的邻域拓扑和属性方面是一致的；(2) 基于网络嵌入的方法，学习低维节点嵌入向量来推断对齐。本文中，通过分析两种方法中具有代表性的方法，我们证明了：（1）基于一致性优化的方法本质上是来自锚定链接的特定随机游走传播，可能限制太大；（2）基于嵌入的方法不再明确地假设对齐一致性，而是不可避免地存在空间视差问题。为了克服这两个限制，我们将这些方法连接起来，并提出了一个新的网络对齐算法家族，BRIGHT处理普通网络和属性网络。具体来说，它通过构造一个带重启(RWR)的随机游走空间，其基是锚节点的一个热编码向量，然后是一个共享的线性层。</p>
 <p>许多现有的网络对齐方法往往是基于对齐一致性原则，并作为一个优化问题来表述。这些方法的一个基本假设是，要对齐的节点的邻域拓扑和/或属性在不同网络中是一致的。传统上，网络对齐可以被描述为一个图的对齐问题，它将一个网络视为另一个网络的有噪声的排列。这类方法的目标函数是最小化<span class="math inline">\(\left\|\mathbf{A}_{1}-\mathbf{P A}_{2} \mathbf{P}^{T}\right\|_{F}^{2}\)</span>，其中<span class="math inline">\(A_1\)</span>和<span class="math inline">\(A_2\)</span>是两个网络的邻接矩阵，P是节点的置换矩阵。然而由于网络的异质性，一致性假设可能会被违反。</p>
 <p><img src="../images/BRIGHT/一致性约束违反.png"></p>
@@ -594,15 +595,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,10 +628,6 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">java基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">pytorch学习</a>
               </li>
              
               <li class="article-tag-list-item">
