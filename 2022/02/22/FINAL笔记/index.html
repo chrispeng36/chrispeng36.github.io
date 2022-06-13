@@ -15,21 +15,21 @@
 <meta property="og:site_name" content="Chris的个人博客">
 <meta property="og:description" content="摘要">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2022/02/22/images/FINAL/%E5%8F%82%E6%95%B0.png">
-<meta property="og:image" content="http://yoursite.com/2022/02/22/images/FINAL/%E7%BD%91%E7%BB%9C%E6%A0%87%E8%AF%86%E5%AE%9E%E4%BE%8B.png">
-<meta property="og:image" content="http://yoursite.com/2022/02/22/images/FINAL/%E4%B8%80%E8%87%B4%E6%80%A7%E5%8E%9F%E5%88%99.png">
-<meta property="og:image" content="http://yoursite.com/2022/02/22/images/FINAL/%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0.png">
-<meta property="og:image" content="http://yoursite.com/2022/02/22/images/FINAL/f%E5%87%BD%E6%95%B0.png">
-<meta property="og:image" content="http://yoursite.com/2022/02/22/images/FINAL/1%E5%87%BD%E6%95%B0%E5%88%86%E8%A7%A3.png">
-<meta property="og:image" content="http://yoursite.com/2022/02/22/images/FINAL/%E7%AE%80%E5%8C%96%E6%AD%A5%E9%AA%A41.png">
-<meta property="og:image" content="http://yoursite.com/2022/02/22/images/FINAL/%E7%9B%B8%E5%90%8C%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E8%8A%82%E7%82%B9.png">
-<meta property="og:image" content="http://yoursite.com/2022/02/22/images/FINAL/%E9%87%8D%E5%86%99%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/images/FINAL/%E5%8F%82%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/images/FINAL/%E7%BD%91%E7%BB%9C%E6%A0%87%E8%AF%86%E5%AE%9E%E4%BE%8B.png">
+<meta property="og:image" content="http://yoursite.com/images/FINAL/%E4%B8%80%E8%87%B4%E6%80%A7%E5%8E%9F%E5%88%99.png">
+<meta property="og:image" content="http://yoursite.com/images/FINAL/%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/images/FINAL/f%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/images/FINAL/1%E5%87%BD%E6%95%B0%E5%88%86%E8%A7%A3.png">
+<meta property="og:image" content="http://yoursite.com/images/FINAL/%E7%AE%80%E5%8C%96%E6%AD%A5%E9%AA%A41.png">
+<meta property="og:image" content="http://yoursite.com/images/FINAL/%E7%9B%B8%E5%90%8C%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E8%8A%82%E7%82%B9.png">
+<meta property="og:image" content="http://yoursite.com/images/FINAL/%E9%87%8D%E5%86%99%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png">
 <meta property="article:published_time" content="2022-02-22T14:48:58.000Z">
 <meta property="article:modified_time" content="2022-05-30T02:09:51.528Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2022/02/22/images/FINAL/%E5%8F%82%E6%95%B0.png">
+<meta name="twitter:image" content="http://yoursite.com/images/FINAL/%E5%8F%82%E6%95%B0.png">
   
     <link rel="alternative" href="/atom.xml" title="Chris的个人博客" type="application/atom+xml">
   
@@ -198,54 +198,54 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="摘要">摘要</h1>
-<p><a id="more"></a></p>
-<p>在本文中，我们提出了一系列的算法（FINAL）来对齐属性网络。关键思想是利用节点/边缘属性信息来指导（基于拓扑的）对齐过程。我们基于对齐一致性原则从优化的角度来阐述这个问题，并开发有效和可扩展的算法来解决它。</p>
+        <h1 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h1> <a id="more"></a>
+
+<p>在本文中，我们提出了一系列的算法（FINAL）来对齐属性网络。关键思想是利用节点&#x2F;边缘属性信息来指导（基于拓扑的）对齐过程。我们基于对齐一致性原则从优化的角度来阐述这个问题，并开发有效和可扩展的算法来解决它。</p>
 <p>许多的真实网络中往往伴随着边或者节点的属性，这可能为解决节点拓扑一致性假设违反提供了一个互补的解决方案。存在以下三个问题：</p>
 <ul>
-<li>目前还不清楚如何将节点/边缘属性信息吸收到基于拓扑的网络对齐公式中。</li>
+<li>目前还不清楚如何将节点&#x2F;边缘属性信息吸收到基于拓扑的网络对齐公式中。</li>
 <li>基于拓扑的网络对齐背后的优化问题通常是非凸的，甚至是np困难的。</li>
 <li>我们如何利用真实网络的一些内在属性（如低秩）来扩大属性网络对齐过程？</li>
 </ul>
 <p>作者的贡献：</p>
 <ul>
-<li>我们从优化的角度来制定属性网络对齐。该公式背后的关键思想是利用节点/边缘属性信息来指导基于对齐一致性原则的（基于拓扑的）对齐过程。</li>
+<li>我们从优化的角度来制定属性网络对齐。该公式背后的关键思想是利用节点&#x2F;边缘属性信息来指导基于对齐一致性原则的（基于拓扑的）对齐过程。</li>
 <li>提出了FINAL算法来解决网络对齐问题</li>
 </ul>
-<h1 id="算法">算法</h1>
-<p>文章的参数如下：</p>
-<p><img src="../images/FINAL/参数.png"></p>
-<p><img src="../images/FINAL/网络标识实例.png"></p>
-<ol type="1">
+<h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><p>文章的参数如下：</p>
+<p><img src="/../images/FINAL/%E5%8F%82%E6%95%B0.png"></p>
+<p><img src="/../images/FINAL/%E7%BD%91%E7%BB%9C%E6%A0%87%E8%AF%86%E5%AE%9E%E4%BE%8B.png"></p>
+<ol>
 <li><p>问题1：属性网络对齐</p>
-<p>给定两个特征网络<span class="math inline">\(G_1=\left\{A_1,N_1,E_1\right\}\)</span>以及<span class="math inline">\(G_2=\left\{A_2,N_2,E_2\right\}\)</span>，分别有n1和n2个节点，一个先验对齐偏好H。</p>
-<p>输出：<span class="math inline">\(n_2 \times n_1\)</span>的对齐矩阵，其中<span class="math inline">\(S(x,a)\)</span>表示<span class="math inline">\(G_1\)</span>中的节点a以及<span class="math inline">\(G_2\)</span>中的节点x的相似度。</p>
+<p>给定两个特征网络$G_1&#x3D;\left{A_1,N_1,E_1\right}$以及$G_2&#x3D;\left{A_2,N_2,E_2\right}$，分别有n1和n2个节点，一个先验对齐偏好H。</p>
+<p>输出：$n_2 \times n_1$的对齐矩阵，其中$S(x,a)$表示$G_1$中的节点a以及$G_2$中的节点x的相似度。</p>
 <p>在上面的定义中，我们有一个可选的输入，来编码成对对齐偏好H的先验知识，这是一个n2×n1矩阵。H中的一个条目反映了我们对在两个输入网络中对齐两个相应节点的可能性的先验知识。当没有这样的先验知识时，我们设H的所有项都相等。在不失一般性的前提下，我们假设a1和a2具有相同的大小。</p>
-<p>有的时候我们可能想要得到一个特定的脸书用户中十大最相似的领英用户。我们可以首先解决问题1，然后在对齐矩阵S中返回相应的行或列，这可能在计算上太昂贵，也不必要。考虑到这一点，我们进一步定义了查询属性网络对齐问题如下：</p></li>
+<p>有的时候我们可能想要得到一个特定的脸书用户中十大最相似的领英用户。我们可以首先解决问题1，然后在对齐矩阵S中返回相应的行或列，这可能在计算上太昂贵，也不必要。考虑到这一点，我们进一步定义了查询属性网络对齐问题如下：</p>
+</li>
 <li><p>ON-QUERY属性网络对齐</p>
-<p>给定两个特征网络<span class="math inline">\(G_1=\left\{A_1,N_1,E_1\right\}\)</span>以及<span class="math inline">\(G_2=\left\{A_2,N_2,E_2\right\}\)</span>，分别有n1和n2个节点，一个先验对齐偏好H。以及一个在<span class="math inline">\(G_1\)</span>中的查询节点a。</p>
-<p>输出：一个n2×1向量sa，有效地测量G1中的查询节点-a和G2中的所有节点之间的相似性。</p></li>
+<p>给定两个特征网络$G_1&#x3D;\left{A_1,N_1,E_1\right}$以及$G_2&#x3D;\left{A_2,N_2,E_2\right}$，分别有n1和n2个节点，一个先验对齐偏好H。以及一个在$G_1$中的查询节点a。</p>
+<p>输出：一个n2×1向量sa，有效地测量G1中的查询节点-a和G2中的所有节点之间的相似性。</p>
+</li>
 </ol>
-<h2 id="finaloptimition-formulation">FINAL：Optimition Formulation</h2>
-<p><img src="../images/FINAL/一致性原则.png"></p>
+<h2 id="FINAL：Optimition-Formulation"><a href="#FINAL：Optimition-Formulation" class="headerlink" title="FINAL：Optimition Formulation"></a>FINAL：Optimition Formulation</h2><p><img src="/../images/FINAL/%E4%B8%80%E8%87%B4%E6%80%A7%E5%8E%9F%E5%88%99.png"></p>
 <ul>
 <li>拓扑一致性：a和b是在网络G1中的邻居，那么x和y也是在G2中的邻居。</li>
 <li>节点属性一致性：a和x有同样的节点属性，b和y也有相同的节点属性。</li>
 <li>边属性一致性：边(a,b)以及(x,y)有同样的边属性值。</li>
 </ul>
 <p>如果我们已经知道a和x是对齐的，那么他们紧密的具有相同的属性值的邻居应该有很高的可能性对齐，其中b和y是a和x的紧密的邻居，如果它们是由相同的边属性值连接的。这自然导致了以下目标函数，我们希望用对齐矩阵S来最小化：</p>
-<p><img src="../images/FINAL/目标函数.png"></p>
+<p><img src="/../images/FINAL/%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0.png"></p>
 <p>其中f是一个节点对规范化函数：</p>
-<p><img src="../images/FINAL/f函数.png"></p>
-<p><span class="math inline">\(f(x,a)\)</span>描述了有多少个邻居对具有以下的性质：1.在他们之间具有相同的节点属性值（比如b和y），2.分别通过相同的边属性值连接到a和x。</p>
-<p><span class="math inline">\(1(.)\)</span>函数反映了输入的边或者节点是否有相同的属性值，其分解如下：</p>
-<p><img src="../images/FINAL/1函数分解.png"></p>
+<p><img src="/../images/FINAL/f%E5%87%BD%E6%95%B0.png"></p>
+<p>$f(x,a)$描述了有多少个邻居对具有以下的性质：1.在他们之间具有相同的节点属性值（比如b和y），2.分别通过相同的边属性值连接到a和x。</p>
+<p>$1(.)$函数反映了输入的边或者节点是否有相同的属性值，其分解如下：</p>
+<p><img src="/../images/FINAL/1%E5%87%BD%E6%95%B0%E5%88%86%E8%A7%A3.png"></p>
 <p>带入可得：</p>
-<p><img src="../images/FINAL/简化步骤1.png"></p>
+<p><img src="/../images/FINAL/%E7%AE%80%E5%8C%96%E6%AD%A5%E9%AA%A41.png"></p>
 <p>对于具有相同属性值的节点：</p>
-<p><img src="../images/FINAL/相同属性值的节点.png"></p>
+<p><img src="/../images/FINAL/%E7%9B%B8%E5%90%8C%E5%B1%9E%E6%80%A7%E5%80%BC%E7%9A%84%E8%8A%82%E7%82%B9.png"></p>
 <p>接下来，我们给出了j1的一个等价矩阵形式，这更方便了以下算法的描述和理论证明。通过向量化对齐矩阵S，并且使用元素级别的乘法（两个矩阵的对应位置的元素相乘）以及Kronecker product，等式1可以被重写为：</p>
-<p><img src="../images/FINAL/重写损失函数.png"></p>
+<p><img src="/../images/FINAL/%E9%87%8D%E5%86%99%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png"></p>
 
       
 
@@ -388,7 +388,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法"><span class="toc-number">2.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#finaloptimition-formulation"><span class="toc-number">2.1.</span> <span class="toc-text">FINAL：Optimition Formulation</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#摘要"><span class="toc-number">1.</span> <span class="toc-text">摘要</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#算法"><span class="toc-number">2.</span> <span class="toc-text">算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#FINAL：Optimition-Formulation"><span class="toc-number">2.1.</span> <span class="toc-text">FINAL：Optimition Formulation</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -542,11 +542,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
+                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
+                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -562,15 +562,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -586,11 +586,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">

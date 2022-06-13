@@ -18,17 +18,18 @@
 <meta property="og:image" content="http://yoursite.com/2022/06/02/images/%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E6%A1%86%E6%9E%B6.png">
 <meta property="og:image" content="http://yoursite.com/2022/06/02/images/%E7%BB%93%E6%9E%84%E4%BF%9D%E6%8C%81%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0.png">
 <meta property="og:image" content="http://yoursite.com/2022/06/02/images/L%E7%9A%84%E5%AE%9A%E4%B9%89.png">
-<meta property="og:image" content="http://yoursite.com/2022/06/02/images/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0.png">
-<meta property="og:image" content="http://yoursite.com/2022/06/02/images/ua%E5%90%91%E9%87%8F%E6%9B%B4%E6%96%B0.png">
-<meta property="og:image" content="http://yoursite.com/2022/06/02/images/ua%E6%9B%B4%E6%96%B0.png">
-<meta property="og:image" content="http://yoursite.com/2022/06/02/images/ua%E5%8F%98%E5%8C%96.png">
-<meta property="og:image" content="http://yoursite.com/2022/06/02/images/vb%E8%BD%AC%E7%A7%BB.png">
-<meta property="og:image" content="http://yoursite.com/2022/06/02/images/vc%E8%BD%AC%E7%A7%BB.png">
+<meta property="og:image" content="http://yoursite.com/2022/06/02/Towards-Improving-Embedding-Based-Models-of/">
+<meta property="og:image" content="http://yoursite.com/images/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0.png">
+<meta property="og:image" content="http://yoursite.com/images/ua%E5%90%91%E9%87%8F%E6%9B%B4%E6%96%B0.png">
+<meta property="og:image" content="http://yoursite.com/images/ua%E6%9B%B4%E6%96%B0.png">
+<meta property="og:image" content="http://yoursite.com/images/ua%E5%8F%98%E5%8C%96.png">
+<meta property="og:image" content="http://yoursite.com/images/vb%E8%BD%AC%E7%A7%BB.png">
+<meta property="og:image" content="http://yoursite.com/images/vc%E8%BD%AC%E7%A7%BB.png">
 <meta property="og:image" content="http://yoursite.com/2022/06/02/images/%E6%A4%8D%E5%85%A5%E4%BC%AA%E9%94%9A%E5%AE%9A%E8%8A%82%E7%82%B9%E5%B5%8C%E5%85%A5%E7%9A%84%E7%A7%BB%E5%8A%A8.png">
 <meta property="og:image" content="http://yoursite.com/2022/06/02/images/%E4%BC%AA%E9%94%9A%E5%AE%9A%E8%8A%82%E7%82%B9%E7%9A%84%E6%9B%B4%E6%96%B0%E6%96%B9%E5%90%91.png">
 <meta property="og:image" content="http://yoursite.com/2022/06/02/images/%E6%8E%A7%E5%88%B6%E6%96%B9%E5%90%91%E7%9A%84%E6%9B%B4%E6%96%B0.png">
-<meta property="og:image" content="http://yoursite.com/2022/06/02/images/%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0.png">
-<meta property="og:image" content="http://yoursite.com/2022/06/02/images/%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://yoursite.com/images/%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.png">
 <meta property="article:published_time" content="2022-06-02T14:52:16.000Z">
 <meta property="article:modified_time" content="2022-06-08T09:07:27.275Z">
 <meta property="article:author" content="Chris Peng">
@@ -203,95 +204,88 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="利用伪锚定改进基于嵌入的社会网络对齐模型">利用伪锚定改进基于嵌入的社会网络对齐模型</h1>
-<p><a id="more"></a></p>
+        <h1 id="利用伪锚定改进基于嵌入的社会网络对齐模型"><a href="#利用伪锚定改进基于嵌入的社会网络对齐模型" class="headerlink" title="利用伪锚定改进基于嵌入的社会网络对齐模型"></a>利用伪锚定改进基于嵌入的社会网络对齐模型</h1> <a id="more"></a>
+
 <p>现在的embedding方式可能会造成用户向量的过度接近，这个文章通过伪锚定节点来将结果向量分割的更开。进一步提出了一种元学习算法来指导学习过程中伪锚定嵌入的更新。</p>
 <p>传统的方式就是把潜在的节点d的对应节点映射到一个低维度的子空间中，然而，由于密集局部结构中节点的数值表示彼此非常相似，因此很难将d与团内的邻居区分开来 特别是当没有足够的锚点来为对齐提供额外的信息时。</p>
 <p>解决上述问题的一个直观的想法是通过强制节点嵌入在嵌入空间中保持更广泛的距离来限制“模糊区域”中的节点数量，从而 彼此之间更有区别。提出了一个双重策略：（1）首先我们通过直接连接到一些真正的锚来植入伪锚。在保留结构的目标下，我们希望伪锚定节点对真实的anchors和其一阶邻居所组成的局部结构有更多的影响，但是对远处的结点影响小。锚的一阶邻域的扩大群将形成一个更紧凑的团，从而更好地区分其他远离锚的拓扑节点。这样的话就能使得学习到的向量分割更远。（2）第二要解决的就是伪锚定节点在嵌入空间中的适当位置。在学习的过程中，使用了基于元学习的一种微调的策略，其动机是学习一个更新方向，可以在学习过程中驱动伪锚的嵌入远离“模糊区域”。特别地，我们使网络间的伪锚点关闭，而真实锚点的一阶邻居离它们更远。由于锚点的一阶邻居位于“模糊区域”附近，将伪锚点远离它们可以确保伪锚点向正确的方向更新。同时，这一策略可以缓解植入伪锚可能引入的锚周围扩大群的“过于接近”问题。在观察到的锚点和先验知识（从具有丰富标记数据的支持数据集学习）的监督下，在模型学习过程中调整伪节点的位置。最后，可以获得一个更有区别的嵌入空间，用于社交网络的用户对齐。</p>
 <center>
-<img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/模型结构框架.png"> <br>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/模型结构框架.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">
-图1 模型结构
-</div>
+    padding: 2px;">图1 模型结构</div>
 </center>
-<p>定义<span class="math inline">\(\Phi_{v_i}:v_i \to \vec u_i\)</span>表示在结构相似的假设下的<span class="math inline">\(v_i\)</span>结点的嵌入，网络嵌入的问题就是找到一个映射<span class="math inline">\(f_m(\vec u_i^s, \vec u_j^t) ∈ \left\{0,1\right\}\)</span>。</p>
+
+<p>定义$\Phi_{v_i}:v_i \to \vec u_i$表示在结构相似的假设下的$v_i$结点的嵌入，网络嵌入的问题就是找到一个映射$f_m(\vec u_i^s, \vec u_j^t) ∈ \left{0,1\right}$。</p>
 <p>我们提出“植入”伪锚点作为指导伪锚点嵌入学习的手段，以避免锚点附近的节点嵌入紧密聚集 。通过两阶段来实现：首先是通过伪锚点的干预，将与真实锚点直接连接的节点拉离模糊区域，远离模糊区域。第二种方法是利用元学习来调整伪锚点的更新方向。这可以确保植入的伪锚点在学习过程中不会接近模糊区域，并可以再次避免在真实锚点周围形成的“过接近”嵌入 植入的假锚点的介绍。</p>
 <p>其关键思想是植入伪锚点，对真实锚点周围的局部结构施加更大的影响，而对嵌入空间中远离锚点的节点的影响较小。然后，在伪锚点的拉力作用下，锚点附近的节点之间的推断嵌入距离更远(见图1b部分)。因此，“过度依赖” 可以缓解锚定节点周围的“损失”现象。</p>
-<p>进一步解释为何植入伪锚定节点会导致在真实锚点的高阶邻域中节点嵌入的是均匀分布的，我们采用了典型的结构保留嵌入算法的学习过程。这些算法的目标是倾向于将某个节点vi及其邻近节点尽可能接近地嵌入到局部结构中，同时保持<span class="math inline">\(v_i\)</span>远离随机采样节点。这里我们将<span class="math inline">\(v_i\)</span>的相邻节点和随机抽样节点分别定义为<span class="math inline">\(context(v_i)\)</span>和<span class="math inline">\(neg(v_i)\)</span>，对于节点<span class="math inline">\(v_i,v_j∈\left\{context(v_i) \or neg(v_i)\right\}\)</span>，他们之间的结构保持目标函数为：</p>
+<p>进一步解释为何植入伪锚定节点会导致在真实锚点的高阶邻域中节点嵌入的是均匀分布的，我们采用了典型的结构保留嵌入算法的学习过程。这些算法的目标是倾向于将某个节点vi及其邻近节点尽可能接近地嵌入到局部结构中，同时保持$v_i$远离随机采样节点。这里我们将$v_i$的相邻节点和随机抽样节点分别定义为$context(v_i)$和$neg(v_i)$，对于节点$v_i,v_j∈\left{context(v_i) \or neg(v_i)\right}$，他们之间的结构保持目标函数为：</p>
 <center>
-<img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/结构保持目标函数.png"> <br>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/结构保持目标函数.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">
-图2 模型结构
-</div>
+    padding: 2px;">图2 模型结构</div>
 </center>
-<p>其中<span class="math inline">\(\vec u_i\)</span>和<span class="math inline">\(\vec u_j\)</span>是anchor links的embeddings，<span class="math inline">\(L_j^i\)</span>的值取决于<span class="math inline">\(v_j\)</span>是否为<span class="math inline">\(v_i\)</span>的上下文节点：</p>
+其中$\vec u_i$和$\vec u_j$是anchor links的embeddings，$L_j^i$的值取决于$v_j$是否为$v_i$的上下文节点：
+
+
+
 <center>
-<img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/L的定义.png"> <br>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/L的定义.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">
-图3 L函数的定义
-</div>
+    padding: 2px;">图3 L函数的定义</div>
 </center>
-<p>我们可以计算出对<span class="math inline">\(\vec u_i\)</span>来更新模型：</p>
-<p><img src><img src="../images/梯度更新.png" alt="梯度更新"></p>
-<p>对于一个特定的anchor node <span class="math inline">\(v_a\)</span>,<span class="math inline">\(\vec u_a\)</span>的更新准则为：</p>
-<p><img src="../images/ua向量更新.png"></p>
-<p>注意<span class="math inline">\(v_a\)</span>和<span class="math inline">\(v_i\)</span>是可以交换的，因为这里<span class="math inline">\(v_a\)</span>是要被更新的目标节点。</p>
-<p>然后我们考虑图2中那样的植入伪锚定节点，其中<span class="math inline">\(v_a\)</span>是锚定节点，<span class="math inline">\(\left\{p_1,p_2\right\}\)</span>是被植入的节点。锚定节点<span class="math inline">\(v_a\)</span>必须满足与节点b的一阶近似，也需要满足与伪锚定节点的一阶近似。因此，<span class="math inline">\(\left\{p_1,p_2 \right\}\)</span>应该包含在<span class="math inline">\(v_a\)</span>的上下文中，更新<span class="math inline">\(\vec u_a\)</span>变为：</p>
-<p><img src="../images/ua更新.png"></p>
-<p>与未植入假锚点的情况相比，<span class="math inline">\(v_a\)</span>的embedding将会如同图2中所示的那样从a转移到a'，其中转移的<span class="math inline">\(\Delta \vec u_a\)</span>由上面两个式子相减：</p>
-<p><img src="../images/ua变化.png"></p>
-<p>由上面的公式，为了保持锚点a和p1，p2之间的一级接近性，<span class="math inline">\(\vec u_a\)</span>将会接近<span class="math inline">\(\vec u_{p_1}\)</span>和<span class="math inline">\(\vec u_{p_2}\)</span>。锚定节点<span class="math inline">\(v_a\)</span>嵌入的转移也会影响锚定节点<span class="math inline">\(v_a\)</span>的一阶邻居节点<span class="math inline">\(v_b\)</span>。基于图2中的结构以及公式3中的更新规则，<span class="math inline">\(v_b\)</span>的转移被定义为：</p>
-<p><img src="../images/vb转移.png"></p>
-<p>同样的，<span class="math inline">\(v_c\)</span>的转移可以表示为：</p>
-<p><img src="../images/vc转移.png"></p>
+
+<p>我们可以计算出对$\vec u_i$来更新模型：</p>
+<p><img src="/2022/06/02/Towards-Improving-Embedding-Based-Models-of/"><img src="/../images/%E6%A2%AF%E5%BA%A6%E6%9B%B4%E6%96%B0.png" alt="梯度更新"></p>
+<p>对于一个特定的anchor node $v_a$,$\vec u_a$的更新准则为：</p>
+<p><img src="/../images/ua%E5%90%91%E9%87%8F%E6%9B%B4%E6%96%B0.png"></p>
+<p>注意$v_a$和$v_i$是可以交换的，因为这里$v_a$是要被更新的目标节点。</p>
+<p>然后我们考虑图2中那样的植入伪锚定节点，其中$v_a$是锚定节点，$\left{p_1,p_2\right}$是被植入的节点。锚定节点$v_a$必须满足与节点b的一阶近似，也需要满足与伪锚定节点的一阶近似。因此，$\left{p_1,p_2 \right}$应该包含在$v_a$的上下文中，更新$\vec u_a$变为：</p>
+<p><img src="/../images/ua%E6%9B%B4%E6%96%B0.png"></p>
+<p>与未植入假锚点的情况相比，$v_a$的embedding将会如同图2中所示的那样从a转移到a’，其中转移的$\Delta \vec u_a$由上面两个式子相减：</p>
+<p><img src="/../images/ua%E5%8F%98%E5%8C%96.png"></p>
+<p>由上面的公式，为了保持锚点a和p1，p2之间的一级接近性，$\vec u_a$将会接近$\vec u_{p_1}$和$\vec u_{p_2}$。锚定节点$v_a$嵌入的转移也会影响锚定节点$v_a$的一阶邻居节点$v_b$。基于图2中的结构以及公式3中的更新规则，$v_b$的转移被定义为：</p>
+<p><img src="/../images/vb%E8%BD%AC%E7%A7%BB.png"></p>
+<p>同样的，$v_c$的转移可以表示为：</p>
+<p><img src="/../images/vc%E8%BD%AC%E7%A7%BB.png"></p>
 <center>
-<img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/植入伪锚定节点嵌入的移动.png"> <br>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    <img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/植入伪锚定节点嵌入的移动.png">
+    <br>
+    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">
-图2 植入伪锚定节点嵌入的移动
-</div>
+    padding: 2px;">图2 植入伪锚定节点嵌入的移动</div>
 </center>
+
 <p>A图表示的是经过植入后的网络结构，B图表示的是植入伪锚定节点之前的embedding分布，C图是植入伪锚定节点之后的embedding分布。</p>
 <p>一般来说，由伪锚点引起的拉力效应会通过锚点的高阶邻域传播出去。随着近似的阶次的上升，移动的数量将相应地减少。因此，远离锚点的节点将被移得更少。在此基础上，我们可以得出结论，伪锚点对相应的锚点节点和相邻节点有较大的影响 在他们附近。由于锚点周围的节点被伪锚点拉走，因此高阶邻居的嵌入将分布更均匀，因此更容易区分。</p>
 <p>随着植入伪锚的效果和潜在的好处的解释，剩下的关键问题是如何正确地首先放置伪锚，然后在学习过程中进行更新过程。不难注意到，不正确地更新伪锚点（例如，将它们移动到“模糊区域”）将导致不希望的嵌入结果(例如，所有节点e 嵌入在一个“过紧密”的集群中)，进而对对齐任务造成负面影响。为此，我们试图确定植入的伪锚在学习专业中的正确位置 过程。具体来说，我们介绍了一种元学习方法来控制伪锚点的更新方向，如下一节所述。</p>
-<h2 id="伪锚定节点的微调">伪锚定节点的微调</h2>
-<p>为了使得植入的伪锚定节点得到适当的控制，提出了元学习的策略，包含以下两步。首先是确保伪锚点的更新方向远离“模糊区域”。第二种是避免植入的伪锚在锚周围造成的“过度接近”嵌入。为了实现这些目标，我们首先使用一个基于元学习的算法，从一些包含丰富标记锚点的支持数据集中学习一些关于更新的先验知识。然后利用先验知识对每个嵌入学习epoch的伪锚点进行微调。通过微调和嵌入学习步骤的交错迭代，我们期望以适当控制的方式更新伪锚点，从而产生更均匀的分布的嵌入空间中提供了证明。下面，我们将提供该算法的细节。</p>
-<p>给定一个特殊的anchor用户<span class="math inline">\(v_a\)</span>，令<span class="math inline">\(P_a=\left\{p_a^0,p_a^1,...,p_a^n\right\}\)</span>为与<span class="math inline">\(v_a\)</span>对应的植入的伪锚定节点。对于一个特定的伪锚定节点<span class="math inline">\(p_a^i\)</span>，我们定义它的更新方向为：</p>
-<center>
-<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/伪锚定节点的更新方向.png"> <br>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">
-图4 伪锚定节点的更新方向
-</div>
-</center>
-<p>其中<span class="math inline">\(W=\left\{w^0,w^1,...,w^n\right\}\)</span>用于控制伪锚点更新方向的可学习参数集，<span class="math inline">\(nei(v_a)\)</span>表示<span class="math inline">\(v_a\)</span>的一阶邻居，<span class="math inline">\(g\)</span>表示激活函数。</p>
-<p>根据图4中的公式，连接到相同的真实的anchor将会有相同的“基方向”<span class="math inline">\(\vec u_a + \sum_{j∈nei(v_a)} \vec u_j\)</span>控制更新的方向。通过对“基方向”的系数<span class="math inline">\(w^i\)</span>设置不同的值并迭代应用，可以得到不同的伪锚更新方向。</p>
-<center>
-<img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/控制方向的更新.png"> <br>
-<div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">
-图5 控制方向的更新
-</div>
-</center>
-<p>如图5所展示的那样，<span class="math inline">\(p_a^1\)</span>和<span class="math inline">\(p_a^2\)</span>是植入到相同的anchor <span class="math inline">\(v_a\)</span>的伪锚定节点，利用相应的参数<span class="math inline">\(w^1\)</span>和<span class="math inline">\(w^2\)</span>应用“基方向”两次，确定更新方向。我们可以看到的是，虽然对于更新<span class="math inline">\(p_a^1\)</span>和<span class="math inline">\(p_a^2\)</span>的两个迭代方向是一样的，但是由于<span class="math inline">\(w^1\)</span>和<span class="math inline">\(w^2\)</span>控制的不同的更新步长将会对不同的伪锚定节点产生不同的更新方向。</p>
-<p>当标记的锚点不足时，学习这样的W是具有挑战性的，这在许多情况下通常是正确的。因此我们尝试利用来自其他网络中的数据，其中的anchors可以被轻松的获得为学习W的数据集<span class="math inline">\(S=\left\{S_1,S_2,...,S_k\right\}\)</span>，相应的W可以被更新为：<span class="math inline">\(W=W-\eta_1 \bigtriangledown f(U_{S_i})\)</span>，其中<span class="math inline">\(U_{S_i}\)</span>是<span class="math inline">\(S_i\)</span>的嵌入空间，<span class="math inline">\(\eta\)</span>是学习率。</p>
+<h2 id="伪锚定节点的微调"><a href="#伪锚定节点的微调" class="headerlink" title="伪锚定节点的微调"></a>伪锚定节点的微调</h2><p>为了使得植入的伪锚定节点得到适当的控制，提出了元学习的策略，包含以下两步。首先是确保伪锚点的更新方向远离“模糊区域”。第二种是避免植入的伪锚在锚周围造成的“过度接近”嵌入。为了实现这些目标，我们首先使用一个基于元学习的算法，从一些包含丰富标记锚点的支持数据集中学习一些关于更新的先验知识。然后利用先验知识对每个嵌入学习epoch的伪锚点进行微调。通过微调和嵌入学习步骤的交错迭代，我们期望以适当控制的方式更新伪锚点，从而产生更均匀的分布的嵌入空间中提供了证明。下面，我们将提供该算法的细节。</p>
+<p>给定一个特殊的anchor用户$v_a$，令$P_a&#x3D;\left{p_a^0,p_a^1,…,p_a^n\right}$为与$v_a$对应的植入的伪锚定节点。对于一个特定的伪锚定节点$p_a^i$，我们定义它的更新方向为：</p>
+<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/伪锚定节点的更新方向.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图4 伪锚定节点的更新方向</div></center>
+
+<p>其中$W&#x3D;\left{w^0,w^1,…,w^n\right}$用于控制伪锚点更新方向的可学习参数集，$nei(v_a)$表示$v_a$的一阶邻居，$g$表示激活函数。</p>
+<p>根据图4中的公式，连接到相同的真实的anchor将会有相同的“基方向”$\vec u_a + \sum_{j∈nei(v_a)} \vec u_j$控制更新的方向。通过对“基方向”的系数$w^i$设置不同的值并迭代应用，可以得到不同的伪锚更新方向。</p>
+<center>    <img style="border-radius: 0.3125em;    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/控制方向的更新.png">    <br>    <div style="color:orange; border-bottom: 1px solid #d9d9d9;    display: inline-block;    color: #999;    padding: 2px;">图5 控制方向的更新</div></center>
+
+<p>如图5所展示的那样，$p_a^1$和$p_a^2$是植入到相同的anchor $v_a$的伪锚定节点，利用相应的参数$w^1$和$w^2$应用“基方向”两次，确定更新方向。我们可以看到的是，虽然对于更新$p_a^1$和$p_a^2$的两个迭代方向是一样的，但是由于$w^1$和$w^2$控制的不同的更新步长将会对不同的伪锚定节点产生不同的更新方向。</p>
+<p>当标记的锚点不足时，学习这样的W是具有挑战性的，这在许多情况下通常是正确的。因此我们尝试利用来自其他网络中的数据，其中的anchors可以被轻松的获得为学习W的数据集$S&#x3D;\left{S_1,S_2,…,S_k\right}$，相应的W可以被更新为：$W&#x3D;W-\eta_1 \bigtriangledown f(U_{S_i})$，其中$U_{S_i}$是$S_i$的嵌入空间，$\eta$是学习率。</p>
 <p>然后，我们将学习到的W转移到查询集Q（具有较少锚定标签的数据集）。我们根据转移的W（从支持集学习）将目标函数定义为：</p>
-<p><img src="../images/目标函数.png"></p>
-<p>其中<span class="math inline">\(\vec u^n_{p_a},\vec u_j∈U_Q\)</span>。对于初次迭代，我们使用转移的W来初始化<span class="math inline">\(f(U_Q;W)\)</span>中的<span class="math inline">\(\Delta \vec p_a^n(v_a,W)\)</span>。W可以随后被迭代的更新为：<span class="math inline">\(W=W-\eta_2 \bigtriangledown \vec p_a^n(v_a,W)\)</span>。最后，我们得到了伪锚点的更新方向。算法1总结了微调伪锚点的关键步骤。</p>
-<p><img src="../images/算法流程.png"></p>
+<p><img src="/../images/%E7%9B%AE%E6%A0%87%E5%87%BD%E6%95%B0.png"></p>
+<p>其中$\vec u^n_{p_a},\vec u_j∈U_Q$。对于初次迭代，我们使用转移的W来初始化$f(U_Q;W)$中的$\Delta \vec p_a^n(v_a,W)$。W可以随后被迭代的更新为：$W&#x3D;W-\eta_2 \bigtriangledown \vec p_a^n(v_a,W)$。最后，我们得到了伪锚点的更新方向。算法1总结了微调伪锚点的关键步骤。</p>
+<p><img src="/../images/%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B.png"></p>
 
       
 
@@ -588,11 +582,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
+                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
+                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -608,15 +602,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -632,11 +626,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">

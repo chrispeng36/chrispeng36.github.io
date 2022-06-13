@@ -8,25 +8,27 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>CONE-Align笔记 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="现有的无监督网络对齐方法可以找到分解节点邻域的次优对齐，即不保持匹配的邻域一致性。为了改进这一点，提出了CONE- Align，用节点嵌入建模网络内接近，并在对齐嵌入子空间后使用它们来匹配跨网络的节点。 许多的无监督网络对齐方法(FINAL,NETALIGN,REGAL)不能够实现匹配的邻域一致性：在一个图中接近的节点通常与在另一个图中接近的节点不匹配。REGAL使用结点嵌入捕获每个节点在网">
+<meta property="og:type" content="article">
 <meta property="og:title" content="CONE-Align笔记">
 <meta property="og:url" content="http://yoursite.com/2022/04/21/CONE-Align%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
+<meta property="og:description" content="现有的无监督网络对齐方法可以找到分解节点邻域的次优对齐，即不保持匹配的邻域一致性。为了改进这一点，提出了CONE- Align，用节点嵌入建模网络内接近，并在对齐嵌入子空间后使用它们来匹配跨网络的节点。 许多的无监督网络对齐方法(FINAL,NETALIGN,REGAL)不能够实现匹配的邻域一致性：在一个图中接近的节点通常与在另一个图中接近的节点不匹配。REGAL使用结点嵌入捕获每个节点在网">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2022/04/21/images/CONE/%E5%8C%B9%E9%85%8D%E9%82%BB%E5%9F%9F%E4%B8%80%E8%87%B4%E6%80%A7.png">
-<meta property="og:image" content="http://yoursite.com/2022/04/21/images/CONE/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89.png">
-<meta property="og:image" content="http://yoursite.com/2022/04/21/images/CONE/%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6.png">
-<meta property="og:image" content="http://yoursite.com/2022/04/21/images/CONE/procrustes%E9%97%AE%E9%A2%98.png">
-<meta property="og:image" content="http://yoursite.com/2022/04/21/images/CONE/wasserstein.png">
-<meta property="og:image" content="http://yoursite.com/2022/04/21/images/CONE/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.png">
-<meta property="og:image" content="http://yoursite.com/2022/04/21/images/CONE/alignment-embedding.png">
-<meta property="og:image" content="http://yoursite.com/2022/04/21/images/CONE/%E5%87%B8%E5%88%9D%E5%A7%8B%E5%8C%96.png">
+<meta property="og:image" content="http://yoursite.com/images/CONE/%E5%8C%B9%E9%85%8D%E9%82%BB%E5%9F%9F%E4%B8%80%E8%87%B4%E6%80%A7.png">
+<meta property="og:image" content="http://yoursite.com/images/CONE/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89.png">
+<meta property="og:image" content="http://yoursite.com/images/CONE/%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6.png">
+<meta property="og:image" content="http://yoursite.com/images/CONE/procrustes%E9%97%AE%E9%A2%98.png">
+<meta property="og:image" content="http://yoursite.com/images/CONE/wasserstein.png">
+<meta property="og:image" content="http://yoursite.com/images/CONE/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.png">
+<meta property="og:image" content="http://yoursite.com/images/CONE/alignment-embedding.png">
+<meta property="og:image" content="http://yoursite.com/images/CONE/%E5%87%B8%E5%88%9D%E5%A7%8B%E5%8C%96.png">
 <meta property="article:published_time" content="2022-04-21T10:15:54.000Z">
 <meta property="article:modified_time" content="2022-05-30T02:07:35.822Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2022/04/21/images/CONE/%E5%8C%B9%E9%85%8D%E9%82%BB%E5%9F%9F%E4%B8%80%E8%87%B4%E6%80%A7.png">
+<meta name="twitter:image" content="http://yoursite.com/images/CONE/%E5%8C%B9%E9%85%8D%E9%82%BB%E5%9F%9F%E4%B8%80%E8%87%B4%E6%80%A7.png">
   
     <link rel="alternative" href="/atom.xml" title="Chris的个人博客" type="application/atom+xml">
   
@@ -195,38 +197,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a id="more"></a></p>
+         <a id="more"></a>
+
 <p>现有的无监督网络对齐方法可以找到分解节点邻域的次优对齐，即不保持匹配的邻域一致性。为了改进这一点，提出了CONE- Align，用节点嵌入建模网络内接近，并在对齐嵌入子空间后使用它们来匹配跨网络的节点。</p>
 <p>许多的无监督网络对齐方法(FINAL,NETALIGN,REGAL)不能够实现匹配的邻域一致性：在一个图中接近的节点通常与在另一个图中接近的节点不匹配。REGAL使用结点嵌入捕获每个节点在网络中的结构身份，但是相邻的节点可能没有类似的结构角色，这导致了非常不一样的embeddings可能在另一个图中匹配得很远，违反了匹配的邻域一致性。CONE-Align： <strong>CON</strong>sistent <strong>E</strong>mbedding-based Network <strong>Align</strong>ment.我们使用著名的接近保持节点嵌入方法来学习每个图中邻近节点的相似节点嵌入。然而，由于节点在图之间并不接近，所以这些节点满足了 主节点是可转换的，不同图中的节点将被嵌入到不同的子空间中。因此，我们对图的嵌入子空间进行对齐，然后利用嵌入相似度来匹配节点。由于每个图中的相邻节点将有相似的嵌入，因此它们将被匹配 电解到另一个图的相似部分。因此，我们有最好的cone对齐：匹配邻域一致性和交叉图可比性。</p>
 <p>大多数嵌入目标都是在单个图中建模接近性，如deepwalk，node2vec；结构嵌入方法捕获一个节点的结构角色，而不依赖于其与特定节点的接近程度，这种独立性使得嵌入在各个图之间具有可比性，例如struct2vec，xNetMF。</p>
-<p>对于每一幅图，假设结点的个数为n（没有的话就补上），对于每个图<span class="math inline">\(G_i\)</span>，创建一个<span class="math inline">\(Y_i∈R^{n \times d}\)</span>表示结点的embedding matrix。网络对齐是找到一个方程<span class="math inline">\(\pi: V_1 \to V_2\)</span>或者一个矩阵<span class="math inline">\(P\)</span>其中<span class="math inline">\(p_{i,j}\)</span>表示的是在1网络中的结点i和2网络中的结点j的相似度。方程<span class="math inline">\(\pi\)</span>可以从P中找到，例如贪心策略：<span class="math inline">\(\pi(i) = arg \ max \ x_jp_{i,j}\)</span></p>
-<p><span class="math inline">\(N_{G_1(i)}\)</span>表示在网络1中的节点i的邻居，定义i的"mapped neighborhood"在<span class="math inline">\(G_2\)</span>中为：经过<span class="math inline">\(\pi\)</span>映射的那个在<span class="math inline">\(G_2\)</span>中对应结点的邻居。<span class="math inline">\(\widetilde N_{G_2}^{\pi}(i)=\left\{j∈V_2:\exist k ∈ N_{G_1}(i) \ s.t. \pi(k)=j\right\}\)</span>，我们定义匹配邻域一致性MNC（Jaccard系数）</p>
-<p><img src="../images/CONE/匹配邻域一致性.png"></p>
-<p>问题定义：给定两个图：<span class="math inline">\(G_1和G_2\)</span>，没有先验知识，要恢复其对齐<span class="math inline">\(\pi\)</span>与此同时实现更高的MNC。</p>
-<p><img src="../images/CONE/问题定义.png"></p>
+<p>对于每一幅图，假设结点的个数为n（没有的话就补上），对于每个图$G_i$，创建一个$Y_i∈R^{n \times d}$表示结点的embedding matrix。网络对齐是找到一个方程$\pi: V_1 \to V_2$或者一个矩阵$P$其中$p_{i,j}$表示的是在1网络中的结点i和2网络中的结点j的相似度。方程$\pi$可以从P中找到，例如贪心策略：$\pi(i) &#x3D; arg \ max \ x_jp_{i,j}$</p>
+<p>$N_{G_1(i)}$表示在网络1中的节点i的邻居，定义i的”mapped neighborhood”在$G_2$中为：经过$\pi$映射的那个在$G_2$中对应结点的邻居。$\widetilde N_{G_2}^{\pi}(i)&#x3D;\left{j∈V_2:\exist k ∈ N_{G_1}(i) \ s.t. \pi(k)&#x3D;j\right}$，我们定义匹配邻域一致性MNC（Jaccard系数）</p>
+<p><img src="/../images/CONE/%E5%8C%B9%E9%85%8D%E9%82%BB%E5%9F%9F%E4%B8%80%E8%87%B4%E6%80%A7.png"></p>
+<p>问题定义：给定两个图：$G_1和G_2$，没有先验知识，要恢复其对齐$\pi$与此同时实现更高的MNC。</p>
+<p><img src="/../images/CONE/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89.png"></p>
 <p>整体框架如下图所示：首先使用结点嵌入模拟图内的结点相似度，然后我们对齐嵌入空间以获得图之间的可比性。然后匹配两个网络中的结点用最相似的节点嵌入。</p>
-<p><img src="../images/CONE/整体框架.png"></p>
-<h2 id="step1node-embedding">1. step1：node embedding</h2>
-<p>对于每个输入的图独自的获得其结点的嵌入<span class="math inline">\(Y_1,Y_2 ∈ R^{n \times d}\)</span>，我们只需要嵌入来保持图内节点的邻近性，每个图中的相邻节点都有相似的嵌入，在使用嵌入相似性时将被近距离映射。这有力地保留了MNC：即使节点由于缺少边[7]而不是邻居，许多节点嵌入算法也可以保持它们共享的任何高阶接近性。</p>
-<h2 id="step2-embedding-space-alignment">2. step2： embedding space alignment</h2>
-<p>由于嵌入目标的不变性，两个图的节点嵌入Y1和Y2可以相对于相互平移、旋转或重新缩放。在步骤2中对齐了两个嵌入子空间，我们解决了两个问题：</p>
-<ol type="1">
-<li><p>procrustes：如果结点的对应关系已知，我们可以从正交矩阵<span class="math inline">\(O^d\)</span>中找到一个线性的变换Q。Q对齐结点嵌入矩阵的列，例如嵌入空间。可以被定义为解决下述的问题：</p>
-<p><img src="../images/CONE/procrustes问题.png"></p>
-<p>它的解为<span class="math inline">\(Q^*=UV^T\)</span>，其中<span class="math inline">\(U \Sigma V^T\)</span>是<span class="math inline">\(Y_1^TY_2\)</span>的SVD分解。</p></li>
-<li><p>wasserstein：如果嵌入空间变化已知，可以从排列矩阵<span class="math inline">\(P^n\)</span>的集合中求解最优的节点对应关系P。P对齐节点嵌入矩阵的行，也就是结点。可以使用 Sinkhorn algorithm来最小化wasserstein distance：</p>
-<p><img src="../images/CONE/wasserstein.png"></p></li>
+<p><img src="/../images/CONE/%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6.png"></p>
+<h2 id="1-step1：node-embedding"><a href="#1-step1：node-embedding" class="headerlink" title="1. step1：node embedding"></a>1. step1：node embedding</h2><p>对于每个输入的图独自的获得其结点的嵌入$Y_1,Y_2 ∈ R^{n \times d}$，我们只需要嵌入来保持图内节点的邻近性，每个图中的相邻节点都有相似的嵌入，在使用嵌入相似性时将被近距离映射。这有力地保留了MNC：即使节点由于缺少边[7]而不是邻居，许多节点嵌入算法也可以保持它们共享的任何高阶接近性。</p>
+<h2 id="2-step2：-embedding-space-alignment"><a href="#2-step2：-embedding-space-alignment" class="headerlink" title="2. step2： embedding space alignment"></a>2. step2： embedding space alignment</h2><p>由于嵌入目标的不变性，两个图的节点嵌入Y1和Y2可以相对于相互平移、旋转或重新缩放。在步骤2中对齐了两个嵌入子空间，我们解决了两个问题：</p>
+<ol>
+<li><p>procrustes：如果结点的对应关系已知，我们可以从正交矩阵$O^d$中找到一个线性的变换Q。Q对齐结点嵌入矩阵的列，例如嵌入空间。可以被定义为解决下述的问题：</p>
+<p><img src="/../images/CONE/procrustes%E9%97%AE%E9%A2%98.png"></p>
+<p>它的解为$Q^*&#x3D;UV^T$，其中$U \Sigma V^T$是$Y_1^TY_2$的SVD分解。</p>
+</li>
+<li><p>wasserstein：如果嵌入空间变化已知，可以从排列矩阵$P^n$的集合中求解最优的节点对应关系P。P对齐节点嵌入矩阵的行，也就是结点。可以使用 Sinkhorn algorithm来最小化wasserstein distance：</p>
+<p><img src="/../images/CONE/wasserstein.png"></p>
+</li>
 <li><p>wasserstein procrustes：由于我们既不知道对应关系，也不知道转换，所以我们将这些问题结合起来：</p>
-<p><img src="../images/CONE/解决方案.png"></p>
-<p>我们等价的解决了<span class="math inline">\(max_{p∈p^n},max_{Q∈O^d}\)</span>的迹<span class="math inline">\(trace(Q^TY_1^TPY_2)\)</span>，通过一种随机优化方案，交替wasserstein以及procrustes问题。对于第T次迭代，我们使用目前的embedding转换矩阵Q对小批次的每次b个embeddings也就是<span class="math inline">\(Y_{1_t},Y_{2_t}\)</span>来找到一个匹配<span class="math inline">\(P_t\)</span>，使用sinkhorn算法λ正则化系数。我们随后使用wasserstein procrustes距离的梯度来更新Q。算法1如下：</p>
-<p><img src="../images/CONE/alignment-embedding.png"></p></li>
+<p><img src="/../images/CONE/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.png"></p>
+<p>我们等价的解决了$max_{p∈p^n},max_{Q∈O^d}$的迹$trace(Q^TY_1^TPY_2)$，通过一种随机优化方案，交替wasserstein以及procrustes问题。对于第T次迭代，我们使用目前的embedding转换矩阵Q对小批次的每次b个embeddings也就是$Y_{1_t},Y_{2_t}$来找到一个匹配$P_t$，使用sinkhorn算法λ正则化系数。我们随后使用wasserstein procrustes距离的梯度来更新Q。算法1如下：</p>
+<p><img src="/../images/CONE/alignment-embedding.png"></p>
+</li>
 <li><p>convex initialization：为了初始化上述非凸过程，我们转向了一个经典的凸图匹配公式：</p>
-<p><img src="../images/CONE/凸初始化.png"></p>
-<p>其中<span class="math inline">\(B^n\)</span>是<span class="math inline">\(p^n\)</span>的凸包，我们可以通过Frank-Wolfe algorithm找到全局最小的<span class="math inline">\(P^*\)</span>，经过<span class="math inline">\(n_0\)</span>次迭代，以及sinkhorn算法以<span class="math inline">\(λ_0\)</span>为正则化参数。使用<span class="math inline">\(Y_1和P^*Y_2\)</span>，以及一个初始的Q可以由正交的procrustes公式2生成。</p></li>
-<li><p>complexity consideration：</p></li>
+<p><img src="/../images/CONE/%E5%87%B8%E5%88%9D%E5%A7%8B%E5%8C%96.png"></p>
+<p>其中$B^n$是$p^n$的凸包，我们可以通过Frank-Wolfe algorithm找到全局最小的$P^*$，经过$n_0$次迭代，以及sinkhorn算法以$λ_0$为正则化参数。使用$Y_1和P^*Y_2$，以及一个初始的Q可以由正交的procrustes公式2生成。</p>
+</li>
+<li><p>complexity consideration：</p>
+</li>
 </ol>
-<h2 id="step-3matching-nodes-with-embeddings">step 3：matching nodes with embeddings</h2>
-<p>在将嵌入与最终的变换Q对齐后，在步骤3中，我们根据欧氏距离将𝐺1中的每个节点与𝐺2中的最近邻进行匹配。我们可以使用缩放修正来减轻“hub度”，即许多节点有相同的最近邻[11]，但我们发现没有必要。在[14]之后，我们使用一个𝑘-d树来进行快速最近邻搜索 h在<span class="math inline">\(Y_1Q\)</span>和<span class="math inline">\(Y_2\)</span>之间。</p>
+<h2 id="step-3：matching-nodes-with-embeddings"><a href="#step-3：matching-nodes-with-embeddings" class="headerlink" title="step 3：matching nodes with embeddings"></a>step 3：matching nodes with embeddings</h2><p>在将嵌入与最终的变换Q对齐后，在步骤3中，我们根据欧氏距离将𝐺1中的每个节点与𝐺2中的最近邻进行匹配。我们可以使用缩放修正来减轻“hub度”，即许多节点有相同的最近邻[11]，但我们发现没有必要。在[14]之后，我们使用一个𝑘-d树来进行快速最近邻搜索 h在$Y_1Q$和$Y_2$之间。</p>
 
       
 
@@ -369,7 +374,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#step1node-embedding"><span class="toc-number">1.</span> <span class="toc-text">1. step1：node embedding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#step2-embedding-space-alignment"><span class="toc-number">2.</span> <span class="toc-text">2. step2： embedding space alignment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#step-3matching-nodes-with-embeddings"><span class="toc-number">3.</span> <span class="toc-text">step 3：matching nodes with embeddings</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-step1：node-embedding"><span class="toc-number">1.</span> <span class="toc-text">1. step1：node embedding</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-step2：-embedding-space-alignment"><span class="toc-number">2.</span> <span class="toc-text">2. step2： embedding space alignment</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#step-3：matching-nodes-with-embeddings"><span class="toc-number">3.</span> <span class="toc-text">step 3：matching nodes with embeddings</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -523,11 +528,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
+                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
+                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -543,15 +548,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -567,11 +572,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">

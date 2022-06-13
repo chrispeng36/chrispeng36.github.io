@@ -182,10 +182,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p></p>
-        
-          <a class="article-more-a" href="/2022/04/21/CONE-Align%E7%AC%94%E8%AE%B0/#more">more >></a>
-        
+         <a id="more"></a>
+
+<p>现有的无监督网络对齐方法可以找到分解节点邻域的次优对齐，即不保持匹配的邻域一致性。为了改进这一点，提出了CONE- Align，用节点嵌入建模网络内接近，并在对齐嵌入子空间后使用它们来匹配跨网络的节点。</p>
+<p>许多的无监督网络对齐方法(FINAL,NETALIGN,REGAL)不能够实现匹配的邻域一致性：在一个图中接近的节点通常与在另一个图中接近的节点不匹配。REGAL使用结点嵌入捕获每个节点在网络中的结构身份，但是相邻的节点可能没有类似的结构角色，这导致了非常不一样的embeddings可能在另一个图中匹配得很远，违反了匹配的邻域一致性。CONE-Align： <strong>CON</strong>sistent <strong>E</strong>mbedding-based Network <strong>Align</strong>ment.我们使用著名的接近保持节点嵌入方法来学习每个图中邻近节点的相似节点嵌入。然而，由于节点在图之间并不接近，所以这些节点满足了 主节点是可转换的，不同图中的节点将被嵌入到不同的子空间中。因此，我们对图的嵌入子空间进行对齐，然后利用嵌入相似度来匹配节点。由于每个图中的相邻节点将有相似的嵌入，因此它们将被匹配 电解到另一个图的相似部分。因此，我们有最好的cone对齐：匹配邻域一致性和交叉图可比性。</p>
+<p>大多数嵌入目标都是在单个图中建模接近性，如deepwalk，node2vec；结构嵌入方法捕获一个节点的结构角色，而不依赖于其与特定节点的接近程度，这种独立性使得嵌入在各个图之间具有可比性，例如struct2vec，xNetMF。</p>
+<p>对于每一幅图，假设结点的个数为n（没有的话就补上），对于每个图$G_i$，创建一个$Y_i∈R^{n \times d}$表示结点的embedding matrix。网络对齐是找到一个方程$\pi: V_1 \to V_2$或者一个矩阵$P$其中$p_{i,j}$表示的是在1网络中的结点i和2网络中的结点j的相似度。方程$\pi$可以从P中找到，例如贪心策略：$\pi(i) &#x3D; arg \ max \ x_jp_{i,j}$</p>
+<p>$N_{G_1(i)}$表示在网络1中的节点i的邻居，定义i的”mapped neighborhood”在$G_2$中为：经过$\pi$映射的那个在$G_2$中对应结点的邻居。$\widetilde N_{G_2}^{\pi}(i)&#x3D;\left{j∈V_2:\exist k ∈ N_{G_1}(i) \ s.t. \pi(k)&#x3D;j\right}$，我们定义匹配邻域一致性MNC（Jaccard系数）</p>
+<p><img src="/../images/CONE/%E5%8C%B9%E9%85%8D%E9%82%BB%E5%9F%9F%E4%B8%80%E8%87%B4%E6%80%A7.png"></p>
+<p>问题定义：给定两个图：$G_1和G_2$，没有先验知识，要恢复其对齐$\pi$与此同时实现更高的MNC。</p>
+<p><img src="/../images/CONE/%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89.png"></p>
+<p>整体框架如下图所示：首先使用结点嵌入模拟图内的结点相似度，然后我们对齐嵌入空间以获得图之间的可比性。然后匹配两个网络中的结点用最相似的节点嵌入。</p>
+<p><img src="/../images/CONE/%E6%95%B4%E4%BD%93%E6%A1%86%E6%9E%B6.png"></p>
+<h2 id="1-step1：node-embedding"><a href="#1-step1：node-embedding" class="headerlink" title="1. step1：node embedding"></a>1. step1：node embedding</h2><p>对于每个输入的图独自的获得其结点的嵌入$Y_1,Y_2 ∈ R^{n \times d}$，我们只需要嵌入来保持图内节点的邻近性，每个图中的相邻节点都有相似的嵌入，在使用嵌入相似性时将被近距离映射。这有力地保留了MNC：即使节点由于缺少边[7]而不是邻居，许多节点嵌入算法也可以保持它们共享的任何高阶接近性。</p>
+<h2 id="2-step2：-embedding-space-alignment"><a href="#2-step2：-embedding-space-alignment" class="headerlink" title="2. step2： embedding space alignment"></a>2. step2： embedding space alignment</h2><p>由于嵌入目标的不变性，两个图的节点嵌入Y1和Y2可以相对于相互平移、旋转或重新缩放。在步骤2中对齐了两个嵌入子空间，我们解决了两个问题：</p>
+<ol>
+<li><p>procrustes：如果结点的对应关系已知，我们可以从正交矩阵$O^d$中找到一个线性的变换Q。Q对齐结点嵌入矩阵的列，例如嵌入空间。可以被定义为解决下述的问题：</p>
+<p><img src="/../images/CONE/procrustes%E9%97%AE%E9%A2%98.png"></p>
+<p>它的解为$Q^*&#x3D;UV^T$，其中$U \Sigma V^T$是$Y_1^TY_2$的SVD分解。</p>
+</li>
+<li><p>wasserstein：如果嵌入空间变化已知，可以从排列矩阵$P^n$的集合中求解最优的节点对应关系P。P对齐节点嵌入矩阵的行，也就是结点。可以使用 Sinkhorn algorithm来最小化wasserstein distance：</p>
+<p><img src="/../images/CONE/wasserstein.png"></p>
+</li>
+<li><p>wasserstein procrustes：由于我们既不知道对应关系，也不知道转换，所以我们将这些问题结合起来：</p>
+<p><img src="/../images/CONE/%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88.png"></p>
+<p>我们等价的解决了$max_{p∈p^n},max_{Q∈O^d}$的迹$trace(Q^TY_1^TPY_2)$，通过一种随机优化方案，交替wasserstein以及procrustes问题。对于第T次迭代，我们使用目前的embedding转换矩阵Q对小批次的每次b个embeddings也就是$Y_{1_t},Y_{2_t}$来找到一个匹配$P_t$，使用sinkhorn算法λ正则化系数。我们随后使用wasserstein procrustes距离的梯度来更新Q。算法1如下：</p>
+<p><img src="/../images/CONE/alignment-embedding.png"></p>
+</li>
+<li><p>convex initialization：为了初始化上述非凸过程，我们转向了一个经典的凸图匹配公式：</p>
+<p><img src="/../images/CONE/%E5%87%B8%E5%88%9D%E5%A7%8B%E5%8C%96.png"></p>
+<p>其中$B^n$是$p^n$的凸包，我们可以通过Frank-Wolfe algorithm找到全局最小的$P^*$，经过$n_0$次迭代，以及sinkhorn算法以$λ_0$为正则化参数。使用$Y_1和P^*Y_2$，以及一个初始的Q可以由正交的procrustes公式2生成。</p>
+</li>
+<li><p>complexity consideration：</p>
+</li>
+</ol>
+<h2 id="step-3：matching-nodes-with-embeddings"><a href="#step-3：matching-nodes-with-embeddings" class="headerlink" title="step 3：matching nodes with embeddings"></a>step 3：matching nodes with embeddings</h2><p>在将嵌入与最终的变换Q对齐后，在步骤3中，我们根据欧氏距离将𝐺1中的每个节点与𝐺2中的最近邻进行匹配。我们可以使用缩放修正来减轻“hub度”，即许多节点有相同的最近邻[11]，但我们发现没有必要。在[14]之后，我们使用一个𝑘-d树来进行快速最近邻搜索 h在$Y_1Q$和$Y_2$之间。</p>
+
       
 
       
@@ -259,10 +291,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p></p>
-        
-          <a class="article-more-a" href="/2022/03/31/G-ALIGN%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90/#more">more >></a>
-        
+         <a id="more"></a>
+
+<h1 id="1-embedding部分"><a href="#1-embedding部分" class="headerlink" title="1. embedding部分"></a>1. embedding部分</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init_weight</span><span class="params">(modules, activation)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Weight initialization</span></span><br><span class="line"><span class="string">    :param modules: Iterable of modules</span></span><br><span class="line"><span class="string">    :param activation: Activation function.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> modules:</span><br><span class="line">        <span class="keyword">if</span> isinstance(m, nn.Linear):<span class="comment">#判断m是否为nn.Linear类型，线性层</span></span><br><span class="line">            <span class="keyword">if</span> activation <span class="keyword">is</span> <span class="literal">None</span>:<span class="comment">#没有激活函数的话就初始化不加增益</span></span><br><span class="line">                m.weight.data = init.xavier_uniform_(m.weight.data)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                m.weight.data = init.xavier_uniform_(m.weight.data,gain=nn.init.calculate_gain(activation.lower()))</span><br><span class="line">            <span class="keyword">if</span> m.bias <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                m.bias.data = init.constant_(m.bias.data, <span class="number">0.0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这里涉及到的是一个权重的初始化的步骤，在神经网络中的初始化步骤很重要。初始化应该既保证输入输出的差异性，又能让model稳定而快速的收敛。描述差异性的方法就是数学中的方差。对于每个神经元的输入z，$z&#x3D;\sum_{i&#x3D;1}^nw_ix_i$，其中n是上一层中的神经元的个数。</p>
+<p>那么两个随机变量的方差的公式为：$Var(w_ix_i)&#x3D;E[w_i]^2Var(x_i)+E[x_i]^2Var(w_i)+Var(w_i)Var(x_i)$，可以知道如果$E[x_i]&#x3D;E[w_i]&#x3D;0$，能通过批量归一化满足这一条件，那么就有：</p>
+<p>$Var(z)&#x3D;\sum_{i&#x3D;1}^nVar(x_i)Var(w_i)$，如果随机变量独立同分布的话，$Var(z)&#x3D;nVar(w)Var(x)$。一般来讲，类别空间相较于样本空间更加稠密，所以反向传播的误差到样本空间将显得微不足道。我们要让样本空间与类别空间的分布差异不要太大，也就是方差尽可能相等。</p>
+<p>Xavier初始化方法就是：</p>
+<p><img src="/../images/G-ALIGN%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Xavier%E5%88%9D%E5%A7%8B%E5%8C%96.png"></p>
+<p>gain参数就是可选择的缩放的参数，总之以上就是初始化为了让神经网络更加健壮的手段。</p>
+
       
 
       
@@ -336,8 +375,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="进程与线程">1. 进程与线程</h1>
-<p></p>
+        <h1 id="1-进程与线程"><a href="#1-进程与线程" class="headerlink" title="1. 进程与线程"></a>1. 进程与线程</h1>
         
           <a class="article-more-a" href="/2022/03/26/Java%E5%B9%B6%E5%8F%91/#more">more >></a>
         
@@ -414,8 +452,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="junit单元测试">1. Junit单元测试</h1>
-<p></p>
+        <h1 id="1-Junit单元测试"><a href="#1-Junit单元测试" class="headerlink" title="1. Junit单元测试"></a>1. Junit单元测试</h1>
         
           <a class="article-more-a" href="/2022/03/24/Java%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85/#more">more >></a>
         
@@ -492,8 +529,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="内存结构介绍">1. 内存结构介绍</h1>
-<p></p>
+        <h1 id="1-内存结构介绍"><a href="#1-内存结构介绍" class="headerlink" title="1. 内存结构介绍"></a>1. 内存结构介绍</h1>
         
           <a class="article-more-a" href="/2022/03/24/JVM%E7%AC%94%E8%AE%B0/#more">more >></a>
         
@@ -570,10 +606,86 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p></p>
-        
-          <a class="article-more-a" href="/2022/03/24/Network-Alignment-with-Holistic-Embeddings%E7%AC%94%E8%AE%B0/#more">more >></a>
-        
+         <a id="more"></a>
+
+<p>一种新的端到端对齐框架，可以利用不同的模式来以一种有效的方式比较和对齐网络节点。为了利用网络上下文的丰富性，我们的模型为每个节点构建多个嵌入，每个嵌入捕获一种模态或类型的网络信息。然后我们设计了一个 后期融合机制，基于底层信息的重要性来结合学习到的嵌入。我们的融合机制允许我们的模型适应于各种类型的结构 输入网络。实验结果表明，我们的技术在真实数据和合成数据集上的精度方面优于最先进的方法，同时对各种噪声因子具有鲁棒性 。</p>
+<p>矩阵分解的方法不能适用于大规模的网络，而基于embedding的方式具有以下的局限性：</p>
+<ul>
+<li>首先，将具有相似拓扑特征的网络节点分配给相似的嵌入；这意味着一个给定的网络节点很可能有一个类似于邻居的嵌入 这使得它很难区分这些节点。</li>
+<li>大多数网络对齐器使用某些一致性的概念作为其模型的主干。例如，结构一致性要求节点对的邻域是相似的 两个网络。然而，这种严格的约束很难执行，特别是在现实世界的网络中。</li>
+<li>现有的网络对齐模型只使用单一的嵌入；这限制了模型的容量，因为一个嵌入只能捕获网络的某些方面。</li>
+</ul>
+<p>节点属性仅提供一个本地视图，并且不能提供整个网络的全局视图。这损害了对齐的准确性，因为在焦油中存在几个具有相似局部信息的节点 获取图形。</p>
+<p>为了解决上述挑战，我们提出了一个基于多嵌入的网络对齐模型。</p>
+<p>构建三层嵌入：浅层嵌入，深层嵌入以及基于社区的嵌入(为网络结构的全局视图)</p>
+<p><img src="/../images/NAME/%E5%AF%B9%E9%BD%90%E7%A4%BA%E4%BE%8B.png"></p>
+<p>作者提出了两种新的网络表示学习方法（专门用于网络对齐任务，包含属性信息，高阶相似性）：第一种方法是基于GCN的嵌入，它是对我们之前的工作[30]的改进，在那里我们重新设计了损失模块，以适应监督设置，从而促进了与其他嵌入的统一。第二种方法是全局社区感知嵌入，通过在节点嵌入中编码社区信息的，超越了现有的图形社区检测的工作。该方法还旨在克服局部最优问题，即所有节点都被分配到一个分区。类似于我们的工作是，但是我们的社区更好地保存拓扑，并利用节点本身的社区成员，而不是邻居锚。</p>
+<p><img src="/../images/NAME/NAME%E6%9E%B6%E6%9E%84.png"></p>
+<ul>
+<li><p>问题1：属性网络对齐</p>
+<p>给定两个属性网络$G_s&#x3D; (V_s,A_s,F_s) \ and \ G_s&#x3D;(V_t,A_t,F_t)$，用来找到对齐矩阵S，表明$G_s，G_t$之间的相似度。</p>
+</li>
+</ul>
+<p>要满足的约束：属性一致性和拓扑一致性。</p>
+<p>由于信息类型的许多基于嵌入的网络对齐器无法满足这两个一致性约束，因为信息类型的模态和信息丰富度的限制 信息到嵌入中。虽然有一些技术试图覆盖这两种类型的约束，但它们在单独的步骤中考虑它们，或者忽略了有价值的信息。</p>
+<p>模型需要考虑属性还有结构噪声，直接考虑这些噪声可能会与一致性约束相违背。真对应节点和相似节点在拓扑结构和属性上的混淆是降低网络对齐器精度的主要因素之一。在选择真正对应的节点时，缺乏被纳入单一嵌入中的信息会导致短视的决策。</p>
+<p>我们提出了两种新的嵌入方法来详尽地利用网络信息：一种基于GCN的嵌入方法，它统一了网络节点的多阶拓扑信息和属性信息，以及全局视图嵌入，捕获整个图结构社区中网络节点的成员。</p>
+<p>三种embedding</p>
+<ul>
+<li>local structure：学习节点的一阶接近度信息</li>
+<li>embedding based on a graph neural network：GCN模型来学习高阶属性和拓扑的信息</li>
+<li>global community-aware embedding：全局社区的embedding</li>
+</ul>
+<h2 id="embedding-for-local-structure"><a href="#embedding-for-local-structure" class="headerlink" title="embedding for local structure"></a>embedding for local structure</h2><p>网络表示学习就是计算两个邻居节点共现的概率，$z_i,z_j$是对应的embedding。</p>
+<p><img src="/../images/NAME/%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0.png"></p>
+<p>经过负采样：</p>
+<p><img src="/../images/NAME/%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%B4%9F%E9%87%87%E6%A0%B7.png"></p>
+<p>表示空间协调，由于源网络和目标网络是独立嵌入的，因此需要一个映射函数Θ来协调这两个嵌入空间。映射函数Θ可以是线性函数，也可以是多层感知器，可以表示为以下的优化函数：</p>
+<p><img src="/../images/NAME/%E8%A1%A8%E7%A4%BA%E7%A9%BA%E9%97%B4%E5%8D%8F%E8%B0%83.png"></p>
+<p>$z_v^s,z_v^t$表示在预先对齐（先验知识）集合T中的锚定节点$(v_s,v_t)$的embedding，损失函数的直观目的是保证在映射后，T中锚定节点的嵌入是相似的。调整后，可以根据源节点和目标节点的嵌入直接计算出目标节点之间的相关性。</p>
+<h2 id="embedding-based-on-a-graph-neural-network"><a href="#embedding-based-on-a-graph-neural-network" class="headerlink" title="embedding based on a graph neural network"></a>embedding based on a graph neural network</h2><p>为了加强局部结构嵌入，我们设计了一个特定的GCN模型，它同时编码结构和属性信息。两个锚节点的相似性取决于它们的拓扑属性和语义属性。</p>
+<p>GCN的传递公式：</p>
+<p><img src="/../images/NAME/GCN%E7%AC%ACl%E5%B1%82.png"></p>
+<p>不使用ReLU而使用tanh，因为ReLU在信号为负值时丢失信息，因此不适合网络对齐任务。而且该论文使用的是GCN的多层的融合嵌入，作者提出了一个分层损失函数，保证两个标准：consistency-aware 以及anchor-aware。</p>
+<ul>
+<li><p>consistency-aware loss：该损失组件的目的是通过最小化相邻节点的层嵌入之间的距离，同时最大化不相关节点的层嵌入之间的距离，来整合一致性约束：</p>
+<p>![](..&#x2F;images&#x2F;NAME&#x2F;consistency-aware loss.png)</p>
+</li>
+<li><p>anchor-aware loss：这个损失组件的核心思想是确保源节点嵌入和目标节点嵌入属于一个共享的表示空间。这种损失迫使锚对在每个铺设层的嵌入 类似的：</p>
+<p>![](..&#x2F;images&#x2F;NAME&#x2F;anchor-aware loss.png)</p>
+</li>
+</ul>
+<p>其中T是已知的anchor集合。</p>
+<p>最终对于每一层的损失函数如下：</p>
+<p><img src="/../images/NAME/GCN%E6%AF%8F%E5%B1%82%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png"></p>
+<p>各层损失函数求和为：<img src="/../images/NAME/%E5%90%84%E5%B1%82%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%B1%82%E5%92%8C.png"></p>
+<p>源网络和目标网络的GCN模型对每一层使用相同的权重矩阵。该机制保证了源节点和目标节点的嵌入具有共同的嵌入空间。这就消除了对两个嵌入空间的协调步骤的要求。此外，该机制确保了满足一致性约束，因为相应的节点与 以共享的权值传播的相同的结构信息和属性信息将具有相同的嵌入。</p>
+<h2 id="global-community-aware-embedding"><a href="#global-community-aware-embedding" class="headerlink" title="global community-aware embedding"></a>global community-aware embedding</h2><p>在本节中，我们设计了另一个嵌入模型，该模型提供了基于社区结构的网络节点的全局视图，这为社区提供了另一个有价值的信息来源 对齐过程。</p>
+<p>给定一个图$G&#x3D;(V,A)$，社区发现的目的就是找到一个集合划分$C&#x3D;\left{C_1,…,C_m\right}$就是m个不相交的社区。用一个membership matrix来表示划分,$M∈\left{0,1\right}^{n \times m}$，具有n行表示节点，m列表示有m个社区。请注意，由于这些社区是不相交的，因此每个网络节点只属于一个社区，因此隶属度矩阵M中的每一行都是一个热门向量。检测社区的问题可以表示为寻找一个优化的成员矩阵的问题。</p>
+<p>矩阵M不仅清楚地表示了网络节点的社区划分，还可以用来生成一个新的粗化邻接矩阵，其中“节点”为社区：</p>
+<p><img src="/../images/NAME/%E6%96%B0%E7%9A%84%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5.png"></p>
+<p>在$A^{com}$中，在主对角线上的元素$A_{ii}^{com}$表示社区Ci中各节点之间的内部连接（边）的数量，非对角线元素$A_{i,j}^{com}$表示社区Ci和Cj之间的交叉连接的数量。</p>
+<p>为了学习优化后的成员矩阵M，我们提出使用一个Membership probability probability matrix $P∈R^{n \times m}$，其中$p_{i,j}$表示节点i属于社区j的可能性。这个概率矩阵可以被认为是隶属度矩阵的一个松弛版本（从二进制矩阵到实矩阵）。这种的好处有，（1）M可以从P中推断出来，通过给每个节点分配概率最高的社区.（2）实值矩阵的使用有助于促进学习过程。（3）概率向量可以作为网络节点的表示，类似于浅层嵌入技术中的嵌入矩阵.</p>
+<p>由于矩阵M是离散的，而其松弛版本P是连续的，因此我们应用Gumbel-Softmax技术从P中采样M。</p>
+<p><strong>Gumbel-Softmax：这是一种参数化的采样方法，在离散变量的采样中具有：将某一随机离散变量X变得对每一个维度概率可导的作用。一个离散变量X如果满足p(X&#x3D;1)&#x3D;0.2，P(X&#x3D;2)&#x3D;0.2，P(X&#x3D;3)&#x3D;0.5，如果想要得到一些服从这个分布的离散的x的值，一般的思路是按照这个概率去采样，采样一些x来用。这样的问题就是，采样出来的x只有值没有式子，在神经网络中，没有办法将x对P求导，也就没办法进行反向传播。能不能给一个以p1,p2,p3为参数的式子，让这个公式返回的结果是x的采样？找到的式子如下：</strong></p>
+<p><img src="/../images/NAME/Gumbel-Softmax.png"></p>
+<p><strong>gi表示的是Gumbel噪声，这个噪声是用来使得z的返回结果是不固定的，最终得到的z向量是一个one hot向量，用这个向量乘以x的值域向量，得到的就是采样的x，上面的函数只有argmax函数不可导，用softmax函数代替</strong></p>
+<p><img src="/../images/NAME/z%E5%90%91%E9%87%8F.png"></p>
+<p><strong>这个式子里的参数 T 越小，z越接近one_hot向量。然后我们得到了一些可以对p求导的x的取样值，当然因为我们最后用的是softmax，所以x的值跟纯粹的取样也不完全一样，但比起直接求期望，我们至少得到了样本。这个过程相当于我们</strong>把不可导的取样过程，从x本身转嫁到了求取x的公式中的一项g上面，而g不依赖于p1,p2,p3<strong>。这样一来，x对p1,p2,p3仍然是可导的，而我们得到的x仍然是离散值的采样。目标达成。这样的采样过程转嫁的技巧有一个专门的名字，叫</strong>再参化技巧(reparameterization trick)。****</p>
+<p>因为这是一个可微算子(而argmax算子是不可微的)，因此适用于我们的端到端神经网络模型。然后将M的每一行从P中计算出来如下：</p>
+<p><img src="/../images/NAME/%E4%BB%8EM%E9%87%87%E6%A0%B7P.png"></p>
+<p>其中t是常数，g是Gumbel分布的样本，β是噪声超参数。当温度t接近于零时，一个来自Gumbel-Softmax分布的样本变成了一个单热向量，这有助于将概率矩阵P转移到M。</p>
+<p><img src="/../images/NAME/%E7%A4%BE%E5%8C%BA%E6%A3%80%E6%B5%8B%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png"></p>
+<p>请注意，当集成到模型中时，损失函数接收的是连续的值，而不是整数的值，因为隶属度矩阵M是基于概率矩阵的估计版本 P.</p>
+<p>网络对齐的方法必须注意两点，首先不同的embedding的权重不一样，其次铆钉节点是稀缺的因此self supervised的方法更有效。</p>
+<p>为了减轻不同类型表示之间的不兼容性，我们首先定义一个由每种嵌入类型构造的嵌入对齐矩阵。更详细地说，给定了源网络$Z_s^{(l)}$和由表示学习技术l生成的目标网络$Z^{l}_t$的嵌入，不同embedding层级的对齐矩阵就可以计算为：$S^{(l)}&#x3D;Z_s^{(l)}Z_t^{(l)T}$，$S∈R^{n_s \times n_t}$</p>
+<p>最终的S矩阵计算为：<img src="/../images/NAME/S%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97.png"></p>
+<p>这种方法的挑战之一是确定每种嵌入技术的优化重要性因子，因为这些因素随着输入网络的属性而变化。使用网络增强来自动优化重要性因素。</p>
+<p>基于扰动的网络增强。对于$G_p&#x3D;(V_p,A_p,F_p)$，有$A_p&#x3D;PAP^T$，P是任取的置换矩阵。按照之前的文章那样添加属性还有拓扑噪声。</p>
+<p>适应性注意共识机制。我们利用增强机制来使模型能够反映重要的嵌入。给定原始图及其扰动版本，一个好的模型应该在两个版本之间保持相似的嵌入，并完美地对齐网络节点。考虑到这一点，我们通过优化以下函数来学习重要因素：</p>
+<p><img src="/../images/NAME/%E4%BC%98%E5%8C%96%E5%87%BD%E6%95%B0.png"></p>
+<p>最大化对齐分数，也就是anchor links的$(v_i^G,v_i^{G^*})$。由于源网络和目标网络是同构的，我们只选择源网络作为具有代表性的原始图。</p>
+
       
 
       
@@ -647,10 +759,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p></p>
-        
-          <a class="article-more-a" href="/2022/03/23/MC2/#more">more >></a>
-        
+         <a id="more"></a>
+
+<h1 id="MC2-Unsupervised-Multiple-Social-Network-Alignment"><a href="#MC2-Unsupervised-Multiple-Social-Network-Alignment" class="headerlink" title="MC2:Unsupervised Multiple Social Network Alignment"></a>MC2:Unsupervised Multiple Social Network Alignment</h1><p>来源：ICBD2019</p>
+<!-- more -->
+
+<p>网络对齐任务的定义为：给定一个社交网络集合$\left { S^{(m)}\right}^M_{m&#x3D;1}$没有任何的监督信息，找到一个$Ф^{(m)}$，将社交网络账号与其拥有者对应来找到属于同一个用户的社交帐号，因此：</p>
+<p><img src="/../images/MC2/%E5%AE%9A%E4%B9%89.png"></p>
+<p><img src="/../images/MC2/%E5%8F%82%E6%95%B0.png"></p>
+
       
 
       
@@ -724,7 +841,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="论文笔记">论文笔记</h1>
+        <h1 id="论文笔记"><a href="#论文笔记" class="headerlink" title="论文笔记"></a>论文笔记</h1>
         
           <a class="article-more-a" href="/2022/03/15/Balancing-consistency-and-disparity-in-network-alignment%E7%AC%94%E8%AE%B0/#more">more >></a>
         
@@ -801,8 +918,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="origin-non-rigid-network-alignment">ORIGIN: Non-Rigid Network Alignment</h1>
-<p></p>
+        <h1 id="ORIGIN-Non-Rigid-Network-Alignment"><a href="#ORIGIN-Non-Rigid-Network-Alignment" class="headerlink" title="ORIGIN: Non-Rigid Network Alignment"></a>ORIGIN: Non-Rigid Network Alignment</h1>
         
           <a class="article-more-a" href="/2022/03/09/ORIGIN%E7%AC%94%E8%AE%B0/#more">more >></a>
         
@@ -879,8 +995,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="struct2vec">struct2vec</h1>
-<p>kdd2017</p>
+        <h1 id="struct2vec"><a href="#struct2vec" class="headerlink" title="struct2vec"></a>struct2vec</h1><p>kdd2017</p>
         
           <a class="article-more-a" href="/2022/03/07/struct2vec%E7%AC%94%E8%AE%B0/#more">more >></a>
         
@@ -1075,11 +1190,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
+                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
+                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1095,15 +1210,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1119,11 +1234,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">

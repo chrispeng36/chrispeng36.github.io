@@ -15,18 +15,18 @@
 <meta property="og:site_name" content="Chris的个人博客">
 <meta property="og:description" content="ORIGIN: Non-Rigid Network Alignment">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2022/03/09/images/ORIGIN/GraphSage%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0.png">
-<meta property="og:image" content="http://yoursite.com/2022/03/09/images/ORIGIN/GraphSage%E8%81%9A%E5%90%88%E4%BC%AA%E4%BB%A3%E7%A0%81.jpg">
+<meta property="og:image" content="http://yoursite.com/images/ORIGIN/GraphSage%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/images/ORIGIN/GraphSage%E8%81%9A%E5%90%88%E4%BC%AA%E4%BB%A3%E7%A0%81.jpg">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=z_u">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=W%5Ek">
-<meta property="og:image" content="http://yoursite.com/2022/03/09/images/ORIGIN/ORIGIN%E6%A1%86%E6%9E%B6.png">
-<meta property="og:image" content="http://yoursite.com/2022/03/09/images/ORIGIN/%E7%AE%80%E5%8C%96%E9%87%8D%E5%86%99.png">
+<meta property="og:image" content="http://yoursite.com/images/ORIGIN/ORIGIN%E6%A1%86%E6%9E%B6.png">
+<meta property="og:image" content="http://yoursite.com/images/ORIGIN/%E7%AE%80%E5%8C%96%E9%87%8D%E5%86%99.png">
 <meta property="article:published_time" content="2022-03-09T10:56:04.000Z">
 <meta property="article:modified_time" content="2022-05-30T02:09:01.607Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2022/03/09/images/ORIGIN/GraphSage%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0.png">
+<meta name="twitter:image" content="http://yoursite.com/images/ORIGIN/GraphSage%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0.png">
   
     <link rel="alternative" href="/atom.xml" title="Chris的个人博客" type="application/atom+xml">
   
@@ -195,8 +195,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="origin-non-rigid-network-alignment">ORIGIN: Non-Rigid Network Alignment</h1>
-<p><a id="more"></a></p>
+        <h1 id="ORIGIN-Non-Rigid-Network-Alignment"><a href="#ORIGIN-Non-Rigid-Network-Alignment" class="headerlink" title="ORIGIN: Non-Rigid Network Alignment"></a>ORIGIN: Non-Rigid Network Alignment</h1> <a id="more"></a>
+
 <p>大多数现有的方法都是显式或隐式地将对齐矩阵作为一个线性转换来映射一个网络到另一个网络,并且可能会忽略跨网络之间复杂的对齐关系。基于节点表示学习的对齐方法受到不同网络节点表示的影响。这篇论文提出了一个统一的半监督深度模型ORIGN，同时找到non-rigid网络对齐，并以互惠互利的方式学习多个网络中的节点表示。其关键思想是通过有效的图卷积网络来学习节点表示，这将使我们能够将网络对齐表述为一个点集对齐问题。</p>
 <p>提出的模型有两点好处：（1）节点表示，与现有的图卷积神经网络的在单个网络中聚合节点信息不同，我们可以有效地从多个来源聚合辅助信息，实现了far-reaching的节点表示法。（2）网络对齐，在高质量节点表示的指导下，我们提出的non-rigid点集对齐方法克服了线性变换假设的瓶颈。</p>
 <p>现有的方法存在的问题：（1）对齐矩阵S被用作一个线性变换矩阵，因此可能会过度简化网络之间的复杂对齐关系；（2）生成的节点特征向量是高维的，其表示能力可能不足。</p>
@@ -207,86 +207,84 @@
 <li>模型和算法：半监督学习算法，同时学习不同网络的节点表示，以及揭示了跨多个网络的non-grid网络对准</li>
 <li>预测：</li>
 </ul>
-<h2 id="non-rigid-network-alignment-problem">non-rigid network alignment problem</h2>
-<p>不像线性变换或仿射变换被局限于一些显式表达的变换函数，非刚性变换具有更灵活的灵活性来揭示点集之间的复杂对齐，因为它不需要任何特定形式的变换函数。我们将网络对齐问题转化为点集对齐问题。也就是说，给定已知的非欧几里得数据的输入网络,我们旨在（1）表示欧几里得空间中的节点，使它们可以自然地视为点集，（2）通过推断不同网络之间的非刚性变换，对齐不同网络（即不同的点集）中的节点。</p>
+<h2 id="non-rigid-network-alignment-problem"><a href="#non-rigid-network-alignment-problem" class="headerlink" title="non-rigid network alignment problem"></a>non-rigid network alignment problem</h2><p>不像线性变换或仿射变换被局限于一些显式表达的变换函数，非刚性变换具有更灵活的灵活性来揭示点集之间的复杂对齐，因为它不需要任何特定形式的变换函数。我们将网络对齐问题转化为点集对齐问题。也就是说，给定已知的非欧几里得数据的输入网络,我们旨在（1）表示欧几里得空间中的节点，使它们可以自然地视为点集，（2）通过推断不同网络之间的非刚性变换，对齐不同网络（即不同的点集）中的节点。</p>
 <ul>
 <li>问题1： non-rigid network alignment</li>
 </ul>
-<p>给定：无向网络<span class="math inline">\(G_1= {V_1,A_1,X^0}\)</span>和<span class="math inline">\(G_2={V_2,A_2,Y^0}\)</span>，其中V表示节点集，<span class="math inline">\(|V_1|=n_1,|V_2|=n_2\)</span>，A是邻接矩阵，<span class="math inline">\(X^0,Y^0\)</span>是输入的属性矩阵。（2）标注的节点对集合<span class="math inline">\(L^+={(u_{l_i},v_{l_i})}|i=1,2,...,L\)</span>，其中节点<span class="math inline">\(u_{l_i}\)</span>和节点<span class="math inline">\(v_{l_i}\)</span>是作为先验知识的两个已知的在两个网络中对齐的点。一个可选的先验跨网络节点相似度矩阵H。</p>
-<p>找到：<span class="math inline">\(n_1 \times n_2\)</span>软对齐矩阵S，其中<span class="math inline">\(S(u,v)\)</span>表示<span class="math inline">\(G_1\)</span>中的节点u和<span class="math inline">\(G_2\)</span>中的节点v的对其程度。节点表示矩阵Z,Y</p>
+<p>给定：无向网络$G_1&#x3D; {V_1,A_1,X^0}$和$G_2&#x3D;{V_2,A_2,Y^0}$，其中V表示节点集，$|V_1|&#x3D;n_1,|V_2|&#x3D;n_2$，A是邻接矩阵，$X^0,Y^0$是输入的属性矩阵。（2）标注的节点对集合$L^+&#x3D;{(u_{l_i},v_{l_i})}|i&#x3D;1,2,…,L$，其中节点$u_{l_i}$和节点$v_{l_i}$是作为先验知识的两个已知的在两个网络中对齐的点。一个可选的先验跨网络节点相似度矩阵H。</p>
+<p>找到：$n_1 \times n_2$软对齐矩阵S，其中$S(u,v)$表示$G_1$中的节点u和$G_2$中的节点v的对其程度。节点表示矩阵Z,Y</p>
 <p>如果没有关于跨网络节点的相似度矩阵的先验知识，我们也可以用一些启发式的方法来构造H，如节点度相似度。</p>
-<h2 id="preliminary-graph-convolutional-networks">preliminary: Graph convolutional networks</h2>
-<p>这里作者使用GraphSage来做节点的表示学习，</p>
-<h3 id="graphsage">GraphSage</h3>
-<p>本文提出了一种归纳学习GraphSage框架，通过聚合节点邻居的函数（卷积层），使GCN扩展为归纳学习任务，对未知节点起到泛化作用。</p>
+<h2 id="preliminary-Graph-convolutional-networks"><a href="#preliminary-Graph-convolutional-networks" class="headerlink" title="preliminary: Graph convolutional networks"></a>preliminary: Graph convolutional networks</h2><p>这里作者使用GraphSage来做节点的表示学习，</p>
+<h3 id="GraphSage"><a href="#GraphSage" class="headerlink" title="GraphSage"></a>GraphSage</h3><p>本文提出了一种归纳学习GraphSage框架，通过聚合节点邻居的函数（卷积层），使GCN扩展为归纳学习任务，对未知节点起到泛化作用。</p>
 <ul>
 <li>直推式学习：从特殊到特殊，仅考虑当前数据。在图中学习目标是直接生成当前节点的embedding，例如deepwalk，line等都是使用这种方法，把每个节点embedding作为参数，通过SGD优化。又比如GCN，在训练的过程中使用图的拉普拉斯矩阵进行计算。</li>
 <li>归纳学习：从特殊到一般，目标是在未知数据上也有区分性</li>
 </ul>
 <p>GraphSage的思路就是因为新的节点的增加会改变原来节点的embedding，所以为每个节点得到一个固定的embedding的方法就是不恰当的。而GraphSage方法学到的node embedding是根据node的邻居关系变化而变化的。GraphSage不是试图学习一个图上的所有node的embedding，而是学习一个为每个node产生embedding的映射。</p>
-<ol type="1">
+<ol>
 <li><p>前向传播</p>
 <p>GraphSage训练了一组aggregator functions，这些函数学习如何从一个顶点的局部邻居聚合特征信息，每个聚合函数从一个顶点的不同的hops或者说不同的搜索深度聚合信息。测试的时候，使用训练好的系统，通过学习到的聚合函数来对完全未见过的节点生成embedding。</p>
-<p><img src="../images/ORIGIN/GraphSage聚合函数.png"></p>
+<p><img src="/../images/ORIGIN/GraphSage%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0.png"></p>
 <p>首先对图中的每个节点进行采样，因为每个节点的度是不一样的，为了计算高效，为每个节点采用固定数量的邻居（图中一跳的邻居数为3，二跳的邻居数为5）。生成目标节点embedding，先聚合2跳邻居的特征，生成一跳邻居embedding，再聚合一跳邻居embedding，生成目标节点embedding，从而获得二跳邻居信息。将embedding作为全连接层的输入，预测目标节点的标签。</p>
-<p><img src="../images/ORIGIN/GraphSage聚合伪代码.jpg"></p>
-<p>4-5行介绍卷积层的操作：聚合与节点v相连的邻居（采样）k-1层的embedding，得到第k层邻居的聚合特征<span class="math inline">\(h_{N(v)}^k\)</span>，与节点第k-1层embedding <span class="math inline">\(h_v^{k-1}\)</span>拼接，并通过全连接层转换，得到节点v在第k层的embedding <span class="math inline">\(h_v^k\)</span>。</p>
+<p><img src="/../images/ORIGIN/GraphSage%E8%81%9A%E5%90%88%E4%BC%AA%E4%BB%A3%E7%A0%81.jpg"></p>
+<p>4-5行介绍卷积层的操作：聚合与节点v相连的邻居（采样）k-1层的embedding，得到第k层邻居的聚合特征$h_{N(v)}^k$，与节点第k-1层embedding $h_v^{k-1}$拼接，并通过全连接层转换，得到节点v在第k层的embedding $h_v^k$。</p>
 <p>在每次迭代，顶点从它们的局部邻居聚合信息，并且随着这个过程的迭代，顶点会从越来越远的地方获得信息。</p>
-<p>其中K表示的是网络的层数，也代表每个顶点能够聚合的邻接点的跳数，因为每增加一层，可以聚合更远的一层邻居的信息。<span class="math inline">\(x_v\)</span>表示节点v的特征向量,<span class="math inline">\(h_{N(v)}^k\)</span>表示在第k层节点v所有的邻居节点的特征表示。<span class="math inline">\(h_k^v\)</span>表示在第k层节点v的特征表示。<span class="math inline">\(N(v)\)</span>定义为从集合<span class="math inline">\(\left \{ u∈v:(u,V)∈ξ\right\}\)</span>中的固定size的均匀取出，即GraphSage中每一层的节点邻居都是从上一层网络采样的，并不是所有邻居参与，并且采样后的邻居的size是固定的。</p></li>
+<p>其中K表示的是网络的层数，也代表每个顶点能够聚合的邻接点的跳数，因为每增加一层，可以聚合更远的一层邻居的信息。$x_v$表示节点v的特征向量,$h_{N(v)}^k$表示在第k层节点v所有的邻居节点的特征表示。$h_k^v$表示在第k层节点v的特征表示。$N(v)$定义为从集合$\left { u∈v:(u,V)∈ξ\right}$中的固定size的均匀取出，即GraphSage中每一层的节点邻居都是从上一层网络采样的，并不是所有邻居参与，并且采样后的邻居的size是固定的。</p>
+</li>
 <li><p>聚合函数</p>
 <p>平均聚合：首先对邻居embedding中每个维度取平均，然后与目标节点embedding拼接后进行非线性转换：</p>
-<p><span class="math inline">\(h_{N(v)}^{k}=\operatorname{mean}\left(\left\{h_{u}^{k-1}, u \in N(v)\right\}\right)\)</span> <span class="math inline">\(h_{v}^{k}=\sigma\left(W^{k} \cdot C O N C A T\left(h_{v}^{k-1}, h_{N(u)}^{k}\right)\right)\)</span></p>
+<p>$h_{N(v)}^{k}&#x3D;\operatorname{mean}\left(\left{h_{u}^{k-1}, u \in N(v)\right}\right)$<br>$h_{v}^{k}&#x3D;\sigma\left(W^{k} \cdot C O N C A T\left(h_{v}^{k-1}, h_{N(u)}^{k}\right)\right)$</p>
 <p>归纳式聚合：直接对目标节点和所有邻居embedding中每个维度取平均，然后再非线性转换：</p>
-<p><span class="math inline">\(h_{v}^{k}=\sigma\left(W^{k} \cdot \operatorname{mean}\left(\left\{h_{v}^{k-1}\right\} \cup\left\{h_{u}^{k-1}, \forall u \in N(v)\right\}\right)\right.\)</span></p>
-<p>LSTM聚合：LSTM函数不符合"排序不变量"的性质，需要对邻居随机排序，然后将随机的邻居序列embedding {xt,t∈N(v)}作为LSTM的输入。</p>
+<p>$h_{v}^{k}&#x3D;\sigma\left(W^{k} \cdot \operatorname{mean}\left(\left{h_{v}^{k-1}\right} \cup\left{h_{u}^{k-1}, \forall u \in N(v)\right}\right)\right.$</p>
+<p>LSTM聚合：LSTM函数不符合”排序不变量”的性质，需要对邻居随机排序，然后将随机的邻居序列embedding {xt,t∈N(v)}作为LSTM的输入。</p>
 <p>pooling聚合器：首先对每个节点上一层embedding进行非线性变换（等价单个连接层，每一维度表示再某方面的突出表现，依次表示目标节点的embedding</p>
-<p><span class="math inline">\(h_{N(v)}^{k}=\max \left(\left\{\sigma\left(W_{p o o l} h_{u i}^{k}+b\right)\right\}, \forall u_{i} \in N(v)\right)\)</span> <span class="math inline">\(h_{v}^{k}=\sigma\left(W^{k} \cdot C O N C A T\left(h_{v}^{k-1}, h_{N(u)}^{k-1}\right)\right)\)</span></p></li>
+<p>$h_{N(v)}^{k}&#x3D;\max \left(\left{\sigma\left(W_{p o o l} h_{u i}^{k}+b\right)\right}, \forall u_{i} \in N(v)\right)$<br>$h_{v}^{k}&#x3D;\sigma\left(W^{k} \cdot C O N C A T\left(h_{v}^{k-1}, h_{N(u)}^{k-1}\right)\right)$</p>
+</li>
 <li><p>无监督和有监督损失设定</p>
 <p>损失函数可以根据具体应用情况，可以使用基于图的无监督损失和有监督损失。</p>
-<p>基于图的无监督损失：希望节点u与邻居v的embedding也相似（对应公式的第一项），而与没有交集的节点<span class="math inline">\(v_n\)</span>不相似（对应公式第二项）。</p>
-<p><span class="math inline">\(J_{\mathcal{G}}\left(\mathbf{z}_{u}\right)=-\log \left(\sigma\left(\mathbf{z}_{u}^{\top} \mathbf{z}_{v}\right)\right)-Q \cdot \mathbb{E}_{v_{n} \sim P_{n}(v)} \log \left(\sigma\left(-\mathbf{z}_{u}^{\top} \mathbf{z}_{v_{n}}\right)\right)\)</span></p>
-<p><span class="math inline">\(z_u\)</span>是生成的embedding，节点v是节点u随机游走访问的邻居，<span class="math inline">\(v_n~P_n(v)\)</span>表示负采样，Q是采样样本数。</p></li>
+<p>基于图的无监督损失：希望节点u与邻居v的embedding也相似（对应公式的第一项），而与没有交集的节点$v_n$不相似（对应公式第二项）。</p>
+<p>$J_{\mathcal{G}}\left(\mathbf{z}<em>{u}\right)&#x3D;-\log \left(\sigma\left(\mathbf{z}</em>{u}^{\top} \mathbf{z}<em>{v}\right)\right)-Q \cdot \mathbb{E}</em>{v_{n} \sim P_{n}(v)} \log \left(\sigma\left(-\mathbf{z}<em>{u}^{\top} \mathbf{z}</em>{v_{n}}\right)\right)$</p>
+<p>$z_u$是生成的embedding，节点v是节点u随机游走访问的邻居，$v_n~P_n(v)$表示负采样，Q是采样样本数。</p>
+</li>
 <li><p>参数学习</p>
-<p>通过前向传播得到节点u的embedding <img src="https://www.zhihu.com/equation?tex=z_u" alt="[公式]"> ,然后梯度下降（实现使用Adam优化器） <strong>进行反向</strong>传播优化参数 <img src="https://www.zhihu.com/equation?tex=W%5Ek" alt="[公式]"> 和聚合函数内参数。</p></li>
+<p>通过前向传播得到节点u的embedding <img src="https://www.zhihu.com/equation?tex=z_u" alt="[公式]"> ,然后梯度下降（实现使用Adam优化器） <strong>进行反向</strong>传播优化参数 <img src="https://www.zhihu.com/equation?tex=W%5Ek" alt="[公式]"> 和聚合函数内参数。</p>
+</li>
 </ol>
-<p>给定一个网络<span class="math inline">\(G_1\)</span>，每个节点<span class="math inline">\(u∈V_1\)</span>从它的邻居<span class="math inline">\(N_u\)</span>中聚合隐藏的表示并且与当前节点的表示聚合，形式上，被下面的公式计算：</p>
-<p><span class="math inline">\(\begin{aligned} \tilde{\mathbf{x}}_{\mathcal{N}_{u}}^{t} &amp;=\operatorname{AGGREGATE}_{t}\left(\left\{\tilde{\mathbf{x}}_{u^{\prime}}^{t-1}, \forall u^{\prime} \in \mathcal{N}_{u}\right\}\right) \\ \tilde{\mathbf{x}}_{u}^{t} &amp;=\sigma\left(\left[\tilde{\mathbf{x}}_{u}^{t-1} \| \tilde{\mathbf{x}}_{\mathcal{N}_{u}^{t}}\right] \mathbf{W}^{t}\right) \end{aligned}\)</span></p>
-<p><span class="math inline">\([\cdot \| \cdot]\)</span>表示的是两个向量的链接，<span class="math inline">\(\widetilde x_u^{t-1}\)</span>是节点u的表示，<span class="math inline">\(W^t\)</span>表示的是t层的权重矩阵。当t=0时，<span class="math inline">\(\widetilde x_u^0\)</span>被初始化为节点u的输入特征，<span class="math inline">\(\widetilde x_u^0=X^0(u:)\)</span>.GraphSage可以通过均值、LSTM和池聚合器进行实例化。选择MEAN聚合器是因为它的高表示能力和简单性。值得注意的是，GraphSage能够通过均匀采样和替换一个固定大小的相邻节点来进行小批量训练。对于输入网络G1，无监督的GraphSage基于负采样的SkipGram最小化以下损失函数：</p>
-<p><span class="math inline">\(\sum_{u \in \mathcal{V}_{1}} \sum_{\mathcal{G}^{\prime} \in C_{u}}(\tilde{\mathbf{X}})=\log \left(\sigma\left(\tilde{\mathbf{x}}_{u}^{T} \tilde{\mathbf{x}}_{u^{\prime}}\right)\right)-Q \cdot \mathbb{E}_{u_{n}^{\prime} \sim P_{n}\left(u^{\prime}\right)} \log \left(\sigma\left(-\tilde{\mathbf{x}}_{u}^{T} \tilde{\mathbf{x}}_{u_{n}^{\prime}}\right)\right)\)</span></p>
-<p>希望节点u与邻居v的embedding也相似（对应公式的第一项），而与没有交集的节点<span class="math inline">\(v_n\)</span>不相似（对应公式第二项）。</p>
-<h2 id="proposed-model">proposed model</h2>
-<p><img src="../images/ORIGIN/ORIGIN框架.png"></p>
-<h3 id="node-representation-learning-for-multiple-networks">node representation learning for multiple networks</h3>
-<p>aggregation and combination：许多现有的基于空间的图卷积神经网络主要定义两个。（1）intra-aggregation：在单个网络中，从相邻节点（如等式1）聚合节点隐藏表示（或第一层的节点属性信息）（2）intra-combination：将当前隐藏表示与节点的结果聚合表示组合为更新的节点表示。然而，考虑到多个网络可能包含一些相互补充的信息，这可能无法在多个网络场景中提供足够信息的节点表示。除了单个网络的单独图卷积网络(称为内部gcn)，我们提出了一个InterGCN组件，它集成了不同网络的节点表示。如果G1中的节点u与G2中的节点v相似（即，可能是对齐的），我们可以将节点v视为节点u的虚拟邻居。给定两个独立的Intra-GCNs，输出节点的表示<span class="math inline">\(\widetilde x_u, \widetilde y_v∈R^d,u∈V_1,v∈V_2\)</span>，定义cross-network aggregattion为：</p>
-<p><span class="math inline">\(\hat{\mathbf{x}}_{u}=\operatorname{AGGREGATE}_{\text {cross }}\left(\tilde{\mathbf{x}}_{u}\right)=\sum_{v \in \mathcal{V}_{2}} \mathbf{S}(u, v) \tilde{\mathbf{y}}_{v}\)</span> <span class="math inline">\(\hat{\mathbf{y}}_{v}=\operatorname{AGGREGATE}_{\text {cross }}\left(\tilde{\mathbf{y}}_{v}\right)=\sum_{u \in \mathcal{V}_{1}} \mathbf{S}(u, v) \tilde{\mathbf{x}}_{u}\)</span></p>
+<p>给定一个网络$G_1$，每个节点$u∈V_1$从它的邻居$N_u$中聚合隐藏的表示并且与当前节点的表示聚合，形式上，被下面的公式计算：</p>
+<p>$\begin{aligned} \tilde{\mathbf{x}}<em>{\mathcal{N}</em>{u}}^{t} &amp;&#x3D;\operatorname{AGGREGATE}<em>{t}\left(\left{\tilde{\mathbf{x}}</em>{u^{\prime}}^{t-1}, \forall u^{\prime} \in \mathcal{N}<em>{u}\right}\right) \ \tilde{\mathbf{x}}</em>{u}^{t} &amp;&#x3D;\sigma\left(\left[\tilde{\mathbf{x}}<em>{u}^{t-1} | \tilde{\mathbf{x}}</em>{\mathcal{N}_{u}^{t}}\right] \mathbf{W}^{t}\right) \end{aligned}$</p>
+<p>$[\cdot | \cdot]$表示的是两个向量的链接，$\widetilde x_u^{t-1}$是节点u的表示，$W^t$表示的是t层的权重矩阵。当t&#x3D;0时，$\widetilde x_u^0$被初始化为节点u的输入特征，$\widetilde x_u^0&#x3D;X^0(u:)$.GraphSage可以通过均值、LSTM和池聚合器进行实例化。选择MEAN聚合器是因为它的高表示能力和简单性。值得注意的是，GraphSage能够通过均匀采样和替换一个固定大小的相邻节点来进行小批量训练。对于输入网络G1，无监督的GraphSage基于负采样的SkipGram最小化以下损失函数：</p>
+<p>$\sum_{u \in \mathcal{V}<em>{1}} \sum</em>{\mathcal{G}^{\prime} \in C_{u}}(\tilde{\mathbf{X}})&#x3D;\log \left(\sigma\left(\tilde{\mathbf{x}}<em>{u}^{T} \tilde{\mathbf{x}}</em>{u^{\prime}}\right)\right)-Q \cdot \mathbb{E}<em>{u</em>{n}^{\prime} \sim P_{n}\left(u^{\prime}\right)} \log \left(\sigma\left(-\tilde{\mathbf{x}}<em>{u}^{T} \tilde{\mathbf{x}}</em>{u_{n}^{\prime}}\right)\right)$</p>
+<p>希望节点u与邻居v的embedding也相似（对应公式的第一项），而与没有交集的节点$v_n$不相似（对应公式第二项）。</p>
+<h2 id="proposed-model"><a href="#proposed-model" class="headerlink" title="proposed model"></a>proposed model</h2><p><img src="/../images/ORIGIN/ORIGIN%E6%A1%86%E6%9E%B6.png"></p>
+<h3 id="node-representation-learning-for-multiple-networks"><a href="#node-representation-learning-for-multiple-networks" class="headerlink" title="node representation learning for multiple networks"></a>node representation learning for multiple networks</h3><p>aggregation and combination：许多现有的基于空间的图卷积神经网络主要定义两个。（1）intra-aggregation：在单个网络中，从相邻节点（如等式1）聚合节点隐藏表示（或第一层的节点属性信息）（2）intra-combination：将当前隐藏表示与节点的结果聚合表示组合为更新的节点表示。然而，考虑到多个网络可能包含一些相互补充的信息，这可能无法在多个网络场景中提供足够信息的节点表示。除了单个网络的单独图卷积网络(称为内部gcn)，我们提出了一个InterGCN组件，它集成了不同网络的节点表示。如果G1中的节点u与G2中的节点v相似（即，可能是对齐的），我们可以将节点v视为节点u的虚拟邻居。给定两个独立的Intra-GCNs，输出节点的表示$\widetilde x_u, \widetilde y_v∈R^d,u∈V_1,v∈V_2$，定义cross-network aggregattion为：</p>
+<p>$\hat{\mathbf{x}}<em>{u}&#x3D;\operatorname{AGGREGATE}</em>{\text {cross }}\left(\tilde{\mathbf{x}}<em>{u}\right)&#x3D;\sum</em>{v \in \mathcal{V}<em>{2}} \mathbf{S}(u, v) \tilde{\mathbf{y}}</em>{v}$<br>$\hat{\mathbf{y}}<em>{v}&#x3D;\operatorname{AGGREGATE}</em>{\text {cross }}\left(\tilde{\mathbf{y}}<em>{v}\right)&#x3D;\sum</em>{u \in \mathcal{V}<em>{1}} \mathbf{S}(u, v) \tilde{\mathbf{x}}</em>{u}$</p>
 <p>S就是对齐矩阵。</p>
-<p>（1）aggregation efficiency：节点对齐矩阵通常是非常的稀疏的，为每个节点计算跨网络aggregation将会产生<span class="math inline">\(O(nd)\)</span>的时间复杂度。（2）aggregation localization：当S是稀疏的时候，公式4和公式5将一个网络中大部分甚至所有节点的表示聚合，也就是全局平滑网络。这将进一步使不同节点的聚合表示不太容易区分。</p>
-<p>为了解决这两个问题，因为给定的是有标签的节点对<span class="math inline">\(L^+={(u_{l_i},v_{l_i})}|i=1,2,...,L\)</span>,表示哪些节点是对齐的，设除了<span class="math inline">\(S(u_{l_i},v_{l_i})=1\)</span>之外的所有<span class="math inline">\(S(u_{l_i})=S(u,v_{l_i})=0\)</span>。此外，对于所有其他的不知道的节点对齐，建议对对齐矩阵S进行降采样如下：对于每个节点<span class="math inline">\(u \notin \left\{ (u_{l_i},v_{l_i})|i=1,2,...,L\right\}\)</span>，我们仅仅保留K个最大的<span class="math inline">\(S(u,v_{q_k})\)</span>列值，并且表示采样的矩阵为<span class="math inline">\(S_1\)</span>，随后将其归一化<span class="math inline">\(\sum_{k=1}^{K} \mathbf{S}_{1}\left(u, v_{q_{k}}\right)=1\)</span>，对于节点v也是一样的得到S2。</p>
+<p>（1）aggregation efficiency：节点对齐矩阵通常是非常的稀疏的，为每个节点计算跨网络aggregation将会产生$O(nd)$的时间复杂度。（2）aggregation localization：当S是稀疏的时候，公式4和公式5将一个网络中大部分甚至所有节点的表示聚合，也就是全局平滑网络。这将进一步使不同节点的聚合表示不太容易区分。</p>
+<p>为了解决这两个问题，因为给定的是有标签的节点对$L^+&#x3D;{(u_{l_i},v_{l_i})}|i&#x3D;1,2,…,L$,表示哪些节点是对齐的，设除了$S(u_{l_i},v_{l_i})&#x3D;1$之外的所有$S(u_{l_i})&#x3D;S(u,v_{l_i})&#x3D;0$。此外，对于所有其他的不知道的节点对齐，建议对对齐矩阵S进行降采样如下：对于每个节点$u \notin \left{ (u_{l_i},v_{l_i})|i&#x3D;1,2,…,L\right}$，我们仅仅保留K个最大的$S(u,v_{q_k})$列值，并且表示采样的矩阵为$S_1$，随后将其归一化$\sum_{k&#x3D;1}^{K} \mathbf{S}<em>{1}\left(u, v</em>{q_{k}}\right)&#x3D;1$，对于节点v也是一样的得到S2。</p>
 <p>因此，跨网络聚合可以被写作：</p>
-<p><span class="math inline">\(\begin{aligned} \hat{\mathbf{x}}_{u} &amp;=\mathrm{AGGREGATE}_{\mathrm{cross}}\left(\tilde{\mathbf{x}}_{u}\right)=\sum_{k=1}^{K} \mathbf{S}_{1}\left(u, v_{q_{k}}\right) \tilde{\mathbf{y}}_{v_{q_{k}}} \\ \hat{\mathbf{y}}_{v} &amp;=\mathrm{AGGREGATE}_{\mathrm{cross}}\left(\tilde{\mathbf{y}}_{v}\right)=\sum_{k=1}^{K} \mathbf{S}_{2}\left(u_{p_{k}}, v\right) \tilde{\mathbf{x}}_{u_{p_{k}}} \end{aligned}\)</span></p>
+<p>$\begin{aligned} \hat{\mathbf{x}}<em>{u} &amp;&#x3D;\mathrm{AGGREGATE}</em>{\mathrm{cross}}\left(\tilde{\mathbf{x}}<em>{u}\right)&#x3D;\sum</em>{k&#x3D;1}^{K} \mathbf{S}<em>{1}\left(u, v</em>{q_{k}}\right) \tilde{\mathbf{y}}<em>{v</em>{q_{k}}} \ \hat{\mathbf{y}}<em>{v} &amp;&#x3D;\mathrm{AGGREGATE}</em>{\mathrm{cross}}\left(\tilde{\mathbf{y}}<em>{v}\right)&#x3D;\sum</em>{k&#x3D;1}^{K} \mathbf{S}<em>{2}\left(u</em>{p_{k}}, v\right) \tilde{\mathbf{x}}<em>{u</em>{p_{k}}} \end{aligned}$</p>
 <p>对于跨网络聚合，我们使用</p>
-<p><span class="math inline">\(\begin{aligned} \mathbf{x}_{u} &amp;=\mathrm{COMBINE}_{\text {cross }}\left(\tilde{\mathbf{x}}_{u}, \hat{\mathbf{x}}_{u}\right)=\left[\tilde{\mathbf{x}}_{u} \| \hat{\mathbf{x}}_{u}\right] \mathbf{W}_{c r o s s}+\mathbf{b}_{1} \\ \mathbf{y}_{v} &amp;=\mathrm{COMBINE}_{\text {cross }}\left(\tilde{\mathbf{y}}_{v}, \hat{\mathbf{y}}_{v}\right)=\left[\tilde{\mathbf{y}}_{v} \| \hat{\mathbf{y}}_{v}\right] \mathbf{W}_{c r o s s}+\mathbf{b}_{2} \end{aligned}\)</span></p>
-<p>其中，<span class="math inline">\(x_u,y_v∈R^d\)</span>是由所提出的多层GCN模型的输出节点表示。权重矩阵<span class="math inline">\(W_{cross}∈R^{2d\times d}\)</span>在两个方程中共享，因为它基本上测量如何组合内部gcn和Inter-GCN学习的跨网络组合的表示。</p>
-<p>损失函数：<span class="math inline">\(\mathcal{J}_{G C N}=\mathcal{J}_{\mathcal{G}_{1}}(\mathbf{X})+\mathcal{J}_{\mathcal{G}_{2}}(\mathbf{Y})+\lambda \mathcal{J}_{\text {cross }}(\mathbf{X}, \mathbf{Y})\)</span>，要做的是最小化这个函数。</p>
-<p><span class="math inline">\(J_{cross}\)</span>计算如下：</p>
-<p><span class="math inline">\(\begin{aligned} \mathcal{J}_{\text {cross }}(\mathbf{X}, \mathbf{Y}) &amp;=\sum_{u \in \mathcal{V}_{1}}\left\|\mathbf{x}_{u}-\sum_{k=1}^{K} \mathbf{S}_{1}\left(u, v_{q_{k}}\right) \mathbf{y}_{v_{q_{k}}}\right\|_{2}^{2} \\ &amp;+\sum_{v \in \mathcal{V}_{2}}\left\|\mathbf{y}_{v}-\sum_{k=1}^{K} \mathbf{S}_{2}\left(u_{p_{k}}, v\right) \mathbf{x}_{u_{p_{k}}}\right\|_{2}^{2} \end{aligned}\)</span></p>
-<p>简化<span class="math inline">\(\sum_{k=1}^{K} \mathbf{S}_{1}\left(u, v_{q_{k}}\right) \mathbf{y}_{v_{q_{k}}}\)</span>，重写为：</p>
-<p><img src="../images/ORIGIN/简化重写.png"></p>
-<p>其中，<span class="math inline">\(W_{c_1}\)</span>和<span class="math inline">\(W_{c_2}\)</span>是<span class="math inline">\(W_{cross}\)</span>第一和第二行。基于上述方程，我们可以重新考虑对聚合表示<span class="math inline">\(x_u\)</span>也就是<span class="math inline">\(\sum_{k=1}^{K} \mathbf{S}_{1}\left(u, v_{q_{k}}\right) \mathbf{y}_{v_{q_{k}}}\)</span>的计算分为两步。首先，我们聚合跨网络聚合<span class="math inline">\(\hat {x_u}\)</span>,（2）节点<span class="math inline">\(u_{p_{k&#39;}}\)</span>之间的聚合度结果（表示为<span class="math inline">\(\overline {x}_u\)</span>）,来自于同一个网络<span class="math inline">\(G_1\)</span>权重为<span class="math inline">\(S_1S_2^T(u,u_{u,p_{k&#39;}})\)</span>，随后，其等价于：</p>
-<p><span class="math inline">\(\sum_{k=1}^{K} \mathbf{S}_{1}\left(u, v_{q_{k}}\right) \mathbf{y}_{v_{q_{k}}}=\left[\hat{\mathbf{x}}_{u} \| \overline{\mathbf{x}}_{u}\right] \mathbf{W}_{\text {cross }}+\mathbf{b}_{2}\)</span></p>
-<p>由于<span class="math inline">\(S_1S_2^T\)</span>是一个稀疏矩阵，x¯u的聚合从大多数其他节点全局收集信息，导致了一个较少的象征性的x¯u和更高的计算成本。为了解决这个问题，我们仅保留非零项<span class="math inline">\((S_1S_2^T)(u,u_{pk&#39;})\)</span>，其中<span class="math inline">\(u_{p_k&#39;}\)</span>在一些随机游走中与节点u同时出现的节点.这样，所需要的额外节点表示就只包括在<span class="math inline">\(\widetilde x_{u_{pk&#39;}}\)</span>。</p>
-<h3 id="multi-view-point-set-alignment">multi-view point set alignment</h3>
-<p>因为MultiGCN模型只保留了相同网络内的结构一致性(即等式（3）)和节点表示和它们的聚合表示之间的一致性 e其他网络(即，等式（9）)，节点表示xu和yv在欧几里得空间中仍然很可能不相互接近，即使节点u和节点v应该对齐。为了减轻这一限制，我们建议将节点上的网络对齐问题转化为非刚性点集对齐(PSA)问题，其中每个点都由对应节点在欧几里得空间中的表示所表示。</p>
-<p>特别的，给定一个对齐集合<span class="math inline">\(L^+={(u_{l_i},v_{l_i})}|i=1,2,...,L\)</span>，我们想用一些非刚性向量值变换函数f∈Rd将每个点xuli置换到其对齐的点yvli上，从而实现最大的点重叠。</p>
-<p><span class="math inline">\(\min _{\mathbf{f}} \sum_{i=1}^{L}\left\|\mathbf{x}_{u_{l_{i}}}+\frac{1}{2} \mathbf{f}\left(\mathbf{x}_{u_{l_{i}}}\right)-\mathbf{y}_{v_{l_{i}}}\right\|_{2}^{2}\)</span></p>
+<p>$\begin{aligned} \mathbf{x}<em>{u} &amp;&#x3D;\mathrm{COMBINE}</em>{\text {cross }}\left(\tilde{\mathbf{x}}<em>{u}, \hat{\mathbf{x}}</em>{u}\right)&#x3D;\left[\tilde{\mathbf{x}}<em>{u} | \hat{\mathbf{x}}</em>{u}\right] \mathbf{W}<em>{c r o s s}+\mathbf{b}</em>{1} \ \mathbf{y}<em>{v} &amp;&#x3D;\mathrm{COMBINE}</em>{\text {cross }}\left(\tilde{\mathbf{y}}<em>{v}, \hat{\mathbf{y}}</em>{v}\right)&#x3D;\left[\tilde{\mathbf{y}}<em>{v} | \hat{\mathbf{y}}</em>{v}\right] \mathbf{W}<em>{c r o s s}+\mathbf{b}</em>{2} \end{aligned}$</p>
+<p>其中，$x_u,y_v∈R^d$是由所提出的多层GCN模型的输出节点表示。权重矩阵$W_{cross}∈R^{2d\times d}$在两个方程中共享，因为它基本上测量如何组合内部gcn和Inter-GCN学习的跨网络组合的表示。</p>
+<p>损失函数：$\mathcal{J}<em>{G C N}&#x3D;\mathcal{J}</em>{\mathcal{G}<em>{1}}(\mathbf{X})+\mathcal{J}</em>{\mathcal{G}<em>{2}}(\mathbf{Y})+\lambda \mathcal{J}</em>{\text {cross }}(\mathbf{X}, \mathbf{Y})$，要做的是最小化这个函数。</p>
+<p>$J_{cross}$计算如下：</p>
+<p>$\begin{aligned} \mathcal{J}<em>{\text {cross }}(\mathbf{X}, \mathbf{Y}) &amp;&#x3D;\sum</em>{u \in \mathcal{V}<em>{1}}\left|\mathbf{x}</em>{u}-\sum_{k&#x3D;1}^{K} \mathbf{S}<em>{1}\left(u, v</em>{q_{k}}\right) \mathbf{y}<em>{v</em>{q_{k}}}\right|<em>{2}^{2} \ &amp;+\sum</em>{v \in \mathcal{V}<em>{2}}\left|\mathbf{y}</em>{v}-\sum_{k&#x3D;1}^{K} \mathbf{S}<em>{2}\left(u</em>{p_{k}}, v\right) \mathbf{x}<em>{u</em>{p_{k}}}\right|_{2}^{2} \end{aligned}$</p>
+<p>简化$\sum_{k&#x3D;1}^{K} \mathbf{S}<em>{1}\left(u, v</em>{q_{k}}\right) \mathbf{y}<em>{v</em>{q_{k}}}$，重写为：</p>
+<p><img src="/../images/ORIGIN/%E7%AE%80%E5%8C%96%E9%87%8D%E5%86%99.png"></p>
+<p>其中，$W_{c_1}$和$W_{c_2}$是$W_{cross}$第一和第二行。基于上述方程，我们可以重新考虑对聚合表示$x_u$也就是$\sum_{k&#x3D;1}^{K} \mathbf{S}<em>{1}\left(u, v</em>{q_{k}}\right) \mathbf{y}<em>{v</em>{q_{k}}}$的计算分为两步。首先，我们聚合跨网络聚合$\hat {x_u}$,（2）节点$u_{p_{k’}}$之间的聚合度结果（表示为$\overline {x}<em>u$）,来自于同一个网络$G_1$权重为$S_1S_2^T(u,u</em>{u,p_{k’}})$，随后，其等价于：</p>
+<p>$\sum_{k&#x3D;1}^{K} \mathbf{S}<em>{1}\left(u, v</em>{q_{k}}\right) \mathbf{y}<em>{v</em>{q_{k}}}&#x3D;\left[\hat{\mathbf{x}}<em>{u} | \overline{\mathbf{x}}</em>{u}\right] \mathbf{W}<em>{\text {cross }}+\mathbf{b}</em>{2}$</p>
+<p>由于$S_1S_2^T$是一个稀疏矩阵，x¯u的聚合从大多数其他节点全局收集信息，导致了一个较少的象征性的x¯u和更高的计算成本。为了解决这个问题，我们仅保留非零项$(S_1S_2^T)(u,u_{pk’})$，其中$u_{p_k’}$在一些随机游走中与节点u同时出现的节点.这样，所需要的额外节点表示就只包括在$\widetilde x_{u_{pk’}}$。</p>
+<h3 id="multi-view-point-set-alignment"><a href="#multi-view-point-set-alignment" class="headerlink" title="multi-view point set alignment"></a>multi-view point set alignment</h3><p>因为MultiGCN模型只保留了相同网络内的结构一致性(即等式（3）)和节点表示和它们的聚合表示之间的一致性 e其他网络(即，等式（9）)，节点表示xu和yv在欧几里得空间中仍然很可能不相互接近，即使节点u和节点v应该对齐。为了减轻这一限制，我们建议将节点上的网络对齐问题转化为非刚性点集对齐(PSA)问题，其中每个点都由对应节点在欧几里得空间中的表示所表示。</p>
+<p>特别的，给定一个对齐集合$L^+&#x3D;{(u_{l_i},v_{l_i})}|i&#x3D;1,2,…,L$，我们想用一些非刚性向量值变换函数f∈Rd将每个点xuli置换到其对齐的点yvli上，从而实现最大的点重叠。</p>
+<p>$\min <em>{\mathbf{f}} \sum</em>{i&#x3D;1}^{L}\left|\mathbf{x}<em>{u</em>{l_{i}}}+\frac{1}{2} \mathbf{f}\left(\mathbf{x}<em>{u</em>{l_{i}}}\right)-\mathbf{y}<em>{v</em>{l_{i}}}\right|_{2}^{2}$</p>
 <p>该式子是一个对f没有任何约束的不适定问题。相反，我们通过要求非刚性函数f位于一个特定的函数空间内，即一个再生核希尔伯特空间(RKHS)来建模上述优化问题。</p>
-<p><span class="math inline">\(\min _{\mathbf{f}} \sum_{i=1}^{L}\left\|\mathbf{x}_{u_{l_{i}}}+\frac{1}{2} \mathbf{f}\left(\mathbf{x}_{u_{l_{i}}}\right)-\mathbf{y}_{v_{l_{i}}}\right\|_{2}^{2}+\alpha\|\mathbf{f}\|_{\mathcal{H}}^{2}\)</span></p>
-<p>其中<span class="math inline">\(||f||^2_H\)</span>为H中f的RKHS范数，α为正则化参数。因为每个点(例如，<span class="math inline">\(X_{ul_i}\)</span>)本质上都有两种解释：欧几里得空间中的点（即节点表示）和非里得图空间网络中的相应节点，我们进一步考虑将H分成两个RKHS,<span class="math inline">\(H^1,H^2\)</span>由<span class="math inline">\(H=H^1⊕H^2\)</span>这样:</p>
-<p><span class="math inline">\(\mathcal{H}=\left\{\mathbf{f} \mid \mathbf{f}(\mathbf{x})=\mathbf{f}^{1}(\mathbf{x})+\mathbf{f}^{2}(\mathbf{x}), \mathbf{f}^{1} \in \mathcal{H}^{1}, \mathbf{f}^{2} \in \mathcal{H}^{2}\right\}\)</span></p>
-<p>RKHS范数<span class="math inline">\(||f||^2_H\)</span>可以被重写为：</p>
-<p><span class="math inline">\(\|\mathbf{f}\|_{\mathcal{H}}^{2}=\)</span> <span class="math inline">\(\min _{\substack{\mathbf{f}=\mathbf{f}^{1}+\mathbf{f}^{2} \\ \mathbf{f}^{1} \in \mathcal{H}^{1} \\ \mathbf{f}^{2} \in \mathcal{H}^{2}}} \alpha_{1}\left\|\mathbf{f}^{1}\right\|_{\mathcal{H}^{1}}^{2}+\alpha_{2}\left\|\mathbf{f}^{2}\right\|_{\mathcal{H}^{2}}^{2}+\mu \sum_{j=1}^{n_{1}-L}\left[\mathbf{f}^{1}\left(\mathbf{x}_{u_{r_{j}}}\right)-\mathbf{f}^{2}\left(\mathbf{x}_{u_{r_{j}}}\right)\right]^{2}\)</span></p>
-<p>其中<span class="math inline">\(f^1(x),f^2(x)\)</span>是RKHS <span class="math inline">\(H^1,H^2\)</span>中的转换函数分别对应于点视图和图视图。<span class="math inline">\(u= \left\{ u_{r_j}|j=1,...,n_1-L\right\}\)</span>。表示g1中与G2中未标记节点对齐的未标记节点。<span class="math inline">\(\left[\mathbf{f}^{1}\left(\mathbf{x}_{u_{r_{j}}}\right)-\mathbf{f}^{2}\left(\mathbf{x}_{u_{r_{j}}}\right)\right]^{2}\)</span>规范未标记节点urj上的变换函数<span class="math inline">\(f^1，f^2\)</span>，使其在两个不同的视图中保持一致(即在两个视图中连贯地移动<span class="math inline">\(x_{u_{rj}}\)</span>)。令<span class="math inline">\(H^1,H^2\)</span>与再生核κ1，κ2在一起，那么RKHSH与复制核在一起：</p>
-<p><span class="math inline">\(\kappa\left(u, u^{\prime}\right)=\phi\left(u, u^{\prime}\right)-\mu \mathbf{a}_{u} \mathbf{\Psi} \mathbf{a}_{u^{\prime}}^{T}\)</span></p>
+<p>$\min <em>{\mathbf{f}} \sum</em>{i&#x3D;1}^{L}\left|\mathbf{x}<em>{u</em>{l_{i}}}+\frac{1}{2} \mathbf{f}\left(\mathbf{x}<em>{u</em>{l_{i}}}\right)-\mathbf{y}<em>{v</em>{l_{i}}}\right|<em>{2}^{2}+\alpha|\mathbf{f}|</em>{\mathcal{H}}^{2}$</p>
+<p>其中$||f||^2_H$为H中f的RKHS范数，α为正则化参数。因为每个点(例如，$X_{ul_i}$)本质上都有两种解释：欧几里得空间中的点（即节点表示）和非里得图空间网络中的相应节点，我们进一步考虑将H分成两个RKHS,$H^1,H^2$由$H&#x3D;H^1⊕H^2$这样:</p>
+<p>$\mathcal{H}&#x3D;\left{\mathbf{f} \mid \mathbf{f}(\mathbf{x})&#x3D;\mathbf{f}^{1}(\mathbf{x})+\mathbf{f}^{2}(\mathbf{x}), \mathbf{f}^{1} \in \mathcal{H}^{1}, \mathbf{f}^{2} \in \mathcal{H}^{2}\right}$</p>
+<p>RKHS范数$||f||^2_H$可以被重写为：</p>
+<p>$|\mathbf{f}|<em>{\mathcal{H}}^{2}&#x3D;$<br>$\min <em>{\substack{\mathbf{f}&#x3D;\mathbf{f}^{1}+\mathbf{f}^{2} \ \mathbf{f}^{1} \in \mathcal{H}^{1} \ \mathbf{f}^{2} \in \mathcal{H}^{2}}} \alpha</em>{1}\left|\mathbf{f}^{1}\right|</em>{\mathcal{H}^{1}}^{2}+\alpha_{2}\left|\mathbf{f}^{2}\right|<em>{\mathcal{H}^{2}}^{2}+\mu \sum</em>{j&#x3D;1}^{n_{1}-L}\left[\mathbf{f}^{1}\left(\mathbf{x}<em>{u</em>{r_{j}}}\right)-\mathbf{f}^{2}\left(\mathbf{x}<em>{u</em>{r_{j}}}\right)\right]^{2}$</p>
+<p>其中$f^1(x),f^2(x)$是RKHS  $H^1,H^2$中的转换函数分别对应于点视图和图视图。$u&#x3D; \left{ u_{r_j}|j&#x3D;1,…,n_1-L\right}$。表示g1中与G2中未标记节点对齐的未标记节点。$\left[\mathbf{f}^{1}\left(\mathbf{x}<em>{u</em>{r_{j}}}\right)-\mathbf{f}^{2}\left(\mathbf{x}<em>{u</em>{r_{j}}}\right)\right]^{2}$规范未标记节点urj上的变换函数$f^1，f^2$，使其在两个不同的视图中保持一致(即在两个视图中连贯地移动$x_{u_{rj}}$)。令$H^1,H^2$与再生核κ1，κ2在一起，那么RKHSH与复制核在一起：</p>
+<p>$\kappa\left(u, u^{\prime}\right)&#x3D;\phi\left(u, u^{\prime}\right)-\mu \mathbf{a}<em>{u} \mathbf{\Psi} \mathbf{a}</em>{u^{\prime}}^{T}$</p>
 
       
 
@@ -429,7 +427,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#origin-non-rigid-network-alignment"><span class="toc-number">1.</span> <span class="toc-text">ORIGIN: Non-Rigid Network Alignment</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#non-rigid-network-alignment-problem"><span class="toc-number">1.1.</span> <span class="toc-text">non-rigid network alignment problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#preliminary-graph-convolutional-networks"><span class="toc-number">1.2.</span> <span class="toc-text">preliminary: Graph convolutional networks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#graphsage"><span class="toc-number">1.2.1.</span> <span class="toc-text">GraphSage</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proposed-model"><span class="toc-number">1.3.</span> <span class="toc-text">proposed model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#node-representation-learning-for-multiple-networks"><span class="toc-number">1.3.1.</span> <span class="toc-text">node representation learning for multiple networks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#multi-view-point-set-alignment"><span class="toc-number">1.3.2.</span> <span class="toc-text">multi-view point set alignment</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ORIGIN-Non-Rigid-Network-Alignment"><span class="toc-number">1.</span> <span class="toc-text">ORIGIN: Non-Rigid Network Alignment</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#non-rigid-network-alignment-problem"><span class="toc-number">1.1.</span> <span class="toc-text">non-rigid network alignment problem</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#preliminary-Graph-convolutional-networks"><span class="toc-number">1.2.</span> <span class="toc-text">preliminary: Graph convolutional networks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GraphSage"><span class="toc-number">1.2.1.</span> <span class="toc-text">GraphSage</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#proposed-model"><span class="toc-number">1.3.</span> <span class="toc-text">proposed model</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#node-representation-learning-for-multiple-networks"><span class="toc-number">1.3.1.</span> <span class="toc-text">node representation learning for multiple networks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#multi-view-point-set-alignment"><span class="toc-number">1.3.2.</span> <span class="toc-text">multi-view point set alignment</span></a></li></ol></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -583,11 +581,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
+                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
+                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -603,15 +601,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,11 +625,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">

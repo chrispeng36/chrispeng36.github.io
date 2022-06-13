@@ -8,18 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>G-ALIGN代码解析 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="1. embedding部分1234567891011121314def init_weight(modules, activation):    &quot;&quot;&quot;    Weight initialization    :param modules: Iterable of modules    :param activation: Activation function.    &quot;&quot;&quot;    fo">
+<meta property="og:type" content="article">
 <meta property="og:title" content="G-ALIGN代码解析">
 <meta property="og:url" content="http://yoursite.com/2022/03/31/G-ALIGN%E4%BB%A3%E7%A0%81%E8%A7%A3%E6%9E%90/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
+<meta property="og:description" content="1. embedding部分1234567891011121314def init_weight(modules, activation):    &quot;&quot;&quot;    Weight initialization    :param modules: Iterable of modules    :param activation: Activation function.    &quot;&quot;&quot;    fo">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2022/03/31/images/G-ALIGN%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Xavier%E5%88%9D%E5%A7%8B%E5%8C%96.png">
+<meta property="og:image" content="http://yoursite.com/images/G-ALIGN%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Xavier%E5%88%9D%E5%A7%8B%E5%8C%96.png">
 <meta property="article:published_time" content="2022-03-30T21:16:18.000Z">
 <meta property="article:modified_time" content="2022-05-30T02:07:45.708Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="源码解析">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2022/03/31/images/G-ALIGN%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Xavier%E5%88%9D%E5%A7%8B%E5%8C%96.png">
+<meta name="twitter:image" content="http://yoursite.com/images/G-ALIGN%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Xavier%E5%88%9D%E5%A7%8B%E5%8C%96.png">
   
     <link rel="alternative" href="/atom.xml" title="Chris的个人博客" type="application/atom+xml">
   
@@ -188,14 +190,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a id="more"></a></p>
-<h1 id="embedding部分">1. embedding部分</h1>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init_weight</span><span class="params">(modules, activation)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Weight initialization</span></span><br><span class="line"><span class="string">    :param modules: Iterable of modules</span></span><br><span class="line"><span class="string">    :param activation: Activation function.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> modules:</span><br><span class="line">        <span class="keyword">if</span> isinstance(m, nn.Linear):<span class="comment">#判断m是否为nn.Linear类型，线性层</span></span><br><span class="line">            <span class="keyword">if</span> activation <span class="keyword">is</span> <span class="literal">None</span>:<span class="comment">#没有激活函数的话就初始化不加增益</span></span><br><span class="line">                m.weight.data = init.xavier_uniform_(m.weight.data)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                m.weight.data = init.xavier_uniform_(m.weight.data,gain=nn.init.calculate_gain(activation.lower()))</span><br><span class="line">            <span class="keyword">if</span> m.bias <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                m.bias.data = init.constant_(m.bias.data, <span class="number">0.0</span>)</span><br></pre></td></tr></table></figure>
-<p>这里涉及到的是一个权重的初始化的步骤，在神经网络中的初始化步骤很重要。初始化应该既保证输入输出的差异性，又能让model稳定而快速的收敛。描述差异性的方法就是数学中的方差。对于每个神经元的输入z，<span class="math inline">\(z=\sum_{i=1}^nw_ix_i\)</span>，其中n是上一层中的神经元的个数。</p>
-<p>那么两个随机变量的方差的公式为：<span class="math inline">\(Var(w_ix_i)=E[w_i]^2Var(x_i)+E[x_i]^2Var(w_i)+Var(w_i)Var(x_i)\)</span>，可以知道如果<span class="math inline">\(E[x_i]=E[w_i]=0\)</span>，能通过批量归一化满足这一条件，那么就有：</p>
-<p><span class="math inline">\(Var(z)=\sum_{i=1}^nVar(x_i)Var(w_i)\)</span>，如果随机变量独立同分布的话，<span class="math inline">\(Var(z)=nVar(w)Var(x)\)</span>。一般来讲，类别空间相较于样本空间更加稠密，所以反向传播的误差到样本空间将显得微不足道。我们要让样本空间与类别空间的分布差异不要太大，也就是方差尽可能相等。</p>
+         <a id="more"></a>
+
+<h1 id="1-embedding部分"><a href="#1-embedding部分" class="headerlink" title="1. embedding部分"></a>1. embedding部分</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">init_weight</span><span class="params">(modules, activation)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Weight initialization</span></span><br><span class="line"><span class="string">    :param modules: Iterable of modules</span></span><br><span class="line"><span class="string">    :param activation: Activation function.</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> modules:</span><br><span class="line">        <span class="keyword">if</span> isinstance(m, nn.Linear):<span class="comment">#判断m是否为nn.Linear类型，线性层</span></span><br><span class="line">            <span class="keyword">if</span> activation <span class="keyword">is</span> <span class="literal">None</span>:<span class="comment">#没有激活函数的话就初始化不加增益</span></span><br><span class="line">                m.weight.data = init.xavier_uniform_(m.weight.data)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                m.weight.data = init.xavier_uniform_(m.weight.data,gain=nn.init.calculate_gain(activation.lower()))</span><br><span class="line">            <span class="keyword">if</span> m.bias <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">                m.bias.data = init.constant_(m.bias.data, <span class="number">0.0</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这里涉及到的是一个权重的初始化的步骤，在神经网络中的初始化步骤很重要。初始化应该既保证输入输出的差异性，又能让model稳定而快速的收敛。描述差异性的方法就是数学中的方差。对于每个神经元的输入z，$z&#x3D;\sum_{i&#x3D;1}^nw_ix_i$，其中n是上一层中的神经元的个数。</p>
+<p>那么两个随机变量的方差的公式为：$Var(w_ix_i)&#x3D;E[w_i]^2Var(x_i)+E[x_i]^2Var(w_i)+Var(w_i)Var(x_i)$，可以知道如果$E[x_i]&#x3D;E[w_i]&#x3D;0$，能通过批量归一化满足这一条件，那么就有：</p>
+<p>$Var(z)&#x3D;\sum_{i&#x3D;1}^nVar(x_i)Var(w_i)$，如果随机变量独立同分布的话，$Var(z)&#x3D;nVar(w)Var(x)$。一般来讲，类别空间相较于样本空间更加稠密，所以反向传播的误差到样本空间将显得微不足道。我们要让样本空间与类别空间的分布差异不要太大，也就是方差尽可能相等。</p>
 <p>Xavier初始化方法就是：</p>
-<p><img src="../images/G-ALIGN源码分析/Xavier初始化.png"></p>
+<p><img src="/../images/G-ALIGN%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90/Xavier%E5%88%9D%E5%A7%8B%E5%8C%96.png"></p>
 <p>gain参数就是可选择的缩放的参数，总之以上就是初始化为了让神经网络更加健壮的手段。</p>
 
       
@@ -339,7 +342,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#embedding部分"><span class="toc-number">1.</span> <span class="toc-text">1. embedding部分</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-embedding部分"><span class="toc-number">1.</span> <span class="toc-text">1. embedding部分</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -493,11 +496,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
+                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
+                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -513,15 +516,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -537,11 +540,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">

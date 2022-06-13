@@ -15,17 +15,17 @@
 <meta property="og:site_name" content="Chris的个人博客">
 <meta property="og:description" content="REGAL">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2022/03/02/images/REGAL/%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E5%9B%BE.png">
-<meta property="og:image" content="http://yoursite.com/2022/03/02/images/REGAL/%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83.png">
-<meta property="og:image" content="http://yoursite.com/2022/03/02/images/REGAL/%E5%8F%82%E6%95%B0.png">
-<meta property="og:image" content="http://yoursite.com/2022/03/02/images/REGAL/REGAL%E7%9A%84%E6%B5%81%E7%A8%8B.png">
-<meta property="og:image" content="http://yoursite.com/2022/03/02/images/REGAL/%E8%8A%82%E7%82%B9%E5%B5%8C%E5%85%A5%E7%9A%84%E8%B7%9D%E7%A6%BB.png">
+<meta property="og:image" content="http://yoursite.com/images/REGAL/%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E5%9B%BE.png">
+<meta property="og:image" content="http://yoursite.com/images/REGAL/%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83.png">
+<meta property="og:image" content="http://yoursite.com/images/REGAL/%E5%8F%82%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/images/REGAL/REGAL%E7%9A%84%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://yoursite.com/images/REGAL/%E8%8A%82%E7%82%B9%E5%B5%8C%E5%85%A5%E7%9A%84%E8%B7%9D%E7%A6%BB.png">
 <meta property="article:published_time" content="2022-03-02T15:39:04.000Z">
 <meta property="article:modified_time" content="2022-05-30T02:09:21.125Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2022/03/02/images/REGAL/%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E5%9B%BE.png">
+<meta name="twitter:image" content="http://yoursite.com/images/REGAL/%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E5%9B%BE.png">
   
     <link rel="alternative" href="/atom.xml" title="Chris的个人博客" type="application/atom+xml">
   
@@ -194,66 +194,70 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="regal">REGAL</h1>
-<p><a id="more"></a></p>
+        <h1 id="REGAL"><a href="#REGAL" class="headerlink" title="REGAL"></a>REGAL</h1> <a id="more"></a>
+
 <ul>
 <li>来源：CIKM 2018</li>
 </ul>
 <p>representation learning-based graph alignment，利用自动学习节点的表示来对齐跨网络的图，设计了xNetMF，就是一种节点嵌入公式。我们的结果证明了基于无监督表示学习的网络对齐在速度和准确性方面的实用性和前景。</p>
 <p>问题定义如下：</p>
 <ul>
-<li>给定两个图，<span class="math inline">\(G_1,G_2\)</span>分别有<span class="math inline">\(V_1,V_2\)</span>个节点，节点的属性位<span class="math inline">\(A_1,A_2\)</span>，设计一种网络对齐的方法，通过直接学习可比较的节点表示Y1和Y2来对齐节点，其中节点映射：<span class="math inline">\(ψ：V-&gt;V_2\)</span>在网络之间可以被推断出来。</li>
+<li>给定两个图，$G_1,G_2$分别有$V_1,V_2$个节点，节点的属性位$A_1,A_2$，设计一种网络对齐的方法，通过直接学习可比较的节点表示Y1和Y2来对齐节点，其中节点映射：$ψ：V-&gt;V_2$在网络之间可以被推断出来。</li>
 </ul>
-<p>xNetMF：Cross-Network Matrix Factorization,xNetMF不同于现有的绝大多数网络标识学习方法，（1）依赖于单个图中的节点的临近性，产生在不相交的网络中不可比较的嵌入（2）通常涉及到一些程序上的随机性（如随机游走），这在嵌入学习中引入了差异，即使在一个网络中。相比之下，xNetMF 保留结构相似性，而不是基于邻近性的相似性，允许在单个网络之外进行泛化。</p>
+<p>xNetMF：Cross-Network Matrix Factorization,xNetMF不同于现有的绝大多数网络标识学习方法，（1）依赖于单个图中的节点的临近性，产生在不相交的网络中不可比较的嵌入（2）通常涉及到一些程序上的随机性（如随机游走），这在嵌入学习中引入了差异，即使在一个网络中。相比之下，xNetMF<br>保留结构相似性，而不是基于邻近性的相似性，允许在单个网络之外进行泛化。</p>
 <p>通过高效、低方差学习节点表示，在此过程中，我们将xNetMF表示为相似矩阵上的矩阵分解，该矩阵包含不相交图中节点之间的结构相似性和属性一致性（如果后者可用）。为了避免显式构造完全相似矩阵，这需要计算多输入网络中节点之间的所有相似性对，我们扩展了大规模内核机器常用的Nyström低秩近似。因此，xNetMF是一种有原则且有效的基于隐式矩阵分解的方法，需要朴素方法的一小部分时间和空间，同时避免了特别的稀疏化启发式 。</p>
-<p><img src="../images/REGAL/模型结构图.png"></p>
+<p><img src="/../images/REGAL/%E6%A8%A1%E5%9E%8B%E7%BB%93%E6%9E%84%E5%9B%BE.png"></p>
 <p>我们是第一个使用SGNS(Skip-gram with negative sanoling)转换节点嵌入来在这样的框架中捕获结构身份。</p>
-<p><img src="../images/REGAL/一些方法的比较.png"></p>
+<p><img src="/../images/REGAL/%E4%B8%80%E4%BA%9B%E6%96%B9%E6%B3%95%E7%9A%84%E6%AF%94%E8%BE%83.png"></p>
 <p>low-rank matrix approximation：Nyström method for 大而密集的相似矩阵，据我们所知，我们还没有在节点嵌入的上下文中考虑到它。</p>
-<p>论文中的网络节点数可以是不相等的，设置总的节点数是<span class="math inline">\(n=|V_1|+|V_2|\)</span>.</p>
+<p>论文中的网络节点数可以是不相等的，设置总的节点数是$n&#x3D;|V_1|+|V_2|$.</p>
 <p>REGAL的步骤：</p>
 <ul>
 <li>node identity extraction：提取n个节点与结构和属性相关的信息</li>
-<li>efficient similarity-based representation：第二步是通过分解上一步的节点恒等式的相似性矩阵，从概念上得到节点嵌入。为了避免成对节点相似性和显式分解，我们推广了Nyström method 用于低秩矩阵逼近进行隐式相似矩阵分解，通过以下两种方法：1. 只比较每个节点与一个样本的相似性，样本的节点数为：<span class="math inline">\(p&lt;&lt;n\)</span> landmark nodes。2. 利用这些node-to-landmark的相似性，从其低秩近似的分解来构造我们的表示。</li>
+<li>efficient similarity-based representation：第二步是通过分解上一步的节点恒等式的相似性矩阵，从概念上得到节点嵌入。为了避免成对节点相似性和显式分解，我们推广了Nyström method 用于低秩矩阵逼近进行隐式相似矩阵分解，通过以下两种方法：1. 只比较每个节点与一个样本的相似性，样本的节点数为：$p&lt;&lt;n$ landmark nodes。2. 利用这些node-to-landmark的相似性，从其低秩近似的分解来构造我们的表示。</li>
 <li>fast node representation alignment：我们通过贪婪地匹配嵌入与一个有效的数据结构来对齐图之间的节点，该数据结构允许从另一个图中快速识别出top-α最相似的嵌入</li>
 </ul>
-<p><img src="../images/REGAL/参数.png"></p>
-<h2 id="node-identity-extraction">1. node identity extraction</h2>
-<p>REGAL表示学习模型xNetMF的目标是以一种可推广到多网络问题的方式定义节点“身份”。</p>
+<p><img src="/../images/REGAL/%E5%8F%82%E6%95%B0.png"></p>
+<h2 id="1-node-identity-extraction"><a href="#1-node-identity-extraction" class="headerlink" title="1. node identity extraction"></a>1. node identity extraction</h2><p>REGAL表示学习模型xNetMF的目标是以一种可推广到多网络问题的方式定义节点“身份”。</p>
 <ul>
 <li><p>structural identity：我们建议从一个节点的相邻节点的度中了解一个节点的结构特性。为了获得高阶信息，我们还考虑了从原始节点多达k个跳的邻居。</p>
-<p>对于节点<span class="math inline">\(u∈V\)</span>，定义<span class="math inline">\(R_u^k\)</span>在图Gi中恰好距离u k≥0步的节点集。我们想要得到在节点集<span class="math inline">\(R_u^k\)</span>中节点的度信息。一个基本的方法就是将度信息存储在一个D维的向量<span class="math inline">\(d_u^k\)</span>中，D是在原始图G中最大的度，<span class="math inline">\(d_u^k\)</span>的第i个元素<span class="math inline">\(d_u^k(i)\)</span>表示<span class="math inline">\(R_u^k\)</span>中度为i的节点数。真实图具有偏态的度分布。为了防止一个高度节点膨胀这些向量的长度，将节点放在一起变为<span class="math inline">\(b=[log_2D]\)</span>（取上界），因此<span class="math inline">\(d_u^k(i)\)</span>表示的是在<span class="math inline">\(R_u^k\)</span>中的满足<span class="math inline">\(\left\lfloor\log _{2}(\operatorname{deg}(u))\right\rfloor=i\)</span>的节点数。有两点好处：1. 将向量<span class="math inline">\(d_u^k\)</span>的维度缩短，2. 它使它们的条目对噪声引入的不同度的微小变化更加鲁棒，特别是当更多的不同度值组合到一个桶中时。</p></li>
-<li><p>attribute-based identity：给定F节点属性，为每个节点u创建一个F维的向量<span class="math inline">\(f_u\)</span>,<span class="math inline">\(f_u(i)\)</span>表示u节点的第i个特征值。</p></li>
+<p>对于节点$u∈V$，定义$R_u^k$在图Gi中恰好距离u k≥0步的节点集。我们想要得到在节点集$R_u^k$中节点的度信息。一个基本的方法就是将度信息存储在一个D维的向量$d_u^k$中，D是在原始图G中最大的度，$d_u^k$的第i个元素$d_u^k(i)$表示$R_u^k$中度为i的节点数。真实图具有偏态的度分布。为了防止一个高度节点膨胀这些向量的长度，将节点放在一起变为$b&#x3D;[log_2D]$（取上界），因此$d_u^k(i)$表示的是在$R_u^k$中的满足$\left\lfloor\log _{2}(\operatorname{deg}(u))\right\rfloor&#x3D;i$的节点数。有两点好处：1. 将向量$d_u^k$的维度缩短，2. 它使它们的条目对噪声引入的不同度的微小变化更加鲁棒，特别是当更多的不同度值组合到一个桶中时。</p>
+</li>
+<li><p>attribute-based identity：给定F节点属性，为每个节点u创建一个F维的向量$f_u$,$f_u(i)$表示u节点的第i个特征值。</p>
+</li>
 <li><p>cross-network similarity：</p>
-<p><span class="math inline">\(\operatorname{sim}(u, v)=\exp \left[-\gamma_{s} \cdot\left\|\mathbf{d}_{u}-\mathbf{d}_{v}\right\|_{2}^{2}-\gamma_{a} \cdot \operatorname{dist}\left(\mathbf{f}_{u}, \mathbf{f}_{v}\right)\right]\)</span></p>
-<p>其中γ是控制结构和属性相似性的范围参数，<span class="math inline">\(dist(f_u,f_v)\)</span>基于属性的节点u和v的距离（如果没有属性标签的话就忽略）。<span class="math inline">\(\mathbf{d}_{u}=\sum_{k=1}^{K} \delta^{k-1} \mathbf{d}_{u}^{k}\)</span>是节点u的邻居度向量在K个不同的跳跃上聚合，<span class="math inline">\(δ∈(0,1]\)</span>是更大的跳跃距离的折扣因素；K是需要考虑的最大的跳数距离。因此，我们通过结合多个跳距离上的邻域度分布，在多个层次上比较结构一致性，通过加权来衰减遥远邻域的影响，这是在扩散过程中经常遇到的模式。</p>
-<p>属性向量之间的距离取决于节点属性的类型，对于分类属性，我们建议使用不一致特征的数量作为节点u和节点v的基于属性的距离度量：<span class="math inline">\(\operatorname{dist}\left(\mathbf{f}_{u}, \mathbf{f}_{v}\right)=\sum_{i=1}^{F} \mathbb{1}_{f_{u}}(i) \neq f_{v}(i)\)</span>,其中<span class="math inline">\(\mathbb{1}\)</span>表示的是indicator函数。实值属性可以通过欧几里得距离或余弦距离进行比较。</p></li>
+<p>$\operatorname{sim}(u, v)&#x3D;\exp \left[-\gamma_{s} \cdot\left|\mathbf{d}<em>{u}-\mathbf{d}</em>{v}\right|<em>{2}^{2}-\gamma</em>{a} \cdot \operatorname{dist}\left(\mathbf{f}<em>{u}, \mathbf{f}</em>{v}\right)\right]$</p>
+<p>其中γ是控制结构和属性相似性的范围参数，$dist(f_u,f_v)$基于属性的节点u和v的距离（如果没有属性标签的话就忽略）。$\mathbf{d}<em>{u}&#x3D;\sum</em>{k&#x3D;1}^{K} \delta^{k-1} \mathbf{d}_{u}^{k}$是节点u的邻居度向量在K个不同的跳跃上聚合，$δ∈(0,1]$是更大的跳跃距离的折扣因素；K是需要考虑的最大的跳数距离。因此，我们通过结合多个跳距离上的邻域度分布，在多个层次上比较结构一致性，通过加权来衰减遥远邻域的影响，这是在扩散过程中经常遇到的模式。</p>
+<p>属性向量之间的距离取决于节点属性的类型，对于分类属性，我们建议使用不一致特征的数量作为节点u和节点v的基于属性的距离度量：$\operatorname{dist}\left(\mathbf{f}<em>{u}, \mathbf{f}</em>{v}\right)&#x3D;\sum_{i&#x3D;1}^{F} \mathbb{1}<em>{f</em>{u}}(i) \neq f_{v}(i)$,其中$\mathbb{1}$表示的是indicator函数。实值属性可以通过欧几里得距离或余弦距离进行比较。</p>
+</li>
 </ul>
-<p><img src="../images/REGAL/REGAL的流程.png"></p>
-<h2 id="efficient-similarity-based-representation">2. efficient similarity-based representation</h2>
-<p>对于跨网络分析，可以避免随机游走，原因有两点：</p>
+<p><img src="/../images/REGAL/REGAL%E7%9A%84%E6%B5%81%E7%A8%8B.png"></p>
+<h2 id="2-efficient-similarity-based-representation"><a href="#2-efficient-similarity-based-representation" class="headerlink" title="2. efficient similarity-based representation"></a>2. efficient similarity-based representation</h2><p>对于跨网络分析，可以避免随机游走，原因有两点：</p>
 <ul>
-<li><p>（1）它们在表示学习中引入的方差常常使不同网络的嵌入不可可比性；（2）它们可以增加计算费用。为了克服上述问题，我们提出了一种新的基于隐式矩阵分解的方法，该方法利用了一个结合的结构和基于属性的相似性矩阵S。考虑到了在不同社区的亲缘关系。直观上，目标是找到<span class="math inline">\(n \times p\)</span>的矩阵Y和Z，使得<span class="math inline">\(\mathrm{S} \approx \mathrm{YZ}^{\top}\)</span>，其中Y是节点嵌入矩阵，Z并不是我们需要的。</p></li>
-<li><p>limitations of existing approaches：一个naive的方案就是计算两个图内和跨所有节点对之间的结构和基于属性的相似性，形成矩阵S，也就是<span class="math inline">\(S_{ij}=sim(i,j) i,j∈V\)</span>，那么S就可以被显示的分解，例如，通过最小化一个因子分解损失函数，给定S作为输入（例如<span class="math inline">\(\left\|\mathrm{S}-\mathrm{YZ}^{\top}\right\|_{F}^{2}\)</span>）。然而，S的计算和存储都具有n的二次复杂度。</p>
-<p>另一种选择是通过只计算“最重要”的”相似性来创建稀疏相似矩阵，对于每个节点，使用节点度的相似性等启发式方法来选择少量的比较。然而，这种特殊的启发式在噪声环境下可能是脆弱的。对于大多数相似之处，我们根本没有近似值，也不能保证最重要的那些都被计算出来了。</p></li>
-<li><p>reduced <span class="math inline">\(n \times p\)</span> similarity computation：相反，我们提出了一种用低秩矩阵<span class="math inline">\(\widetilde S\)</span>近似全相似矩阵S的原则方法，这个矩阵不会被显式的计算。随机从<span class="math inline">\(G_1,G_2\)</span>选择一个<span class="math inline">\(p&lt;&lt;n\)</span>的landmark节点，并且计算他们与两幅图中所有的n个节点的相似度，使用公式1.这将返回的是一个<span class="math inline">\(n \times p\)</span>的相似度矩阵C。从中我们可以提取出一个<span class="math inline">\(p \times p\)</span>的"landmark-to-landmark"子矩阵W。正如我们下面解释的，这两个矩阵足以近似完整的相似矩阵，并允许我们获得节点嵌入，而无需实际计算和分解S˜。</p></li>
+<li><p>（1）它们在表示学习中引入的方差常常使不同网络的嵌入不可可比性；（2）它们可以增加计算费用。为了克服上述问题，我们提出了一种新的基于隐式矩阵分解的方法，该方法利用了一个结合的结构和基于属性的相似性矩阵S。考虑到了在不同社区的亲缘关系。直观上，目标是找到$n \times p$的矩阵Y和Z，使得$\mathrm{S} \approx \mathrm{YZ}^{\top}$，其中Y是节点嵌入矩阵，Z并不是我们需要的。</p>
+</li>
+<li><p>limitations of existing approaches：一个naive的方案就是计算两个图内和跨所有节点对之间的结构和基于属性的相似性，形成矩阵S，也就是$S_{ij}&#x3D;sim(i,j) i,j∈V$，那么S就可以被显示的分解，例如，通过最小化一个因子分解损失函数，给定S作为输入（例如$\left|\mathrm{S}-\mathrm{YZ}^{\top}\right|_{F}^{2}$）。然而，S的计算和存储都具有n的二次复杂度。</p>
+<p>另一种选择是通过只计算“最重要”的”相似性来创建稀疏相似矩阵，对于每个节点，使用节点度的相似性等启发式方法来选择少量的比较。然而，这种特殊的启发式在噪声环境下可能是脆弱的。对于大多数相似之处，我们根本没有近似值，也不能保证最重要的那些都被计算出来了。</p>
+</li>
+<li><p>reduced $n \times p$ similarity computation：相反，我们提出了一种用低秩矩阵$\widetilde S$近似全相似矩阵S的原则方法，这个矩阵不会被显式的计算。随机从$G_1,G_2$选择一个$p&lt;&lt;n$的landmark节点，并且计算他们与两幅图中所有的n个节点的相似度，使用公式1.这将返回的是一个$n \times p$的相似度矩阵C。从中我们可以提取出一个$p \times p$的”landmark-to-landmark”子矩阵W。正如我们下面解释的，这两个矩阵足以近似完整的相似矩阵，并允许我们获得节点嵌入，而无需实际计算和分解S˜。</p>
+</li>
 </ul>
-<p>为了实现这些，我们在node embedding上扩展了Nyström method，它在核机器的随机矩阵方法中有应用。低秩矩阵<span class="math inline">\(\widetilde S\)</span>被定义为<span class="math inline">\(\widetilde S = CW&#39;C^T\)</span>，其中C是<span class="math inline">\(m \times p\)</span>形式的矩阵，从V中采样p个landmark节点，只计算G1和G2的所有n个节点与p个landmark的相似性。W'是W的伪逆矩阵，一个由landmark nodes之间的两两相似性组成的p×p矩阵(它对应于C的一个p行的子集)。我们随机的选择landmarks。</p>
-<p>由于<span class="math inline">\(\widetilde S\)</span>包含对任意一个图中任意一对节点之间的相似性的估计，所以也是n平方的时间。但是并不需要显式的计算<span class="math inline">\(\widetilde S\)</span>。</p>
+<p>为了实现这些，我们在node embedding上扩展了Nyström method，它在核机器的随机矩阵方法中有应用。低秩矩阵$\widetilde S$被定义为$\widetilde S &#x3D; CW’C^T$，其中C是$m \times p$形式的矩阵，从V中采样p个landmark节点，只计算G1和G2的所有n个节点与p个landmark的相似性。W’是W的伪逆矩阵，一个由landmark nodes之间的两两相似性组成的p×p矩阵(它对应于C的一个p行的子集)。我们随机的选择landmarks。</p>
+<p>由于$\widetilde S$包含对任意一个图中任意一对节点之间的相似性的估计，所以也是n平方的时间。但是并不需要显式的计算$\widetilde S$。</p>
 <ul>
 <li><p>from similarity to representation：</p>
-<p>定理：给定图<span class="math inline">\(G_1(V_1,E_1)\)</span>以及<span class="math inline">\(G_2(V_2,E_2)\)</span>，它们具有一个<span class="math inline">\(n \times n\)</span>联合组合的结构相似度矩阵和基于属性的相似度矩阵，<span class="math inline">\(S≈\widetilde Y\widetilde Z^T\)</span>，节点的嵌入矩阵Y可以近似被认为是</p>
-<p><span class="math inline">\(\widetilde Y = CUΣ^{1/2}\)</span>，其中C是<span class="math inline">\(n \times p\)</span>的相似性矩阵，<span class="math inline">\(W&#39;=UΣV^T\)</span>是W'全秩奇异值分解，其中W是一个<span class="math inline">\(p \times p\)</span>的landmark-to-landmark相似度矩阵。</p>
+<p>定理：给定图$G_1(V_1,E_1)$以及$G_2(V_2,E_2)$，它们具有一个$n \times n$联合组合的结构相似度矩阵和基于属性的相似度矩阵，$S≈\widetilde Y\widetilde Z^T$，节点的嵌入矩阵Y可以近似被认为是</p>
+<p>$\widetilde Y &#x3D; CUΣ^{1&#x2F;2}$，其中C是$n \times p$的相似性矩阵，$W’&#x3D;UΣV^T$是W’全秩奇异值分解，其中W是一个$p \times p$的landmark-to-landmark相似度矩阵。</p>
 <p>证明：</p>
-<p>给定W'的满秩奇异值分解为<span class="math inline">\(W&#39;=UΣV^T\)</span>，我们可以将公式二重写为<span class="math inline">\(S≈ \widetilde S=C(UΣV^T)C^T=(CUΣ^{1/2}) \cdot (Σ^{1/2}V^TC^T)=\widetilde Y \widetilde Z^T\)</span></p></li>
+<p>给定W’的满秩奇异值分解为$W’&#x3D;UΣV^T$，我们可以将公式二重写为$S≈ \widetilde S&#x3D;C(UΣV^T)C^T&#x3D;(CUΣ^{1&#x2F;2}) \cdot (Σ^{1&#x2F;2}V^TC^T)&#x3D;\widetilde Y \widetilde Z^T$</p>
+</li>
 </ul>
-<p>现在我们只需要计算一个<span class="math inline">\(n \times p\)</span>的矩阵C，而昂贵的SVD只在其小的子矩阵W上执行。因此，我们可以通过隐式分解来得到节点表示<span class="math inline">\(\widetilde S\)</span>，一个低秩的S近似矩阵。两个输入图g1和g2的p维节点嵌入是<span class="math inline">\(\widetilde Y\)</span>的子集<span class="math inline">\(\widetilde Y_1,\widetilde Y_2\)</span></p>
-<h2 id="fast-node-representation-alignment">3. fast node representation alignment</h2>
-<p>REGAL的最后一步是使用它们的表示来有效地对齐节点，假设有两个节点<span class="math inline">\(u∈V_1\)</span>和<span class="math inline">\(v∈V_2\)</span>可能是对齐的，如果他们的xNetMF是近似的。假设<span class="math inline">\(\widetilde Y_1\)</span>和<span class="math inline">\(\widetilde Y_2\)</span>是节点的p维嵌入矩阵。我们认为（软）对齐的可能性与节点嵌入之间的相似性成正比。因此，我们基于嵌入相似度贪婪地将节点对齐到另一个图中最接近的匹配点，如图2所示。这种方法比基于优化的方法更简单、更快，并且由于高质量的节点特征表示而可以工作。</p>
+<p>现在我们只需要计算一个$n \times p$的矩阵C，而昂贵的SVD只在其小的子矩阵W上执行。因此，我们可以通过隐式分解来得到节点表示$\widetilde S$，一个低秩的S近似矩阵。两个输入图g1和g2的p维节点嵌入是$\widetilde Y$的子集$\widetilde Y_1,\widetilde Y_2$</p>
+<h2 id="3-fast-node-representation-alignment"><a href="#3-fast-node-representation-alignment" class="headerlink" title="3. fast node representation alignment"></a>3. fast node representation alignment</h2><p>REGAL的最后一步是使用它们的表示来有效地对齐节点，假设有两个节点$u∈V_1$和$v∈V_2$可能是对齐的，如果他们的xNetMF是近似的。假设$\widetilde Y_1$和$\widetilde Y_2$是节点的p维嵌入矩阵。我们认为（软）对齐的可能性与节点嵌入之间的相似性成正比。因此，我们基于嵌入相似度贪婪地将节点对齐到另一个图中最接近的匹配点，如图2所示。这种方法比基于优化的方法更简单、更快，并且由于高质量的节点特征表示而可以工作。</p>
 <ul>
-<li>data structures for efficient alignment：将嵌入<span class="math inline">\(\widetilde Y_2\)</span>存储在一个k-d树中，对于每个在网络<span class="math inline">\(G_1\)</span>中的节点，我们可以快速的查找到它的embeddings来找到α个离<span class="math inline">\(G_2\)</span>中节点最近的节点。</li>
+<li>data structures for efficient alignment：将嵌入$\widetilde Y_2$存储在一个k-d树中，对于每个在网络$G_1$中的节点，我们可以快速的查找到它的embeddings来找到α个离$G_2$中节点最近的节点。</li>
 </ul>
-<p><img src="../images/REGAL/节点嵌入的距离.png"></p>
+<p><img src="/../images/REGAL/%E8%8A%82%E7%82%B9%E5%B5%8C%E5%85%A5%E7%9A%84%E8%B7%9D%E7%A6%BB.png"></p>
 
       
 
@@ -396,7 +400,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#regal"><span class="toc-number">1.</span> <span class="toc-text">REGAL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#node-identity-extraction"><span class="toc-number">1.1.</span> <span class="toc-text">1. node identity extraction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#efficient-similarity-based-representation"><span class="toc-number">1.2.</span> <span class="toc-text">2. efficient similarity-based representation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#fast-node-representation-alignment"><span class="toc-number">1.3.</span> <span class="toc-text">3. fast node representation alignment</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#REGAL"><span class="toc-number">1.</span> <span class="toc-text">REGAL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-node-identity-extraction"><span class="toc-number">1.1.</span> <span class="toc-text">1. node identity extraction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-efficient-similarity-based-representation"><span class="toc-number">1.2.</span> <span class="toc-text">2. efficient similarity-based representation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-fast-node-representation-alignment"><span class="toc-number">1.3.</span> <span class="toc-text">3. fast node representation alignment</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -550,11 +554,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
+                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
+                <a href="javascript:void(0)" class="js-tag color5">源码解析</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -570,15 +574,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -594,11 +598,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构与算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">数据分析</a>
               </li>
              
               <li class="article-tag-list-item">
