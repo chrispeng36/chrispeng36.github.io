@@ -8,16 +8,29 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>算法笔记 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 算法第四版的笔记 这篇博客是基于《算法第四版》使用Java语言实现书中各种数据结构及算法的。博客本身大部分都是基于书上的讲解摘抄作为笔记，习题只实现了小部分。 2. 排序">
+  <meta name="description" content="0. 算法第四版的笔记 这篇博客是基于《算法第四版》使用Java语言实现书中各种数据结构及算法的。博客本身大部分都是基于书上的讲解摘抄作为笔记，习题只实现了小部分。这里有两个比较不错的动态化的图示的算法演示网站。 网站1： Data Structure Visualizations:  网站2： [ VisuAlgo]  2. 排序">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法笔记">
 <meta property="og:url" content="http://yoursite.com/2022/05/16/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="0. 算法第四版的笔记 这篇博客是基于《算法第四版》使用Java语言实现书中各种数据结构及算法的。博客本身大部分都是基于书上的讲解摘抄作为笔记，习题只实现了小部分。 2. 排序">
+<meta property="og:description" content="0. 算法第四版的笔记 这篇博客是基于《算法第四版》使用Java语言实现书中各种数据结构及算法的。博客本身大部分都是基于书上的讲解摘抄作为笔记，习题只实现了小部分。这里有两个比较不错的动态化的图示的算法演示网站。 网站1： Data Structure Visualizations:  网站2： [ VisuAlgo]  2. 排序">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E7%BA%A2%E9%93%BE%E6%8E%A5.png">
+<meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E7%AE%80%E5%8D%95%E7%9A%84%E7%BA%A2%E9%BB%91%E6%A0%91.webp">
+<meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E5%B7%A6%E6%97%8B.webp">
+<meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E7%BA%A2%E9%BB%91%E6%A0%91%E7%9A%84%E5%8F%B3%E6%97%8B.webp">
+<meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E7%BA%A2%E9%BB%91%E6%A0%91%E6%8F%92%E5%85%A5%E4%BD%8D%E7%BD%AE%E6%9F%A5%E6%89%BE.webp">
+<meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E6%8F%92%E5%85%A5%E7%BB%93%E7%82%B9%E5%85%B3%E7%B3%BB%E7%BB%93%E7%82%B9.webp">
+<meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E6%8F%92%E5%85%A5%E6%83%85%E6%99%AF4.1_1.webp">
+<meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E6%8F%92%E5%85%A5%E6%83%85%E6%99%AF4.1_2.webp">
+<meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E6%8F%92%E5%85%A5%E6%83%85%E6%99%AF4.2.1.webp">
+<meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E6%8F%92%E5%85%A5%E6%83%85%E6%99%AF4.2.2.webp">
+<meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E6%8F%92%E5%85%A5%E6%83%85%E6%99%AF4.3.1.webp">
+<meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E6%8F%92%E5%85%A5%E6%83%85%E6%99%AF4.3.2.webp">
+<meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E9%82%BB%E6%8E%A5%E8%A1%A8%E6%95%B0%E7%BB%84.png">
+<meta property="og:image" content="http://yoursite.com/2022/05/16/images/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E4%BB%A5%E5%8F%8A%E5%B9%BF%E5%BA%A6%E6%9C%89%E9%99%90%E6%90%9C%E7%B4%A2.png">
 <meta property="article:published_time" content="2022-05-16T14:01:52.000Z">
-<meta property="article:modified_time" content="2022-06-07T14:13:10.081Z">
+<meta property="article:modified_time" content="2022-06-13T10:00:09.724Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -191,7 +204,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="算法第四版的笔记">0. 算法第四版的笔记</h1>
-<p><font face="楷体" size="6" color="#00ffe7">这篇博客是基于《算法第四版》使用Java语言实现书中各种数据结构及算法的。博客本身大部分都是基于书上的讲解摘抄作为笔记，习题只实现了小部分。</font></p>
+<p><strong><em><font face="楷体" size="6" color="#ff00f0">这篇博客是基于《算法第四版》使用Java语言实现书中各种数据结构及算法的。博客本身大部分都是基于书上的讲解摘抄作为笔记，习题只实现了小部分。这里有两个比较不错的动态化的图示的算法演示网站。</font></em></strong></p>
+<p><strong><em><font face="楷体" size="4" color="#ff00f0">网站1：</font></em></strong></p>
+<p><a href="https://www.cs.usfca.edu/~galles/visualization/Algorithms.html" target="_blank" rel="noopener">Data Structure Visualizations</a>:</p>
+<p><strong><em></em></strong></p>
+<p><strong><em><font face="楷体" size="4" color="#ff00f0">网站2：</font></em></strong></p>
+<p>[ <a href="https://link.zhihu.com/?target=http%3A//visualgo.net/">VisuAlgo</a>]</p>
+<p><strong><em></em></strong></p>
 <h1 id="排序">2. 排序</h1>
 <p><a id="more"></a></p>
 <h2 id="选择排序">2.1 选择排序</h2>
@@ -275,38 +294,214 @@
 <p>红黑二叉查找树背后的基本思想是用标准的二叉查找树和一些额外的信息（替换3-节点）来表示2-3树。将树中的链接分为两类：红链接将两个2-节点连接起来构成一个3-结点，黑链接则是2-3树中的普通链接。将3-节点表示为由一条左斜的红色链接（两个2-结点其中之一是另一个的左子节点）相连的两个2-节点。如下图所示：</p>
 <p><img src="../images/红黑树的红链接.png"></p>
 <p>这种表示的方法的优点是，无序修改就可以直接使用标准二叉查找树的get()方法。（<em>意思就是把2-3树中的3-节点拆分了，拆分得做记号，也就是将较小的那个节点作为较大的结点的左子节点，并且接下去的子结点的划分也要满足平衡二叉树的定义</em>）</p>
-<p>红黑树的另一种定义是满足下列条件的二叉查找树：</p>
+<p>以下摘抄自文章：[https://www.jianshu.com/p/e136ec79235c]</p>
+<p>红黑树满足的性质主要有以下五点：</p>
 <ul>
-<li>红链接均为左链接</li>
-<li>没有任何一个结点同时和两条红链接相连</li>
-<li>该树是完美黑色平衡的，即任意空链接到根结点的路径上的黑连接数量相同。</li>
+<li><p>每个节点要么是黑色要么是红色</p></li>
+<li><p>根结点是黑色</p></li>
+<li><p>每个叶子结点是黑色，而且是空的</p></li>
+<li><p>每个红色节点的两个子结点一定都是黑色的</p></li>
+<li><p>任一节点到每个叶子结点的路径都包含数量相同的黑节点（这个可以推出来，如果一个结点存在黑子节点，那么该结点一定有两个子结点）</p></li>
+<li></li>
+<li><center>
+<p><img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/简单的红黑树.webp"> <br></p>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+简单的红黑树结构
+</div>
+</center></li>
 </ul>
-<p>如果讲一颗红黑树中的红链接画平，那么所有的空链接到根结点的距离都将是相同的。将由红链接相连的结点合并，得到的就是一颗2-3树。红黑树既是二叉查找树，也是2-3树，如果能够保持一一对应的关系上实现2-3树的插入算法，那么我们就能将两个算法的优点结合起来：二叉查找树中简洁高效的查找方法和2-3树中高效的平衡插入算法。</p>
+<p>简单的红黑树结构如上图所示，可以看出红黑树不一定是一个完美平衡的二叉查找树。因为其左子树和右子树的高度并不一定是一致的，但是都包含相同数量的黑节点，称之为黑色完美平衡。</p>
+<h3 id="红黑树的自平衡">红黑树的自平衡</h3>
+<ul>
+<li>左旋：以某个节点作为支点（旋转节点），<strong>其右子结点变为旋转的父节点，右子结点的左子节点变为旋转节点的右子结点，左子节点保持不变</strong>。</li>
+<li>右旋：以某个节点作为支点（旋转节点），<strong>其左子节点变为旋转节点的父节点，左子节点的右子结点变为旋转节点的左子节点，右子结点保持不变</strong>。</li>
+<li>变色：节点的颜色由红变黑或者由黑变红。</li>
+</ul>
+<center>
+<img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/红黑树的左旋.webp"> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+红黑树的左旋
+</div>
+</center>
+<center>
+<img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/红黑树的右旋.webp"> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+红黑树的右旋
+</div>
+</center>
+<p>左旋只会影响旋转节点和其右子树的结构，把右子树的结点往左子树挪动了。而右旋只会影响旋转节点和其左子树的结构，把左子树的结点往右子树挪动了。所以旋转操作只是局部的，直观上理解就是：当一边子树的结点少了，那么向另外一边子树借一点节点。<strong>红黑树总是通过旋转和变色来达到自平衡</strong>。</p>
+<p>红黑树的查找和二分查找树是一样的，接下里说一下插入和删除。</p>
+<h3 id="红黑树的插入">红黑树的插入</h3>
+<p>插入包含两个工作：一个是插入的位置，另一个是插入后自平衡。插入位置查找跟红黑树的查找没差太多，只是插入的颜色默认是红色的，因为这样的话就保证了我们插入之后的黑色平衡没有被破坏。步骤如下：</p>
+<center>
+<img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/红黑树插入位置查找.webp"> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+红黑树插入位置查找
+</div>
+</center>
+<p>红黑树的插入主要有以下这么多类：</p>
+<center>
+<img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/插入结点关系结点.webp"> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+插入结点的关系结点表示
+</div>
+</center>
+<ul>
+<li><p>红黑树为空树。这个情况最简单了，直接返回一个黑色的根结点即可。</p></li>
+<li><p>当插入的结点key已经存在。这个操作也很简单，直接把插入的结点设置为将要替代结点的颜色，然后更新结点的值。</p></li>
+<li><p>当插入的结点的父节点是黑色的结点。这个也很简单，由于插入的结点是红色的，不会影响红黑树的平衡，直接插入即可，无需做自平衡。</p></li>
+<li><p>插入结点的父节点为红色节点。这种情况就很复杂了。</p>
+<h4 id="叔叔结点存在并且为红结点">4.1 叔叔结点存在并且为红结点。</h4>
+<p>叔叔结点为红色的话，那么祖父节点肯定就是黑色的了。那么此时插入子树的红黑层数的情况是：黑红红。最简单的处理方式就是把其改成：红黑红。</p>
+<center>
+<p><img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/插入情景4.1_1.webp"> <br></p>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+插入情景4.1_1
+</div>
+</center>
+<center>
+<p><img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/插入情景4.1_2.webp"> <br></p>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+插入情景4.1_2
+</div>
+</center>
+<p>可以看到，已经把PP节点设置为红色了，如果PP的父节点是黑色，那么无序再做任何处理的操作。但是如果PP的父节点是红色，此时红黑树已经不平衡了，所以还需要把PP当做新的插入结点，继续做插入操作自平衡处理，直到平衡为止。</p>
+<p>PP如果为根结点，我们必须将PP设置为黑色，那么树的红黑结构变为：黑黑红。换句话说，从根结点到叶子结点的路径中，黑色结点增加了。这也是唯一会增加红黑树黑色结点层数的插入情景。<strong>红黑树的生长是自底向上的，这点不同于普通的二叉查找树，普通的二叉查找树的生长是自顶向下的。</strong></p>
+<h4 id="叔叔结点不存在或者为黑结点并且插入结点的父亲结点是祖父结点的左子结点">4.2 叔叔结点不存在或者为黑结点，并且插入结点的父亲结点是祖父结点的左子结点</h4>
+<p>单纯从插入的角度来看，叔叔结点非红就是叶子结点（也就是空节点）。因为如果叔叔结点为黑结点，而父节点为红结点，那么叔叔结点所在的子树的黑色结点就比父节点所在的子树多了，这不满足红黑树的性质5。</p>
+<h5 id="插入结点是其父节点的左子节点">4.2.1 插入结点是其父节点的左子节点</h5>
+<p>处理为：将P设为黑色，PP设为红色，对PP进行右旋。</p>
+<center>
+<p><img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/插入情景4.2.1.webp"> <br></p>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+插入情景4.2.1
+</div>
+</center>
+<h5 id="插入结点是其父节点的右子结点">4.4.2 插入结点是其父节点的右子结点</h5>
+<p>处理为：对P进行左旋，将P设置为插入结点，得到4.2.1的情况，然后进行4.2.1的处理。</p>
+<center>
+<p><img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/插入情景4.2.2.webp"> <br></p>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+插入情景4.2.2
+</div>
+</center>
+<h4 id="插入结点不存在或者为黑结点并且插入结点的父节点是祖父结点的右子结点">4.3 插入结点不存在或者为黑结点，并且插入结点的父节点是祖父结点的右子结点</h4>
+<h5 id="插入结点是其父节点的右子结点-1">4.3.1 插入结点是其父节点的右子结点</h5>
+<p>处理为：将P设为黑色，将PP设为红色，对PP进行左旋</p>
+<center>
+<p><img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/插入情景4.3.1.webp"> <br></p>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+插入情景4.3.1
+</div>
+</center>
+<h5 id="插入结点是其父节点的左子节点-1">4.3.2 插入结点是其父节点的左子节点</h5>
+<p>处理为：对P进行右旋，将P设置为插入结点，得到情景4.3.1，进行情景4.3.1的处理</p>
+<center>
+<p><img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/插入情景4.3.2.webp"> <br></p>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+插入情景4.3.2
+</div>
+</center></li>
+</ul>
 <h2 id="散列表">3.4 散列表</h2>
-<p>散列表查找包含两个步骤：（1）用散列函数将被查找的键转化为数组的一个索引；（2）处理一个冲突碰撞的过程。</p>
-<p>（1）对于每一种键都需要一个与之对应的散列函数。</p>
+<h1 id="图">4. 图</h1>
+<h2 id="无向图">4.1 无向图</h2>
+<p>图的概念在研究工作中已经很透彻了，介绍一些数据结构的概念。</p>
 <ul>
-<li><p>1.正整数：除留余数法。选择大小为素数M的数组，对于任意正整数k，计算k除以M的余数，可以将键有效的散布在0到M-1的范围内。如果M不是素数，我们可能无法利用键中包含的所有信息，导致无法均匀的散列散列值。</p></li>
-<li><p>2.浮点数：如果键是0到1之间的实数，我们可以将它乘以M并四舍五入得到一个0到M-1之间的索引值。这种方法的缺陷是：键的高位起的作用更大，最低位对散列的结果没有影响。修正这个问题的方法是将键表示为二进制数然后再使用除留余数法。</p></li>
-<li><p>3.字符串：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> hash = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">    hash = (R * hash + s.charAt(i)) % M;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>charAt方法能够返回一个非负16位整数，如果R比任何字符的值都大，这种计算相当于将字符串当做一个N位的R进制值，将它除以M并求余。</p></li>
-<li><p>4.组合键：如果键的类型含有多个整型变量，可以和String类型一样将他们混合起来。如date类型(day,month,year)，可以表示散列值为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> hash = (((day * R + month) % M) * R + year) % M;</span><br></pre></td></tr></table></figure>
-<p>（2）散列算法的第二步就是碰撞处理</p>
-<ul>
-<li><p>拉链法：将大小为M的数组中的每个元素指向一条链表，链表中的每个节点都存储了散列值为该元素的索引的键值对。查找分为两步：首先根据散列值找到对应的链表，然后沿着链表的熟悉怒查找相应的键。</p></li>
-<li><p>线性探测法：使用大小为M的数组保存N个键值对，其中M &gt; N。需要依靠数组中的空位解决碰撞冲突问题，基于这种方法的方法统称为开放地址散列表。其中最简单的叫做线性探测法，当发生碰撞时，也就是一个键的散列值已经被另一个不同的键占用，直接检测散列表的下一个位置。这样可能产生三种结果：</p>
-<p>（1）命中，该位置的键和被查找的键相同</p>
-<p>（2）未命中，键为空（该位置没有键）</p>
-<p>（3）继续查找，该位置的键和查找的键不同</p>
-<p>用散列函数找到键在数组中的索引，检查其中的键和被查找的键是否相同，，如果不同则继续查找，将索引增大，到达数组结尾时折回数组的开头，直到找到该键或者遇到一个空元素。</p></li>
-</ul></li>
+<li>自环：已一条连接一个顶点和其自身的边。</li>
+<li>平行边：连接同一对顶点的两条边。</li>
+<li>树：一幅无环的连通图。</li>
+<li>森林：互不相连的树组成的集合叫做森林。</li>
+<li>二分图：能够将所有的结点分为两部分的图，其中图的每条边所连接的两个顶点都分别属于不同的部分。</li>
 </ul>
-<h2 id="稀疏向量">稀疏向量</h2>
-<p>对数据进行处理的时候，一般需要对类别型特征进行编码，比方说独热编码就是一种稀疏向量。对于一个向量<span class="math inline">\(v=(v_1,v_2,...,v_n)\)</span>如果v仅在少量的维度上取值不为0，称之为稀疏向量。由于稀疏向量的非零值比较少，可以通过仅存储非零值的方式来节省空间。每个非零值都可以用一个<span class="math inline">\((index,value)\)</span>对来表示。</p>
-<p>对于一个n维整数向量v，如果其仅在a个维度上取值不为0，则可以惟一的表示为：</p>
-<p><span class="math inline">\([(index1,value1),(index_2,value_2),...,(index_a,value_a)]\)</span></p>
+<p>算法第四版这本书给出了一些实现图算法的API，比起networkx库给的要简单的多，不过对于学习还是可以的。</p>
+<p>图的表示方法：</p>
+<ul>
+<li>邻接矩阵。使用一个<span class="math inline">\(V \times V\)</span>的布尔矩阵，当顶点v和顶点w之间有相连接的边时，定义v和w的元素值为true，这种不适合大规模的网络。</li>
+<li>边的数组。使用一个Edge类，它含有两个int实例变量。但是这种又实现不了API中的adj()方法，检查所有的连边的结点。</li>
+<li>邻接表数组。使用一个以顶点为索引的列表数组，其中的每个元素都是和该顶点相邻的顶点列表。</li>
+</ul>
+<center>
+<img style="border-radius: 0.3125em;
+    box-shadow: 0 1px 3px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/邻接表数组.png"> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+邻接表数组
+</div>
+</center>
+<p>邻接表数组这一数据结构就是把每个顶点的所有相邻结点都保存在该结点对应的元素所指向的一张链表中。要添加一条连接v和w的边，我们将w添加到v的邻接表中，并把v添加到w的邻接表中，这种graph的实现性能有如下的特点：</p>
+<ul>
+<li>使用的空间和V+E成正比</li>
+<li>添加一条边所需的时间为常数</li>
+<li>遍历顶点v的所有相邻顶点所需的时间和v的度数成正比，处理每个相邻顶点所需的时间为常数</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> V;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> E;</span><br><span class="line">    <span class="keyword">private</span> Bag&lt;Integer&gt;[] adj;<span class="comment">//bag对象，包含一系列的与当前节点相连接的结点</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Graph</span><span class="params">(<span class="keyword">int</span> V)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.V = V;</span><br><span class="line">        <span class="keyword">this</span>.E = <span class="number">0</span>;</span><br><span class="line">        adj = (Bag&lt;Integer&gt;[]) <span class="keyword">new</span> Bag[V];<span class="comment">//V个结点对应于V个bag对象</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i++) &#123;</span><br><span class="line">            adj[i] = <span class="keyword">new</span> Bag&lt;Integer&gt;();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Graph</span><span class="params">(Scanner scanner)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(scanner.nextInt());<span class="comment">//读取V并将图初始化，创建一个大小为V的图</span></span><br><span class="line">        <span class="keyword">int</span> E = scanner.nextInt();<span class="comment">//读取E</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; E; i++) &#123;<span class="comment">//添加一条边</span></span><br><span class="line">            <span class="keyword">int</span> v = scanner.nextInt();<span class="comment">//读取边的一个结点</span></span><br><span class="line">            <span class="keyword">int</span> w = scanner.nextInt();<span class="comment">//读取边的另一个节点</span></span><br><span class="line">            addEdge(v,w);<span class="comment">//添加边</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 习题4.1.3：接受一幅图并初始化这个图的一个副本</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> G</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Graph</span><span class="params">(Graph G)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(G.V());</span><br><span class="line">        E = G.E();</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; G.V(); i++) &#123;</span><br><span class="line">            Stack&lt;Integer&gt; reverse = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (Integer w : G.adj[i]) &#123;</span><br><span class="line">                reverse.push(w);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (Integer w : reverse) &#123;</span><br><span class="line">                adj[i].add(w);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">V</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> V;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">E</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> E;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span>&#123;</span><br><span class="line">        adj[v].add(w);</span><br><span class="line">        adj[w].add(v);</span><br><span class="line">        E ++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterable&lt;Integer&gt; <span class="title">adj</span><span class="params">(<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> adj[v];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        String s = V + <span class="string">" verices, "</span> + E + <span class="string">" edges\n"</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i++) &#123;</span><br><span class="line">            s += i + <span class="string">": "</span>;</span><br><span class="line">            <span class="keyword">for</span> (Integer w : <span class="keyword">this</span>.adj[i]) &#123;</span><br><span class="line">                s += w + <span class="string">" "</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            s += <span class="string">"\n"</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>这个graph的实现使用的是一个由顶点索引的整型表数组。第二个构造函数从输入流中读取一幅图，开头是V，然后是E，再然后是一列整数对，大小在0到V-1之间。</strong></p>
+<h3 id="图的搜索">4.1.1 图的搜索</h3>
+<ul>
+<li>深度优先搜索：是对每一个可能的分支路径深入到不能再深入为止，而且每个节点只能访问一次</li>
+<li>广度优先搜索：系统地展开并检查图中的所有结点，以寻找结果。</li>
+</ul>
+<p>深度优先搜索和广度优先搜索的示例图如下所示：</p>
+<center>
+<img style="border-radius: 0.3125em;
+    box-shadow: 0 1px 3px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/深度优先搜索以及广度有限搜索.png"> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
+    display: inline-block;
+    color: #999;
+    padding: 2px;">
+深度优先搜索与广度有限搜索
+</div>
+</center><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">strStr</span><span class="params">(String haystack, String needle)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (needle.length() == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span>[] next = <span class="keyword">new</span> <span class="keyword">int</span>[needle.length()];</span><br><span class="line">        getNext(next, needle);<span class="comment">//构建前缀表</span></span><br><span class="line">        </span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; haystack.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">while</span> (j &gt; <span class="number">0</span> &amp;&amp; needle.charAt(j) != haystack.charAt(i))</span><br><span class="line">                j = next[j - <span class="number">1</span>];</span><br><span class="line">            <span class="keyword">if</span> (needle.charAt(j) == haystack.charAt(i))</span><br><span class="line">                j ++;</span><br><span class="line">            <span class="keyword">if</span> (j == needle.length())</span><br><span class="line">                <span class="keyword">return</span> i - needle.length() + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">getNext</span><span class="params">(<span class="keyword">int</span>[] next, String s)</span></span>&#123;</span><br><span class="line">        <span class="comment">//这里的i指向前缀的末尾位置，j指向后缀的末尾位置</span></span><br><span class="line">        <span class="comment">//这里的j也是表示最长的前后缀长度</span></span><br><span class="line">        <span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">        next[<span class="number">0</span>] = <span class="number">0</span>;<span class="comment">//初始化默认为0</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; s.length(); i ++)&#123;<span class="comment">//遍历到第i个字符</span></span><br><span class="line">            <span class="keyword">while</span>(j &gt; <span class="number">0</span> &amp;&amp; s.charAt(j) != s.charAt(i))<span class="comment">// 没有匹配上，一直等到匹配上，匹配使用j &gt; 0,表示一旦回退到初始位置就没有地方可以继续回退了，所以跳出循环</span></span><br><span class="line">                j = next[j - <span class="number">1</span>];<span class="comment">// 回退到前一个字符的前缀表的值的位置继续匹配</span></span><br><span class="line">            <span class="keyword">if</span> (s.charAt(j) == s.charAt(i))<span class="comment">// 前后缀相同的情况，就把</span></span><br><span class="line">                j ++;</span><br><span class="line">            next[i] = j;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table>
+<p>字符串匹配的过程中，使用指针i来追踪文本，一个指针j来跟踪模式。《算法第四版》中使用一个数组<span class="math inline">\(dfa[][]\)</span>来记录匹配失败时模式指针j应该回退多远。对于每个字符c，在比较了c和pattern.charAt(j)之后，<span class="math inline">\(dfa[c][j]\)</span>表示的是应该和下个文本字符串比较的模式的位置。（也就是说要回退的位置）在查找中，<span class="math inline">\(dfa[txt.charAt(i)][j]\)</span>是在比较了txt.charAt(i)和pat.charAt(j)之后应该和txt.charAt(i + 1)比较的位置。</p>
+<p><strong>一般网上的教程都是用的一维数组来表示回退，本书使用二维应该是还要实现一个查找的功能，所以把字符也给带上了。</strong></p>
+<h1 id="section"></h1>
 
       
 
@@ -449,7 +644,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#算法第四版的笔记"><span class="toc-number">1.</span> <span class="toc-text">0. 算法第四版的笔记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#排序"><span class="toc-number">2.</span> <span class="toc-text">2. 排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#选择排序"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 选择排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#冒泡排序"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 冒泡排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入排序"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 插入排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#希尔排序"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 希尔排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速排序"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 快速排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆排序"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 堆排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#归并排序"><span class="toc-number">2.7.</span> <span class="toc-text">2.7 归并排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#桶排序"><span class="toc-number">2.8.</span> <span class="toc-text">2.8 桶排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基数排序"><span class="toc-number">2.9.</span> <span class="toc-text">2.9 基数排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计数排序"><span class="toc-number">2.10.</span> <span class="toc-text">2.10 计数排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优先队列"><span class="toc-number">2.11.</span> <span class="toc-text">2.11 优先队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单调栈"><span class="toc-number">2.12.</span> <span class="toc-text">2.12 单调栈</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查找"><span class="toc-number">3.</span> <span class="toc-text">3. 查找</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#符号表"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 符号表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉查找树"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 二叉查找树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#平衡查找树"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 平衡查找树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查找树"><span class="toc-number">3.3.1.</span> <span class="toc-text">2-3查找树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#红黑二叉查找树"><span class="toc-number">3.3.2.</span> <span class="toc-text">红黑二叉查找树</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#散列表"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 散列表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#稀疏向量"><span class="toc-number">3.5.</span> <span class="toc-text">稀疏向量</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#算法第四版的笔记"><span class="toc-number">1.</span> <span class="toc-text">0. 算法第四版的笔记</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#排序"><span class="toc-number">2.</span> <span class="toc-text">2. 排序</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#选择排序"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 选择排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#冒泡排序"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 冒泡排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插入排序"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 插入排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#希尔排序"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 希尔排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#快速排序"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 快速排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆排序"><span class="toc-number">2.6.</span> <span class="toc-text">2.6 堆排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#归并排序"><span class="toc-number">2.7.</span> <span class="toc-text">2.7 归并排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#桶排序"><span class="toc-number">2.8.</span> <span class="toc-text">2.8 桶排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基数排序"><span class="toc-number">2.9.</span> <span class="toc-text">2.9 基数排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#计数排序"><span class="toc-number">2.10.</span> <span class="toc-text">2.10 计数排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优先队列"><span class="toc-number">2.11.</span> <span class="toc-text">2.11 优先队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#单调栈"><span class="toc-number">2.12.</span> <span class="toc-text">2.12 单调栈</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#查找"><span class="toc-number">3.</span> <span class="toc-text">3. 查找</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#符号表"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 符号表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉查找树"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 二叉查找树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#平衡查找树"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 平衡查找树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查找树"><span class="toc-number">3.3.1.</span> <span class="toc-text">2-3查找树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#红黑二叉查找树"><span class="toc-number">3.3.2.</span> <span class="toc-text">红黑二叉查找树</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#红黑树的自平衡"><span class="toc-number">3.3.3.</span> <span class="toc-text">红黑树的自平衡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#红黑树的插入"><span class="toc-number">3.3.4.</span> <span class="toc-text">红黑树的插入</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#叔叔结点存在并且为红结点"><span class="toc-number">3.3.4.1.</span> <span class="toc-text">4.1 叔叔结点存在并且为红结点。</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#叔叔结点不存在或者为黑结点并且插入结点的父亲结点是祖父结点的左子结点"><span class="toc-number">3.3.4.2.</span> <span class="toc-text">4.2 叔叔结点不存在或者为黑结点，并且插入结点的父亲结点是祖父结点的左子结点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#插入结点是其父节点的左子节点"><span class="toc-number">3.3.4.2.1.</span> <span class="toc-text">4.2.1 插入结点是其父节点的左子节点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#插入结点是其父节点的右子结点"><span class="toc-number">3.3.4.2.2.</span> <span class="toc-text">4.4.2 插入结点是其父节点的右子结点</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#插入结点不存在或者为黑结点并且插入结点的父节点是祖父结点的右子结点"><span class="toc-number">3.3.4.3.</span> <span class="toc-text">4.3 插入结点不存在或者为黑结点，并且插入结点的父节点是祖父结点的右子结点</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#插入结点是其父节点的右子结点-1"><span class="toc-number">3.3.4.3.1.</span> <span class="toc-text">4.3.1 插入结点是其父节点的右子结点</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#插入结点是其父节点的左子节点-1"><span class="toc-number">3.3.4.3.2.</span> <span class="toc-text">4.3.2 插入结点是其父节点的左子节点</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#散列表"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 散列表</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#图"><span class="toc-number">4.</span> <span class="toc-text">4. 图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#无向图"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 无向图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#图的搜索"><span class="toc-number">4.1.1.</span> <span class="toc-text">4.1.1 图的搜索</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#section"><span class="toc-number">5.</span> <span class="toc-text"></span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -611,11 +806,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -627,7 +822,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -635,15 +838,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">Linux学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">java基础知识</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
