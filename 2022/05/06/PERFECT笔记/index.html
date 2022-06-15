@@ -8,22 +8,20 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>PERFECT笔记 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="现有的网络对齐的方法主要关注个人用户层面上的对齐，需要具有大量的个人共享的信息。在缺少相关的共享信息的时候，社区的对齐可能会给用户对齐以关键的补充信息。反过来，用户对齐也揭示了更多关于社区对齐的线索。我们引入了联合社交网络对齐问题，目的是跨社交网络同时对齐用户和社区。  如何同时学习用户和社区的表示方式？ 如何使用户对齐和社区对齐相互受益？   使用双曲空间和欧式空间来嵌入网络得到：  对比">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="PERFECT笔记">
 <meta property="og:url" content="http://yoursite.com/2022/05/06/PERFECT%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="现有的网络对齐的方法主要关注个人用户层面上的对齐，需要具有大量的个人共享的信息。在缺少相关的共享信息的时候，社区的对齐可能会给用户对齐以关键的补充信息。反过来，用户对齐也揭示了更多关于社区对齐的线索。我们引入了联合社交网络对齐问题，目的是跨社交网络同时对齐用户和社区。  如何同时学习用户和社区的表示方式？ 如何使用户对齐和社区对齐相互受益？   使用双曲空间和欧式空间来嵌入网络得到：  对比">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/images/PERFECT/%E8%81%94%E5%90%88%E7%BD%91%E7%BB%9C%E5%AF%B9%E9%BD%90.png">
-<meta property="og:image" content="http://yoursite.com/images/PERFECT/%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4%E5%AF%B9%E6%AF%94.png">
-<meta property="og:image" content="http://yoursite.com/images/PERFECT/%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta property="og:image" content="http://yoursite.com/2022/05/06/images/PERFECT/%E8%81%94%E5%90%88%E7%BD%91%E7%BB%9C%E5%AF%B9%E9%BD%90.png">
+<meta property="og:image" content="http://yoursite.com/2022/05/06/images/PERFECT/%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4%E5%AF%B9%E6%AF%94.png">
+<meta property="og:image" content="http://yoursite.com/2022/05/06/images/PERFECT/%E6%95%B0%E6%8D%AE%E9%9B%86.png">
 <meta property="article:published_time" content="2022-05-06T10:12:23.000Z">
 <meta property="article:modified_time" content="2022-05-30T02:06:55.590Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/PERFECT/%E8%81%94%E5%90%88%E7%BD%91%E7%BB%9C%E5%AF%B9%E9%BD%90.png">
+<meta name="twitter:image" content="http://yoursite.com/2022/05/06/images/PERFECT/%E8%81%94%E5%90%88%E7%BD%91%E7%BB%9C%E5%AF%B9%E9%BD%90.png">
   
     <link rel="alternative" href="/atom.xml" title="Chris的个人博客" type="application/atom+xml">
   
@@ -192,21 +190,21 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-         <a id="more"></a>
-
+        <p><a id="more"></a></p>
 <p>现有的网络对齐的方法主要关注个人用户层面上的对齐，需要具有大量的个人共享的信息。在缺少相关的共享信息的时候，社区的对齐可能会给用户对齐以关键的补充信息。反过来，用户对齐也揭示了更多关于社区对齐的线索。我们引入了联合社交网络对齐问题，目的是跨社交网络同时对齐用户和社区。</p>
 <ul>
 <li>如何同时学习用户和社区的表示方式？</li>
 <li>如何使用户对齐和社区对齐相互受益？</li>
 </ul>
-<p><img src="/../images/PERFECT/%E8%81%94%E5%90%88%E7%BD%91%E7%BB%9C%E5%AF%B9%E9%BD%90.png"></p>
+<p><img src="../images/PERFECT/联合网络对齐.png"></p>
 <p>使用双曲空间和欧式空间来嵌入网络得到：</p>
-<p><img src="/../images/PERFECT/%E5%B5%8C%E5%85%A5%E7%A9%BA%E9%97%B4%E5%AF%B9%E6%AF%94.png"></p>
+<p><img src="../images/PERFECT/嵌入空间对比.png"></p>
 <p>对比欧式空间，双曲空间倾向于呈现输入网络中节点之间的潜在层次结构。我们观察到，该层次特征在社交网络[9]中是常见的，更重要的是，它对用户对齐[2]和有利于社区发现至关重要。</p>
-<p>问题定义：给定一对社交网络$G^s,G^t$以及anchor set   A，要找到所有的anchor users：$\left{(v_i^s,v_k^t)\right}$以及所有的anchor communities：$\left{(C_p^s,C_q^t)\right}$。</p>
-<h2 id="为什么使用双曲空间嵌入"><a href="#为什么使用双曲空间嵌入" class="headerlink" title="为什么使用双曲空间嵌入"></a>为什么使用双曲空间嵌入</h2><p>与欧几里得空间相比，双曲空间中的嵌入编码了用户之间的潜在层次结构，即中心性较高的用户倾向于居住在更靠近原点的位置。层次特征已被证明对用户对齐[2]和有利于社区发现至关重要。以定量地测量层次特征，引入了$Gromov \  \delta-hyperbolicity $，一个几何群论的度量。</p>
+<p>问题定义：给定一对社交网络<span class="math inline">\(G^s,G^t\)</span>以及anchor set A，要找到所有的anchor users：<span class="math inline">\(\left\{(v_i^s,v_k^t)\right\}\)</span>以及所有的anchor communities：<span class="math inline">\(\left\{(C_p^s,C_q^t)\right\}\)</span>。</p>
+<h2 id="为什么使用双曲空间嵌入">为什么使用双曲空间嵌入</h2>
+<p>与欧几里得空间相比，双曲空间中的嵌入编码了用户之间的潜在层次结构，即中心性较高的用户倾向于居住在更靠近原点的位置。层次特征已被证明对用户对齐[2]和有利于社区发现至关重要。以定量地测量层次特征，引入了$Gromov   -hyperbolicity $，一个几何群论的度量。</p>
 <p>相应的δ−双曲性显示了数据集的潜在层次结构：</p>
-<p><img src="/../images/PERFECT/%E6%95%B0%E6%8D%AE%E9%9B%86.png"></p>
+<p><img src="../images/PERFECT/数据集.png"></p>
 
       
 
@@ -495,11 +493,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -507,15 +505,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -523,11 +517,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">

@@ -15,21 +15,21 @@
 <meta property="og:site_name" content="Chris的个人博客">
 <meta property="og:description" content="1. 数学优化算法实现">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/images/Optimization-Homework/%E7%BA%BF%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C.png">
-<meta property="og:image" content="http://yoursite.com/images/Optimization-Homework/%E7%89%9B%E9%A1%BF%E6%B3%95%E7%BB%93%E6%9E%9C.png">
-<meta property="og:image" content="http://yoursite.com/images/Optimization-Homework/%E6%9C%80%E9%80%9F%E4%B8%8B%E9%99%8D%E6%B3%95%E7%BB%93%E6%9E%9C.png">
-<meta property="og:image" content="http://yoursite.com/images/Optimization-Homework/%E5%85%B1%E8%BD%AD%E6%B3%95%E7%BB%93%E6%9E%9C.png">
-<meta property="og:image" content="http://yoursite.com/images/Optimization-Homework/adam.jpg">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/images/Optimization-Homework/%E7%BA%BF%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/images/Optimization-Homework/%E7%89%9B%E9%A1%BF%E6%B3%95%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/images/Optimization-Homework/%E6%9C%80%E9%80%9F%E4%B8%8B%E9%99%8D%E6%B3%95%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/images/Optimization-Homework/%E5%85%B1%E8%BD%AD%E6%B3%95%E7%BB%93%E6%9E%9C.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/images/Optimization-Homework/adam.jpg">
 <meta property="og:image" content="http://yoursite.com/2022/01/01/Optimization-Homework/blog/source_posts/Optimization-Homework/%E4%BC%98%E5%8C%96%E5%99%A8%E7%BB%93%E6%9E%9C.png">
-<meta property="og:image" content="http://yoursite.com/images/Optimization-Homework/%E4%BC%98%E5%8C%96%E5%99%A8%E7%9A%84%E6%AF%94%E8%BE%83.png">
-<meta property="og:image" content="http://yoursite.com/images/Optimization-Homework/%E6%95%B0%E6%8D%AE%E9%9B%86.png">
-<meta property="og:image" content="http://yoursite.com/images/Optimization-Homework/SVM.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/images/Optimization-Homework/%E4%BC%98%E5%8C%96%E5%99%A8%E7%9A%84%E6%AF%94%E8%BE%83.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/images/Optimization-Homework/%E6%95%B0%E6%8D%AE%E9%9B%86.png">
+<meta property="og:image" content="http://yoursite.com/2022/01/01/images/Optimization-Homework/SVM.png">
 <meta property="article:published_time" content="2021-12-31T16:17:29.000Z">
 <meta property="article:modified_time" content="2022-05-30T02:06:31.220Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="机器学习">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/Optimization-Homework/%E7%BA%BF%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C.png">
+<meta name="twitter:image" content="http://yoursite.com/2022/01/01/images/Optimization-Homework/%E7%BA%BF%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C.png">
   
     <link rel="alternative" href="/atom.xml" title="Chris的个人博客" type="application/atom+xml">
   
@@ -198,215 +198,315 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-数学优化算法实现"><a href="#1-数学优化算法实现" class="headerlink" title="1. 数学优化算法实现"></a>1. 数学优化算法实现</h1><a id="more"></a>
-
-<h2 id="1-1-线搜索"><a href="#1-1-线搜索" class="headerlink" title="1.1 线搜索"></a>1.1 线搜索</h2><p>线搜索是一种迭代的求得某个函数的最值得方法，对于每次迭代，线搜索会计算得到搜索的方向以及沿这个方向移动的步长。下降方向可以通过多种方法计算，比如说：梯度下降法，牛顿法和拟牛顿法，计算的步长不一定是精确的。</p>
-<h3 id="1-1-1-二分法"><a href="#1-1-1-二分法" class="headerlink" title="1.1.1 二分法"></a>1.1.1 二分法</h3><p>二分法是最简单的线搜索方法，其主要的思想是在给定范围内取中点，在给定的足够小的值ε左右偏移并计算，然后更新搜索范围。<br>$$<br>λ_k &#x3D; \frac{a_k+b_k}{2} - ε \<br>μ_k &#x3D; \frac{a_k+b_k}{2} + ε \<br>if \  \ f(λ) &gt; f(μ_k) \ \ \  a_{k+1}&#x3D;λ_k  \ \ \ b_{k+1}&#x3D;b_k\<br>else \ if \ \ f(λ) &lt; f(μ_k) \ \ \  a_{k+1}&#x3D;λ_k  \ \ \ b_{k+1}&#x3D;b_k<br>$$<br>实现二分法的代码如下：</p>
+        <h1 id="数学优化算法实现">1. 数学优化算法实现</h1>
+<a id="more"></a>
+<h2 id="线搜索">1.1 线搜索</h2>
+<p>线搜索是一种迭代的求得某个函数的最值得方法，对于每次迭代，线搜索会计算得到搜索的方向以及沿这个方向移动的步长。下降方向可以通过多种方法计算，比如说：梯度下降法，牛顿法和拟牛顿法，计算的步长不一定是精确的。</p>
+<h3 id="二分法">1.1.1 二分法</h3>
+<p>二分法是最简单的线搜索方法，其主要的思想是在给定范围内取中点，在给定的足够小的值ε左右偏移并计算，然后更新搜索范围。 <span class="math display">\[
+λ_k = \frac{a_k+b_k}{2} - ε \\
+μ_k = \frac{a_k+b_k}{2} + ε \\
+if \  \ f(λ) &gt; f(μ_k) \ \ \  a_{k+1}=λ_k  \ \ \ b_{k+1}=b_k\\
+else \ if \ \ f(λ) &lt; f(μ_k) \ \ \  a_{k+1}=λ_k  \ \ \ b_{k+1}=b_k
+\]</span> 实现二分法的代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bisection_search</span><span class="params">(f, def_field, epsilon)</span>:</span></span><br><span class="line">    half_epsilon = epsilon / <span class="number">2.0</span></span><br><span class="line">    lf = list(def_field)</span><br><span class="line">    f_vals = [f(lf[<span class="number">0</span>]), f(lf[<span class="number">1</span>])]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        mid_x = (lf[<span class="number">1</span>] + lf[<span class="number">0</span>]) / <span class="number">2.0</span></span><br><span class="line">        mid_esp = [mid_x - half_epsilon, mid_x + half_epsilon]</span><br><span class="line">        tmp_f = [f(mid_esp[<span class="number">0</span>]), f(mid_esp[<span class="number">1</span>])]</span><br><span class="line">        <span class="keyword">if</span> tmp_f[<span class="number">0</span>] &gt; tmp_f[<span class="number">1</span>]:</span><br><span class="line">            f_vals[<span class="number">0</span>] = tmp_f[<span class="number">0</span>]</span><br><span class="line">            lf[<span class="number">0</span>] = mid_esp[<span class="number">0</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            f_vals[<span class="number">1</span>] = tmp_f[<span class="number">1</span>]</span><br><span class="line">            lf[<span class="number">1</span>] = mid_esp[<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (lf[<span class="number">1</span>] - lf[<span class="number">0</span>]) &lt;= epsilon * <span class="number">1.000001</span>:</span><br><span class="line">            x_star = (lf[<span class="number">0</span>] + lf[<span class="number">1</span>]) / <span class="number">2</span></span><br><span class="line">            <span class="keyword">return</span> x_star, f(x_star)</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-1-2-四等分搜索"><a href="#1-1-2-四等分搜索" class="headerlink" title="1.1.2 四等分搜索"></a>1.1.2 四等分搜索</h3><p>四等分搜索的思想和二分思想相近，取中间三个点的最小值，该点两边两个点为新的区间，最小值落在该区间中。如果有两个相同的最小值，则最小值就在这两个最小值点之间。</p>
+<h3 id="四等分搜索">1.1.2 四等分搜索</h3>
+<p>四等分搜索的思想和二分思想相近，取中间三个点的最小值，该点两边两个点为新的区间，最小值落在该区间中。如果有两个相同的最小值，则最小值就在这两个最小值点之间。</p>
 <p>实现代码如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">equal_interval_search</span><span class="params">(f, def_field, epsilon)</span>:</span></span><br><span class="line">    steps = np.linspace(def_field[<span class="number">0</span>], def_field[<span class="number">1</span>], <span class="number">5</span>)</span><br><span class="line">    values = np.apply_along_axis(f, <span class="number">0</span>, steps)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        min_id = values[<span class="number">1</span>:<span class="number">4</span>].argmin() + <span class="number">1</span></span><br><span class="line">        steps = np.linspace(steps[min_id - <span class="number">1</span>], steps[min_id + <span class="number">1</span>], <span class="number">5</span>)</span><br><span class="line">        values = np.array([values[min_id - <span class="number">1</span>], f(steps[<span class="number">1</span>]), values[min_id], f(steps[<span class="number">3</span>]), values[min_id + <span class="number">1</span>]])</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (steps[<span class="number">4</span>] - steps[<span class="number">0</span>]) &lt; epsilon * <span class="number">0.1</span>:</span><br><span class="line">            <span class="keyword">return</span> steps[<span class="number">2</span>], values[<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">None</span></span><br></pre></td></tr></table></figure>
-
-<h3 id="1-1-3-fibonacci搜索"><a href="#1-1-3-fibonacci搜索" class="headerlink" title="1.1.3 fibonacci搜索"></a>1.1.3 fibonacci搜索</h3><p>Fibonacci搜索的主要算法流程如下：</p>
-<p>斐波那契搜索的时间复杂度： $O(n) &#x3D; log_2n$<br>        设查找的数组array的大小为m， 查询的值为value</p>
-<pre><code>       1. 先构建一个”数组元素符合斐波那契数列要求的且第一个大于等于要搜索的数组的大小“的数组F[n]即F[n]-1&gt;=m, F[n]为斐波那契数列
-       2. 将要查找的数组大小为m的数组array扩展成数组大小为F[n]-1的数组temp。
-       3. 将array中的值复制给temp，当temp的数组大小大于array时，temp中超出的元素全部复制为array[m-1]
-       4. 设k=n, low = 0, high = n-1, middle = low + F[n-1]-1
-       5. 如果temp[middle] == value，则找到需要找的值
-       6. 如果temp[middle] &gt; value, 则high = middle-1, n = n-1, middle = low + F[n-1]-1
-       7. 如果 temp[middle] &lt; value, 则low = middle +1，n = n-2, middle = low + F[n-1]-1
-       8. 重复5、6、7，直到找到或者low&gt;high。
-</code></pre>
+<h3 id="fibonacci搜索">1.1.3 fibonacci搜索</h3>
+<p>Fibonacci搜索的主要算法流程如下：</p>
+<p>斐波那契搜索的时间复杂度： <span class="math inline">\(O(n) = log_2n\)</span> 设查找的数组array的大小为m， 查询的值为value</p>
+<pre><code>     1. 先构建一个”数组元素符合斐波那契数列要求的且第一个大于等于要搜索的数组的大小“的数组F[n]即F[n]-1&gt;=m, F[n]为斐波那契数列
+     2. 将要查找的数组大小为m的数组array扩展成数组大小为F[n]-1的数组temp。
+     3. 将array中的值复制给temp，当temp的数组大小大于array时，temp中超出的元素全部复制为array[m-1]
+     4. 设k=n, low = 0, high = n-1, middle = low + F[n-1]-1
+     5. 如果temp[middle] == value，则找到需要找的值
+     6. 如果temp[middle] &gt; value, 则high = middle-1, n = n-1, middle = low + F[n-1]-1
+     7. 如果 temp[middle] &lt; value, 则low = middle +1，n = n-2, middle = low + F[n-1]-1
+     8. 重复5、6、7，直到找到或者low&gt;high。</code></pre>
 <p>代码实现：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fibonacci_search</span><span class="params">(f, def_field, epsilon)</span>:</span></span><br><span class="line">    fib_values = np.array(fib_const_list)</span><br><span class="line">    num = (def_field[<span class="number">1</span>] - def_field[<span class="number">0</span>]) / epsilon</span><br><span class="line">    fidx_n = np.where(fib_values &gt;= num)[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    step = (def_field[<span class="number">1</span>] - def_field[<span class="number">0</span>]) * fib_values[fidx_n - <span class="number">1</span>] * <span class="number">1.0</span> / fib_values[fidx_n]</span><br><span class="line">    points = [def_field[<span class="number">0</span>], def_field[<span class="number">1</span>] - step, def_field[<span class="number">0</span>] + step, def_field[<span class="number">1</span>]]</span><br><span class="line">    f_values = np.apply_along_axis(f, <span class="number">0</span>, points)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(fidx_n - <span class="number">1</span>, <span class="number">1</span>, <span class="number">-1</span>):</span><br><span class="line">        step = points[<span class="number">2</span>] - points[<span class="number">1</span>]</span><br><span class="line">        <span class="keyword">if</span> f_values[<span class="number">1</span>] &lt; f_values[<span class="number">2</span>]:</span><br><span class="line">            min_point = <span class="number">1</span></span><br><span class="line">            points[<span class="number">3</span>] = points[<span class="number">2</span>]</span><br><span class="line">            f_values[<span class="number">3</span>] = f_values[<span class="number">2</span>]</span><br><span class="line">            points[<span class="number">2</span>] = points[<span class="number">1</span>]</span><br><span class="line">            f_values[<span class="number">2</span>] = f_values[<span class="number">1</span>]</span><br><span class="line">            points[<span class="number">1</span>] = points[<span class="number">0</span>] + step</span><br><span class="line">            f_values[<span class="number">1</span>] = f(points[<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            min_point = <span class="number">2</span></span><br><span class="line">            points[<span class="number">0</span>] = points[<span class="number">1</span>]</span><br><span class="line">            f_values[<span class="number">0</span>] = f_values[<span class="number">1</span>]</span><br><span class="line">            points[<span class="number">1</span>] = points[<span class="number">2</span>]</span><br><span class="line">            f_values[<span class="number">1</span>] = f_values[<span class="number">2</span>]</span><br><span class="line">            points[<span class="number">2</span>] = points[<span class="number">3</span>] - step</span><br><span class="line">            f_values[<span class="number">2</span>] = f(points[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">    dst_p = (points[<span class="number">2</span>] + points[<span class="number">1</span>]) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> (dst_p, f(dst_p))</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-1-4-黄金分割法"><a href="#1-1-4-黄金分割法" class="headerlink" title="1.1.4 黄金分割法"></a>1.1.4 黄金分割法</h3><p>三个原则（1）对称取点原则：选取$x_1，x_2$使得$x_1-a&#x3D;b-x_2$.（2）等比收缩原则：每次迭代时，让被删除的部分与原来区间的比值保持一个定值。（3）单点计算原则：每次迭代都只计算一次函数值。</p>
-<ol>
-<li>step1：给定$a&lt;b,ε&gt;0$.</li>
-<li>step2：计算$x_1:&#x3D;a+0.382(b-a),x_2:&#x3D;a+b-x_1$.</li>
-<li>step3：计算$f_1:&#x3D;f(x_1),f2:&#x3D;f(x_2)$.</li>
-<li>step4：如果$f_1&gt;f_2$,则令$a:&#x3D;x_1$,若$b-a&lt;ε$,则转step5；否则令$f_1:&#x3D;f_2,x_1:&#x3D;x_2,x_2:&#x3D;a+0.618(b-a),f_2:&#x3D;f(x_2)$,转step4.<br>否则令$b:&#x3D;x2$,若$b-a&lt;ε$,则转step5；否则令$f_2:&#x3D;f_1,x_2:&#x3D;x_1,x_1:&#x3D;a+0.382(b-a),f_1:&#x3D;f(x_1)$,转step4.</li>
-<li>step5:停止，输出$x^*&#x3D;(a+b)&#x2F;2$.</li>
+<h3 id="黄金分割法">1.1.4 黄金分割法</h3>
+<p>三个原则（1）对称取点原则：选取<span class="math inline">\(x_1，x_2\)</span>使得<span class="math inline">\(x_1-a=b-x_2\)</span>.（2）等比收缩原则：每次迭代时，让被删除的部分与原来区间的比值保持一个定值。（3）单点计算原则：每次迭代都只计算一次函数值。</p>
+<ol type="1">
+<li>step1：给定<span class="math inline">\(a&lt;b,ε&gt;0\)</span>.</li>
+<li>step2：计算<span class="math inline">\(x_1:=a+0.382(b-a),x_2:=a+b-x_1\)</span>.</li>
+<li>step3：计算<span class="math inline">\(f_1:=f(x_1),f2:=f(x_2)\)</span>.</li>
+<li>step4：如果<span class="math inline">\(f_1&gt;f_2\)</span>,则令<span class="math inline">\(a:=x_1\)</span>,若<span class="math inline">\(b-a&lt;ε\)</span>,则转step5；否则令<span class="math inline">\(f_1:=f_2,x_1:=x_2,x_2:=a+0.618(b-a),f_2:=f(x_2)\)</span>,转step4. 否则令<span class="math inline">\(b:=x2\)</span>,若<span class="math inline">\(b-a&lt;ε\)</span>,则转step5；否则令<span class="math inline">\(f_2:=f_1,x_2:=x_1,x_1:=a+0.382(b-a),f_1:=f(x_1)\)</span>,转step4.</li>
+<li>step5:停止，输出<span class="math inline">\(x^*=(a+b)/2\)</span>.</li>
 </ol>
 <p>代码实现</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">golden_section_search</span><span class="params">(f, def_field, epsilon, args=None)</span>:</span></span><br><span class="line">    golden_const = <span class="number">0.618</span></span><br><span class="line"></span><br><span class="line">    step = (def_field[<span class="number">1</span>] - def_field[<span class="number">0</span>]) * <span class="number">0.618</span></span><br><span class="line">    points = [def_field[<span class="number">0</span>], def_field[<span class="number">1</span>] - step, def_field[<span class="number">0</span>] + step, def_field[<span class="number">1</span>]]</span><br><span class="line">    f_values = np.zeros(len(points))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(points)):</span><br><span class="line">        f_values[i] = f(points[i])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (points[<span class="number">2</span>] - points[<span class="number">1</span>]) &gt; epsilon:</span><br><span class="line">        <span class="comment"># step = (points[2] - points[1])</span></span><br><span class="line">        step = (points[<span class="number">2</span>] - points[<span class="number">0</span>]) * (<span class="number">1</span> - golden_const)</span><br><span class="line">        <span class="keyword">if</span> f_values[<span class="number">1</span>] &lt; f_values[<span class="number">2</span>]:</span><br><span class="line">            min_point = <span class="number">1</span></span><br><span class="line">            points[<span class="number">3</span>] = points[<span class="number">2</span>]</span><br><span class="line">            f_values[<span class="number">3</span>] = f_values[<span class="number">2</span>]</span><br><span class="line">            points[<span class="number">2</span>] = points[<span class="number">1</span>]</span><br><span class="line">            f_values[<span class="number">2</span>] = f_values[<span class="number">1</span>]</span><br><span class="line">            points[<span class="number">1</span>] = points[<span class="number">0</span>] + step</span><br><span class="line">            f_values[<span class="number">1</span>] = f(points[<span class="number">1</span>])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            min_point = <span class="number">2</span></span><br><span class="line">            points[<span class="number">0</span>] = points[<span class="number">1</span>]</span><br><span class="line">            f_values[<span class="number">0</span>] = f_values[<span class="number">1</span>]</span><br><span class="line">            points[<span class="number">1</span>] = points[<span class="number">2</span>]</span><br><span class="line">            f_values[<span class="number">1</span>] = f_values[<span class="number">2</span>]</span><br><span class="line">            points[<span class="number">2</span>] = points[<span class="number">3</span>] - step</span><br><span class="line">            f_values[<span class="number">2</span>] = f(points[<span class="number">2</span>])</span><br><span class="line"></span><br><span class="line">    dst_p = (points[<span class="number">2</span>] + points[<span class="number">1</span>]) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dst_p, f(dst_p)</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-1-5-非精确搜索"><a href="#1-1-5-非精确搜索" class="headerlink" title="1.1.5 非精确搜索"></a>1.1.5 非精确搜索</h3><p>这里使用的是多项式拟合法，多项式$y&#x3D;a_0+a_x+a_2x^2+…+a_nx^n&#x3D;\sum_{i&#x3D;0}^na_ix^i$</p>
-<p>考虑输入样本数据如下：<br>$$<br>x&#x3D;{[x_1,x_2,…,x_m]}^T\<br>y&#x3D;{[y_1,y_2,…,y_n]}^T\<br>$$<br>构建方程组：<br>$$<br>y_1&#x3D;a_0+a_1x_1+a_2x_1^2+…+a_nx_1^n\<br>y_2&#x3D;a_0+a_1x_2+a_2x_2^2+…+a_nx_2^n\<br>…\<br>y_m&#x3D;a_0+a_1x_m+a_2x_m^2+…+a_nx_m^n\<br>$$<br>令：<br>$$<br>A&#x3D;\left(\begin{array}{ccccc}1 &amp; x_{1} &amp; x_{1}^{2} &amp; \cdots &amp; x_{1}^{n} \ 1 &amp; x_{2} &amp; x_{2}^{2} &amp; \cdots &amp; x_{2}^{n} \ \vdots &amp; \vdots &amp; \vdots &amp; \cdots &amp; \vdots \ 1 &amp; x_{m} &amp; x_{m}^{2} &amp; \cdots &amp; x_{m}^{n}\end{array}\right)\<br>b&#x3D;\left(\begin{array}{c}a_{0} \ a_{1} \ \vdots \ a_{n}\end{array}\right)\<br>f&#x3D;\left(\begin{array}{c}y 1 \ y_{2} \ \vdots \ y_{m}\end{array}\right)<br>$$<br>令$Ab&#x3D;f$，拟合的过程就是求解b,按照数学表达式来看，$b&#x3D;A^{-1}f$，A可逆的时候可以直接求解，当不可逆的时候可以考虑正交分解：$A_{[m,n+1]}&#x3D;Q_{[m,n+1]}R_{[n+1,n+1]}$</p>
+<h3 id="非精确搜索">1.1.5 非精确搜索</h3>
+<p>这里使用的是多项式拟合法，多项式<span class="math inline">\(y=a_0+a_x+a_2x^2+...+a_nx^n=\sum_{i=0}^na_ix^i\)</span></p>
+<p>考虑输入样本数据如下： <span class="math display">\[
+x={[x_1,x_2,...,x_m]}^T\\
+y={[y_1,y_2,...,y_n]}^T\\
+\]</span> 构建方程组： <span class="math display">\[
+y_1=a_0+a_1x_1+a_2x_1^2+...+a_nx_1^n\\
+y_2=a_0+a_1x_2+a_2x_2^2+...+a_nx_2^n\\
+...\\
+y_m=a_0+a_1x_m+a_2x_m^2+...+a_nx_m^n\\
+\]</span> 令： <span class="math display">\[
+A=\left(\begin{array}{ccccc}1 &amp; x_{1} &amp; x_{1}^{2} &amp; \cdots &amp; x_{1}^{n} \\ 1 &amp; x_{2} &amp; x_{2}^{2} &amp; \cdots &amp; x_{2}^{n} \\ \vdots &amp; \vdots &amp; \vdots &amp; \cdots &amp; \vdots \\ 1 &amp; x_{m} &amp; x_{m}^{2} &amp; \cdots &amp; x_{m}^{n}\end{array}\right)\\
+b=\left(\begin{array}{c}a_{0} \\ a_{1} \\ \vdots \\ a_{n}\end{array}\right)\\
+f=\left(\begin{array}{c}y 1 \\ y_{2} \\ \vdots \\ y_{m}\end{array}\right)
+\]</span> 令<span class="math inline">\(Ab=f\)</span>，拟合的过程就是求解b,按照数学表达式来看，<span class="math inline">\(b=A^{-1}f\)</span>，A可逆的时候可以直接求解，当不可逆的时候可以考虑正交分解：<span class="math inline">\(A_{[m,n+1]}=Q_{[m,n+1]}R_{[n+1,n+1]}\)</span></p>
 <p>代码实现如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quadratic_polynomial</span><span class="params">(f, x0, v)</span>:</span></span><br><span class="line">    a = <span class="number">0.</span></span><br><span class="line">    fa = f(x0)</span><br><span class="line">    b = <span class="number">1.</span></span><br><span class="line">    fb = f(x0 + b * v)</span><br><span class="line">    c = <span class="number">0.</span></span><br><span class="line">    fc = <span class="number">0.</span></span><br><span class="line"></span><br><span class="line">    st = <span class="number">1.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> fa &gt; fb:</span><br><span class="line">        <span class="comment"># c: the first point f(c) &gt; f(b)</span></span><br><span class="line">        <span class="comment"># lambda = 2, 4,8,...,a,b,c</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            c = b + st</span><br><span class="line">            fc = f(x0 + c * v)</span><br><span class="line">            <span class="keyword">if</span> fc &gt;= fb:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">            fa = fb</span><br><span class="line">            fb = fc</span><br><span class="line">            a = b</span><br><span class="line">            b = c</span><br><span class="line">            st *= <span class="number">2.</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># a=0,b=lambda, c=2*lambda, lambda=1/2, 1/4, ...</span></span><br><span class="line">        c = b</span><br><span class="line">        fc = fb</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            st *= <span class="number">1.</span> / <span class="number">2</span></span><br><span class="line">            b = a * st</span><br><span class="line"></span><br><span class="line">            fb = f(x0 + b * v)</span><br><span class="line">            <span class="keyword">if</span> fb &lt; fc:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            fc = fb</span><br><span class="line">            c = b</span><br><span class="line"></span><br><span class="line">    <span class="comment"># pdb.set_trace()</span></span><br><span class="line">    lambd = <span class="number">1</span> / <span class="number">2.0</span> * (fa * (c ** <span class="number">2</span> - b ** <span class="number">2</span>) + fb * (a ** <span class="number">2</span> - c ** <span class="number">2</span>) + fc * (b ** <span class="number">2</span> - a ** <span class="number">2</span>))</span><br><span class="line">    lambd /= (fa * (c - b) + fb * (a - c) + fc * (b - a))</span><br><span class="line"></span><br><span class="line">    f_lamb = f(lambd)</span><br><span class="line">    <span class="keyword">if</span> f_lamb &lt; fb:</span><br><span class="line">        <span class="keyword">return</span> lambd</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> b</span><br></pre></td></tr></table></figure>
-
-<h3 id="1-1-6-对比分析"><a href="#1-1-6-对比分析" class="headerlink" title="1.1.6 对比分析"></a>1.1.6 对比分析</h3><p>这里对二分搜索和四等分搜索使用的函数是$f_1(x)&#x3D;8x^3-2x^2-7x+3$，Fibonacci搜索使用的函数是$f_2(x)&#x3D;x^2-6x+2$，黄金分割法使用的函数是$f_4(x)&#x3D;e^x-5x$，对于非精确线搜索检验了$f_1(X),f_3(x)$。得到的结果如下图所示。</p>
-<p><img src="/../images/Optimization-Homework/%E7%BA%BF%E6%90%9C%E7%B4%A2%E7%BB%93%E6%9E%9C.png"></p>
-<h2 id="1-2-牛顿法的实现"><a href="#1-2-牛顿法的实现" class="headerlink" title="1.2 牛顿法的实现"></a>1.2 牛顿法的实现</h2><h3 id="1-2-1-牛顿法"><a href="#1-2-1-牛顿法" class="headerlink" title="1.2.1 牛顿法"></a>1.2.1 牛顿法</h3><p>牛顿法的基本思想是用一个二次函数去近似目标函数f(x)，然后精确地求出这个二次函数的极小点作为新的迭代点。</p>
-<p>二次函数的选取：$f(x_k+s)≈f(x_k)+▽f(x_k)^Ts+\frac{1}{2}s^T▽^2f(x_k)s&#x3D;:m_k(s)$</p>
-<p>迭代方向的选择：$d_k^N:&#x3D;arg \ min\ m_k(s)$</p>
-<p>牛顿方程：$▽^2f(x_k)s+▽f(x_k)&#x3D;0$</p>
-<p>牛顿方向：$d_k^N&#x3D;-{[▽^2f(x_k)]}^{-1}▽f(x_k)&#x3D;0$</p>
-<p>牛顿步：$x_{k+1}x_k-G_k^{-1}g_k$</p>
+<h3 id="对比分析">1.1.6 对比分析</h3>
+<p>这里对二分搜索和四等分搜索使用的函数是<span class="math inline">\(f_1(x)=8x^3-2x^2-7x+3\)</span>，Fibonacci搜索使用的函数是<span class="math inline">\(f_2(x)=x^2-6x+2\)</span>，黄金分割法使用的函数是<span class="math inline">\(f_4(x)=e^x-5x\)</span>，对于非精确线搜索检验了<span class="math inline">\(f_1(X),f_3(x)\)</span>。得到的结果如下图所示。</p>
+<p><img src="../images/Optimization-Homework/线搜索结果.png"></p>
+<h2 id="牛顿法的实现">1.2 牛顿法的实现</h2>
+<h3 id="牛顿法">1.2.1 牛顿法</h3>
+<p>牛顿法的基本思想是用一个二次函数去近似目标函数f(x)，然后精确地求出这个二次函数的极小点作为新的迭代点。</p>
+<p>二次函数的选取：<span class="math inline">\(f(x_k+s)≈f(x_k)+▽f(x_k)^Ts+\frac{1}{2}s^T▽^2f(x_k)s=:m_k(s)\)</span></p>
+<p>迭代方向的选择：<span class="math inline">\(d_k^N:=arg \ min\ m_k(s)\)</span></p>
+<p>牛顿方程：<span class="math inline">\(▽^2f(x_k)s+▽f(x_k)=0\)</span></p>
+<p>牛顿方向：<span class="math inline">\(d_k^N=-{[▽^2f(x_k)]}^{-1}▽f(x_k)=0\)</span></p>
+<p>牛顿步：<span class="math inline">\(x_{k+1}x_k-G_k^{-1}g_k\)</span></p>
 <p>牛顿法的基本步骤：</p>
 <ul>
-<li>取初始点$x_0$及精确参数$ε≥0$，令$k&#x3D;0$</li>
-<li>若$||g_k||≤ε$，算法终止，否则进入下一步</li>
-<li>令$x_{k+1}&#x3D;x_k-G_k^{-1}g_k,k&#x3D;k+1$，转步骤2</li>
+<li>取初始点<span class="math inline">\(x_0\)</span>及精确参数<span class="math inline">\(ε≥0\)</span>，令<span class="math inline">\(k=0\)</span></li>
+<li>若<span class="math inline">\(||g_k||≤ε\)</span>，算法终止，否则进入下一步</li>
+<li>令<span class="math inline">\(x_{k+1}=x_k-G_k^{-1}g_k,k=k+1\)</span>，转步骤2</li>
 </ul>
-<h3 id="1-2-2-拟牛顿法"><a href="#1-2-2-拟牛顿法" class="headerlink" title="1.2.2 拟牛顿法"></a>1.2.2 拟牛顿法</h3><p>牛顿法的搜索方向是$d^{t}&#x3D;-G_k^{-1}g_t$，拟牛顿法要做的就是不计算二阶导及其逆矩阵，设法构造一个矩阵U，使得其逼近$G_k^{-1}$。假设$f(x)$是二次函数，于是Hesse矩阵的G是个常数矩阵，任意两点$x^{(k)}$和$x^{(k+1)}$处的梯度之差是：<br>$$<br>\nabla f\left(x^{(k+1)}\right)-\nabla f\left(x^{(k)}\right)&#x3D;G \cdot\left(x^{(k+1)}-x^{(k)}\right)\<br>&#x3D;&gt; \ x^{(k+1)}-x^{(k)}&#x3D;G^{-1} \cdot\left[\nabla f\left(x^{(k+1)}\right)-\nabla f\left(x^{(k)}\right)\right]\<br>&#x3D;&gt; \ x^{(k+1)}-x^{(k)}&#x3D;G_{k+1} \cdot\left[\nabla f\left(x^{(k+1)}\right)-\nabla f\left(x^{(k)}\right)\right]\<br>or \ \Delta x_{k}&#x3D;G_{k+1} \cdot \Delta g_{k}<br>$$<br>这就是拟牛顿法，不同的拟牛顿法区别就在于如何确定U。</p>
-<p>(1) DFP法</p>
-<p>令G&#x3D;D，假设已知$D_t$，希望用叠加的方式求$D_{t+1}$,即$D_{t+1}&#x3D;D_t+ΔD_t$，带入得到：$\Delta D_{t} \Delta g_{t}&#x3D;\Delta x_{t}-D_{t} \Delta g_{t}$</p>
-<p>假设满足这个等式的：$\Delta D_{t}&#x3D;\Delta x_{t} \cdot q_{t}^{T}-D_{t} \Delta g_{t} \cdot w_{t}^{T}$</p>
-<p>首先，通过对比发现：$q_{t}^{T} \cdot \Delta g_{t}&#x3D;w_{t}^{T} \cdot \Delta g_{t}&#x3D;I_{n}$</p>
-<p>其次，要保证$ΔD_t$是对称的，参照$ΔD_t$的表达式，最简单的是令：$q_{t}&#x3D;\alpha_{t} \Delta x_{t}$，$w_{t}&#x3D;\beta_{t} D_{t} \Delta g_{t}$</p>
+<h3 id="拟牛顿法">1.2.2 拟牛顿法</h3>
+<p>牛顿法的搜索方向是<span class="math inline">\(d^{t}=-G_k^{-1}g_t\)</span>，拟牛顿法要做的就是不计算二阶导及其逆矩阵，设法构造一个矩阵U，使得其逼近<span class="math inline">\(G_k^{-1}\)</span>。假设<span class="math inline">\(f(x)\)</span>是二次函数，于是Hesse矩阵的G是个常数矩阵，任意两点<span class="math inline">\(x^{(k)}\)</span>和<span class="math inline">\(x^{(k+1)}\)</span>处的梯度之差是： <span class="math display">\[
+\nabla f\left(x^{(k+1)}\right)-\nabla f\left(x^{(k)}\right)=G \cdot\left(x^{(k+1)}-x^{(k)}\right)\\
+=&gt; \ x^{(k+1)}-x^{(k)}=G^{-1} \cdot\left[\nabla f\left(x^{(k+1)}\right)-\nabla f\left(x^{(k)}\right)\right]\\
+=&gt; \ x^{(k+1)}-x^{(k)}=G_{k+1} \cdot\left[\nabla f\left(x^{(k+1)}\right)-\nabla f\left(x^{(k)}\right)\right]\\
+or \ \Delta x_{k}=G_{k+1} \cdot \Delta g_{k}
+\]</span> 这就是拟牛顿法，不同的拟牛顿法区别就在于如何确定U。</p>
+<ol type="1">
+<li>DFP法</li>
+</ol>
+<p>令G=D，假设已知<span class="math inline">\(D_t\)</span>，希望用叠加的方式求<span class="math inline">\(D_{t+1}\)</span>,即<span class="math inline">\(D_{t+1}=D_t+ΔD_t\)</span>，带入得到：<span class="math inline">\(\Delta D_{t} \Delta g_{t}=\Delta x_{t}-D_{t} \Delta g_{t}\)</span></p>
+<p>假设满足这个等式的：<span class="math inline">\(\Delta D_{t}=\Delta x_{t} \cdot q_{t}^{T}-D_{t} \Delta g_{t} \cdot w_{t}^{T}\)</span></p>
+<p>首先，通过对比发现：<span class="math inline">\(q_{t}^{T} \cdot \Delta g_{t}=w_{t}^{T} \cdot \Delta g_{t}=I_{n}\)</span></p>
+<p>其次，要保证<span class="math inline">\(ΔD_t\)</span>是对称的，参照<span class="math inline">\(ΔD_t\)</span>的表达式，最简单的是令：<span class="math inline">\(q_{t}=\alpha_{t} \Delta x_{t}\)</span>，<span class="math inline">\(w_{t}=\beta_{t} D_{t} \Delta g_{t}\)</span></p>
 <p>第二个条件带入第一个得到：</p>
-<p>$\begin{aligned} \alpha_{t} &amp;&#x3D;\frac{1}{\Delta g_{t}^{T} \Delta x_{t}} \ \beta_{t} &amp;&#x3D;\frac{1}{\Delta g_{t}^{T} D_{t} \Delta g_{t}} \end{aligned}$</p>
-<p>然后带回$ΔD_t$的表达式：$\Delta D_{t}&#x3D;\frac{\Delta x_{t} \Delta x_{t}^{T}}{\Delta g_{t}^{T} \Delta x_{t}}-\frac{D_{t} \Delta g_{t} \Delta g_{t}^{T} D_{t}}{\Delta g_{t}^{T} D_{t} \Delta g_{t}}$</p>
-<p>以上算法的复杂度是$O(n^2)$</p>
+<p><span class="math inline">\(\begin{aligned} \alpha_{t} &amp;=\frac{1}{\Delta g_{t}^{T} \Delta x_{t}} \\ \beta_{t} &amp;=\frac{1}{\Delta g_{t}^{T} D_{t} \Delta g_{t}} \end{aligned}\)</span></p>
+<p>然后带回<span class="math inline">\(ΔD_t\)</span>的表达式：<span class="math inline">\(\Delta D_{t}=\frac{\Delta x_{t} \Delta x_{t}^{T}}{\Delta g_{t}^{T} \Delta x_{t}}-\frac{D_{t} \Delta g_{t} \Delta g_{t}^{T} D_{t}}{\Delta g_{t}^{T} D_{t} \Delta g_{t}}\)</span></p>
+<p>以上算法的复杂度是<span class="math inline">\(O(n^2)\)</span></p>
 <p>DFP算法的流程：</p>
 <ul>
-<li><p>给定初始点$x^{(0)}$，误差ε，令$D_0&#x3D;I_n,t&#x3D;0$</p>
-</li>
-<li><p>计算搜索方向$d^{(t)}&#x3D;-D_t^{-1}g_t$</p>
-</li>
-<li><p>从点$x^{(t)}$出发，沿着$d^{(t)}$做一维搜索，获得最优步长并更新参数：<br>$$<br>\lambda_{t}&#x3D;\arg \min <em>{\lambda} f\left(x^{(t)}+\lambda \cdot d^{(t)}\right)\<br>x^{(t+1)}&#x3D;x^{(t)}+\lambda</em>{t} \cdot d^{(t)}<br>$$</p>
-</li>
-<li><p>若$|g_{t+1}|&lt;ε$，就停止迭代，否则转5</p>
-</li>
-<li><p>计算$Δg&#x3D;g_{t+1}-g_t,Δx&#x3D;x^{(t+1)}-x^{(t)}$，更新G<br>$$<br>D_{t+1}&#x3D;D_{t}+\frac{\Delta x \Delta x^{T}}{\Delta g^{T} \Delta x}-\frac{D_{t} \Delta g \Delta g^{T} D_{t}}{\Delta g^{T} D_{t} \Delta g}<br>$$</p>
-</li>
-<li><p>令$t&#x3D;t+1$，转2</p>
-</li>
+<li><p>给定初始点<span class="math inline">\(x^{(0)}\)</span>，误差ε，令<span class="math inline">\(D_0=I_n,t=0\)</span></p></li>
+<li><p>计算搜索方向<span class="math inline">\(d^{(t)}=-D_t^{-1}g_t\)</span></p></li>
+<li><p>从点<span class="math inline">\(x^{(t)}\)</span>出发，沿着<span class="math inline">\(d^{(t)}\)</span>做一维搜索，获得最优步长并更新参数： <span class="math display">\[
+\lambda_{t}=\arg \min _{\lambda} f\left(x^{(t)}+\lambda \cdot d^{(t)}\right)\\
+x^{(t+1)}=x^{(t)}+\lambda_{t} \cdot d^{(t)}
+\]</span></p></li>
+<li><p>若<span class="math inline">\(|g_{t+1}|&lt;ε\)</span>，就停止迭代，否则转5</p></li>
+<li><p>计算<span class="math inline">\(Δg=g_{t+1}-g_t,Δx=x^{(t+1)}-x^{(t)}\)</span>，更新G <span class="math display">\[
+D_{t+1}=D_{t}+\frac{\Delta x \Delta x^{T}}{\Delta g^{T} \Delta x}-\frac{D_{t} \Delta g \Delta g^{T} D_{t}}{\Delta g^{T} D_{t} \Delta g}
+\]</span></p></li>
+<li><p>令<span class="math inline">\(t=t+1\)</span>，转2</p></li>
 </ul>
-<p>(2) BFGS</p>
-<p>拟牛顿条件是：<br>$$<br>\Delta x_{t}&#x3D;B_{t+1}^{-1} \cdot \Delta g_{t} \<br>\Delta g_{t}&#x3D;B_{t+1} \cdot \Delta x_{t}<br>$$<br>BFGS与BFP是对偶的，所以迭代公式只要把$Δx_t$和$Δg_t$调换一下就好。<br>$$<br>\Delta B_{t}&#x3D;\frac{\Delta g_{t} \Delta g_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}-\frac{B_{t} \Delta x_{t} \Delta x_{t}^{T} B_{t}}{\Delta x_{t}^{T} B_{t} \Delta x_{t}}<br>$$<br>为了不计算求逆，引入Sherman-Morrison公式：<br>$$<br>\left(A+u v^{T}\right)^{-1}&#x3D;A^{-1}-\frac{\left(A^{-1} u\right)\left(v^{T} A^{-1}\right)}{1+v^{T} A^{-1} u}\<br>&#x3D;&gt; B_{t+1}^{-1}&#x3D;\left(I_{n}-\frac{\Delta x_{t} \Delta g_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}\right) B_{t}^{-1}\left(I_{n}-\frac{\Delta g_{t} \Delta x_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}\right)+\frac{\Delta x_{t} \Delta x_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}<br>$$<br>以下是BFGS的算法步骤：</p>
+<ol start="2" type="1">
+<li>BFGS</li>
+</ol>
+<p>拟牛顿条件是： <span class="math display">\[
+\Delta x_{t}=B_{t+1}^{-1} \cdot \Delta g_{t} \\ 
+\Delta g_{t}=B_{t+1} \cdot \Delta x_{t}
+\]</span> BFGS与BFP是对偶的，所以迭代公式只要把<span class="math inline">\(Δx_t\)</span>和<span class="math inline">\(Δg_t\)</span>调换一下就好。 <span class="math display">\[
+\Delta B_{t}=\frac{\Delta g_{t} \Delta g_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}-\frac{B_{t} \Delta x_{t} \Delta x_{t}^{T} B_{t}}{\Delta x_{t}^{T} B_{t} \Delta x_{t}}
+\]</span> 为了不计算求逆，引入Sherman-Morrison公式： <span class="math display">\[
+\left(A+u v^{T}\right)^{-1}=A^{-1}-\frac{\left(A^{-1} u\right)\left(v^{T} A^{-1}\right)}{1+v^{T} A^{-1} u}\\
+=&gt; B_{t+1}^{-1}=\left(I_{n}-\frac{\Delta x_{t} \Delta g_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}\right) B_{t}^{-1}\left(I_{n}-\frac{\Delta g_{t} \Delta x_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}\right)+\frac{\Delta x_{t} \Delta x_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}
+\]</span> 以下是BFGS的算法步骤：</p>
 <ul>
-<li><p>给定初始点$x^{(0)}$,误差ε，令$B_0&#x3D;I_n,t&#x3D;0$</p>
-</li>
-<li><p>计算搜索方向$d^{(t)}&#x3D;-B_t^{-1}g_t$</p>
-</li>
-<li><p>从点$x^{(t)}$出发，沿着$d^{(t)}$做一维搜索，获得最优步长并更新参数：<br>$$<br>\lambda_{t}&#x3D;\arg \min <em>{\lambda} f\left(x^{(t)}+\lambda \cdot d^{(t)}\right)\<br>x^{(t+1)}&#x3D;x^{(t)}+\lambda</em>{t} \cdot d^{(t)}<br>$$</p>
-</li>
-<li><p>若$|g_{t+1}|&lt;ε$，就停止迭代，否则转5</p>
-</li>
-<li><p>计算$Δg&#x3D;g_{t+1}-g_t,Δx&#x3D;x^{(t+1)}-x^{(t)}$，更新$B^{-1}$，然后<br>$$<br>B_{t+1}^{-1}&#x3D;\left(I_{n}-\frac{\Delta x_{t} \Delta g_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}\right) B_{t}^{-1}\left(I_{n}-\frac{\Delta g_{t} \Delta x_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}\right)+\frac{\Delta x_{t} \Delta x_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}<br>$$</p>
-</li>
-<li><p>令$t&#x3D;t+1$，转2</p>
-</li>
+<li><p>给定初始点<span class="math inline">\(x^{(0)}\)</span>,误差ε，令<span class="math inline">\(B_0=I_n,t=0\)</span></p></li>
+<li><p>计算搜索方向<span class="math inline">\(d^{(t)}=-B_t^{-1}g_t\)</span></p></li>
+<li><p>从点<span class="math inline">\(x^{(t)}\)</span>出发，沿着<span class="math inline">\(d^{(t)}\)</span>做一维搜索，获得最优步长并更新参数： <span class="math display">\[
+\lambda_{t}=\arg \min _{\lambda} f\left(x^{(t)}+\lambda \cdot d^{(t)}\right)\\
+x^{(t+1)}=x^{(t)}+\lambda_{t} \cdot d^{(t)}
+\]</span></p></li>
+<li><p>若<span class="math inline">\(|g_{t+1}|&lt;ε\)</span>，就停止迭代，否则转5</p></li>
+<li><p>计算<span class="math inline">\(Δg=g_{t+1}-g_t,Δx=x^{(t+1)}-x^{(t)}\)</span>，更新<span class="math inline">\(B^{-1}\)</span>，然后 <span class="math display">\[
+B_{t+1}^{-1}=\left(I_{n}-\frac{\Delta x_{t} \Delta g_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}\right) B_{t}^{-1}\left(I_{n}-\frac{\Delta g_{t} \Delta x_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}\right)+\frac{\Delta x_{t} \Delta x_{t}^{T}}{\Delta x_{t}^{T} \Delta g_{t}}
+\]</span></p></li>
+<li><p>令<span class="math inline">\(t=t+1\)</span>，转2</p></li>
 </ul>
-<h3 id="1-2-3-代码实现"><a href="#1-2-3-代码实现" class="headerlink" title="1.2.3 代码实现"></a>1.2.3 代码实现</h3><p>代码实现见’\OptimizationHomework\NewtonMethod.py’，测试所用的函数为$f&#x3D;4x_1x_2+2x_1x_2+2x_2^2+x_1+x_2$</p>
-<p><img src="/../images/Optimization-Homework/%E7%89%9B%E9%A1%BF%E6%B3%95%E7%BB%93%E6%9E%9C.png"></p>
-<h2 id="1-3-最速下降法"><a href="#1-3-最速下降法" class="headerlink" title="1.3 最速下降法"></a>1.3 最速下降法</h2><p>最速下降法的原理相较于牛顿法更简单，它是使用函数的一阶特性的，搜索方向是$d_k&#x3D;-▽f(x_k)$，算法的基本框架如下：</p>
+<h3 id="代码实现">1.2.3 代码实现</h3>
+<p>代码实现见'.py'，测试所用的函数为<span class="math inline">\(f=4x_1x_2+2x_1x_2+2x_2^2+x_1+x_2\)</span></p>
+<p><img src="../images/Optimization-Homework/牛顿法结果.png"></p>
+<h2 id="最速下降法">1.3 最速下降法</h2>
+<p>最速下降法的原理相较于牛顿法更简单，它是使用函数的一阶特性的，搜索方向是<span class="math inline">\(d_k=-▽f(x_k)\)</span>，算法的基本框架如下：</p>
 <ul>
-<li>取初始点$x_0$及精确参数$ε≥0$，令$k&#x3D;0$</li>
-<li>若$||g_k||≤ε$，算法终止，否则进入下一步</li>
-<li>取$d_k&#x3D;-g_k$，利用线搜索步长规则选取步长$α_k$</li>
-<li>令$x_{k+1}&#x3D;x_k+α_kd_k,k&#x3D;k+1$，转步骤2</li>
+<li>取初始点<span class="math inline">\(x_0\)</span>及精确参数<span class="math inline">\(ε≥0\)</span>，令<span class="math inline">\(k=0\)</span></li>
+<li>若<span class="math inline">\(||g_k||≤ε\)</span>，算法终止，否则进入下一步</li>
+<li>取<span class="math inline">\(d_k=-g_k\)</span>，利用线搜索步长规则选取步长<span class="math inline">\(α_k\)</span></li>
+<li>令<span class="math inline">\(x_{k+1}=x_k+α_kd_k,k=k+1\)</span>，转步骤2</li>
 </ul>
-<p>代码实现见’\OptimizationHomework\OptimalGradient.py’，测试所用的函数为$f&#x3D;\frac{1}{2}(x_1^2+2x_2^2)$，得到结果如下所示</p>
-<p><img src="/../images/Optimization-Homework/%E6%9C%80%E9%80%9F%E4%B8%8B%E9%99%8D%E6%B3%95%E7%BB%93%E6%9E%9C.png"></p>
-<h2 id="1-4-共轭梯度法"><a href="#1-4-共轭梯度法" class="headerlink" title="1.4 共轭梯度法"></a>1.4 共轭梯度法</h2><h3 id="1-4-1-线性共轭方向法"><a href="#1-4-1-线性共轭方向法" class="headerlink" title="1.4.1 线性共轭方向法"></a>1.4.1 线性共轭方向法</h3><p>共轭方向：设A是nxn对称正定矩阵，若非零向量$d_1,d_2,…,d_n$关于A共轭，那么满足$d_i^TAd_j&#x3D;0,i≠j$</p>
+<p>代码实现见'.py'，测试所用的函数为<span class="math inline">\(f=\frac{1}{2}(x_1^2+2x_2^2)\)</span>，得到结果如下所示</p>
+<p><img src="../images/Optimization-Homework/最速下降法结果.png"></p>
+<h2 id="共轭梯度法">1.4 共轭梯度法</h2>
+<h3 id="线性共轭方向法">1.4.1 线性共轭方向法</h3>
+<p>共轭方向：设A是nxn对称正定矩阵，若非零向量<span class="math inline">\(d_1,d_2,...,d_n\)</span>关于A共轭，那么满足<span class="math inline">\(d_i^TAd_j=0,i≠j\)</span></p>
 <p>线性共轭方向法基本框架：</p>
 <ul>
-<li>取初始点$x_0$和搜索方向$d_0$满足$(d_0,g_0)&lt;0$，精度参数$ε≥0$,令$k&#x3D;0$</li>
-<li>若$||g_k||≤ε$，算法终止，否则进入下一步</li>
-<li>计算步长$α_k&#x3D;arg \ min \ f(x_k+αd_k)$</li>
-<li>令$x_{k+1}&#x3D;x_{k}+α_kd_k$</li>
-<li>求$d_{k+1}$，使得$d_{k+1}$与$d_0,d_1,…,d_k$关于A共轭，令$k&#x3D;k+1$，返回步骤2</li>
+<li>取初始点<span class="math inline">\(x_0\)</span>和搜索方向<span class="math inline">\(d_0\)</span>满足<span class="math inline">\((d_0,g_0)&lt;0\)</span>，精度参数<span class="math inline">\(ε≥0\)</span>,令<span class="math inline">\(k=0\)</span></li>
+<li>若<span class="math inline">\(||g_k||≤ε\)</span>，算法终止，否则进入下一步</li>
+<li>计算步长<span class="math inline">\(α_k=arg \ min \ f(x_k+αd_k)\)</span></li>
+<li>令<span class="math inline">\(x_{k+1}=x_{k}+α_kd_k\)</span></li>
+<li>求<span class="math inline">\(d_{k+1}\)</span>，使得<span class="math inline">\(d_{k+1}\)</span>与<span class="math inline">\(d_0,d_1,...,d_k\)</span>关于A共轭，令<span class="math inline">\(k=k+1\)</span>，返回步骤2</li>
 </ul>
-<h3 id="1-4-2-线性共轭梯度法"><a href="#1-4-2-线性共轭梯度法" class="headerlink" title="1.4.2 线性共轭梯度法"></a>1.4.2 线性共轭梯度法</h3><p>迭代公式有：</p>
-<p>线性组合系数：$\beta_{k-1}&#x3D;\frac{g_{k}^{T} g_{k}}{g_{k-1}^{T} g_{k-1}}$</p>
-<p>共轭搜索方向：$d_{k}&#x3D;-g_{k}+\beta_{k-1} d_{k-1}$</p>
-<p>精确线搜索步长：$\alpha_{k}&#x3D;\frac{g_{k}^{T} g_{k}}{d_{k}^{T} A d_{k}}$</p>
-<p>新的迭代点：$x_{k+1}&#x3D;x_{k}+\alpha_{k} d_{k}$</p>
+<h3 id="线性共轭梯度法">1.4.2 线性共轭梯度法</h3>
+<p>迭代公式有：</p>
+<p>线性组合系数：<span class="math inline">\(\beta_{k-1}=\frac{g_{k}^{T} g_{k}}{g_{k-1}^{T} g_{k-1}}\)</span></p>
+<p>共轭搜索方向：<span class="math inline">\(d_{k}=-g_{k}+\beta_{k-1} d_{k-1}\)</span></p>
+<p>精确线搜索步长：<span class="math inline">\(\alpha_{k}=\frac{g_{k}^{T} g_{k}}{d_{k}^{T} A d_{k}}\)</span></p>
+<p>新的迭代点：<span class="math inline">\(x_{k+1}=x_{k}+\alpha_{k} d_{k}\)</span></p>
 <p>算法的整体框架如下：</p>
 <ul>
-<li>取初始点$x_0$及终止参数$ε≥0$，计算$g_0&#x3D;Ax_0-b,d_0&#x3D;-g_0$，令k&#x3D;0</li>
-<li>若$||g_k||≤ε$，算法终止，否则进入下一步</li>
-<li>依次计算：$\alpha_{k}&#x3D;\frac{g_{k}{ }^{T} g_{k}}{d_{k}{ }^{T} A d_{k}}, x_{k+1}&#x3D;x_{k}+\alpha_{k} d_{k}$，$g_{k+1}&#x3D;A x_{k+1}-b, \beta_{k}&#x3D;\frac{g_{k+1}^{T} g_{k+1}}{g_{k}^{T} g_{k}}, d_{k+1}&#x3D;-g_{k+1}+\beta_{k} d_{k}$，令$k&#x3D;k+1$，转到步骤2.</li>
+<li>取初始点<span class="math inline">\(x_0\)</span>及终止参数<span class="math inline">\(ε≥0\)</span>，计算<span class="math inline">\(g_0=Ax_0-b,d_0=-g_0\)</span>，令k=0</li>
+<li>若<span class="math inline">\(||g_k||≤ε\)</span>，算法终止，否则进入下一步</li>
+<li>依次计算：<span class="math inline">\(\alpha_{k}=\frac{g_{k}{ }^{T} g_{k}}{d_{k}{ }^{T} A d_{k}}, x_{k+1}=x_{k}+\alpha_{k} d_{k}\)</span>，<span class="math inline">\(g_{k+1}=A x_{k+1}-b, \beta_{k}=\frac{g_{k+1}^{T} g_{k+1}}{g_{k}^{T} g_{k}}, d_{k+1}=-g_{k+1}+\beta_{k} d_{k}\)</span>，令<span class="math inline">\(k=k+1\)</span>，转到步骤2.</li>
 </ul>
-<h3 id="1-4-3-实现"><a href="#1-4-3-实现" class="headerlink" title="1.4.3 实现"></a>1.4.3 实现</h3><p>代码实现见’\OptimizationHomework\ConjugateGradientMethod.py’，测试的函数是$f&#x3D;1+x_1-x_2+x_1^2+2x_2^2$，测试的结果如下所示。</p>
-<p><img src="/../images/Optimization-Homework/%E5%85%B1%E8%BD%AD%E6%B3%95%E7%BB%93%E6%9E%9C.png"></p>
-<h1 id="2-机器学习优化器的实现"><a href="#2-机器学习优化器的实现" class="headerlink" title="2. 机器学习优化器的实现"></a>2. 机器学习优化器的实现</h1><p>一般地，机器学习优化器中定义的参数有：待优化的参数θ，目标函数$J(θ)$，以及学习率α。优化算法的分类主要有固定学习率和自适应学习率两种算法。固定学习率的算法主要有：BGD、SGD、SGDM、NAG；自适应学习率算法主要有：AdaGrad、AdaDelta、Adam、Nadam。目前使用的最多的两种优化器是SGD和Adam。</p>
+<h3 id="实现">1.4.3 实现</h3>
+<p>代码实现见'.py'，测试的函数是<span class="math inline">\(f=1+x_1-x_2+x_1^2+2x_2^2\)</span>，测试的结果如下所示。</p>
+<p><img src="../images/Optimization-Homework/共轭法结果.png"></p>
+<h1 id="机器学习优化器的实现">2. 机器学习优化器的实现</h1>
+<p>一般地，机器学习优化器中定义的参数有：待优化的参数θ，目标函数<span class="math inline">\(J(θ)\)</span>，以及学习率α。优化算法的分类主要有固定学习率和自适应学习率两种算法。固定学习率的算法主要有：BGD、SGD、SGDM、NAG；自适应学习率算法主要有：AdaGrad、AdaDelta、Adam、Nadam。目前使用的最多的两种优化器是SGD和Adam。</p>
 <p>以下是各种算法的对比：</p>
 <table>
+<colgroup>
+<col style="width: 4%">
+<col style="width: 31%">
+<col style="width: 31%">
+<col style="width: 31%">
+</colgroup>
 <thead>
-<tr>
-<th align="center">算法</th>
-<th align="center">优点</th>
-<th align="center">缺点</th>
-<th align="center">适用情况</th>
+<tr class="header">
+<th style="text-align: center;">算法</th>
+<th style="text-align: center;">优点</th>
+<th style="text-align: center;">缺点</th>
+<th style="text-align: center;">适用情况</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">BGD</td>
-<td align="center">目标函数为凸函数时，可以找到全局最优解</td>
-<td align="center">收敛速度慢，需要用到全部数据，内存消耗大</td>
-<td align="center">不适用于大规模数据集，不能在线更新</td>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">BGD</td>
+<td style="text-align: center;">目标函数为凸函数时，可以找到全局最优解</td>
+<td style="text-align: center;">收敛速度慢，需要用到全部数据，内存消耗大</td>
+<td style="text-align: center;">不适用于大规模数据集，不能在线更新</td>
 </tr>
-<tr>
-<td align="center">SGD</td>
-<td align="center">避免冗余数据的干扰，收敛速度加快，能过够在线学习</td>
-<td align="center">更新值的方差较大，收敛过程中可能落入鞍点，选择合适的学习率可能比较困难</td>
-<td align="center">适用于需要在线更新的模型，适用于大规模训练样本的情况（在NLP和网络表示学习很常用）</td>
+<tr class="even">
+<td style="text-align: center;">SGD</td>
+<td style="text-align: center;">避免冗余数据的干扰，收敛速度加快，能过够在线学习</td>
+<td style="text-align: center;">更新值的方差较大，收敛过程中可能落入鞍点，选择合适的学习率可能比较困难</td>
+<td style="text-align: center;">适用于需要在线更新的模型，适用于大规模训练样本的情况（在NLP和网络表示学习很常用）</td>
 </tr>
-<tr>
-<td align="center">Momentum</td>
-<td align="center">能够在相关方向加速SGD，抑制震荡，从而加快收敛</td>
-<td align="center">需要人工设定学习率</td>
-<td align="center">适用于有可靠的初始化参数</td>
+<tr class="odd">
+<td style="text-align: center;">Momentum</td>
+<td style="text-align: center;">能够在相关方向加速SGD，抑制震荡，从而加快收敛</td>
+<td style="text-align: center;">需要人工设定学习率</td>
+<td style="text-align: center;">适用于有可靠的初始化参数</td>
 </tr>
-<tr>
-<td align="center">Adagrad</td>
-<td align="center">实现学习率的自动更改</td>
-<td align="center">仍依赖于人工设置一个全局学习率，中后期的梯度接近于0，使得训练提前结束</td>
-<td align="center">需要加快收敛，训练复杂网络时，适用于处理稀疏梯度</td>
+<tr class="even">
+<td style="text-align: center;">Adagrad</td>
+<td style="text-align: center;">实现学习率的自动更改</td>
+<td style="text-align: center;">仍依赖于人工设置一个全局学习率，中后期的梯度接近于0，使得训练提前结束</td>
+<td style="text-align: center;">需要加快收敛，训练复杂网络时，适用于处理稀疏梯度</td>
 </tr>
-<tr>
-<td align="center">Adadelta</td>
-<td align="center">不需要预设一个默认的学习率，训练初中期加速效果不错，可以避免参数更新时两边单位不统一的问题</td>
-<td align="center">在局部极小值附近震荡，可能不收敛</td>
-<td align="center">需要加快收敛，训练复杂网络时</td>
+<tr class="odd">
+<td style="text-align: center;">Adadelta</td>
+<td style="text-align: center;">不需要预设一个默认的学习率，训练初中期加速效果不错，可以避免参数更新时两边单位不统一的问题</td>
+<td style="text-align: center;">在局部极小值附近震荡，可能不收敛</td>
+<td style="text-align: center;">需要加快收敛，训练复杂网络时</td>
 </tr>
-<tr>
-<td align="center">Adam</td>
-<td align="center">速度快，对内存需求较小，为不同的参数计算不同的自适应学习率</td>
-<td align="center">在局部极小值附近震荡，可能不收敛</td>
-<td align="center">需要加快收敛，训练复杂网络时，善于处理稀疏梯度和处理非平稳目标的优点，也适用于大多非凸优化的问题，适用于大数据集和高维空间</td>
+<tr class="even">
+<td style="text-align: center;">Adam</td>
+<td style="text-align: center;">速度快，对内存需求较小，为不同的参数计算不同的自适应学习率</td>
+<td style="text-align: center;">在局部极小值附近震荡，可能不收敛</td>
+<td style="text-align: center;">需要加快收敛，训练复杂网络时，善于处理稀疏梯度和处理非平稳目标的优点，也适用于大多非凸优化的问题，适用于大数据集和高维空间</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <p>以下实现几种常见的优化器。</p>
-<h2 id="2-1-BGD（批量梯度下降）"><a href="#2-1-BGD（批量梯度下降）" class="headerlink" title="2.1 BGD（批量梯度下降）"></a>2.1 BGD（批量梯度下降）</h2><p>假设训练样本的总数为m，样本为${(x^1,y^1),…,(x^n,y^n)}$，模型参数为$θ$，损失函数为$J(θ)$，在第i个样本$x^i,y^i$上损失函数关于参数的梯度为$▽<em>θJ_i(θ,x^i,y^i)$，学习率为α，使用BGD更新参数为：<br>$$<br>\theta</em>{t+1}&#x3D;\theta_{t}-\frac{1}{m}\alpha_{t} \cdot \sum_{i&#x3D;1}^{n} \nabla_{\theta} J_{i}\left(\theta, x^{i}, y^{i}\right)<br>$$<br>由于每一次进行参数的更新，将计算整个数据集样本上的所有数据，导致运算速度很慢，尤其是对于大样本的数据集。但是由于下降的方向是总体的平均梯度，所以将会得到一个全局最优解。</p>
-<p>代码实现,这里测试的优化目标函数是$y&#x3D;x_1+2x^2$这一凸优化问题。</p>
+<h2 id="bgd批量梯度下降">2.1 BGD（批量梯度下降）</h2>
+<p>假设训练样本的总数为m，样本为<span class="math inline">\({(x^1,y^1),...,(x^n,y^n)}\)</span>，模型参数为<span class="math inline">\(θ\)</span>，损失函数为<span class="math inline">\(J(θ)\)</span>，在第i个样本<span class="math inline">\(x^i,y^i\)</span>上损失函数关于参数的梯度为<span class="math inline">\(▽_θJ_i(θ,x^i,y^i)\)</span>，学习率为α，使用BGD更新参数为： <span class="math display">\[
+\theta_{t+1}=\theta_{t}-\frac{1}{m}\alpha_{t} \cdot \sum_{i=1}^{n} \nabla_{\theta} J_{i}\left(\theta, x^{i}, y^{i}\right)
+\]</span> 由于每一次进行参数的更新，将计算整个数据集样本上的所有数据，导致运算速度很慢，尤其是对于大样本的数据集。但是由于下降的方向是总体的平均梯度，所以将会得到一个全局最优解。</p>
+<p>代码实现,这里测试的优化目标函数是<span class="math inline">\(y=x_1+2x^2\)</span>这一凸优化问题。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bgd_multi</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 训练集，每个样本有2个分量</span></span><br><span class="line">    x = np.array([(<span class="number">1</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">2</span>), (<span class="number">3</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">3</span>), (<span class="number">2</span>, <span class="number">4</span>), (<span class="number">2</span>, <span class="number">3</span>), (<span class="number">3</span>,</span><br><span class="line">                                                                           <span class="number">3</span>)])</span><br><span class="line">    y = np.array([<span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">8</span>, <span class="number">9</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化</span></span><br><span class="line">    m, dim = x.shape</span><br><span class="line">    theta = np.zeros(dim)  <span class="comment"># 参数</span></span><br><span class="line">    alpha = <span class="number">0.01</span>  <span class="comment"># 学习率</span></span><br><span class="line">    threshold = <span class="number">0.0001</span>  <span class="comment"># 停止迭代的错误阈值</span></span><br><span class="line">    iterations = <span class="number">1500</span>  <span class="comment"># 迭代次数</span></span><br><span class="line">    error = <span class="number">0</span>  <span class="comment"># 初始错误为0</span></span><br><span class="line">    train_loss_list = []</span><br><span class="line">    <span class="comment"># 迭代开始</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(iterations):</span><br><span class="line">        error = <span class="number">1</span> / (<span class="number">2</span> * m) * np.dot((np.dot(x, theta) - y).T,</span><br><span class="line">                                     (np.dot(x, theta) - y))</span><br><span class="line">        train_loss_list.append(error)</span><br><span class="line">        <span class="comment"># 迭代停止</span></span><br><span class="line">        <span class="keyword">if</span> abs(error) &lt;= threshold:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        theta -= alpha / m * (np.dot(x.T, (np.dot(x, theta) - y)))</span><br><span class="line"></span><br><span class="line">    print(<span class="string">'多元变量：'</span>, <span class="string">'迭代次数：%d'</span> % (i + <span class="number">1</span>), <span class="string">'theta：'</span>, theta, <span class="string">'error：%f'</span> % error)</span><br><span class="line">    <span class="keyword">return</span> train_loss_list</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2-SGD（随机梯度下降）"><a href="#2-2-SGD（随机梯度下降）" class="headerlink" title="2.2 SGD（随机梯度下降）"></a>2.2 SGD（随机梯度下降）</h2><p>随机梯度下降不像SGD那样每次对全部的样本进行运算，而是每次更新时只选择一个样本$(x^i,y^i)$计算其梯度，参数更新公式为：<br>$$<br>\theta_{t+1}&#x3D;\theta_{t}-\alpha \cdot \nabla_{\theta} J_{i}\left(\theta, x^{i}, y^{i}\right)<br>$$<br>SGD由于每次参数更新仅仅需要一个样本的梯度，训练速度很快，由于每次迭代并不是都向着整体最优的方向，导致梯度的波动非常大，更容易从一个局部最优跳到另一个局部最优，准确率下降。所以对于SGD，学习率选择比较困难，学习率太高的话就会波动过大，所有的参数都是用的相同的学习率</p>
+<h2 id="sgd随机梯度下降">2.2 SGD（随机梯度下降）</h2>
+<p>随机梯度下降不像SGD那样每次对全部的样本进行运算，而是每次更新时只选择一个样本<span class="math inline">\((x^i,y^i)\)</span>计算其梯度，参数更新公式为： <span class="math display">\[
+\theta_{t+1}=\theta_{t}-\alpha \cdot \nabla_{\theta} J_{i}\left(\theta, x^{i}, y^{i}\right)
+\]</span> SGD由于每次参数更新仅仅需要一个样本的梯度，训练速度很快，由于每次迭代并不是都向着整体最优的方向，导致梯度的波动非常大，更容易从一个局部最优跳到另一个局部最优，准确率下降。所以对于SGD，学习率选择比较困难，学习率太高的话就会波动过大，所有的参数都是用的相同的学习率</p>
 <p>代码实现：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sgd</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 训练集，每个样本有2个分量</span></span><br><span class="line">    x = np.array([(<span class="number">1</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">2</span>), (<span class="number">3</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">3</span>), (<span class="number">2</span>, <span class="number">4</span>), (<span class="number">2</span>, <span class="number">3</span>), (<span class="number">3</span>, <span class="number">3</span>)])</span><br><span class="line">    y = np.array([<span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">8</span>, <span class="number">9</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化</span></span><br><span class="line">    m, dim = x.shape</span><br><span class="line">    theta = np.zeros(dim)  <span class="comment"># 参数</span></span><br><span class="line">    alpha = <span class="number">0.01</span>  <span class="comment"># 学习率</span></span><br><span class="line">    threshold = <span class="number">0.0001</span>  <span class="comment"># 停止迭代的错误阈值</span></span><br><span class="line">    iterations = <span class="number">1500</span>  <span class="comment"># 迭代次数</span></span><br><span class="line">    error = <span class="number">0</span>  <span class="comment"># 初始错误为0</span></span><br><span class="line">    train_loss_list = []</span><br><span class="line">    <span class="comment"># 迭代开始</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(iterations):</span><br><span class="line"></span><br><span class="line">        error = <span class="number">1</span> / (<span class="number">2</span> * m) * np.dot((np.dot(x, theta) - y).T, (np.dot(x, theta) - y))</span><br><span class="line">        <span class="comment"># 迭代停止</span></span><br><span class="line">        train_loss_list.append(error)</span><br><span class="line">        <span class="keyword">if</span> abs(error) &lt;= threshold:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        j = np.random.randint(<span class="number">0</span>, m)</span><br><span class="line"></span><br><span class="line">        theta -= alpha * (x[j] * (np.dot(x[j], theta) - y[j]))</span><br><span class="line"></span><br><span class="line">    print(<span class="string">'迭代次数：%d'</span> % (i + <span class="number">1</span>), <span class="string">'theta：'</span>, theta, <span class="string">'error：%f'</span> % error)</span><br><span class="line">    <span class="keyword">return</span> train_loss_list</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-3-Momentum-SGD（带动量的SGD）"><a href="#2-3-Momentum-SGD（带动量的SGD）" class="headerlink" title="2.3 Momentum-SGD（带动量的SGD）"></a>2.3 Momentum-SGD（带动量的SGD）</h2><p>Momentum的算法思想是：参数更新时在一定程度上保留之前更新的方向，同时又利用当前batch的梯度微调最终的更新方向，简言之就是通过积累之前的动量来加速当前的梯度。其算法的迭代公式为：<br>$$<br>g&#x3D; momentum * g+\alpha\left(h_{\theta}\left(x^{i}\right)-y^{i}\right) x^{i}\<br>\theta_{j}&#x3D;\theta_{j}-g<br>$$<br>代码实现：</p>
+<h2 id="momentum-sgd带动量的sgd">2.3 Momentum-SGD（带动量的SGD）</h2>
+<p>Momentum的算法思想是：参数更新时在一定程度上保留之前更新的方向，同时又利用当前batch的梯度微调最终的更新方向，简言之就是通过积累之前的动量来加速当前的梯度。其算法的迭代公式为： <span class="math display">\[
+g= momentum * g+\alpha\left(h_{\theta}\left(x^{i}\right)-y^{i}\right) x^{i}\\
+\theta_{j}=\theta_{j}-g
+\]</span> 代码实现：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Momentum_sgd</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 训练集，每个样本有三个分量</span></span><br><span class="line">    x = np.array([(<span class="number">1</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">2</span>), (<span class="number">3</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">3</span>), (<span class="number">2</span>, <span class="number">4</span>), (<span class="number">2</span>, <span class="number">3</span>), (<span class="number">3</span>,</span><br><span class="line">                                                                           <span class="number">3</span>)])</span><br><span class="line">    y = np.array([<span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">8</span>, <span class="number">9</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化</span></span><br><span class="line">    m, dim = x.shape</span><br><span class="line">    theta = np.zeros(dim)  <span class="comment"># 参数</span></span><br><span class="line">    alpha = <span class="number">0.01</span>  <span class="comment"># 学习率</span></span><br><span class="line">    momentum = <span class="number">0.1</span>  <span class="comment"># 冲量</span></span><br><span class="line">    threshold = <span class="number">0.0001</span>  <span class="comment"># 停止迭代的错误阈值</span></span><br><span class="line">    iterations = <span class="number">1500</span>  <span class="comment"># 迭代次数</span></span><br><span class="line">    error = <span class="number">0</span>  <span class="comment"># 初始错误为0</span></span><br><span class="line">    gradient = <span class="number">0</span>  <span class="comment"># 初始梯度为0</span></span><br><span class="line"></span><br><span class="line">    train_loss_list = []</span><br><span class="line">    <span class="comment"># 迭代开始</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(iterations):</span><br><span class="line">        j = i % m</span><br><span class="line">        error = <span class="number">1</span> / (<span class="number">2</span> * m) * np.dot((np.dot(x, theta) - y).T,</span><br><span class="line">                                     (np.dot(x, theta) - y))</span><br><span class="line">        train_loss_list.append(error)</span><br><span class="line">        <span class="comment"># 迭代停止</span></span><br><span class="line">        <span class="keyword">if</span> abs(error) &lt;= threshold:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        gradient = momentum * gradient + alpha * (x[j] *</span><br><span class="line">                                                  (np.dot(x[j], theta) - y[j]))</span><br><span class="line">        theta -= gradient</span><br><span class="line"></span><br><span class="line">    print(<span class="string">'迭代次数：%d'</span> % (i + <span class="number">1</span>), <span class="string">'theta：'</span>, theta, <span class="string">'error：%f'</span> % error)</span><br><span class="line">    <span class="keyword">return</span> train_loss_list</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-4-Adam算法"><a href="#2-4-Adam算法" class="headerlink" title="2.4 Adam算法"></a>2.4 Adam算法</h2><p>Adam是一种自适应学习率的方法，在Momentum的一阶矩估计的基础上加上了二阶矩估计。利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。</p>
+<h2 id="adam算法">2.4 Adam算法</h2>
+<p>Adam是一种自适应学习率的方法，在Momentum的一阶矩估计的基础上加上了二阶矩估计。利用梯度的一阶矩估计和二阶矩估计动态调整每个参数的学习率。</p>
 <p>Adam的算法流程如下，具体可以见论文《Adam : A Method for Stochastic Optimization》。</p>
-<p><img src="/../images/Optimization-Homework/adam.jpg"></p>
+<p><img src="../images/Optimization-Homework/adam.jpg"></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">adam</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 训练集，每个样本有三个分量</span></span><br><span class="line">    x = np.array([(<span class="number">1</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">2</span>), (<span class="number">2</span>, <span class="number">2</span>), (<span class="number">3</span>, <span class="number">1</span>), (<span class="number">1</span>, <span class="number">3</span>), (<span class="number">2</span>, <span class="number">4</span>), (<span class="number">2</span>, <span class="number">3</span>), (<span class="number">3</span>,</span><br><span class="line">                                                                           <span class="number">3</span>)])</span><br><span class="line">    y = np.array([<span class="number">3</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">10</span>, <span class="number">8</span>, <span class="number">9</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 初始化</span></span><br><span class="line">    m, dim = x.shape</span><br><span class="line">    theta = np.zeros(dim)  <span class="comment"># 参数</span></span><br><span class="line">    alpha = <span class="number">0.01</span>  <span class="comment"># 学习率</span></span><br><span class="line">    momentum = <span class="number">0.1</span>  <span class="comment"># 冲量</span></span><br><span class="line">    threshold = <span class="number">0.0001</span>  <span class="comment"># 停止迭代的错误阈值</span></span><br><span class="line">    iterations = <span class="number">3000</span>  <span class="comment"># 迭代次数</span></span><br><span class="line">    error = <span class="number">0</span>  <span class="comment"># 初始错误为0</span></span><br><span class="line"></span><br><span class="line">    b1 = <span class="number">0.9</span>  <span class="comment"># 算法作者建议的默认值</span></span><br><span class="line">    b2 = <span class="number">0.999</span>  <span class="comment"># 算法作者建议的默认值</span></span><br><span class="line">    e = <span class="number">0.00000001</span>  <span class="comment">#算法作者建议的默认值</span></span><br><span class="line">    mt = np.zeros(dim)</span><br><span class="line">    vt = np.zeros(dim)</span><br><span class="line">    train_loss_list = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(iterations):</span><br><span class="line">        j = i % m</span><br><span class="line">        error = <span class="number">1</span> / (<span class="number">2</span> * m) * np.dot((np.dot(x, theta) - y).T,</span><br><span class="line">                                     (np.dot(x, theta) - y))</span><br><span class="line">        train_loss_list.append(error)</span><br><span class="line">        <span class="keyword">if</span> abs(error) &lt;= threshold:</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">        gradient = x[j] * (np.dot(x[j], theta) - y[j])</span><br><span class="line">        mt = b1 * mt + (<span class="number">1</span> - b1) * gradient</span><br><span class="line">        vt = b2 * vt + (<span class="number">1</span> - b2) * (gradient**<span class="number">2</span>)</span><br><span class="line">        mtt = mt / (<span class="number">1</span> - (b1**(i + <span class="number">1</span>)))</span><br><span class="line">        vtt = vt / (<span class="number">1</span> - (b2**(i + <span class="number">1</span>)))</span><br><span class="line">        vtt_sqrt = np.array([math.sqrt(vtt[<span class="number">0</span>]),</span><br><span class="line">                             math.sqrt(vtt[<span class="number">1</span>])])  <span class="comment"># 因为只能对标量进行开方</span></span><br><span class="line">        theta = theta - alpha * mtt / (vtt_sqrt + e)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">'迭代次数：%d'</span> % (i + <span class="number">1</span>), <span class="string">'theta：'</span>, theta, <span class="string">'error：%f'</span> % error)</span><br><span class="line">    <span class="keyword">return</span> train_loss_list</span><br></pre></td></tr></table></figure>
-
-<h2 id="2-5-对比"><a href="#2-5-对比" class="headerlink" title="2.5 对比"></a>2.5 对比</h2><p>对同一个函数$y&#x3D;x_1+2x^2$进行这四种优化器的测试，得到如下的结果：</p>
+<h2 id="对比">2.5 对比</h2>
+<p>对同一个函数<span class="math inline">\(y=x_1+2x^2\)</span>进行这四种优化器的测试，得到如下的结果：</p>
 <p><img src="/2022/01/01/Optimization-Homework/blog\source_posts\Optimization-Homework\优化器结果.png"></p>
 <p>将损失函数画在同一副图中，得到以下的结果：</p>
-<p><img src="/../images/Optimization-Homework/%E4%BC%98%E5%8C%96%E5%99%A8%E7%9A%84%E6%AF%94%E8%BE%83.png"></p>
-<h1 id="3-最优化在机器学习中的应用"><a href="#3-最优化在机器学习中的应用" class="headerlink" title="3. 最优化在机器学习中的应用"></a>3. 最优化在机器学习中的应用</h1><p>这里主要介绍的是SVM算法的实现。支持向量机(SVM)是一种监督学习方式对数据进行二元分类的广义线性分类器，其决策边界时对学习样本求解的最大边距超平面。</p>
-<p>超平面是在样本空间中的一个平面，在多维空间中，超平面可以用向量的形式表现为$\vec{w} \vec{x}+b&#x3D;0$，记作$(\vec{w},b)$的形式，其中$\vec{w}$是法向量，而b为移位项。考虑任意一点$\vec{x}$到超平面之间的距离，可以表示为：$γ&#x3D;\frac{\vec{w} \cdot \vec{x} + b}{||\vec{w}||}$，超平面能将样本空间划分为两个部分。假设超平面$(\vec{w},b)$将所有的样本正确分类，即对于任意的$(\vec{x_i},y_i)∈D$，若$y_i&#x3D;+1$，那么$\vec{w} \cdot \vec{x}+b&lt;0$。</p>
-<p>对于$(\vec{x_i},y_i)∈D$，可以将上面的距离公式的分子部分带入$y_i$改写成：$\gamma_{i}&#x3D;\frac{y_{i}(\vec{w} \cdot \vec{x}+b)}{|\vec{w}|}$，定义间隔γ为所有样本中离超平面最近的那个，即$γ&#x3D;min \ γ_i$，那么$γ_i≥γ$总是成立的，带入上式可得：$\frac{y_{i}(\vec{w} \cdot \vec{x}+b)}{|\vec{w}|} \geq \gamma$。</p>
-<p>因此，SVM的问题就变成了找到最大间隔的超平面，使得γ最大，即：<br>$$<br>\max <em>{(\vec{w}, b)} \min <em>{i} \frac{1}{|\vec{w}|}\left|\vec{w} \cdot \vec{x}</em>{i}+b\right|\<br>s.t. \quad y</em>{i}\left(\vec{w} \cdot \vec{x}<em>{i}+b\right)&gt;0, \quad i&#x3D;1,2, \ldots, m<br>$$<br>因为间隔始终大于0.即$|\vec{w} \cdot \vec{x_i}+n|&gt;0$，则可以通过缩放$(\vec{w},b)$使得：$\min <em>{i}\left|\vec{w} \cdot \vec{x}</em>{i}+b\right|&#x3D;1$，那么上面的问题就变成了$max \ \frac{1}{||\vec{w}||}$，上式可以重写为：<br>$$<br>\min \frac{1}{2}|\vec{w}|^{2}\<br>s.t. \quad y</em>{i}\left(\vec{w} \cdot \overrightarrow{x_{i}}+b\right) \geq 1, \quad i&#x3D;1,2, \ldots, m<br>$$<br>是一个凸二次规划问题，这样就能用现有的求解优化问题的方法。</p>
-<p>将SVM的问题用拉格朗日函数的形式重写为：<br>$$<br>\mathcal{L}(\vec{w}, b, \vec{\alpha})&#x3D;\underbrace{\frac{1}{2}|\vec{w}|^{2}}<em>{f(\vec{w}, b)}+\sum \alpha</em>{i} \underbrace{\left(1-y_{i}\left(\vec{w} \cdot \vec{x}<em>{i}-b\right)\right)}</em>{h_{i}(\vec{w}, b) \leq 0}<br>$$<br>令$L(\vec{w},b,\vec{α})$对于$\vec{w}$和$b$的偏导数等于0：<br>$$<br>\left{\begin{array}{l}\frac{\partial \mathcal{L}}{\partial \vec{w}}&#x3D;\vec{w}-\sum \alpha_{i} y_{i} \vec{x}<em>{i}&#x3D;0 \ \frac{\partial \mathcal{L}}{\partial b}&#x3D;\sum \alpha</em>{i} y_{i}&#x3D;0\end{array}\right.<br>$$<br>可得：<br>$$<br>\begin{aligned} \vec{w} &amp;&#x3D;\sum \alpha_{i} y_{i} \vec{x}<em>{i} \ 0 &amp;&#x3D;\sum \alpha</em>{i} y_{i} \end{aligned}<br>$$<br>将上式带入$L(\vec{w},b,\vec{α})$可得：<br>$$<br>\begin{aligned} \mathcal{L}(\vec{w}, b, \vec{\alpha})&#x3D;&amp; \frac{1}{2}\left(\sum \alpha_{i} y_{i} \vec{x}<em>{i}\right) \cdot\left(\sum \alpha</em>{i} y_{i} \overrightarrow{x_{i}}\right) \ &amp;\left.+\sum \alpha_{i}\left(1-y_{i}\left(\left(\sum \alpha_{i} y_{i} \overrightarrow{x_{i}}\right) \cdot \overrightarrow{x_{i}}-b\right)\right)\right) \&#x3D;&amp; \sum_{i&#x3D;1}^{m} \alpha_{i}-\frac{1}{2} \sum_{i&#x3D;1}^{m} \sum_{j&#x3D;1}^{m} \alpha_{i} \alpha_{j} y_{i} y_{j}\left(\overrightarrow{x_{i}} \cdot \overrightarrow{x_{j}}\right) \end{aligned}<br>$$<br>这样对偶问题就变成：<br>$$<br>\begin{aligned} &amp; \max <em>{\vec{\alpha} \geq 0} \min <em>{\vec{z}} \mathcal{L}(\vec{z}, \vec{\alpha}) \ \Longrightarrow &amp; \max <em>{\vec{\alpha} \geq 0} \sum</em>{i&#x3D;1}^{m} \alpha</em>{i}-\frac{1}{2} \sum</em>{i&#x3D;1}^{m} \sum_{j&#x3D;1}^{m} \alpha_{i} \alpha_{j} y_{i} y_{j}\left(\vec{x}<em>{i} \cdot \vec{x}</em>{j}\right) \ &amp; \text { s.t. } \quad \sum \alpha_{i} y_{i}&#x3D;0, \alpha_{i} \geq 0 \end{aligned}<br>$$<br>解出$\vec{α}$后，求出$\vec{w}$与b即可得到模型：<br>$$<br>\begin{aligned} f(\vec{x}) &amp;&#x3D;\vec{w} \cdot \vec{x}+b \ &amp;&#x3D;\sum_{i&#x3D;1}^{m} \alpha_{i} y_{i}\left(\vec{x}<em>{i} \cdot \vec{x}\right)+b \end{aligned}<br>$$<br>还需要满足上面提到的KKT条件：<br>$$<br>\left{\begin{array}{l}\alpha</em>{i} \geq 0 \ y_{i} f\left(\vec{x}<em>{i}\right)-1 \geq 0 \ \alpha</em>{i}\left(y_{i} f\left(\vec{x}_{i}\right)-1\right)&#x3D;0\end{array}\right.<br>$$</p>
-<h2 id="软间隔"><a href="#软间隔" class="headerlink" title="软间隔"></a>软间隔</h2><p>上面我们考虑的都是数据可以分隔的情况，那么当数据集并不是完全能被超平面分隔，即有些点不满足约束$y_i(\vec{w} \cdot \vec{x_i}+b)≥1$，那么可以设定一个惩罚项：<br>$$<br>\xi_{i}&#x3D;\max \left{1-y_{i}\left(\vec{w} \cdot \vec{x}<em>{i}+b\right), 0\right}<br>$$<br>那么原来的 SVM 的优化问题就会变成：<br>$$<br>\min <em>{\vec{w}, b} \frac{1}{2}|\vec{w}|^{2}+C \sum</em>{i&#x3D;1}^{m} \max \left{1-y</em>{i}\left(\vec{w} \cdot \vec{x}<em>{i}+b\right), 0\right}\<br>s.t. \quad 1-y</em>{i}\left(\vec{w} \cdot \vec{x}<em>{i}+b\right) \leq 0, \quad i&#x3D;1,2, \ldots, m<br>$$<br>其中的 $\max(1-z, 0)$ 称为“折页损失”（hinge loss）。接着引入“松弛变量” $ξ_i≥0$，将上式重写为：<br>$$<br>\begin{array}{ll} &amp; \min <em>{\vec{w}, b} \frac{1}{2}|\vec{w}|^{2}+C \sum</em>{i&#x3D;1}^{m} \xi</em>{i} \ \text { s.t. } &amp; y_{i}\left(\vec{w} \cdot \vec{x}<em>{i}+b\right) \geq 1-\xi</em>{i} \ &amp; \xi_{i} \geq 0, i&#x3D;1,2, \ldots, m\end{array}<br>$$</p>
-<h2 id="核方法"><a href="#核方法" class="headerlink" title="核方法"></a>核方法</h2><p>当遇到样本是非线性可分时，一般的线性 SVM 就无法很好的分类，这时候可以采用核技巧（kernel trick），将样本映射至高维空间，变成高维空间中线性可分的即可。</p>
-<p>考虑一个映射函数$ \phi(\vec{x})$，将 d<em>d</em> 维特征映射至 m 维：<br>$$<br>\phi(\vec{x}): \mathbb{R}^{d} \rightarrow \mathbb{R}^{m}<br>$$<br>定义核函数：<br>$$<br>K\left(\vec{x}<em>{i}, \vec{x}</em>{j}\right)&#x3D;\phi\left(\vec{x}<em>{i}\right) \cdot \phi\left(\vec{x}</em>{j}\right)<br>$$<br>核技巧的思想是用核函数 K 避免在高维 m<em>m</em> 空间中计算映射函数的内积，这样能够极大简化运算。函数 K 能够满足成为核函数的充分必要条件是 K是半正定，即：<br>$$<br>\sum_{i, j&#x3D;1}^{m} c_{i} c_{j} K\left(\vec{x}<em>{i}, \overrightarrow{x</em>{j}}\right) \geq 0<br>$$<br>常用的核函数有多项式核函数（Polynomial function）：<br>$$<br>K\left(\vec{x}<em>{i}, \vec{x}</em>{j}\right)&#x3D;\left(\overrightarrow{x_{i}} \cdot \overrightarrow{x_{j}}+1\right)^{d}<br>$$<br>以及高斯核函数（Guassian radial basis function），通常称为 RBF Kernel：<br>$$<br>K\left(\vec{x}<em>{i}, \vec{x}</em>{j}\right)&#x3D;\exp \left(-\frac{\left|\vec{x}<em>{i}-\vec{x}</em>{j}\right|^{2}}{2 \sigma^{2}}\right)<br>$$</p>
-<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><p>这里使用SVM实现了一个简单的二分类问题，使用的数据集如下图所示，标签只有(-1,1),两个维度表示其特征。</p>
-<p><img src="/../images/Optimization-Homework/%E6%95%B0%E6%8D%AE%E9%9B%86.png"></p>
-<p>实现的代码位于’OptimizationHomework\OptimizationInMachineLearning\svm-Demo’，实验的结果如下所示，SVM能很好的分类数据集中的数据。</p>
-<p><img src="/../images/Optimization-Homework/SVM.png"></p>
+<p><img src="../images/Optimization-Homework/优化器的比较.png"></p>
+<h1 id="最优化在机器学习中的应用">3. 最优化在机器学习中的应用</h1>
+<p>这里主要介绍的是SVM算法的实现。支持向量机(SVM)是一种监督学习方式对数据进行二元分类的广义线性分类器，其决策边界时对学习样本求解的最大边距超平面。</p>
+<p>超平面是在样本空间中的一个平面，在多维空间中，超平面可以用向量的形式表现为<span class="math inline">\(\vec{w} \vec{x}+b=0\)</span>，记作<span class="math inline">\((\vec{w},b)\)</span>的形式，其中<span class="math inline">\(\vec{w}\)</span>是法向量，而b为移位项。考虑任意一点<span class="math inline">\(\vec{x}\)</span>到超平面之间的距离，可以表示为：<span class="math inline">\(γ=\frac{\vec{w} \cdot \vec{x} + b}{||\vec{w}||}\)</span>，超平面能将样本空间划分为两个部分。假设超平面<span class="math inline">\((\vec{w},b)\)</span>将所有的样本正确分类，即对于任意的<span class="math inline">\((\vec{x_i},y_i)∈D\)</span>，若<span class="math inline">\(y_i=+1\)</span>，那么<span class="math inline">\(\vec{w} \cdot \vec{x}+b&lt;0\)</span>。</p>
+<p>对于<span class="math inline">\((\vec{x_i},y_i)∈D\)</span>，可以将上面的距离公式的分子部分带入<span class="math inline">\(y_i\)</span>改写成：<span class="math inline">\(\gamma_{i}=\frac{y_{i}(\vec{w} \cdot \vec{x}+b)}{\|\vec{w}\|}\)</span>，定义间隔γ为所有样本中离超平面最近的那个，即<span class="math inline">\(γ=min \ γ_i\)</span>，那么<span class="math inline">\(γ_i≥γ\)</span>总是成立的，带入上式可得：<span class="math inline">\(\frac{y_{i}(\vec{w} \cdot \vec{x}+b)}{\|\vec{w}\|} \geq \gamma\)</span>。</p>
+<p>因此，SVM的问题就变成了找到最大间隔的超平面，使得γ最大，即： <span class="math display">\[
+\max _{(\vec{w}, b)} \min _{i} \frac{1}{\|\vec{w}\|}\left|\vec{w} \cdot \vec{x}_{i}+b\right|\\
+s.t. \quad y_{i}\left(\vec{w} \cdot \vec{x}_{i}+b\right)&gt;0, \quad i=1,2, \ldots, m
+\]</span> 因为间隔始终大于0.即<span class="math inline">\(|\vec{w} \cdot \vec{x_i}+n|&gt;0\)</span>，则可以通过缩放<span class="math inline">\((\vec{w},b)\)</span>使得：<span class="math inline">\(\min _{i}\left|\vec{w} \cdot \vec{x}_{i}+b\right|=1\)</span>，那么上面的问题就变成了<span class="math inline">\(max \ \frac{1}{||\vec{w}||}\)</span>，上式可以重写为： <span class="math display">\[
+\min \frac{1}{2}\|\vec{w}\|^{2}\\
+s.t. \quad y_{i}\left(\vec{w} \cdot \overrightarrow{x_{i}}+b\right) \geq 1, \quad i=1,2, \ldots, m
+\]</span> 是一个凸二次规划问题，这样就能用现有的求解优化问题的方法。</p>
+<p>将SVM的问题用拉格朗日函数的形式重写为： <span class="math display">\[
+\mathcal{L}(\vec{w}, b, \vec{\alpha})=\underbrace{\frac{1}{2}\|\vec{w}\|^{2}}_{f(\vec{w}, b)}+\sum \alpha_{i} \underbrace{\left(1-y_{i}\left(\vec{w} \cdot \vec{x}_{i}-b\right)\right)}_{h_{i}(\vec{w}, b) \leq 0}
+\]</span> 令<span class="math inline">\(L(\vec{w},b,\vec{α})\)</span>对于<span class="math inline">\(\vec{w}\)</span>和<span class="math inline">\(b\)</span>的偏导数等于0： <span class="math display">\[
+\left\{\begin{array}{l}\frac{\partial \mathcal{L}}{\partial \vec{w}}=\vec{w}-\sum \alpha_{i} y_{i} \vec{x}_{i}=0 \\ \frac{\partial \mathcal{L}}{\partial b}=\sum \alpha_{i} y_{i}=0\end{array}\right.
+\]</span> 可得： <span class="math display">\[
+\begin{aligned} \vec{w} &amp;=\sum \alpha_{i} y_{i} \vec{x}_{i} \\ 0 &amp;=\sum \alpha_{i} y_{i} \end{aligned}
+\]</span> 将上式带入<span class="math inline">\(L(\vec{w},b,\vec{α})\)</span>可得： <span class="math display">\[
+\begin{aligned} \mathcal{L}(\vec{w}, b, \vec{\alpha})=&amp; \frac{1}{2}\left(\sum \alpha_{i} y_{i} \vec{x}_{i}\right) \cdot\left(\sum \alpha_{i} y_{i} \overrightarrow{x_{i}}\right) \\ &amp;\left.+\sum \alpha_{i}\left(1-y_{i}\left(\left(\sum \alpha_{i} y_{i} \overrightarrow{x_{i}}\right) \cdot \overrightarrow{x_{i}}-b\right)\right)\right) \\=&amp; \sum_{i=1}^{m} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{m} \sum_{j=1}^{m} \alpha_{i} \alpha_{j} y_{i} y_{j}\left(\overrightarrow{x_{i}} \cdot \overrightarrow{x_{j}}\right) \end{aligned}
+\]</span> 这样对偶问题就变成： <span class="math display">\[
+\begin{aligned} &amp; \max _{\vec{\alpha} \geq 0} \min _{\vec{z}} \mathcal{L}(\vec{z}, \vec{\alpha}) \\ \Longrightarrow &amp; \max _{\vec{\alpha} \geq 0} \sum_{i=1}^{m} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{m} \sum_{j=1}^{m} \alpha_{i} \alpha_{j} y_{i} y_{j}\left(\vec{x}_{i} \cdot \vec{x}_{j}\right) \\ &amp; \text { s.t. } \quad \sum \alpha_{i} y_{i}=0, \alpha_{i} \geq 0 \end{aligned}
+\]</span> 解出<span class="math inline">\(\vec{α}\)</span>后，求出<span class="math inline">\(\vec{w}\)</span>与b即可得到模型： <span class="math display">\[
+\begin{aligned} f(\vec{x}) &amp;=\vec{w} \cdot \vec{x}+b \\ &amp;=\sum_{i=1}^{m} \alpha_{i} y_{i}\left(\vec{x}_{i} \cdot \vec{x}\right)+b \end{aligned}
+\]</span> 还需要满足上面提到的KKT条件： <span class="math display">\[
+\left\{\begin{array}{l}\alpha_{i} \geq 0 \\ y_{i} f\left(\vec{x}_{i}\right)-1 \geq 0 \\ \alpha_{i}\left(y_{i} f\left(\vec{x}_{i}\right)-1\right)=0\end{array}\right.
+\]</span></p>
+<h2 id="软间隔">软间隔</h2>
+<p>上面我们考虑的都是数据可以分隔的情况，那么当数据集并不是完全能被超平面分隔，即有些点不满足约束<span class="math inline">\(y_i(\vec{w} \cdot \vec{x_i}+b)≥1\)</span>，那么可以设定一个惩罚项： <span class="math display">\[
+\xi_{i}=\max \left\{1-y_{i}\left(\vec{w} \cdot \vec{x}_{i}+b\right), 0\right\}
+\]</span> 那么原来的 SVM 的优化问题就会变成： <span class="math display">\[
+\min _{\vec{w}, b} \frac{1}{2}\|\vec{w}\|^{2}+C \sum_{i=1}^{m} \max \left\{1-y_{i}\left(\vec{w} \cdot \vec{x}_{i}+b\right), 0\right\}\\
+s.t. \quad 1-y_{i}\left(\vec{w} \cdot \vec{x}_{i}+b\right) \leq 0, \quad i=1,2, \ldots, m
+\]</span> 其中的 <span class="math inline">\(\max(1-z, 0)\)</span> 称为“折页损失”（hinge loss）。接着引入“松弛变量” <span class="math inline">\(ξ_i≥0\)</span>，将上式重写为： <span class="math display">\[
+\begin{array}{ll} &amp; \min _{\vec{w}, b} \frac{1}{2}\|\vec{w}\|^{2}+C \sum_{i=1}^{m} \xi_{i} \\ \text { s.t. } &amp; y_{i}\left(\vec{w} \cdot \vec{x}_{i}+b\right) \geq 1-\xi_{i} \\ &amp; \xi_{i} \geq 0, i=1,2, \ldots, m\end{array}
+\]</span></p>
+<h2 id="核方法">核方法</h2>
+<p>当遇到样本是非线性可分时，一般的线性 SVM 就无法很好的分类，这时候可以采用核技巧（kernel trick），将样本映射至高维空间，变成高维空间中线性可分的即可。</p>
+<p>考虑一个映射函数$ ()$，将 d<em>d</em> 维特征映射至 m 维： <span class="math display">\[
+\phi(\vec{x}): \mathbb{R}^{d} \rightarrow \mathbb{R}^{m}
+\]</span> 定义核函数： <span class="math display">\[
+K\left(\vec{x}_{i}, \vec{x}_{j}\right)=\phi\left(\vec{x}_{i}\right) \cdot \phi\left(\vec{x}_{j}\right)
+\]</span> 核技巧的思想是用核函数 K 避免在高维 m<em>m</em> 空间中计算映射函数的内积，这样能够极大简化运算。函数 K 能够满足成为核函数的充分必要条件是 K是半正定，即： <span class="math display">\[
+\sum_{i, j=1}^{m} c_{i} c_{j} K\left(\vec{x}_{i}, \overrightarrow{x_{j}}\right) \geq 0
+\]</span> 常用的核函数有多项式核函数（Polynomial function）： <span class="math display">\[
+K\left(\vec{x}_{i}, \vec{x}_{j}\right)=\left(\overrightarrow{x_{i}} \cdot \overrightarrow{x_{j}}+1\right)^{d}
+\]</span> 以及高斯核函数（Guassian radial basis function），通常称为 RBF Kernel： <span class="math display">\[
+K\left(\vec{x}_{i}, \vec{x}_{j}\right)=\exp \left(-\frac{\left\|\vec{x}_{i}-\vec{x}_{j}\right\|^{2}}{2 \sigma^{2}}\right)
+\]</span></p>
+<h2 id="代码实现-1">代码实现</h2>
+<p>这里使用SVM实现了一个简单的二分类问题，使用的数据集如下图所示，标签只有(-1,1),两个维度表示其特征。</p>
+<p><img src="../images/Optimization-Homework/数据集.png"></p>
+<p>实现的代码位于'OptimizationHomework-Demo'，实验的结果如下所示，SVM能很好的分类数据集中的数据。</p>
+<p><img src="../images/Optimization-Homework/SVM.png"></p>
 
       
 
@@ -549,7 +649,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-数学优化算法实现"><span class="toc-number">1.</span> <span class="toc-text">1. 数学优化算法实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-线搜索"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 线搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-1-二分法"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1 二分法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-2-四等分搜索"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 四等分搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-3-fibonacci搜索"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3 fibonacci搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-4-黄金分割法"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.1.4 黄金分割法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-5-非精确搜索"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.1.5 非精确搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-6-对比分析"><span class="toc-number">1.1.6.</span> <span class="toc-text">1.1.6 对比分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-牛顿法的实现"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 牛顿法的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-1-牛顿法"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 牛顿法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-2-拟牛顿法"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 拟牛顿法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-3-代码实现"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3 代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-最速下降法"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 最速下降法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-4-共轭梯度法"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 共轭梯度法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-1-线性共轭方向法"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.4.1 线性共轭方向法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-2-线性共轭梯度法"><span class="toc-number">1.4.2.</span> <span class="toc-text">1.4.2 线性共轭梯度法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-4-3-实现"><span class="toc-number">1.4.3.</span> <span class="toc-text">1.4.3 实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-机器学习优化器的实现"><span class="toc-number">2.</span> <span class="toc-text">2. 机器学习优化器的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-BGD（批量梯度下降）"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 BGD（批量梯度下降）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-SGD（随机梯度下降）"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 SGD（随机梯度下降）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-Momentum-SGD（带动量的SGD）"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Momentum-SGD（带动量的SGD）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-Adam算法"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 Adam算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-对比"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-最优化在机器学习中的应用"><span class="toc-number">3.</span> <span class="toc-text">3. 最优化在机器学习中的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#软间隔"><span class="toc-number">3.1.</span> <span class="toc-text">软间隔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核方法"><span class="toc-number">3.2.</span> <span class="toc-text">核方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-number">3.3.</span> <span class="toc-text">代码实现</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#数学优化算法实现"><span class="toc-number">1.</span> <span class="toc-text">1. 数学优化算法实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#线搜索"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 线搜索</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#二分法"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1.1 二分法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#四等分搜索"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.1.2 四等分搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fibonacci搜索"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.1.3 fibonacci搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#黄金分割法"><span class="toc-number">1.1.4.</span> <span class="toc-text">1.1.4 黄金分割法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非精确搜索"><span class="toc-number">1.1.5.</span> <span class="toc-text">1.1.5 非精确搜索</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#对比分析"><span class="toc-number">1.1.6.</span> <span class="toc-text">1.1.6 对比分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#牛顿法的实现"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 牛顿法的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#牛顿法"><span class="toc-number">1.2.1.</span> <span class="toc-text">1.2.1 牛顿法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#拟牛顿法"><span class="toc-number">1.2.2.</span> <span class="toc-text">1.2.2 拟牛顿法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现"><span class="toc-number">1.2.3.</span> <span class="toc-text">1.2.3 代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最速下降法"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 最速下降法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#共轭梯度法"><span class="toc-number">1.4.</span> <span class="toc-text">1.4 共轭梯度法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线性共轭方向法"><span class="toc-number">1.4.1.</span> <span class="toc-text">1.4.1 线性共轭方向法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#线性共轭梯度法"><span class="toc-number">1.4.2.</span> <span class="toc-text">1.4.2 线性共轭梯度法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实现"><span class="toc-number">1.4.3.</span> <span class="toc-text">1.4.3 实现</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#机器学习优化器的实现"><span class="toc-number">2.</span> <span class="toc-text">2. 机器学习优化器的实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#bgd批量梯度下降"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 BGD（批量梯度下降）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#sgd随机梯度下降"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 SGD（随机梯度下降）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#momentum-sgd带动量的sgd"><span class="toc-number">2.3.</span> <span class="toc-text">2.3 Momentum-SGD（带动量的SGD）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#adam算法"><span class="toc-number">2.4.</span> <span class="toc-text">2.4 Adam算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对比"><span class="toc-number">2.5.</span> <span class="toc-text">2.5 对比</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#最优化在机器学习中的应用"><span class="toc-number">3.</span> <span class="toc-text">3. 最优化在机器学习中的应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#软间隔"><span class="toc-number">3.1.</span> <span class="toc-text">软间隔</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#核方法"><span class="toc-number">3.2.</span> <span class="toc-text">核方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-1"><span class="toc-number">3.3.</span> <span class="toc-text">代码实现</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
@@ -695,11 +795,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -707,15 +807,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -723,11 +819,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">

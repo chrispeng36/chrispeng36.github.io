@@ -8,34 +8,34 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Network Alignment with Holistic Embeddings笔记 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="一种新的端到端对齐框架，可以利用不同的模式来以一种有效的方式比较和对齐网络节点。为了利用网络上下文的丰富性，我们的模型为每个节点构建多个嵌入，每个嵌入捕获一种模态或类型的网络信息。然后我们设计了一个 后期融合机制，基于底层信息的重要性来结合学习到的嵌入。我们的融合机制允许我们的模型适应于各种类型的结构 输入网络。实验结果表明，我们的技术在真实数据和合成数据集上的精度方面优于最先进的方法，同时">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="Network Alignment with Holistic Embeddings笔记">
 <meta property="og:url" content="http://yoursite.com/2022/03/24/Network-Alignment-with-Holistic-Embeddings%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="一种新的端到端对齐框架，可以利用不同的模式来以一种有效的方式比较和对齐网络节点。为了利用网络上下文的丰富性，我们的模型为每个节点构建多个嵌入，每个嵌入捕获一种模态或类型的网络信息。然后我们设计了一个 后期融合机制，基于底层信息的重要性来结合学习到的嵌入。我们的融合机制允许我们的模型适应于各种类型的结构 输入网络。实验结果表明，我们的技术在真实数据和合成数据集上的精度方面优于最先进的方法，同时">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/images/NAME/%E5%AF%B9%E9%BD%90%E7%A4%BA%E4%BE%8B.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/NAME%E6%9E%B6%E6%9E%84.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%B4%9F%E9%87%87%E6%A0%B7.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/%E8%A1%A8%E7%A4%BA%E7%A9%BA%E9%97%B4%E5%8D%8F%E8%B0%83.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/GCN%E7%AC%ACl%E5%B1%82.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/GCN%E6%AF%8F%E5%B1%82%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/%E5%90%84%E5%B1%82%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%B1%82%E5%92%8C.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/%E6%96%B0%E7%9A%84%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/Gumbel-Softmax.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/z%E5%90%91%E9%87%8F.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/%E4%BB%8EM%E9%87%87%E6%A0%B7P.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/%E7%A4%BE%E5%8C%BA%E6%A3%80%E6%B5%8B%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/S%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97.png">
-<meta property="og:image" content="http://yoursite.com/images/NAME/%E4%BC%98%E5%8C%96%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/%E5%AF%B9%E9%BD%90%E7%A4%BA%E4%BE%8B.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/NAME%E6%9E%B6%E6%9E%84.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%B4%9F%E9%87%87%E6%A0%B7.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/%E8%A1%A8%E7%A4%BA%E7%A9%BA%E9%97%B4%E5%8D%8F%E8%B0%83.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/GCN%E7%AC%ACl%E5%B1%82.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/consistency-aware%20loss.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/anchor-aware%20loss.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/GCN%E6%AF%8F%E5%B1%82%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/%E5%90%84%E5%B1%82%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%B1%82%E5%92%8C.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/%E6%96%B0%E7%9A%84%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/Gumbel-Softmax.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/z%E5%90%91%E9%87%8F.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/%E4%BB%8EM%E9%87%87%E6%A0%B7P.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/%E7%A4%BE%E5%8C%BA%E6%A3%80%E6%B5%8B%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/S%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97.png">
+<meta property="og:image" content="http://yoursite.com/2022/03/24/images/NAME/%E4%BC%98%E5%8C%96%E5%87%BD%E6%95%B0.png">
 <meta property="article:published_time" content="2022-03-23T20:17:30.000Z">
 <meta property="article:modified_time" content="2022-05-30T02:08:11.951Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/NAME/%E5%AF%B9%E9%BD%90%E7%A4%BA%E4%BE%8B.png">
+<meta name="twitter:image" content="http://yoursite.com/2022/03/24/images/NAME/%E5%AF%B9%E9%BD%90%E7%A4%BA%E4%BE%8B.png">
   
     <link rel="alternative" href="/atom.xml" title="Chris的个人博客" type="application/atom+xml">
   
@@ -204,8 +204,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-         <a id="more"></a>
-
+        <p><a id="more"></a></p>
 <p>一种新的端到端对齐框架，可以利用不同的模式来以一种有效的方式比较和对齐网络节点。为了利用网络上下文的丰富性，我们的模型为每个节点构建多个嵌入，每个嵌入捕获一种模态或类型的网络信息。然后我们设计了一个 后期融合机制，基于底层信息的重要性来结合学习到的嵌入。我们的融合机制允许我们的模型适应于各种类型的结构 输入网络。实验结果表明，我们的技术在真实数据和合成数据集上的精度方面优于最先进的方法，同时对各种噪声因子具有鲁棒性 。</p>
 <p>矩阵分解的方法不能适用于大规模的网络，而基于embedding的方式具有以下的局限性：</p>
 <ul>
@@ -216,13 +215,12 @@
 <p>节点属性仅提供一个本地视图，并且不能提供整个网络的全局视图。这损害了对齐的准确性，因为在焦油中存在几个具有相似局部信息的节点 获取图形。</p>
 <p>为了解决上述挑战，我们提出了一个基于多嵌入的网络对齐模型。</p>
 <p>构建三层嵌入：浅层嵌入，深层嵌入以及基于社区的嵌入(为网络结构的全局视图)</p>
-<p><img src="/../images/NAME/%E5%AF%B9%E9%BD%90%E7%A4%BA%E4%BE%8B.png"></p>
+<p><img src="../images/NAME/对齐示例.png"></p>
 <p>作者提出了两种新的网络表示学习方法（专门用于网络对齐任务，包含属性信息，高阶相似性）：第一种方法是基于GCN的嵌入，它是对我们之前的工作[30]的改进，在那里我们重新设计了损失模块，以适应监督设置，从而促进了与其他嵌入的统一。第二种方法是全局社区感知嵌入，通过在节点嵌入中编码社区信息的，超越了现有的图形社区检测的工作。该方法还旨在克服局部最优问题，即所有节点都被分配到一个分区。类似于我们的工作是，但是我们的社区更好地保存拓扑，并利用节点本身的社区成员，而不是邻居锚。</p>
-<p><img src="/../images/NAME/NAME%E6%9E%B6%E6%9E%84.png"></p>
+<p><img src="../images/NAME/NAME架构.png"></p>
 <ul>
 <li><p>问题1：属性网络对齐</p>
-<p>给定两个属性网络$G_s&#x3D; (V_s,A_s,F_s) \ and \ G_s&#x3D;(V_t,A_t,F_t)$，用来找到对齐矩阵S，表明$G_s，G_t$之间的相似度。</p>
-</li>
+<p>给定两个属性网络<span class="math inline">\(G_s= (V_s,A_s,F_s) \ and \ G_s=(V_t,A_t,F_t)\)</span>，用来找到对齐矩阵S，表明<span class="math inline">\(G_s，G_t\)</span>之间的相似度。</p></li>
 </ul>
 <p>要满足的约束：属性一致性和拓扑一致性。</p>
 <p>由于信息类型的许多基于嵌入的网络对齐器无法满足这两个一致性约束，因为信息类型的模态和信息丰富度的限制 信息到嵌入中。虽然有一些技术试图覆盖这两种类型的约束，但它们在单独的步骤中考虑它们，或者忽略了有价值的信息。</p>
@@ -234,55 +232,56 @@
 <li>embedding based on a graph neural network：GCN模型来学习高阶属性和拓扑的信息</li>
 <li>global community-aware embedding：全局社区的embedding</li>
 </ul>
-<h2 id="embedding-for-local-structure"><a href="#embedding-for-local-structure" class="headerlink" title="embedding for local structure"></a>embedding for local structure</h2><p>网络表示学习就是计算两个邻居节点共现的概率，$z_i,z_j$是对应的embedding。</p>
-<p><img src="/../images/NAME/%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0.png"></p>
+<h2 id="embedding-for-local-structure">embedding for local structure</h2>
+<p>网络表示学习就是计算两个邻居节点共现的概率，<span class="math inline">\(z_i,z_j\)</span>是对应的embedding。</p>
+<p><img src="../images/NAME/网络表示学习.png"></p>
 <p>经过负采样：</p>
-<p><img src="/../images/NAME/%E7%BD%91%E7%BB%9C%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0%E7%9A%84%E8%B4%9F%E9%87%87%E6%A0%B7.png"></p>
+<p><img src="../images/NAME/网络表示学习的负采样.png"></p>
 <p>表示空间协调，由于源网络和目标网络是独立嵌入的，因此需要一个映射函数Θ来协调这两个嵌入空间。映射函数Θ可以是线性函数，也可以是多层感知器，可以表示为以下的优化函数：</p>
-<p><img src="/../images/NAME/%E8%A1%A8%E7%A4%BA%E7%A9%BA%E9%97%B4%E5%8D%8F%E8%B0%83.png"></p>
-<p>$z_v^s,z_v^t$表示在预先对齐（先验知识）集合T中的锚定节点$(v_s,v_t)$的embedding，损失函数的直观目的是保证在映射后，T中锚定节点的嵌入是相似的。调整后，可以根据源节点和目标节点的嵌入直接计算出目标节点之间的相关性。</p>
-<h2 id="embedding-based-on-a-graph-neural-network"><a href="#embedding-based-on-a-graph-neural-network" class="headerlink" title="embedding based on a graph neural network"></a>embedding based on a graph neural network</h2><p>为了加强局部结构嵌入，我们设计了一个特定的GCN模型，它同时编码结构和属性信息。两个锚节点的相似性取决于它们的拓扑属性和语义属性。</p>
+<p><img src="../images/NAME/表示空间协调.png"></p>
+<p><span class="math inline">\(z_v^s,z_v^t\)</span>表示在预先对齐（先验知识）集合T中的锚定节点<span class="math inline">\((v_s,v_t)\)</span>的embedding，损失函数的直观目的是保证在映射后，T中锚定节点的嵌入是相似的。调整后，可以根据源节点和目标节点的嵌入直接计算出目标节点之间的相关性。</p>
+<h2 id="embedding-based-on-a-graph-neural-network">embedding based on a graph neural network</h2>
+<p>为了加强局部结构嵌入，我们设计了一个特定的GCN模型，它同时编码结构和属性信息。两个锚节点的相似性取决于它们的拓扑属性和语义属性。</p>
 <p>GCN的传递公式：</p>
-<p><img src="/../images/NAME/GCN%E7%AC%ACl%E5%B1%82.png"></p>
+<p><img src="../images/NAME/GCN第l层.png"></p>
 <p>不使用ReLU而使用tanh，因为ReLU在信号为负值时丢失信息，因此不适合网络对齐任务。而且该论文使用的是GCN的多层的融合嵌入，作者提出了一个分层损失函数，保证两个标准：consistency-aware 以及anchor-aware。</p>
 <ul>
 <li><p>consistency-aware loss：该损失组件的目的是通过最小化相邻节点的层嵌入之间的距离，同时最大化不相关节点的层嵌入之间的距离，来整合一致性约束：</p>
-<p>![](..&#x2F;images&#x2F;NAME&#x2F;consistency-aware loss.png)</p>
-</li>
+<p><img src="../images/NAME/consistency-aware%20loss.png"></p></li>
 <li><p>anchor-aware loss：这个损失组件的核心思想是确保源节点嵌入和目标节点嵌入属于一个共享的表示空间。这种损失迫使锚对在每个铺设层的嵌入 类似的：</p>
-<p>![](..&#x2F;images&#x2F;NAME&#x2F;anchor-aware loss.png)</p>
-</li>
+<p><img src="../images/NAME/anchor-aware%20loss.png"></p></li>
 </ul>
 <p>其中T是已知的anchor集合。</p>
 <p>最终对于每一层的损失函数如下：</p>
-<p><img src="/../images/NAME/GCN%E6%AF%8F%E5%B1%82%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png"></p>
-<p>各层损失函数求和为：<img src="/../images/NAME/%E5%90%84%E5%B1%82%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E6%B1%82%E5%92%8C.png"></p>
+<p><img src="../images/NAME/GCN每层的损失函数.png"></p>
+<p>各层损失函数求和为：<img src="../images/NAME/各层损失函数求和.png"></p>
 <p>源网络和目标网络的GCN模型对每一层使用相同的权重矩阵。该机制保证了源节点和目标节点的嵌入具有共同的嵌入空间。这就消除了对两个嵌入空间的协调步骤的要求。此外，该机制确保了满足一致性约束，因为相应的节点与 以共享的权值传播的相同的结构信息和属性信息将具有相同的嵌入。</p>
-<h2 id="global-community-aware-embedding"><a href="#global-community-aware-embedding" class="headerlink" title="global community-aware embedding"></a>global community-aware embedding</h2><p>在本节中，我们设计了另一个嵌入模型，该模型提供了基于社区结构的网络节点的全局视图，这为社区提供了另一个有价值的信息来源 对齐过程。</p>
-<p>给定一个图$G&#x3D;(V,A)$，社区发现的目的就是找到一个集合划分$C&#x3D;\left{C_1,…,C_m\right}$就是m个不相交的社区。用一个membership matrix来表示划分,$M∈\left{0,1\right}^{n \times m}$，具有n行表示节点，m列表示有m个社区。请注意，由于这些社区是不相交的，因此每个网络节点只属于一个社区，因此隶属度矩阵M中的每一行都是一个热门向量。检测社区的问题可以表示为寻找一个优化的成员矩阵的问题。</p>
+<h2 id="global-community-aware-embedding">global community-aware embedding</h2>
+<p>在本节中，我们设计了另一个嵌入模型，该模型提供了基于社区结构的网络节点的全局视图，这为社区提供了另一个有价值的信息来源 对齐过程。</p>
+<p>给定一个图<span class="math inline">\(G=(V,A)\)</span>，社区发现的目的就是找到一个集合划分<span class="math inline">\(C=\left\{C_1,...,C_m\right\}\)</span>就是m个不相交的社区。用一个membership matrix来表示划分,<span class="math inline">\(M∈\left\{0,1\right\}^{n \times m}\)</span>，具有n行表示节点，m列表示有m个社区。请注意，由于这些社区是不相交的，因此每个网络节点只属于一个社区，因此隶属度矩阵M中的每一行都是一个热门向量。检测社区的问题可以表示为寻找一个优化的成员矩阵的问题。</p>
 <p>矩阵M不仅清楚地表示了网络节点的社区划分，还可以用来生成一个新的粗化邻接矩阵，其中“节点”为社区：</p>
-<p><img src="/../images/NAME/%E6%96%B0%E7%9A%84%E9%82%BB%E6%8E%A5%E7%9F%A9%E9%98%B5.png"></p>
-<p>在$A^{com}$中，在主对角线上的元素$A_{ii}^{com}$表示社区Ci中各节点之间的内部连接（边）的数量，非对角线元素$A_{i,j}^{com}$表示社区Ci和Cj之间的交叉连接的数量。</p>
-<p>为了学习优化后的成员矩阵M，我们提出使用一个Membership probability probability matrix $P∈R^{n \times m}$，其中$p_{i,j}$表示节点i属于社区j的可能性。这个概率矩阵可以被认为是隶属度矩阵的一个松弛版本（从二进制矩阵到实矩阵）。这种的好处有，（1）M可以从P中推断出来，通过给每个节点分配概率最高的社区.（2）实值矩阵的使用有助于促进学习过程。（3）概率向量可以作为网络节点的表示，类似于浅层嵌入技术中的嵌入矩阵.</p>
+<p><img src="../images/NAME/新的邻接矩阵.png"></p>
+<p>在<span class="math inline">\(A^{com}\)</span>中，在主对角线上的元素<span class="math inline">\(A_{ii}^{com}\)</span>表示社区Ci中各节点之间的内部连接（边）的数量，非对角线元素<span class="math inline">\(A_{i,j}^{com}\)</span>表示社区Ci和Cj之间的交叉连接的数量。</p>
+<p>为了学习优化后的成员矩阵M，我们提出使用一个Membership probability probability matrix <span class="math inline">\(P∈R^{n \times m}\)</span>，其中<span class="math inline">\(p_{i,j}\)</span>表示节点i属于社区j的可能性。这个概率矩阵可以被认为是隶属度矩阵的一个松弛版本（从二进制矩阵到实矩阵）。这种的好处有，（1）M可以从P中推断出来，通过给每个节点分配概率最高的社区.（2）实值矩阵的使用有助于促进学习过程。（3）概率向量可以作为网络节点的表示，类似于浅层嵌入技术中的嵌入矩阵.</p>
 <p>由于矩阵M是离散的，而其松弛版本P是连续的，因此我们应用Gumbel-Softmax技术从P中采样M。</p>
-<p><strong>Gumbel-Softmax：这是一种参数化的采样方法，在离散变量的采样中具有：将某一随机离散变量X变得对每一个维度概率可导的作用。一个离散变量X如果满足p(X&#x3D;1)&#x3D;0.2，P(X&#x3D;2)&#x3D;0.2，P(X&#x3D;3)&#x3D;0.5，如果想要得到一些服从这个分布的离散的x的值，一般的思路是按照这个概率去采样，采样一些x来用。这样的问题就是，采样出来的x只有值没有式子，在神经网络中，没有办法将x对P求导，也就没办法进行反向传播。能不能给一个以p1,p2,p3为参数的式子，让这个公式返回的结果是x的采样？找到的式子如下：</strong></p>
-<p><img src="/../images/NAME/Gumbel-Softmax.png"></p>
+<p><strong>Gumbel-Softmax：这是一种参数化的采样方法，在离散变量的采样中具有：将某一随机离散变量X变得对每一个维度概率可导的作用。一个离散变量X如果满足p(X=1)=0.2，P(X=2)=0.2，P(X=3)=0.5，如果想要得到一些服从这个分布的离散的x的值，一般的思路是按照这个概率去采样，采样一些x来用。这样的问题就是，采样出来的x只有值没有式子，在神经网络中，没有办法将x对P求导，也就没办法进行反向传播。能不能给一个以p1,p2,p3为参数的式子，让这个公式返回的结果是x的采样？找到的式子如下：</strong></p>
+<p><img src="../images/NAME/Gumbel-Softmax.png"></p>
 <p><strong>gi表示的是Gumbel噪声，这个噪声是用来使得z的返回结果是不固定的，最终得到的z向量是一个one hot向量，用这个向量乘以x的值域向量，得到的就是采样的x，上面的函数只有argmax函数不可导，用softmax函数代替</strong></p>
-<p><img src="/../images/NAME/z%E5%90%91%E9%87%8F.png"></p>
+<p><img src="../images/NAME/z向量.png"></p>
 <p><strong>这个式子里的参数 T 越小，z越接近one_hot向量。然后我们得到了一些可以对p求导的x的取样值，当然因为我们最后用的是softmax，所以x的值跟纯粹的取样也不完全一样，但比起直接求期望，我们至少得到了样本。这个过程相当于我们</strong>把不可导的取样过程，从x本身转嫁到了求取x的公式中的一项g上面，而g不依赖于p1,p2,p3<strong>。这样一来，x对p1,p2,p3仍然是可导的，而我们得到的x仍然是离散值的采样。目标达成。这样的采样过程转嫁的技巧有一个专门的名字，叫</strong>再参化技巧(reparameterization trick)。****</p>
 <p>因为这是一个可微算子(而argmax算子是不可微的)，因此适用于我们的端到端神经网络模型。然后将M的每一行从P中计算出来如下：</p>
-<p><img src="/../images/NAME/%E4%BB%8EM%E9%87%87%E6%A0%B7P.png"></p>
+<p><img src="../images/NAME/从M采样P.png"></p>
 <p>其中t是常数，g是Gumbel分布的样本，β是噪声超参数。当温度t接近于零时，一个来自Gumbel-Softmax分布的样本变成了一个单热向量，这有助于将概率矩阵P转移到M。</p>
-<p><img src="/../images/NAME/%E7%A4%BE%E5%8C%BA%E6%A3%80%E6%B5%8B%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png"></p>
+<p><img src="../images/NAME/社区检测损失函数.png"></p>
 <p>请注意，当集成到模型中时，损失函数接收的是连续的值，而不是整数的值，因为隶属度矩阵M是基于概率矩阵的估计版本 P.</p>
 <p>网络对齐的方法必须注意两点，首先不同的embedding的权重不一样，其次铆钉节点是稀缺的因此self supervised的方法更有效。</p>
-<p>为了减轻不同类型表示之间的不兼容性，我们首先定义一个由每种嵌入类型构造的嵌入对齐矩阵。更详细地说，给定了源网络$Z_s^{(l)}$和由表示学习技术l生成的目标网络$Z^{l}_t$的嵌入，不同embedding层级的对齐矩阵就可以计算为：$S^{(l)}&#x3D;Z_s^{(l)}Z_t^{(l)T}$，$S∈R^{n_s \times n_t}$</p>
-<p>最终的S矩阵计算为：<img src="/../images/NAME/S%E7%9F%A9%E9%98%B5%E8%AE%A1%E7%AE%97.png"></p>
+<p>为了减轻不同类型表示之间的不兼容性，我们首先定义一个由每种嵌入类型构造的嵌入对齐矩阵。更详细地说，给定了源网络<span class="math inline">\(Z_s^{(l)}\)</span>和由表示学习技术l生成的目标网络<span class="math inline">\(Z^{l}_t\)</span>的嵌入，不同embedding层级的对齐矩阵就可以计算为：<span class="math inline">\(S^{(l)}=Z_s^{(l)}Z_t^{(l)T}\)</span>，<span class="math inline">\(S∈R^{n_s \times n_t}\)</span></p>
+<p>最终的S矩阵计算为：<img src="../images/NAME/S矩阵计算.png"></p>
 <p>这种方法的挑战之一是确定每种嵌入技术的优化重要性因子，因为这些因素随着输入网络的属性而变化。使用网络增强来自动优化重要性因素。</p>
-<p>基于扰动的网络增强。对于$G_p&#x3D;(V_p,A_p,F_p)$，有$A_p&#x3D;PAP^T$，P是任取的置换矩阵。按照之前的文章那样添加属性还有拓扑噪声。</p>
+<p>基于扰动的网络增强。对于<span class="math inline">\(G_p=(V_p,A_p,F_p)\)</span>，有<span class="math inline">\(A_p=PAP^T\)</span>，P是任取的置换矩阵。按照之前的文章那样添加属性还有拓扑噪声。</p>
 <p>适应性注意共识机制。我们利用增强机制来使模型能够反映重要的嵌入。给定原始图及其扰动版本，一个好的模型应该在两个版本之间保持相似的嵌入，并完美地对齐网络节点。考虑到这一点，我们通过优化以下函数来学习重要因素：</p>
-<p><img src="/../images/NAME/%E4%BC%98%E5%8C%96%E5%87%BD%E6%95%B0.png"></p>
-<p>最大化对齐分数，也就是anchor links的$(v_i^G,v_i^{G^*})$。由于源网络和目标网络是同构的，我们只选择源网络作为具有代表性的原始图。</p>
+<p><img src="../images/NAME/优化函数.png"></p>
+<p>最大化对齐分数，也就是anchor links的<span class="math inline">\((v_i^G,v_i^{G^*})\)</span>。由于源网络和目标网络是同构的，我们只选择源网络作为具有代表性的原始图。</p>
 
       
 
@@ -571,11 +570,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -583,15 +582,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -599,11 +594,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">

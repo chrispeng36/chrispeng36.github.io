@@ -8,34 +8,33 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Unsupervised Graph Alignment Alignment with Wasserstein Distance Disciminator笔记 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="这篇论文也是最近研究的生成对抗网络解决网络对齐的方法。 大多数现有的无监督方法都假设相应的节点应该具有相似的局部结构，但这往往不成立。同时，丰富的节点属性往往是可用的，并已被证明可以有效地减轻上述局部拓扑不一致的问题。我们首先开发了一个轻量级的GCN体系结构来捕获局部和全局图模式及其与节点属性的固有相关性。然后证明了在嵌入空间中，得到的最优对齐结果等价于最小化不同图中节点嵌入之间的Wasse">
-<meta property="og:type" content="article">
+  <meta property="og:type" content="article">
 <meta property="og:title" content="Unsupervised Graph Alignment Alignment with Wasserstein Distance Disciminator笔记">
 <meta property="og:url" content="http://yoursite.com/2022/04/26/Unsupervised-Graph-Alignment-Alignment-with-Wasserstein-Distance-Disciminator%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="这篇论文也是最近研究的生成对抗网络解决网络对齐的方法。 大多数现有的无监督方法都假设相应的节点应该具有相似的局部结构，但这往往不成立。同时，丰富的节点属性往往是可用的，并已被证明可以有效地减轻上述局部拓扑不一致的问题。我们首先开发了一个轻量级的GCN体系结构来捕获局部和全局图模式及其与节点属性的固有相关性。然后证明了在嵌入空间中，得到的最优对齐结果等价于最小化不同图中节点嵌入之间的Wasse">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E7%BD%91%E7%BB%9C%E5%AF%B9%E9%BD%90%E4%BB%BB%E5%8A%A1.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E6%A8%A1%E5%9E%8B%E6%A1%86%E6%9E%B6.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/LGCN%E5%85%AC%E5%BC%8F.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/wasserstein%E8%B7%9D%E7%A6%BB%E5%AE%9A%E4%B9%89.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/wasserstein%E8%B7%9D%E7%A6%BB.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%88%86%E5%B8%83.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%AE%9A%E4%B9%89.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%AE%9A%E4%B9%891.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/proposition5.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E7%AD%89%E4%BB%B7%E7%9A%84%E8%B7%9D%E7%A6%BB.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/LWW%E6%8D%9F%E5%A4%B1.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/lossrecon.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%B5%8C%E5%85%A5%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/WALIGN%E7%AE%97%E6%B3%95.png">
-<meta property="og:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%80%99%E9%80%89%E5%AF%B9%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E7%BD%91%E7%BB%9C%E5%AF%B9%E9%BD%90%E4%BB%BB%E5%8A%A1.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E6%A8%A1%E5%9E%8B%E6%A1%86%E6%9E%B6.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/LGCN%E5%85%AC%E5%BC%8F.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/wasserstein%E8%B7%9D%E7%A6%BB%E5%AE%9A%E4%B9%89.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/wasserstein%E8%B7%9D%E7%A6%BB.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%88%86%E5%B8%83.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%AE%9A%E4%B9%89.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%AE%9A%E4%B9%891.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/proposition5.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E7%AD%89%E4%BB%B7%E7%9A%84%E8%B7%9D%E7%A6%BB.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/kantorovich%20rubinstein%20duality.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/LWW%E6%8D%9F%E5%A4%B1.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/lossrecon.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%B5%8C%E5%85%A5%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/WALIGN%E7%AE%97%E6%B3%95.png">
+<meta property="og:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%80%99%E9%80%89%E5%AF%B9%E7%AE%97%E6%B3%95.png">
 <meta property="article:published_time" content="2022-04-26T15:36:05.000Z">
 <meta property="article:modified_time" content="2022-05-30T02:07:18.368Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E7%BD%91%E7%BB%9C%E5%AF%B9%E9%BD%90%E4%BB%BB%E5%8A%A1.png">
+<meta name="twitter:image" content="http://yoursite.com/2022/04/26/images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E7%BD%91%E7%BB%9C%E5%AF%B9%E9%BD%90%E4%BB%BB%E5%8A%A1.png">
   
     <link rel="alternative" href="/atom.xml" title="Chris的个人博客" type="application/atom+xml">
   
@@ -204,73 +203,72 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-         <a id="more"></a>
-
+        <p><a id="more"></a></p>
 <p>这篇论文也是最近研究的生成对抗网络解决网络对齐的方法。</p>
 <p>大多数现有的无监督方法都假设相应的节点应该具有相似的局部结构，但这往往不成立。同时，丰富的节点属性往往是可用的，并已被证明可以有效地减轻上述局部拓扑不一致的问题。我们首先开发了一个轻量级的GCN体系结构来捕获局部和全局图模式及其与节点属性的固有相关性。然后证明了在嵌入空间中，得到的最优对齐结果等价于最小化不同图中节点嵌入之间的Wasserstein距离。为此，我们提出了一种新的Wasserstein距离鉴别器来识别候选节点对应对，以更新节点嵌入。</p>
 <p>现在的方法大多数都是基于有监督学习的网络对齐，而现在的大多数的无监督学习任务都是基于结点应该有相似的邻域特性，在实际中太为严格。例如：在不同的图表中，节点的程度可能会迅速变化，用户在Facebook上可能有很多朋友，但在推特上的活跃程度可能会少得多。</p>
 <p>同时，在许多现实世界的图中，节点通常与丰富的侧边信息相关联(也就是节点属性)。这些属性信息与图的结构高度相关，可以用来解决上述局部结构不一致的问题。</p>
-<p>一个简单的解决方案是首先学习节点嵌入，然后找到与学习到的嵌入表示的节点对应关系。这种方法有如下问题：（1）如果我们直接应用GCN来获得节点嵌入，那么不同图的节点嵌入可能不在同一个特征空间中，这不适合于对齐任务。同时，GCN还可能存在过平滑问题，所以就不能有效的捕获全局的图的特征，不适用于对齐任务。（2）将对齐问题简化为基于节点嵌入的相似性矩阵的二部图匹配问题。现在的大多数的算法的复杂度是$O(n^3)$，很高。（3）节点表示学习和图对齐不是两个独立的任务，而是应该相互补充。更好的节点嵌入可以帮助实现更好的对齐结果，而更好的对齐也可以为嵌入学习提供监督信号。因此，必须在统一的框架。</p>
+<p>一个简单的解决方案是首先学习节点嵌入，然后找到与学习到的嵌入表示的节点对应关系。这种方法有如下问题：（1）如果我们直接应用GCN来获得节点嵌入，那么不同图的节点嵌入可能不在同一个特征空间中，这不适合于对齐任务。同时，GCN还可能存在过平滑问题，所以就不能有效的捕获全局的图的特征，不适用于对齐任务。（2）将对齐问题简化为基于节点嵌入的相似性矩阵的二部图匹配问题。现在的大多数的算法的复杂度是<span class="math inline">\(O(n^3)\)</span>，很高。（3）节点表示学习和图对齐不是两个独立的任务，而是应该相互补充。更好的节点嵌入可以帮助实现更好的对齐结果，而更好的对齐也可以为嵌入学习提供监督信号。因此，必须在统一的框架。</p>
 <p>这个论文主要回答的问题如下：如何学习适合于对齐任务的有效嵌入内容？如何联合建模嵌入学习和图形对齐？</p>
-<p>$G&#x3D;(v,\varepsilon,X)$，其中$v&#x3D;\left{v_1,v_2,…,v_n\right}$，$\xi$表示边集合，$X∈R^{n \times d}$表示节点属性矩阵。A表示邻接矩阵。其中这两个网络的节点数量以及特征数量为$(n_s,d_s)$和$(n_t,d_t)$</p>
+<p><span class="math inline">\(G=(v,\varepsilon,X)\)</span>，其中<span class="math inline">\(v=\left\{v_1,v_2,...,v_n\right\}\)</span>，<span class="math inline">\(\xi\)</span>表示边集合，<span class="math inline">\(X∈R^{n \times d}\)</span>表示节点属性矩阵。A表示邻接矩阵。其中这两个网络的节点数量以及特征数量为<span class="math inline">\((n_s,d_s)\)</span>和<span class="math inline">\((n_t,d_t)\)</span></p>
 <ul>
-<li>定义1：（unsupervised graph alignment）给定两个输入的图$G_s&#x3D;(v_s,\xi_s,X_s)$以及$G_t&#x3D;(u_t,\xi_t,X_t)$，无监督的网络对齐是为了找到节点对$M&#x3D;\left{(v_i,u_j)|v_i∈v_S \and u_j ∈ u_t\right}$。此外，每个节点最多应该在一个合法的对齐中出现一次。形式上，对于一个合法的M，存在一个部分映射$\pi: v_s \to u_t$并且一个部分映射$\pi’ :u_t \to v_s$，因此对于任意的$(v_i,u_j)∈M$，我们有$\pi(v_i)&#x3D;u_j \and \pi’(u_j)&#x3D;v_i$。</li>
+<li>定义1：（unsupervised graph alignment）给定两个输入的图<span class="math inline">\(G_s=(v_s,\xi_s,X_s)\)</span>以及<span class="math inline">\(G_t=(u_t,\xi_t,X_t)\)</span>，无监督的网络对齐是为了找到节点对<span class="math inline">\(M=\left\{(v_i,u_j)|v_i∈v_S \and u_j ∈ u_t\right\}\)</span>。此外，每个节点最多应该在一个合法的对齐中出现一次。形式上，对于一个合法的M，存在一个部分映射<span class="math inline">\(\pi: v_s \to u_t\)</span>并且一个部分映射<span class="math inline">\(\pi&#39; :u_t \to v_s\)</span>，因此对于任意的<span class="math inline">\((v_i,u_j)∈M\)</span>，我们有<span class="math inline">\(\pi(v_i)=u_j \and \pi&#39;(u_j)=v_i\)</span>。</li>
 </ul>
-<p>我们通常假设$H^{(0)}&#x3D;X$，一个两层的GCN架构为：$Z&#x3D;\widehat A \sigma(\widehat AXW^{(1)})W^{(2)}$,其中Z是所有的节点的embedding矩阵。给定节点嵌入表示，无监督图对齐问题可以转换为图论中的经典任务，即二部图匹配。</p>
+<p>我们通常假设<span class="math inline">\(H^{(0)}=X\)</span>，一个两层的GCN架构为：<span class="math inline">\(Z=\widehat A \sigma(\widehat AXW^{(1)})W^{(2)}\)</span>,其中Z是所有的节点的embedding矩阵。给定节点嵌入表示，无监督图对齐问题可以转换为图论中的经典任务，即二部图匹配。</p>
 <ul>
-<li><p>定义2：（network embedding based graph alignment）给定一个节点$v_i$以及$v_j$在两个网络中，节点的嵌入为$z_{v_i},z_{u_j}$，网络对齐的任务是找到：</p>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E7%BD%91%E7%BB%9C%E5%AF%B9%E9%BD%90%E4%BB%BB%E5%8A%A1.png"></p>
-</li>
+<li><p>定义2：（network embedding based graph alignment）给定一个节点<span class="math inline">\(v_i\)</span>以及<span class="math inline">\(v_j\)</span>在两个网络中，节点的嵌入为<span class="math inline">\(z_{v_i},z_{u_j}\)</span>，网络对齐的任务是找到：</p>
+<p><img src="../images/wasserstein距离对齐论文/网络对齐任务.png"></p></li>
 </ul>
-<p>如果我们令$c_{i,j}&#x3D;||z_{v_i}-z_{u_j}||$,上述的问题等价于节点集为$v_s \or u_t$以及cost集合$\left{c_{i,j}|v_i∈v_s,u_j∈u_t\right}$的最小化二部图匹配问题。如果是仅使用普通的GCN可能造成的问题有：（1）两个网络的嵌入可能是在不同的空间并且图的全局特征可能不能被很好地刻画；（2）传统的二部图匹配的算法的计算量太大了；（3）节点嵌入可能不适用于对齐任务。</p>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E6%A8%A1%E5%9E%8B%E6%A1%86%E6%9E%B6.png"></p>
+<p>如果我们令<span class="math inline">\(c_{i,j}=||z_{v_i}-z_{u_j}||\)</span>,上述的问题等价于节点集为<span class="math inline">\(v_s \or u_t\)</span>以及cost集合<span class="math inline">\(\left\{c_{i,j}|v_i∈v_s,u_j∈u_t\right\}\)</span>的最小化二部图匹配问题。如果是仅使用普通的GCN可能造成的问题有：（1）两个网络的嵌入可能是在不同的空间并且图的全局特征可能不能被很好地刻画；（2）传统的二部图匹配的算法的计算量太大了；（3）节点嵌入可能不适用于对齐任务。</p>
+<p><img src="../images/wasserstein距离对齐论文/模型框架.png"></p>
 <p>传统的GCN只能获取局部的图结构信息，因为第k层的GCN只使用了k阶邻域的信息，随着k的增大，所有节点的embedding将会趋近于一个相似的值。与此同时，全局拓扑模式对于保证准确的对齐也至关重要，特别是当局部结构一致性假设[43]不成立时。最近的研究表明GCN层之间的非线性不是至关重要的，可以简单地去除而不损害学习性能。因此提出了一个轻量级的GCN结构：LGCN，我们移除非线性函数和连接每一层的嵌入：</p>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/LGCN%E5%85%AC%E5%BC%8F.png"></p>
+<p><img src="../images/wasserstein距离对齐论文/LGCN公式.png"></p>
 <p>由于LGCN避免了层堆叠，因此我们可以将𝐾指定为大量的𝐾来捕获全局拓扑模式。</p>
 <p>由于上述公式除了权重项都能预先计算，稍后将介绍的对抗性训练阶段的计算成本。LGCN的平面结构使模型更容易训练，收敛速度也更快。此外，少量的模型参数将使后期的对抗性训练过程更加稳定。</p>
-<p>考虑到不同的图的属性（包括图的拓扑结构和节点属性）可能会有很大的不同，我们引入了一个额外的变换矩阵T来适应不同图之间的内在差异。$Z_S&#x3D;Tf_e(A_s,X_s) \ and \ Z_t&#x3D;f_e(A_t,X_t)$</p>
-<h1 id="Wasserstein-Distance-Discriminator"><a href="#Wasserstein-Distance-Discriminator" class="headerlink" title="Wasserstein Distance Discriminator"></a><strong>Wasserstein Distance Discriminator</strong></h1><p>Wasserstein Distance它是一种广泛用于度量两种概率分布之间差异的度量方法。</p>
+<p>考虑到不同的图的属性（包括图的拓扑结构和节点属性）可能会有很大的不同，我们引入了一个额外的变换矩阵T来适应不同图之间的内在差异。<span class="math inline">\(Z_S=Tf_e(A_s,X_s) \ and \ Z_t=f_e(A_t,X_t)\)</span></p>
+<h1 id="wasserstein-distance-discriminator"><strong>Wasserstein Distance Discriminator</strong></h1>
+<p>Wasserstein Distance它是一种广泛用于度量两种概率分布之间差异的度量方法。</p>
 <ul>
 <li>定义3：（Wasserstein Distance）</li>
 </ul>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/wasserstein%E8%B7%9D%E7%A6%BB%E5%AE%9A%E4%B9%89.png"></p>
-<p>𝛾表示一个最优的“质量”运输，它指定了对于每个𝑥，有多少“质量”应该被转移到𝑦，这样P𝑠将变成$P_t$</p>
-<p>从简单的情况出发，令$m&#x3D;|v_s|&#x3D;|u_t|$，我们假设一个完美的从$v_s \to u_t$的对齐是存在的。它被定义为将V𝑠中的每个节点根据定义2中的最优对应集M与U𝑡中的另一个节点进行匹配的对齐。然后将问题简化为识别给定Z𝑠和Z𝑡的最优集M。我们要最小化在M中的每个节点对$(v_i,u_j)$距离。</p>
+<p><img src="../images/wasserstein距离对齐论文/wasserstein距离定义.png"></p>
+<p>𝛾表示一个最优的“质量”运输，它指定了对于每个𝑥，有多少“质量”应该被转移到𝑦，这样P𝑠将变成<span class="math inline">\(P_t\)</span></p>
+<p>从简单的情况出发，令<span class="math inline">\(m=|v_s|=|u_t|\)</span>，我们假设一个完美的从<span class="math inline">\(v_s \to u_t\)</span>的对齐是存在的。它被定义为将V𝑠中的每个节点根据定义2中的最优对应集M与U𝑡中的另一个节点进行匹配的对齐。然后将问题简化为识别给定Z𝑠和Z𝑡的最优集M。我们要最小化在M中的每个节点对<span class="math inline">\((v_i,u_j)\)</span>距离。</p>
 <ul>
-<li>proposition 4：假设$m&#x3D;|v_s|&#x3D;|u_t|$。设P𝑠和P𝑡分别为均匀分布在V𝑠和U𝑡的嵌入上的概率分布。随后我们有等式8：</li>
+<li>proposition 4：假设<span class="math inline">\(m=|v_s|=|u_t|\)</span>。设P𝑠和P𝑡分别为均匀分布在V𝑠和U𝑡的嵌入上的概率分布。随后我们有等式8：</li>
 </ul>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/wasserstein%E8%B7%9D%E7%A6%BB.png"></p>
+<p><img src="../images/wasserstein距离对齐论文/wasserstein距离.png"></p>
 <p>证明：我们首先展示了一个对齐M，它唯一地决定了一个从P𝑠到P𝑡的运输𝛾，因为它可以在等式8中以联合分布的形式表示:</p>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%88%86%E5%B8%83.png"></p>
-<p>由于$W_1(p_s,p_t)$表示的最小的转移距离，上面的转移距离至少是$W_1(p_s,p_t)$，也就是等式8要取小于等于号。要证明等式成立，要做的就是夹逼法证明另一个方向的成立。也就是当$W_1(p_s,p_t)$达到其最优的时候，所有的在最优的转移$\gamma^*$中的$p(x&#x3D;v_i,y&#x3D;u_j)$要么是1&#x2F;m要么是0使得它能够一直生成一个对齐M。$\gamma^*$决定了一个M。</p>
-<p>为了证明，我们将这个问题转化为一个最小成本的网络流问题$(G’,U,C)$，其中$G’&#x3D;(V’,\varepsilon’)$，流量函数$U: \varepsilon’ \to R$以及损失函数$C: \varepsilon’ \to R$。流量网络的构造由以下公式定义：</p>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%AE%9A%E4%B9%89.png"></p>
-<p>流量为𝑚的流量在G‘中以U的能力运行，如果我们用将V𝑠和U𝑡之间的每对节点的流量乘以1&#x2F;𝑚，那么流量就唯一地决定了P𝑠和P之间的传输。由于每个容量𝑈（𝑣，𝑢）和总流量𝑚在这个最小成本流问题中是整数，通过约束的完全单模块化(也称为完整性定理[7,29] 最小代价流问题)，它有一个最优解，在每条边上都有整数流。显然，图中流量等于1的边集等价于M，这意味着总是存在一个M，使𝑊1(P𝑠，P𝑡)最小化。</p>
+<p><img src="../images/wasserstein距离对齐论文/分布.png"></p>
+<p>由于<span class="math inline">\(W_1(p_s,p_t)\)</span>表示的最小的转移距离，上面的转移距离至少是<span class="math inline">\(W_1(p_s,p_t)\)</span>，也就是等式8要取小于等于号。要证明等式成立，要做的就是夹逼法证明另一个方向的成立。也就是当<span class="math inline">\(W_1(p_s,p_t)\)</span>达到其最优的时候，所有的在最优的转移<span class="math inline">\(\gamma^*\)</span>中的<span class="math inline">\(p(x=v_i,y=u_j)\)</span>要么是1/m要么是0使得它能够一直生成一个对齐M。<span class="math inline">\(\gamma^*\)</span>决定了一个M。</p>
+<p>为了证明，我们将这个问题转化为一个最小成本的网络流问题<span class="math inline">\((G&#39;,U,C)\)</span>，其中<span class="math inline">\(G&#39;=(V&#39;,\varepsilon&#39;)\)</span>，流量函数<span class="math inline">\(U: \varepsilon&#39; \to R\)</span>以及损失函数<span class="math inline">\(C: \varepsilon&#39; \to R\)</span>。流量网络的构造由以下公式定义：</p>
+<p><img src="../images/wasserstein距离对齐论文/定义.png"></p>
+<p>流量为𝑚的流量在G‘中以U的能力运行，如果我们用将V𝑠和U𝑡之间的每对节点的流量乘以1/𝑚，那么流量就唯一地决定了P𝑠和P之间的传输。由于每个容量𝑈（𝑣，𝑢）和总流量𝑚在这个最小成本流问题中是整数，通过约束的完全单模块化(也称为完整性定理[7,29] 最小代价流问题)，它有一个最优解，在每条边上都有整数流。显然，图中流量等于1的边集等价于M，这意味着总是存在一个M，使𝑊1(P𝑠，P𝑡)最小化。</p>
 <p>然后，我们将命题4推广到一个图中的某些节点在另一个图中可能没有相应的节点的一般情况。</p>
 <ul>
-<li>proposition 5：令$m&#x3D;|M|$表示的是$v_s,u_t$之间对应节点的个数，并且$m ≤ min(|v_s|,|u_t|)$。对于任意的大小为m的子节点集合$v_s’,u_t’$，令P‘𝑠和P’𝑡分别是均匀分布在V‘𝑠和U’𝑡嵌入上的相应概率分布。我们随后有：</li>
+<li>proposition 5：令<span class="math inline">\(m=|M|\)</span>表示的是<span class="math inline">\(v_s,u_t\)</span>之间对应节点的个数，并且<span class="math inline">\(m ≤ min(|v_s|,|u_t|)\)</span>。对于任意的大小为m的子节点集合<span class="math inline">\(v_s&#39;,u_t&#39;\)</span>，令P‘𝑠和P’𝑡分别是均匀分布在V‘𝑠和U’𝑡嵌入上的相应概率分布。我们随后有：</li>
 </ul>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%AE%9A%E4%B9%891.png"></p>
+<p><img src="../images/wasserstein距离对齐论文/定义1.png"></p>
 <p>证明：与proposition 4类似的，我们将这个问题转化为一个最小的网络流问题：</p>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/proposition5.png"></p>
+<p><img src="../images/wasserstein距离对齐论文/proposition5.png"></p>
 <p>根据约束矩阵[29,32]的完全单模块性，它在每条边上都有一个整数流量的最优解。在这个最优流中，V𝑠中的𝑚个节点和U𝑡中的𝑚个节点将被流连接。设V‘𝑠和U’𝑡是由V𝑠和U𝑡方面的流所选择的节点集,那么V‘𝑠和U’𝑡之间的wasserstein距离（由最优运输计划定义）等价于</p>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E7%AD%89%E4%BB%B7%E7%9A%84%E8%B7%9D%E7%A6%BB.png"></p>
+<p><img src="../images/wasserstein距离对齐论文/等价的距离.png"></p>
 <p>另一方面，如果我们假设存在一对子集V‘’𝑆和U‘’𝑡具有更小的wasserstein距离，那么一个更好的解决方案，只包括节点之间的流动 V‘’𝑆和U‘’𝑡，其成本小于最优方案，存在于最小成本网络流问题中。这样的假设显然产生了一个矛盾。</p>
-<p>因此，对于任意的$v_s’’$以及$u_t’’$满足$|v_s’’|&#x3D;m,|u_t’’|&#x3D;m$，我们有$W_1(P_s’’,P_t’’)≥W_1(P’_s,P’_t)$，命题5得证。</p>
+<p>因此，对于任意的<span class="math inline">\(v_s&#39;&#39;\)</span>以及<span class="math inline">\(u_t&#39;&#39;\)</span>满足<span class="math inline">\(|v_s&#39;&#39;|=m,|u_t&#39;&#39;|=m\)</span>，我们有<span class="math inline">\(W_1(P_s&#39;&#39;,P_t&#39;&#39;)≥W_1(P&#39;_s,P&#39;_t)\)</span>，命题5得证。</p>
 <p>命题5表明，使wasserstein损失最小的节点对是最优的节点对应关系。因此，wasserstein距离反映了匹配的n之间的接近性 结果表明，匹配的最优嵌入表示将使wasserstein距离最小。</p>
-<p>![](..&#x2F;images&#x2F;wasserstein距离对齐论文&#x2F;kantorovich rubinstein duality.png)</p>
-<p>其中$||f_w||$是$f_w$的lipschitz形式，这个等式表示了分离P‘𝑠和P’的最优1-Lipschitz函数𝑓𝑤总是存在的，并且最大的分割是$W_1(P’_s,P’_t)$.我们使用一个神经网络结构来表示𝑓𝑤，在本文中，它被称为wasserstein距离鉴别器。因此，我们计算了两个不同图中每个节点的𝑓𝑤(z𝑣𝑖)和𝑓𝑤(z𝑢𝑗)。然后，V𝑠中最小化𝑓𝑤(z𝑣𝑖)的节点和U𝑡中最大化𝑓𝑤(z𝑢𝑗)的节点将会 是选定的节点对。选择过程的复杂性将从多项式时间降低到线性时间。</p>
-<p>𝑓𝑤被优化以最大化E𝑥∼P‘𝑠[𝑓𝑤（𝑥）]−E𝑦∼P’𝑡[𝑓𝑤（𝑦）]的预期差异。因此，𝑓𝑤使$-L_{we}$最小化，从而导致以下损失：</p>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/LWW%E6%8D%9F%E5%A4%B1.png"></p>
+<p><img src="../images/wasserstein距离对齐论文/kantorovich%20rubinstein%20duality.png"></p>
+<p>其中<span class="math inline">\(||f_w||\)</span>是<span class="math inline">\(f_w\)</span>的lipschitz形式，这个等式表示了分离P‘𝑠和P’的最优1-Lipschitz函数𝑓𝑤总是存在的，并且最大的分割是<span class="math inline">\(W_1(P&#39;_s,P&#39;_t)\)</span>.我们使用一个神经网络结构来表示𝑓𝑤，在本文中，它被称为wasserstein距离鉴别器。因此，我们计算了两个不同图中每个节点的𝑓𝑤(z𝑣𝑖)和𝑓𝑤(z𝑢𝑗)。然后，V𝑠中最小化𝑓𝑤(z𝑣𝑖)的节点和U𝑡中最大化𝑓𝑤(z𝑢𝑗)的节点将会 是选定的节点对。选择过程的复杂性将从多项式时间降低到线性时间。</p>
+<p>𝑓𝑤被优化以最大化E𝑥∼P‘𝑠[𝑓𝑤（𝑥）]−E𝑦∼P’𝑡[𝑓𝑤（𝑦）]的预期差异。因此，𝑓𝑤使<span class="math inline">\(-L_{we}\)</span>最小化，从而导致以下损失：</p>
+<p><img src="../images/wasserstein距离对齐论文/LWW损失.png"></p>
 <p>最后，整个优化方案可以表述为一个双人博弈。嵌入学习阶段旨在优化嵌入，以最小化V‘𝑠和U’之间的瓦瑟斯坦距离 ，而对鉴别器进行优化，得到一个更好的wasserstein距离下界。简而言之，这两个阶段在对齐任务的最佳嵌入方面相互补充。</p>
 <p>上述方法的一个问题是，对抗性的损失可能会崩溃为一个平凡的情况，即所有的嵌入向量都成为相同的值。在这种情况下，wasserstein的距离就变成了 0，但这肯定不是我们想要的距离。</p>
 <p>为了解决这个问题，我们使用重构损失来确保嵌入仍然有足够的信息来重新创建输入属性。我们将𝑓𝑟𝑠和𝑓𝑟𝑡定义为两个重构神经网络，每个神经网络都将其图的嵌入作为输入，并返回图的属性作为输出。然后我们将以下损失最小化函数：</p>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/lossrecon.png"></p>
+<p><img src="../images/wasserstein距离对齐论文/lossrecon.png"></p>
 <p>最后，我们使用等式（17）来更新嵌入网络中的权值矩阵，其中𝛽是一个平衡两个损失函数的超参数：</p>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%B5%8C%E5%85%A5%E7%9A%84%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0.png"></p>
+<p><img src="../images/wasserstein距离对齐论文/嵌入的损失函数.png"></p>
 <p>综上所述，在训练过程的每次迭代中，我们的框架首先使用嵌入网络LGCN生成节点嵌入。在此之后，我们的框架将更新了维护者的参数 通过最小化等式中的𝐿ww来实现的ein鉴别器 (15).然后，我们的框架使用瓦瑟斯坦鉴别器，根据算法2生成伪节点对应对。最后，在它的最后 通过最小化等式来更新嵌入网络的参数 (17).我们在算法1中总结了我们的框架的详细训练过程。</p>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/WALIGN%E7%AE%97%E6%B3%95.png"></p>
-<p><img src="/../images/wasserstein%E8%B7%9D%E7%A6%BB%E5%AF%B9%E9%BD%90%E8%AE%BA%E6%96%87/%E5%80%99%E9%80%89%E5%AF%B9%E7%AE%97%E6%B3%95.png"></p>
+<p><img src="../images/wasserstein距离对齐论文/WALIGN算法.png"></p>
+<p><img src="../images/wasserstein距离对齐论文/候选对算法.png"></p>
 
       
 
@@ -413,7 +411,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Wasserstein-Distance-Discriminator"><span class="toc-number">1.</span> <span class="toc-text">Wasserstein Distance Discriminator</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#wasserstein-distance-discriminator"><span class="toc-number">1.</span> <span class="toc-text">Wasserstein Distance Discriminator</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -559,11 +557,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -571,15 +569,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -587,11 +581,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">

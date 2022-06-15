@@ -15,11 +15,11 @@
 <meta property="og:site_name" content="Chris的个人博客">
 <meta property="og:description" content="Splitter笔记">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/images/%E6%AD%A3%E5%88%99%E4%BC%98%E5%8C%96%E6%96%B9%E7%A8%8B.png">
-<meta property="og:image" content="http://yoursite.com/images/%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B-16545859038562.png">
-<meta property="og:image" content="http://yoursite.com/images/ego-splitting%E6%9E%B6%E6%9E%84%E6%B5%81%E7%A8%8B.png">
-<meta property="og:image" content="http://yoursite.com/images/F-1%E5%88%86%E6%95%B0.png">
-<meta property="og:image" content="http://yoursite.com/images/%E8%AF%84%E4%BB%B71.png">
+<meta property="og:image" content="http://yoursite.com/2022/06/07/images/%E6%AD%A3%E5%88%99%E4%BC%98%E5%8C%96%E6%96%B9%E7%A8%8B.png">
+<meta property="og:image" content="http://yoursite.com/2022/06/07/images/%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B-16545859038562.png">
+<meta property="og:image" content="http://yoursite.com/2022/06/07/images/ego-splitting%E6%9E%B6%E6%9E%84%E6%B5%81%E7%A8%8B.png">
+<meta property="og:image" content="http://yoursite.com/2022/06/07/images/F-1%E5%88%86%E6%95%B0.png">
+<meta property="og:image" content="http://yoursite.com/2022/06/07/images/%E8%AF%84%E4%BB%B71.png">
 <meta property="og:image" content="http://yoursite.com/2022/06/07/images/%E6%AD%A5%E9%AA%A41-3-16546792208425.png">
 <meta property="og:image" content="http://yoursite.com/2022/06/07/images/%E6%AD%A5%E9%AA%A44-5-16546792310987.png">
 <meta property="article:published_time" content="2022-06-06T16:05:03.000Z">
@@ -27,7 +27,7 @@
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="研究工作">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/images/%E6%AD%A3%E5%88%99%E4%BC%98%E5%8C%96%E6%96%B9%E7%A8%8B.png">
+<meta name="twitter:image" content="http://yoursite.com/2022/06/07/images/%E6%AD%A3%E5%88%99%E4%BC%98%E5%8C%96%E6%96%B9%E7%A8%8B.png">
   
     <link rel="alternative" href="/atom.xml" title="Chris的个人博客" type="application/atom+xml">
   
@@ -196,76 +196,77 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Splitter笔记"><a href="#Splitter笔记" class="headerlink" title="Splitter笔记"></a>Splitter笔记</h2><a id="more"></a>
-
+        <h2 id="splitter笔记">Splitter笔记</h2>
+<a id="more"></a>
 <p>这篇论文的最大的亮点就是将一个结点基于自我网络的原则分解，每个表示编码节点在节点参与的不同本地社区中的角色。嵌入方法能否从真实图的重叠聚类结构中获益？</p>
-<p>这里考虑的是无向图，$G&#x3D;(V,E)$，$G[U]&#x3D;(U,E \and U \times U)$为G的结点的子集的诱导图（这里的$U \times U$可以理解为有$U \times U$条边，当然这些边都得在原图中存在，所以取了个交集）。$N_u&#x3D;\left{v;(u,v) \in E\right}$就是结点u的邻居集合，而它的ego-net就是在其邻居诱导出来的图$G[N_u]$，u的ego-net并不包含结点u本身。令$\mathcal{A}$作为输入的非重叠聚类算法，返回的就是将结点集合V划分为t个不相交的集合$A(G)&#x3D;(V_1,V_2,…,V_t)$。</p>
-<p>首先这个论文考虑了一个persona分解的东西。首先使用在一个节点的自我网络中（它的邻居和它们的诱导子图）中发现的集群作为基础来定义一个新的图，即人物图，$G_P$。将新的图里面的结点称为personas，将G中每个原始节点的交互划分为几个语义子组，这些子组捕获其网络行为的不同组件。</p>
-<p>persona decomposition要做的就是将原始图G转换为persona graph $G_P$：</p>
+<p>这里考虑的是无向图，<span class="math inline">\(G=(V,E)\)</span>，<span class="math inline">\(G[U]=(U,E \and U \times U)\)</span>为G的结点的子集的诱导图（这里的<span class="math inline">\(U \times U\)</span>可以理解为有<span class="math inline">\(U \times U\)</span>条边，当然这些边都得在原图中存在，所以取了个交集）。<span class="math inline">\(N_u=\left\{v;(u,v) \in E\right\}\)</span>就是结点u的邻居集合，而它的ego-net就是在其邻居诱导出来的图<span class="math inline">\(G[N_u]\)</span>，u的ego-net并不包含结点u本身。令<span class="math inline">\(\mathcal{A}\)</span>作为输入的非重叠聚类算法，返回的就是将结点集合V划分为t个不相交的集合<span class="math inline">\(A(G)=(V_1,V_2,...,V_t)\)</span>。</p>
+<p>首先这个论文考虑了一个persona分解的东西。首先使用在一个节点的自我网络中（它的邻居和它们的诱导子图）中发现的集群作为基础来定义一个新的图，即人物图，<span class="math inline">\(G_P\)</span>。将新的图里面的结点称为personas，将G中每个原始节点的交互划分为几个语义子组，这些子组捕获其网络行为的不同组件。</p>
+<p>persona decomposition要做的就是将原始图G转换为persona graph <span class="math inline">\(G_P\)</span>：</p>
 <ul>
-<li>对于每个节点$u \in V$,使用聚类算法$\mathcal{A}(G[N_u])&#x3D;\left{N_u^1,N_u^2,…,N_u^{t_u}\right}$，其中$t_u&#x3D;np_{\mathcal A}(G[N_u])$。</li>
-<li>创建一个personas集合$V’$，在V中的每个节点$v_0$对应在$V_P$中的$t_{v_0}$个personas（也就是$v_0$的ego-net的分割数），表示为$v_i$，$i&#x3D;1,…,t_{v_0}$。</li>
-<li>为personas之间添加边。如果$(u,v)∈E,v∈N_u^i,v∈N_v^j$，那么添加一个边$(u_i,v_j)$到$E_P$中。</li>
+<li>对于每个节点<span class="math inline">\(u \in V\)</span>,使用聚类算法<span class="math inline">\(\mathcal{A}(G[N_u])=\left\{N_u^1,N_u^2,...,N_u^{t_u}\right\}\)</span>，其中<span class="math inline">\(t_u=np_{\mathcal A}(G[N_u])\)</span>。</li>
+<li>创建一个personas集合<span class="math inline">\(V&#39;\)</span>，在V中的每个节点<span class="math inline">\(v_0\)</span>对应在<span class="math inline">\(V_P\)</span>中的<span class="math inline">\(t_{v_0}\)</span>个personas（也就是<span class="math inline">\(v_0\)</span>的ego-net的分割数），表示为<span class="math inline">\(v_i\)</span>，<span class="math inline">\(i=1,...,t_{v_0}\)</span>。</li>
+<li>为personas之间添加边。如果<span class="math inline">\((u,v)∈E,v∈N_u^i,v∈N_v^j\)</span>，那么添加一个边<span class="math inline">\((u_i,v_j)\)</span>到<span class="math inline">\(E_P\)</span>中。</li>
 </ul>
 <p>构造的persona graph具有以下的性质：</p>
 <ul>
-<li>每个位于$G_P$中的结点都是来自原始网络中的结点，分割为一个或者多个personas。</li>
-<li>原始图中的每个节点都可以映射到其相应的角色。但是$G_P$的社区结构和原始网络比起来很不一样。</li>
+<li>每个位于<span class="math inline">\(G_P\)</span>中的结点都是来自原始网络中的结点，分割为一个或者多个personas。</li>
+<li>原始图中的每个节点都可以映射到其相应的角色。但是<span class="math inline">\(G_P\)</span>的社区结构和原始网络比起来很不一样。</li>
 </ul>
-<p>上面创建的$G_P$确实可以给每个结点创建多个embeddings，但是存在的问题就是创建的$G_P$可能与原始网络非常的不一样，可能会存在许多不相连的组件，即使他们在原始网络中是相连的。</p>
+<p>上面创建的<span class="math inline">\(G_P\)</span>确实可以给每个结点创建多个embeddings，但是存在的问题就是创建的<span class="math inline">\(G_P\)</span>可能与原始网络非常的不一样，可能会存在许多不相连的组件，即使他们在原始网络中是相连的。</p>
 <p>作者在这里提出了两个改进的策略：</p>
-<p>（1）提出添加约束条件，persona表示不仅仅能预测在$G_P$中其周围的personas，也能够预测原始结点。给定一个persona $v_i$，作者提出要求它的表示包括对原始图G中的节点$v_o$的依赖性：$Pr(v_0| \Phi_{G_P(v_i)})$。</p>
+<p>（1）提出添加约束条件，persona表示不仅仅能预测在<span class="math inline">\(G_P\)</span>中其周围的personas，也能够预测原始结点。给定一个persona <span class="math inline">\(v_i\)</span>，作者提出要求它的表示包括对原始图G中的节点<span class="math inline">\(v_o\)</span>的依赖性：<span class="math inline">\(Pr(v_0| \Phi_{G_P(v_i)})\)</span>。</p>
 <p>为了控制图正则化的强度，引入参数λ，那么就产生了下述的优化问题：</p>
-<p><img src="/../images/%E6%AD%A3%E5%88%99%E4%BC%98%E5%8C%96%E6%96%B9%E7%A8%8B.png"></p>
-<p>（2）作者提出来将v的personas表示$\Phi_{G_P}(v)$依赖于原始的表示$\Phi_G(v)$通过初始化作为一个先验知识。初始化所有的personas为$R^d$中的同一个位置，结合正则表达的形式，将角色嵌入约束，使其表现为单个实体的内聚部分。</p>
+<p><img src="../images/正则优化方程.png"></p>
+<p>（2）作者提出来将v的personas表示<span class="math inline">\(\Phi_{G_P}(v)\)</span>依赖于原始的表示<span class="math inline">\(\Phi_G(v)\)</span>通过初始化作为一个先验知识。初始化所有的personas为<span class="math inline">\(R^d\)</span>中的同一个位置，结合正则表达的形式，将角色嵌入约束，使其表现为单个实体的内聚部分。</p>
 <p>最后整个的算法流程为：</p>
-<p><img src="/../images/%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B-16545859038562.png"></p>
-<p>首先创建persona graph，初始化$\Phi_G$，遍历所有结点$v_0$及其personas，初始化$v_0$的第j个persona。</p>
-<h2 id="persona-graph的创建"><a href="#persona-graph的创建" class="headerlink" title="persona graph的创建"></a>persona graph的创建</h2><p>这篇论文中提出的ego-net的分割方法也是Google research发表的在2017 KDD会议上的论文。文章架构分为两步：首先是局部的ego-net分析，然后是全局的网络划分。</p>
-<p><img src="/../images/ego-splitting%E6%9E%B6%E6%9E%84%E6%B5%81%E7%A8%8B.png"></p>
-<p>这里说的是有三个重叠的区域：$\left{a,b,c\right},\left{c,d,e,f\right},\left{f,g,h\right}$。当我们要由c的邻居生成的图的时候，c的两个社区是很容易发现的，它们完全对应于这两个相互连接的组件$\left{a,b\right}$以及$\left{d,e,f\right}$。所以通过使用连接的组件，论文提出的方法能够检测出即使只有一个单节点c，但是c实际上有两个personas，并且这会将c拆分为两个不同的节点：$c_1$和$c_2$。注意到除了节点c和节点f，其他的结点是只有一个单独的社区。我们的算法保留这些结点在特定的persona，比方说$d_1$是在d的case中的。</p>
-<p>经过第一个局部的步骤之后，在第二阶段的全局步骤中，连接组件算法可以轻松的检测到图的重叠社区结构，通过将persona graph划分为集群$\left{a_1,b_1,c_1\right},\left{c_2,d_1,e_1,f_1\right},\left{f_2,g_1,h_1\right}$，这些也就是在原始图中的重叠集群。</p>
-<p>在重叠社区发现问题中，目标就设计算法$R$，输入的是无向的图$G&#x3D;(V,E)$，并且输出一个集合$S’&#x3D;R(G)$，是节点集合V的子集，我们称之为聚集，任意两个聚集之间不能相交。</p>
+<p><img src="../images/算法流程-16545859038562.png"></p>
+<p>首先创建persona graph，初始化<span class="math inline">\(\Phi_G\)</span>，遍历所有结点<span class="math inline">\(v_0\)</span>及其personas，初始化<span class="math inline">\(v_0\)</span>的第j个persona。</p>
+<h2 id="persona-graph的创建">persona graph的创建</h2>
+<p>这篇论文中提出的ego-net的分割方法也是Google research发表的在2017 KDD会议上的论文。文章架构分为两步：首先是局部的ego-net分析，然后是全局的网络划分。</p>
+<p><img src="../images/ego-splitting架构流程.png"></p>
+<p>这里说的是有三个重叠的区域：<span class="math inline">\(\left\{a,b,c\right\},\left\{c,d,e,f\right\},\left\{f,g,h\right\}\)</span>。当我们要由c的邻居生成的图的时候，c的两个社区是很容易发现的，它们完全对应于这两个相互连接的组件<span class="math inline">\(\left\{a,b\right\}\)</span>以及<span class="math inline">\(\left\{d,e,f\right\}\)</span>。所以通过使用连接的组件，论文提出的方法能够检测出即使只有一个单节点c，但是c实际上有两个personas，并且这会将c拆分为两个不同的节点：<span class="math inline">\(c_1\)</span>和<span class="math inline">\(c_2\)</span>。注意到除了节点c和节点f，其他的结点是只有一个单独的社区。我们的算法保留这些结点在特定的persona，比方说<span class="math inline">\(d_1\)</span>是在d的case中的。</p>
+<p>经过第一个局部的步骤之后，在第二阶段的全局步骤中，连接组件算法可以轻松的检测到图的重叠社区结构，通过将persona graph划分为集群<span class="math inline">\(\left\{a_1,b_1,c_1\right\},\left\{c_2,d_1,e_1,f_1\right\},\left\{f_2,g_1,h_1\right\}\)</span>，这些也就是在原始图中的重叠集群。</p>
+<p>在重叠社区发现问题中，目标就设计算法<span class="math inline">\(R\)</span>，输入的是无向的图<span class="math inline">\(G=(V,E)\)</span>，并且输出一个集合<span class="math inline">\(S&#39;=R(G)\)</span>，是节点集合V的子集，我们称之为聚集，任意两个聚集之间不能相交。</p>
 <p>在一个簇重建公式中，我们假设有一组节点的子集S，我们称之为ground-truth集群，算法的任务是恢复这样的簇。为了使检测问题有意义，S和G必须以一种能够从G中提取关于S的信息的方式相关联。</p>
 <p>这篇论文设计了两种不同的场景评估算法。首先是标记的数据集，其中图带有元数据，识别已知的社区和我们想要检索的节点子集。第二种场景是生成模型，其中一个随机过程从一组集群中生成一个图，而算法需要恢复那些只能访问该图的集群。</p>
-<h2 id="聚类检测问题"><a href="#聚类检测问题" class="headerlink" title="聚类检测问题"></a>聚类检测问题</h2><p>给定一个ground truth集群$C \in V$以及重构的集群$C’ \in V$，我们定义精度为$P(C’,C)&#x3D;|C \and C’|&#x2F;|C’|$,以及召回：$R(C’,C)&#x3D;|C \and C’|&#x2F;|C|$，F-1 score定义为：</p>
-<p><img src="/../images/F-1%E5%88%86%E6%95%B0.png"></p>
+<h2 id="聚类检测问题">聚类检测问题</h2>
+<p>给定一个ground truth集群<span class="math inline">\(C \in V\)</span>以及重构的集群<span class="math inline">\(C&#39; \in V\)</span>，我们定义精度为<span class="math inline">\(P(C&#39;,C)=|C \and C&#39;|/|C&#39;|\)</span>,以及召回：<span class="math inline">\(R(C&#39;,C)=|C \and C&#39;|/|C|\)</span>，F-1 score定义为：</p>
+<p><img src="../images/F-1分数.png"></p>
 <p>作者这里用两个标准评价集群检测：</p>
 <ul>
-<li><p>F-1 score：给定一个ground-truth 集群S和一个发现的集群S’，F1评分如下：</p>
-<p><img src="/../images/%E8%AF%84%E4%BB%B71.png"></p>
-</li>
-<li><p>归一化互信息(NMI)。</p>
-</li>
+<li><p>F-1 score：给定一个ground-truth 集群S和一个发现的集群S'，F1评分如下：</p>
+<p><img src="../images/评价1.png"></p></li>
+<li><p>归一化互信息(NMI)。</p></li>
 </ul>
-<p>给定一幅图$G&#x3D;(V,E)$以及节点子集$U$，我们定义诱导图为$G[U]&#x3D;(U,E \and U \times U)$。对于一个结点$u \in V$，u的邻域由连接到它的结点组成$N_u&#x3D;\left{v;(u,v) \in E\right}$，u的ego-net由在邻域上诱导的图组成$G[N_u]$。自我网表示来自图连接上的节点u的局部视图(注意，u的自我网不包括节点u)。</p>
-<p>有两个非重叠的聚类算法：局部聚类算法$A^l$以及全局聚类算法$A^g$，ego-splitting算法处理一个输入图并且输出一个聚类的集合$S’$：</p>
+<p>给定一幅图<span class="math inline">\(G=(V,E)\)</span>以及节点子集<span class="math inline">\(U\)</span>，我们定义诱导图为<span class="math inline">\(G[U]=(U,E \and U \times U)\)</span>。对于一个结点<span class="math inline">\(u \in V\)</span>，u的邻域由连接到它的结点组成<span class="math inline">\(N_u=\left\{v;(u,v) \in E\right\}\)</span>，u的ego-net由在邻域上诱导的图组成<span class="math inline">\(G[N_u]\)</span>。自我网表示来自图连接上的节点u的局部视图(注意，u的自我网不包括节点u)。</p>
+<p>有两个非重叠的聚类算法：局部聚类算法<span class="math inline">\(A^l\)</span>以及全局聚类算法<span class="math inline">\(A^g\)</span>，ego-splitting算法处理一个输入图并且输出一个聚类的集合<span class="math inline">\(S&#39;\)</span>：</p>
 <ul>
-<li>第一步：对于每个节点使用局部聚类算法来分割u的ego-net，令$A^l(G[N_u])&#x3D;\left{N_u^1,N_u^2,…,N_u^{t_u}\right}$，其中$t_u&#x3D;np(A^l,G[N_u])$</li>
-<li>第二步：创建personas集合。每个节点u将会跟在personas集合$V’$中的$t_u$个personas关联，表示为$u_i$</li>
-<li>第三步：在personas之间添加边。如果$(u,v)∈E,v∈N_u^i$并且$u∈N_v^j$，那么就添加一条边$(u_j,v_i)$到$E’$中。</li>
-<li>第四步：在$G’&#x3D;(V’,E’)$中使用全局的聚类算法，并且获得V’的分割S’’。</li>
-<li>第五步：对于集合$C’∈S’’$，$C(C’)&#x3D;\left{u \in V | \exist i \ s.t. u_i \in C’\right}$</li>
+<li>第一步：对于每个节点使用局部聚类算法来分割u的ego-net，令<span class="math inline">\(A^l(G[N_u])=\left\{N_u^1,N_u^2,...,N_u^{t_u}\right\}\)</span>，其中<span class="math inline">\(t_u=np(A^l,G[N_u])\)</span></li>
+<li>第二步：创建personas集合。每个节点u将会跟在personas集合<span class="math inline">\(V&#39;\)</span>中的<span class="math inline">\(t_u\)</span>个personas关联，表示为<span class="math inline">\(u_i\)</span></li>
+<li>第三步：在personas之间添加边。如果<span class="math inline">\((u,v)∈E,v∈N_u^i\)</span>并且<span class="math inline">\(u∈N_v^j\)</span>，那么就添加一条边<span class="math inline">\((u_j,v_i)\)</span>到<span class="math inline">\(E&#39;\)</span>中。</li>
+<li>第四步：在<span class="math inline">\(G&#39;=(V&#39;,E&#39;)\)</span>中使用全局的聚类算法，并且获得V'的分割S''。</li>
+<li>第五步：对于集合<span class="math inline">\(C&#39;∈S&#39;&#39;\)</span>，<span class="math inline">\(C(C&#39;)=\left\{u \in V | \exist i \ s.t. u_i \in C&#39;\right\}\)</span></li>
 </ul>
-<p>通俗的讲，以上几个步骤就是下面的：首先根据全局的网络遍历所有的节点得到其ego-net（说白了也就是一阶邻居，不包含节点本身），然后找到这些个一阶邻居的分割，分成了多少个就代表这个节点有多少个personas，在新的persona graph添加边首先节点u和节点v得在原始网络中存在边，其次v在u的第i个邻域中，u在v的第j个邻域中，那么就添加ui和vj的边。就比方说上图中的ef连边，他是为了保证原本的连通性不受影响。第四步是使用全局的聚类算法$A^g$到$G’$中，可以获得划分$S’’$，</p>
+<p>通俗的讲，以上几个步骤就是下面的：首先根据全局的网络遍历所有的节点得到其ego-net（说白了也就是一阶邻居，不包含节点本身），然后找到这些个一阶邻居的分割，分成了多少个就代表这个节点有多少个personas，在新的persona graph添加边首先节点u和节点v得在原始网络中存在边，其次v在u的第i个邻域中，u在v的第j个邻域中，那么就添加ui和vj的边。就比方说上图中的ef连边，他是为了保证原本的连通性不受影响。第四步是使用全局的聚类算法<span class="math inline">\(A^g\)</span>到<span class="math inline">\(G&#39;\)</span>中，可以获得划分<span class="math inline">\(S&#39;&#39;\)</span>，</p>
 <center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/步骤1-3-16546792208425.png">
-    <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+<img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/步骤1-3-16546792208425.png"> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">步骤1-3</div>
+    padding: 2px;">
+步骤1-3
+</div>
 </center>
-
 <center>
-    <img style="border-radius: 0.3125em;
-    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/步骤4-5-16546792310987.png">
-    <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9;
+<img style="border-radius: 0.3125em;
+    box-shadow: 0 2px 4px 0 rgba(34,36,38,.12),0 2px 10px 0 rgba(34,36,38,.08);" src="../images/步骤4-5-16546792310987.png"> <br>
+<div style="color:orange; border-bottom: 1px solid #d9d9d9;
     display: inline-block;
     color: #999;
-    padding: 2px;">步骤4-5</div>
+    padding: 2px;">
+步骤4-5
+</div>
 </center>
 
       
@@ -371,6 +372,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2022/06/16/Boosting-Graph-Alignment-Algorithms%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          Boosting Graph Alignment Algorithms笔记
+        
+      </div>
+    </a>
+  
   
     <a href="/2022/06/02/Towards-Improving-Embedding-Based-Models-of/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Towards Improving Embedding Based Models of</div>
@@ -400,7 +410,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Splitter笔记"><span class="toc-number">1.</span> <span class="toc-text">Splitter笔记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#persona-graph的创建"><span class="toc-number">2.</span> <span class="toc-text">persona graph的创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚类检测问题"><span class="toc-number">3.</span> <span class="toc-text">聚类检测问题</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#splitter笔记"><span class="toc-number">1.</span> <span class="toc-text">Splitter笔记</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#persona-graph的创建"><span class="toc-number">2.</span> <span class="toc-text">persona graph的创建</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#聚类检测问题"><span class="toc-number">3.</span> <span class="toc-text">聚类检测问题</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -546,11 +556,11 @@ MathJax.Hub.Queue(function() {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">论文笔记</a>
+                <a href="javascript:void(0)" class="js-tag color5">深度学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -558,15 +568,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">研究工作</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
+                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -574,11 +580,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java基础知识</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">

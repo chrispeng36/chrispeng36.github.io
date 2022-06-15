@@ -6,25 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>struct2vec笔记 | Chris的个人博客</title>
+  <title>Boosting Graph Alignment Algorithms笔记 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="struct2vec kdd2017">
-<meta property="og:type" content="article">
-<meta property="og:title" content="struct2vec笔记">
-<meta property="og:url" content="http://yoursite.com/2022/03/07/struct2vec%E7%AC%94%E8%AE%B0/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Boosting Graph Alignment Algorithms笔记">
+<meta property="og:url" content="http://yoursite.com/2022/06/16/Boosting-Graph-Alignment-Algorithms%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
-<meta property="og:description" content="struct2vec kdd2017">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://yoursite.com/2022/03/07/images/struct2vec/g%E5%85%AC%E5%BC%8F%E8%AF%A6%E8%A7%A3.jpg">
-<meta property="og:image" content="http://yoursite.com/2022/03/07/images/struct2vec/g%E5%87%BD%E6%95%B0%E8%AE%A1%E7%AE%97%E8%BF%87%E7%A8%8B.jpg">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=f_k(u%252Cv)">
-<meta property="og:image" content="https://www.zhihu.com/equation?tex=f_%7Bk%252B1%7D(u%252Cv)">
-<meta property="article:published_time" content="2022-03-07T09:15:46.000Z">
-<meta property="article:modified_time" content="2022-03-07T07:57:01.578Z">
+<meta property="article:published_time" content="2022-06-15T20:51:16.000Z">
+<meta property="article:modified_time" content="2022-06-15T12:51:33.307Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://yoursite.com/2022/03/07/images/struct2vec/g%E5%85%AC%E5%BC%8F%E8%AF%A6%E8%A7%A3.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Chris的个人博客" type="application/atom+xml">
   
@@ -167,89 +160,33 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="article-struct2vec笔记" class="article article-type-article " itemscope itemprop="blogPost">
+            <article id="article-Boosting-Graph-Alignment-Algorithms笔记" class="article article-type-article " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      struct2vec笔记
+      Boosting Graph Alignment Algorithms笔记
     </h1>
   
 
         
-        <a href="/2022/03/07/struct2vec%E7%AC%94%E8%AE%B0/" class="archive-article-date">
+        <a href="/2022/06/16/Boosting-Graph-Alignment-Algorithms%E7%AC%94%E8%AE%B0/" class="archive-article-date">
 	
         <!-- 不蒜子统计 -->
         <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-  	<time datetime="2022-03-07T09:15:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-03-07</time>
+  	<time datetime="2022-06-15T20:51:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-06-15</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="struct2vec">struct2vec</h1>
-<p>kdd2017</p>
-<a id="more"></a>
-<p>struc2vec使用层次结构在不同尺度上度量节点相似性，并构建一个多层图来编码结构相似性并为节点生成结构上下文。大多数真实网络中的许多节点特征都表现出很强的同质性，如果隔得比较远的两个节点有相似的结构的话，用deepwalk和node2vec这种表示学习方法是不能够刻画出他们的结构相似性的。</p>
-<p>struct2vec的思想：</p>
-<ul>
-<li>评估节点之间的独立于节点和边缘的结构相似性以及它们在网络中的位置。将考虑具有相似的局部结构的两个节点，独立于网络的位置以及节点的在邻居中的标签。我们的方法也不需要网络连接，并且在不同连接的组件中识别结构相似的节点。</li>
-<li>在层次结构的底部，节点之间的结构一致性只取决于他们的度，在层次结构的顶部，相似性取决于整个网络（从节点的角度来看）</li>
-<li>为节点生成随机上下文，节点是通过遍历加权随机游走历多层图观察到的结构相似的节点序列（而不是原来的网络）。使用随机采样的方式来获取上下文，如果两个节点经常出现在相同的上下文中，表明他们有相类似的结构特征。</li>
-</ul>
-<p>构建显式捕获结构身份的表示是一个相对正交的问题，它没有得到多少的关注。</p>
-<p>好的反应节点的结构特征的方法必须满足以下两个特征：</p>
-<ul>
-<li>嵌入空间的距离得能够反映出节点之间的结构相似性，两个局部拓扑结构相似的节点在嵌入空间的距离应该相近。</li>
-<li>节点的结构相似性不依赖于节点或者边的属性甚至是节点的标签信息。</li>
-</ul>
-<p>strcut2vec包含以下四个步骤：</p>
-<ul>
-<li>对于不同大小的邻域，确定图中每个节点对之间的结构相似性。这在节点之间的结构相似度度量中引入了一个层次结构，提供更多的信息来评估层次结构的每个层次的结构相似性。</li>
-<li>构造一个加权多层图，其中网络中的所有节点都出现在每一层中，每一层对应于衡量结构相似度的层次水平。此外，每一层内每个节点对之间的边权值与其结构相似性成反比。</li>
-<li>使用多层图可以为每个节点生成上下文。特别地，利用多层图上的有偏随机游走来生成节点序列。这些序列很可能包括在结构上更相似的节点。</li>
-<li>应用一种技术，从由节点序列给出的上下文中学习潜在的表示。</li>
-</ul>
-<h2 id="测定结构相似性">1. 测定结构相似性</h2>
-<p>如果两个节点具有相同的度的话，他们的结构是相似的，但是如果邻居也有相同的度的话，他们结构上就更相似。</p>
-<p><span class="math inline">\(G=(V,E)\)</span>表示无向无权网络，<span class="math inline">\(n=|V|\)</span>表示的是节点个数，<span class="math inline">\(K^*\)</span>表示直径。<span class="math inline">\(R_k(u)\)</span>表示的是G中距离（跳数）的节点集正好是k≥0。<span class="math inline">\(R_1(u)\)</span>表示的就是节点u的邻居。<span class="math inline">\(s(S)\)</span>对某个节点集合V中的节点按照度的大小从小到大顺序排序后的序列。</p>
-<p><span class="math inline">\(f_k(u,v)\)</span>为考虑两个节点的k跳邻居时（小于等于k跳的所有邻居均要考虑），两个节点的结构距离：</p>
-<p><span class="math inline">\(f_{k}(u, v)=f_{k-1}(u, v)+g\left(s\left(R_{k}(u)\right), s\left(R_{k}(v)\right)\right)\)</span> <span class="math inline">\(k \geq 0\)</span> and <span class="math inline">\(\left|R_{k}(u)\right|,\left|R_{k}(v)\right|&gt;0\)</span></p>
-<p>其中<span class="math inline">\(g(D_1,D_2)≥0\)</span>测量有序度序列D1和D2之间的距离并且<span class="math inline">\(f_{-1}=0\)</span>。<span class="math inline">\(f_k(u,v)\)</span>是一个单调不降的函数，并且这个函数只有在两个节点同时存在k跳邻居时才有定义。本文使用的时DTW的方法来处理两个序列之间的距离。DTW找到两个序列A和序列B之间的最佳比对，给定距离方程<span class="math inline">\(d(a,b)\)</span>，DTW匹配每个<span class="math inline">\(a∈A\)</span>和<span class="math inline">\(b∈B\)</span>，从而使匹配元素之间的距离之和最小化。这里处理的A和B的序列元素表示度，所以采用方程：<span class="math inline">\(d(a, b)=\frac{\max (a, b)}{\min (a, b)}-1\)</span>，如果a=b那么<span class="math inline">\(d(a,b)=0\)</span></p>
-<p><img src="../images/struct2vec/g公式详解.jpg"></p>
-<p><img src="../images/struct2vec/g函数计算过程.jpg"></p>
-<h2 id="构造上下文图">2. 构造上下文图</h2>
-<p>上一步构造了一个多层加权图来编码节点之间的结构相似性。这一步中，根据这些信息构建一个多层的带权重网络M。其中M的第k层是由节点的k跳邻居所定义的。对于每一层，<span class="math inline">\(k=0,...,k^*\)</span>，是一个带权重的完全图，有<span class="math inline">\(n(n-1)/2\)</span>条边，每条边的权值定义为：<span class="math inline">\(w_{k}(u, v)=e^{-f_{k}(u, v)}, \quad k=0, \ldots, k^{*}\)</span></p>
-<ul>
-<li>这个式子的意思是当任意两个节点的结构相似性越大，其权重越大。</li>
-</ul>
-<p>使用有向边连接层与层，对于第k层的任意节点<span class="math inline">\(u_k\)</span>，都有有向边<span class="math inline">\((u_k,u_{k-1})\)</span>和<span class="math inline">\((u_k,u_{k+1})\)</span>，权重分别为：</p>
-<p><span class="math inline">\(w\left(u_{k}, u_{k+1}\right)=\log \left(\Gamma_{k}(u)+e\right), \quad k=0, \ldots, k-1\)</span> <span class="math inline">\(w\left(u_{k}, u_{k-1}\right)=1, \quad k=1, \ldots, k\)</span></p>
-<p>其中<span class="math inline">\(\Gamma_k(u)\)</span>表示第k层中，所有指向u的边中权重大于该层平均权重的数量。</p>
-<p><span class="math inline">\(\Gamma_{k}(u)=\sum_{v \in V} 1\left(w_{k}(u, v)&gt;\overline{w_{k}}\right)\)</span></p>
-$ =_{(u, v) (
-<span class="math display">\[\begin{array}{l}V \\ 2\end{array}\]</span>
-)} w_{k}(u, v) /(
-<span class="math display">\[\begin{array}{l}n \\ 2\end{array}\]</span>
-<p>)<span class="math inline">\(表示所有边权重的平均值，\)</span><em>k(u)<span class="math inline">\(实际上表示了第k层中，有多少是与节点u相似的，如果u与很多节点都相似，说明此时一定处于低层次，考虑的信息太少了，那么\)</span><em>k(u)<span class="math inline">\(将会很大，也就是\)</span>w(u_k,u</em>{k+1})&gt;w(u_k,u</em>{k-1})$，对于这种情况，就不适合将本层的节点作为上下文了，应该考虑跳到更高的层去找上下文，所以去更高层的权重更大。</p>
-<p>M有<span class="math inline">\(nk^*\)</span>个节点，最多有<span class="math inline">\(k^{*}\left(\begin{array}{l}n \\ 2\end{array}\right)+2n(k^*-1)\)</span>权重边。</p>
-<h2 id="为节点生成上下文">3. 为节点生成上下文</h2>
-<p>上一步讲的多层网络M的构建是为了寻找合适的上下文，而寻找上下文的方式与deepwalk一样是采用随机游走的方式。M在完全没有使用标签信息的情况下捕获在G中节点的结构相似性。特别的，考虑一个有偏的随机游走，在M周围移动，根据M的权重来随机选择。在每一步之前，随机行走首先决定它将改变层还是在当前层上行走（随概率q&gt;0计算，随机游走保持在当前层中）。</p>
-<p>考虑到它将保留在当前的一层中，在第k层中，从节点u步进到节点v的概率为：</p>
-<p><span class="math inline">\(p_{k}(u, v)=\frac{e^{-f_{k}(u, v)}}{Z_{k}(u)}\)</span></p>
-<p>分母是归一化因子<span class="math inline">\(Z_{k}(u)=\sum_{v \in V \atop v \neq u} e^{-f_{k}(u, v)}\)</span></p>
-<p>请注意，随机游走将更倾向于转移到在结构上更类似于当前顶点的节点上，从而避免与它具有非常不接近的结构相似性的节点。因此，节点的u∈V的上下文很可能具有结构相似的节点，独立于它们的标签和在原始网络G中的位置。</p>
-<p>如果跳层，同样分为两个方向，概率也跟边的权重有关，</p>
-<p><span class="math inline">\(p_{k}\left(u_{k}, u_{k+1}\right)=\frac{w\left(u_{k}, u_{k+1}\right)}{w\left(u_{k}, u_{k+1}\right)+w\left(u_{k}, u_{k-1}\right)}\)</span> <span class="math inline">\(p_{k}\left(u_{k}, u_{k-1}\right)=1-p_{k}\left(u_{k}, u_{k+1}\right)\)</span></p>
-<p>请注意，每次游走在一个层中行走时，它都将当前顶点作为其上下文的一部分，独立于该层。，一个顶点u在第k层中可能有一个给定的上下文（由该层的结构相似性决定），但是在k+1层有这个上下文的子集，因为结构上的相似性不能随着我们移动到更高的层次而增加。是一个跨层的层次上下文的概念，它是所提出的方法的一个基本方面。</p>
-<p>最后，对于每个节点u∈V，我们在第0层中对应的顶点开始随机游走。</p>
-<p>注意到当层数越高，因为考虑的邻域更广，节点间的结构相似性计算越苛刻，因此<strong>在底层计算出两个节点结构相似的，在高层则不一定相似</strong>，并且高层很多节点之间的<img src="https://www.zhihu.com/equation?tex=f_k%28u%2Cv%29" alt="[公式]">可能根本没有定义。这就导致如果随机游走在某个节点u跳到了更高的层，那么在随机游走的序列中，其左边的节点是k层，而右边的节点是k+1层的。而左右两边的取值范围是不同的。换言之，某个节点可能会出现在左边，但不会出现在右边，因为虽然它跟中间那个节点u在k层是相似的，但在k+1层可能无定义或者<img src="https://www.zhihu.com/equation?tex=f_%7Bk%2B1%7D%28u%2Cv%29" alt="[公式]">太大导致随机游走在k=1层走到这个节点的概率几乎可以忽略。</p>
+        
 
       
 
@@ -340,7 +277,7 @@ $ =_{(u, v) (
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=你的主页网址2022/03/07/struct2vec%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=你的主页网址2022/06/16/Boosting-Graph-Alignment-Algorithms%E7%AC%94%E8%AE%B0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -354,18 +291,9 @@ $ =_{(u, v) (
   
 <nav id="article-nav">
   
-    <a href="/2022/03/09/ORIGIN%E7%AC%94%E8%AE%B0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          ORIGIN笔记
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/03/02/REGAL%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">REGAL笔记</div>
+    <a href="/2022/06/07/Splitter%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Splitter笔记</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -392,7 +320,7 @@ $ =_{(u, v) (
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#struct2vec"><span class="toc-number">1.</span> <span class="toc-text">struct2vec</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#测定结构相似性"><span class="toc-number">1.1.</span> <span class="toc-text">1. 测定结构相似性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#构造上下文图"><span class="toc-number">1.2.</span> <span class="toc-text">2. 构造上下文图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为节点生成上下文"><span class="toc-number">1.3.</span> <span class="toc-text">3. 为节点生成上下文</span></a></li></ol></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
