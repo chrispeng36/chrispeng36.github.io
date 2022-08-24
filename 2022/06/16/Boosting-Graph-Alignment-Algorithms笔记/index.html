@@ -8,13 +8,15 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>Boosting Graph Alignment Algorithms笔记 | Chris的个人博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="1. 简介 作者研究了我们研究了两种最先进的图形对齐算法，利用节点表示，CONE-Align以及GRASP算法，并以一个总体的模块化框架来描述它们。 网络对齐任务一般包含以下：  embed：为每个节点创建embedding align：对齐两个图的嵌入空间，使相似的节点在公共空间中彼此接近。 assign：通过一些线性分配算法来匹配变换后的嵌入数。  作者研究了三种模块的对齐算法">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Boosting Graph Alignment Algorithms笔记">
 <meta property="og:url" content="http://yoursite.com/2022/06/16/Boosting-Graph-Alignment-Algorithms%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Chris的个人博客">
+<meta property="og:description" content="1. 简介 作者研究了我们研究了两种最先进的图形对齐算法，利用节点表示，CONE-Align以及GRASP算法，并以一个总体的模块化框架来描述它们。 网络对齐任务一般包含以下：  embed：为每个节点创建embedding align：对齐两个图的嵌入空间，使相似的节点在公共空间中彼此接近。 assign：通过一些线性分配算法来匹配变换后的嵌入数。  作者研究了三种模块的对齐算法">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-15T20:51:16.000Z">
-<meta property="article:modified_time" content="2022-06-15T12:51:33.307Z">
+<meta property="article:modified_time" content="2022-06-17T02:41:04.569Z">
 <meta property="article:author" content="Chris Peng">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
@@ -186,7 +188,19 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="简介">1. 简介</h1>
+<p>作者研究了我们研究了两种最先进的图形对齐算法，利用节点表示，CONE-Align以及GRASP算法，并以一个总体的模块化框架来描述它们。</p>
+<p>网络对齐任务一般包含以下：</p>
+<ul>
+<li>embed：为每个节点创建embedding</li>
+<li>align：对齐两个图的嵌入空间，使相似的节点在公共空间中彼此接近。</li>
+<li>assign：通过一些线性分配算法来匹配变换后的嵌入数。</li>
+</ul>
+<p>作者研究了三种模块的对齐算法REGAL，CONE-Align以及GRASP，并对CONE-Align以及GRASP提出了改进。</p>
+<p>一些参数：</p>
+<p>graph alignment：给定两个无向图：<span class="math inline">\(G_1=(V_1,E_1)\)</span>和<span class="math inline">\(G_2=(V_2,E_2)\)</span>，图对齐就是将两个网络中的结点互相对齐。</p>
+<p>node embedding：嵌入函数<span class="math inline">\(f(v) \in R^k\)</span>是节点v的表示。</p>
+<p>graph laplacian：<span class="math inline">\(\mathcal{L}=I-D^{-1/2}AD^{-1/2}\)</span>,其中A是G的邻接矩阵，D是度矩阵<span class="math inline">\(D_{ii}=\sum_{j=1}^nA_{ij}\)</span>。这个矩阵的特征分解是<span class="math inline">\(\mathcal{L}= \Phi \Lambda \Phi^T\)</span>，其中<span class="math inline">\(\Lambda\)</span>是特征值的对角矩阵。其对角线，<span class="math inline">\(\left\{\lambda_1,...,\lambda_n\right\}\)</span>是L的谱，<span class="math inline">\(\Phi_{\mathcal{L}}=[\phi_1 \phi_2...\phi_n]\)</span>是特征向量矩阵。特征向量可以解释为为每个节点分配一个实值的函数。</p>
 
       
 
@@ -291,6 +305,15 @@
   
 <nav id="article-nav">
   
+    <a href="/2022/06/17/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          操作系统
+        
+      </div>
+    </a>
+  
   
     <a href="/2022/06/07/Splitter%E7%AC%94%E8%AE%B0/" id="article-nav-older" class="article-nav-link-wrap">
       <div class="article-nav-title">Splitter笔记</div>
@@ -320,7 +343,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#简介"><span class="toc-number">1.</span> <span class="toc-text">1. 简介</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -482,11 +505,11 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
+                <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Java并发</a>
+                <a href="javascript:void(0)" class="js-tag color1">JVM学习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,11 +517,7 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">Java学习笔记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color2">Java并发</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -506,11 +525,15 @@ MathJax.Hub.Queue(function() {
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">机器学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -527,6 +550,18 @@ MathJax.Hub.Queue(function() {
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">周会论文讲解</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">项目工作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">网课学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">操作系统</a>
               </li>
              
               <li class="article-tag-list-item">
